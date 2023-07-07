@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/career_default"
+        android:enabled="true"
+        android:title="@string/career_default"/>
+
+    <item
+        android:id="@+id/career_newcomer"
+        android:enabled="true"
+        android:title="@string/career_newcomer"/>
+
+    <item
+        android:id="@+id/career_old"
+        android:enabled="true"
+        android:title="@string/career_old"/>
+
+</menu>

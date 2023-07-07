@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">새싹 농부</string>
+
+<!--    fragment-->
+    <string name="fragment_home">홈</string>
+    <string name="fragment_working">일자리터</string>
+    <string name="fragment_notice">이야기터</string>
+    <string name="fragment_farm">농장터</string>
+    <string name="fragment_study">배움터</string>
+
+<!--    division agriculture-->
+    <string name="agri_default">농업 구분</string>
+    <string name="agri_field">밭농사</string>
+    <string name="agri_fruit">과수</string>
+    <string name="agri_house">하우스</string>
+    <string name="agri_paddy">논</string>
+    <string name="agri_special">특용작물</string>
+
+<!--    division crop-->
+    <string name="crop_default">희망 작목</string>
+    <string name="crop_vegetable">농작물 채소</string>
+    <string name="crop_fruit">과실</string>
+    <string name="crop_flower">화훼 작물</string>
+
+<!--    career-->
+    <string name="career_default">경력무관</string>
+    <string name="career_newcomer">신입</string>
+    <string name="career_old">경력</string>
+
+
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/fragment_home"
+        android:enabled="true"
+        android:icon="@drawable/black_radius"
+        android:title="@string/fragment_home"/>
+
+    <item
+        android:id="@+id/fragment_working"
+        android:enabled="true"
+        android:icon="@drawable/black_radius"
+        android:title="@string/fragment_working"/>
+
+    <item
+        android:id="@+id/fragment_notice"
+        android:enabled="true"
+        android:icon="@drawable/black_radius"
+        android:title="@string/fragment_notice"/>
+
+    <item
+        android:id="@+id/fragment_farm"
+        android:enabled="true"
+        android:icon="@drawable/black_radius"
+        android:title="@string/fragment_farm"/>
+
+    <item
+        android:id="@+id/fragment_study"
+        android:enabled="true"
+        android:icon="@drawable/black_radius"
+        android:title="@string/fragment_study"/>
+
+</menu>

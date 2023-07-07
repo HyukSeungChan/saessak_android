@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/agri_default"
+        android:enabled="true"
+        android:title="@string/agri_default"/>
+
+    <item
+        android:id="@+id/agri_field"
+        android:enabled="true"
+        android:title="@string/agri_field"/>
+
+    <item
+        android:id="@+id/agri_fruit"
+        android:enabled="true"
+        android:title="@string/agri_fruit"/>
+
+    <item
+        android:id="@+id/agri_house"
+        android:enabled="true"
+        android:title="@string/agri_house"/>
+
+    <item
+        android:id="@+id/agri_paddy"
+        android:enabled="true"
+        android:title="@string/agri_paddy"/>
+
+    <item
+        android:id="@+id/agri_special"
+        android:enabled="true"
+        android:title="@string/agri_special"/>
+
+
+
+</menu>
