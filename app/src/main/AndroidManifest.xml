@@ -8,9 +8,13 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +24,7 @@
         android:theme="@style/Theme.Ssaesak"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".Main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,15 +33,31 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.example.ssaesak.Main.MypageActivity"/>
         <activity android:name="com.example.ssaesak.Working.WorkingActivity"/>
         <activity android:name="com.example.ssaesak.Board.BoardActivity"/>
         <activity android:name="com.example.ssaesak.Farmgroup.FarmgroupActivity"/>
+        <activity android:name="com.example.ssaesak.Study.StudyActivity"/>
+<!--        <activity android:name="com.example.ssaesak.Farmgroup.FarmgroupSidebar"/>-->
+
+        <activity
+            android:name=".Farmgroup.FarmgroupSidebar"
+            android:label="농장그룹 사이드바 카카오맵 연결"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="kakaomap" android:host="open"/>
+            </intent-filter>
+        </activity>
+
 
 <!--        <activity android:name="com.colorful.colorful_android.Home.HomeMainDialog"/>-->
 <!--        <activity android:name="com.colorful.colorful_android.Home.PopupTourSpotPalette" android:theme="@android:style/Theme.Dialog"/>-->
 
+    <meta-data android:name="com.kakao.sdk.AppKey" android:value="4caf1a2e579000e6cd8d530264db7aed" />
     </application>
-
 
 
 </manifest>

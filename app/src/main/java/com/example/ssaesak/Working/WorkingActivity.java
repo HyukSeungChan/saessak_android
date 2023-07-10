@@ -16,9 +16,12 @@ import androidx.annotation.NonNull;
 import com.example.ssaesak.Adapter.AgricultureAdapter;
 import com.example.ssaesak.Adapter.CareerAdapter;
 import com.example.ssaesak.Adapter.CropAdapter;
+import com.example.ssaesak.Board.BoardActivity;
 import com.example.ssaesak.Common.Constants;
-import com.example.ssaesak.MainActivity;
+import com.example.ssaesak.Farmgroup.FarmgroupActivity;
+import com.example.ssaesak.Main.MainActivity;
 import com.example.ssaesak.R;
+import com.example.ssaesak.Study.StudyActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -122,29 +125,28 @@ public class WorkingActivity  extends Activity {
             if (menuItem.getItemId() == R.id.fragment_working) {menuItem.setChecked(true);}
         }
 
-
-
-        // 바텀 네비게이션 객체 선언
         navigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.fragment_home) {
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    overridePendingTransition(0, 0);
-                    finish();
-                    return true;
-                } else if (item.getItemId() == R.id.fragment_working) {
-//                    startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
+//                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
 //                    overridePendingTransition(0, 0);
                     return true;
+                } else if (item.getItemId() == R.id.fragment_working) {
+                    startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
                 } else if (item.getItemId() == R.id.fragment_farm) {
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_screen, fragment_farm).commitAllowingStateLoss();
+                    startActivity(new Intent(getApplicationContext(), FarmgroupActivity.class));
+                    overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_notice) {
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_screen, fragment_notice).commitAllowingStateLoss();
+                    startActivity(new Intent(getApplicationContext(), BoardActivity.class));
+                    overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_study) {
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_screen, fragment_study).commitAllowingStateLoss();
+                    startActivity(new Intent(getApplicationContext(), StudyActivity.class));
+                    overridePendingTransition(0, 0);
                     return true;
                 } else {
                     return false;
