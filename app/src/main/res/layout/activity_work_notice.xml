@@ -16,7 +16,7 @@
         android:paddingVertical="12dp"
         android:paddingHorizontal="20dp"
         android:gravity="center"
-        android:background="#F4F4F4"
+        android:background="@color/white"
         >
 
         <TextView
@@ -50,9 +50,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/upbar"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginHorizontal="20dp"
         android:paddingVertical="12dp"
-        android:background="#F4F4F4"
+        android:background="@color/white"
         android:scrollbars="none"
         android:overScrollMode="never"
         android:clipToPadding="false"
@@ -65,6 +64,144 @@
             android:gravity="center_vertical">
 
 <!--        드랍다운 리스트 ~-->
+        <LinearLayout
+            android:id="@+id/area_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="8dp"
+            android:paddingVertical="4dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/filter_not_select"
+            >
+
+            <TextView
+                android:id="@+id/area_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/gray5"
+                android:text="전체"
+                />
+
+            <ImageView
+                android:id="@+id/area_image"
+                android:background="@drawable/svg_dropdown"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginLeft="4dp"
+                android:layout_margin="8dp"
+                />
+
+        </LinearLayout>
+
+            !--        드랍다운 리스트 ~-->
+
+            <LinearLayout
+                android:id="@+id/agriculture_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="8dp"
+                android:paddingVertical="4dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/filter_not_select"
+                >
+
+                <TextView
+                    android:id="@+id/agriculture_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/gray5"
+                    android:text="농업 구분"
+                    />
+
+                <ImageView
+                    android:id="@+id/agriculture_image"
+                    android:background="@drawable/svg_dropdown"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_margin="8dp"
+                    />
+
+            </LinearLayout>
+
+            !--        드랍다운 리스트 ~-->
+
+            <LinearLayout
+                android:id="@+id/crop_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="8dp"
+                android:paddingVertical="4dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/filter_not_select"
+                >
+
+                <TextView
+                    android:id="@+id/crop_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/gray5"
+                    android:text="희망 작목"
+                    />
+
+                <ImageView
+                    android:id="@+id/crop_image"
+                    android:background="@drawable/svg_dropdown"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_margin="8dp"
+                    />
+
+            </LinearLayout>
+
+            !--        드랍다운 리스트 ~-->
+
+            <LinearLayout
+                android:id="@+id/career_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="8dp"
+                android:paddingVertical="4dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/filter_not_select"
+                >
+
+                <TextView
+                    android:id="@+id/career_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/gray5"
+                    android:text="경력"
+                    />
+
+                <ImageView
+                    android:id="@+id/career_image"
+                    android:background="@drawable/svg_dropdown"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_margin="8dp"
+                    />
+
+            </LinearLayout>
 
 
         </LinearLayout>
@@ -81,6 +218,7 @@
         android:paddingHorizontal="20dp"
         android:scrollbars="none"
         android:overScrollMode="never"
+        android:background="@color/white"
         >
 
         <LinearLayout

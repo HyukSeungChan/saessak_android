@@ -20,7 +20,7 @@ public class EventDecoratorWorkday implements DayViewDecorator {
     private HashSet<CalendarDay> dates;
     private TextView textView;
     public EventDecoratorWorkday(Collection<CalendarDay> dates, Activity context, TextView textView) {
-        drawable = context.getResources().getDrawable(R.drawable.calendar_workday_backgorund);
+        drawable = context.getResources().getDrawable(R.drawable.calendar_workday_backgorund, null);
 
         this.dates = new HashSet<>(dates);
         this.textView = textView;

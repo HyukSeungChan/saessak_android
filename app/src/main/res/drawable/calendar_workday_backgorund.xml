@@ -6,8 +6,8 @@
         android:state_checked="true"
         android:state_selected="true"
         android:state_pressed="true"
-        android:drawable="@drawable/calendar_workday_layer"></item>
+        android:drawable="@drawable/calendar_workday_select_layer"></item>
 
-    <item android:drawable="@drawable/calendar_workday_not_layer"></item>
+    <item android:drawable="@drawable/calendar_workday_not_select_layer"></item>
 
 </selector>

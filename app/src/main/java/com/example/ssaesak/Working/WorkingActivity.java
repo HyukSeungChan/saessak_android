@@ -2,6 +2,7 @@ package com.example.ssaesak.Working;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,11 +11,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ssaesak.Adapter.AgricultureAdapter;
 import com.example.ssaesak.Adapter.CareerAdapter;
@@ -51,11 +55,79 @@ public class WorkingActivity  extends Activity {
     private LinearLayout card;
     private String filter;
 
+    private List<LinearLayout> layoutList;
+    private LinearLayout areaLayout;
+    private LinearLayout agricultureLayout;
+    private LinearLayout cropLayout;
+    private LinearLayout careerLayout;
+
+    private List<TextView> textList;
+    private TextView areaText;
+    private TextView agricultureText;
+    private TextView cropText;
+    private TextView careerText;
+
+    private List<ImageView> imageList;
+    private ImageView areaImage;
+    private ImageView agricultureImage;
+    private ImageView cropImage;
+    private ImageView careerImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_notice);
         filter = "";
+
+        this.layoutList = new ArrayList<>();
+//        this.areaLayout = findViewById(R.id.area_layout);
+//        this.agricultureLayout = findViewById(R.id.agriculture_layout);
+//        this.cropLayout = findViewById(R.id.crop_layout);
+//        this.careerLayout = findViewById(R.id.career_layout);
+        this.layoutList.add(findViewById(R.id.area_layout));
+        this.layoutList.add(findViewById(R.id.agriculture_layout));
+        this.layoutList.add(findViewById(R.id.crop_layout));
+        this.layoutList.add(findViewById(R.id.career_layout));
+
+        this.textList = new ArrayList<>();
+//        this.areaText = findViewById(R.id.area_text);
+//        this.agricultureText = findViewById(R.id.agriculture_text);
+//        this.cropText = findViewById(R.id.crop_text);
+//        this.careerText = findViewById(R.id.career_text);
+        this.textList.add(findViewById(R.id.area_text));
+        this.textList.add(findViewById(R.id.agriculture_text));
+        this.textList.add(findViewById(R.id.crop_text));
+        this.textList.add(findViewById(R.id.career_text));
+
+        this.imageList = new ArrayList<>();
+//        this.areaImage = findViewById(R.id.area_image);
+//        this.agricultureImage = findViewById(R.id.agriculture_image);
+//        this.cropImage = findViewById(R.id.crop_image);
+//        this.careerImage = findViewById(R.id.career_image);
+        this.imageList.add(findViewById(R.id.area_image));
+        this.imageList.add(findViewById(R.id.agriculture_image));
+        this.imageList.add(findViewById(R.id.crop_image));
+        this.imageList.add(findViewById(R.id.career_image));
+
+
+        for (LinearLayout layout : layoutList) {
+            layout.setOnClickListener(v -> {
+                layout.setBackground(getResources().getDrawable(R.drawable.filter_select, null));
+                textList.get(layoutList.indexOf(layout)).setTextColor(getResources().getColor(R.color.gray1, null));
+//                imageList.get(layoutList.indexOf(layout)).
+                imageList.get(layoutList.indexOf(layout)).setBackground(getResources().getDrawable(R.drawable.svg_dropdown_select, null));
+                setSelectedFalse(layout);
+            });
+        }
+
+
+
+        LinearLayout layout = findViewById(R.id.layout_notice);
+
+
+
+
+
 
 
 
@@ -78,18 +150,30 @@ public class WorkingActivity  extends Activity {
 //
 //        this.noticeList = findViewById(R.id.layout_notice);
 //
-//        this.layoutInflater = LayoutInflater.from(getApplicationContext());
-//        CardWorkNotice cardView = new CardWorkNotice(getApplicationContext());
-//
-//        List<CardWorkNotice> cardViewList = new ArrayList<>();
-//        cardViewList.add(cardView);
-////        this.card = (ConstraintLayout)layoutInflater.inflate(R.layout.card_work_notice, null, false);
-//
-////        this.layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-////        this.card = (LinearLayout)layoutInflater.inflate(R.layout.card_work_notice, this.noticeList, false);
-////        this.card.setVisibility(View.VISIBLE);
-//
-//        this.noticeList.addView(cardView.getCard());
+        this.layoutInflater = LayoutInflater.from(getBaseContext());
+        CardWorkNotice cardView = new CardWorkNotice(getBaseContext());
+
+        List<CardWorkNotice> cardViewList = new ArrayList<>();
+        cardViewList.add(cardView);
+        this.card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice, null, false);
+
+        this.layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        this.card = (LinearLayout)layoutInflater.inflate(R.layout.card_work_notice, this.noticeList, false);
+        this.card.setVisibility(View.VISIBLE);
+
+        this.card.findViewById(R.id.bookmark).setOnClickListener(v -> {
+            if(this.card.findViewById(R.id.bookmark).isSelected()) {
+                Log.e("card", "press cancel!!");
+                this.card.findViewById(R.id.bookmark).setSelected(false);
+                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark, null));
+            } else {
+                Log.e("card", "press !!");
+                this.card.findViewById(R.id.bookmark).setSelected(true);
+                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark_select, null));
+            }
+        });
+
+        layout.addView(card);
 //
 //        // 스피너에 붙일 어댑터 초기화
 //        adapterAgriculture = new AgricultureAdapter(this, new ArrayList<>(Arrays.asList(Constants.agricultureList)));
@@ -183,5 +267,15 @@ public class WorkingActivity  extends Activity {
 
         finish();
         overridePendingTransition(0, 0); //애니메이션 없애기
+    }
+
+    private void setSelectedFalse(LinearLayout layout) {
+        for (LinearLayout nonLayout : layoutList) {
+            if(!nonLayout.equals(layout)) {
+                nonLayout.setBackground(getResources().getDrawable(R.drawable.filter_not_select, null));
+                textList.get(layoutList.indexOf(nonLayout)).setTextColor(getResources().getColor(R.color.gray5, null));
+                imageList.get(layoutList.indexOf(nonLayout)).setBackground(getResources().getDrawable(R.drawable.svg_dropdown, null));
+            }
+        }
     }
 }

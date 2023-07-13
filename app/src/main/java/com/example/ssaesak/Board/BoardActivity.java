@@ -41,6 +41,7 @@ public class BoardActivity extends Activity {
         chipList.add(findViewById(R.id.chip_other));
 
         for (Button chip : chipList) {
+            chip.isPressed();
             chip.setOnClickListener(v -> {
                 selectFilter(chip);
 

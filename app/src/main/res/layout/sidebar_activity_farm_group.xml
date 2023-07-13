@@ -1,46 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <!--    상단바-->
     <LinearLayout
-        android:id="@+id/upbar"
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="12dp"
+        android:layout_height="52dp"
+        app:layout_constraintTop_toTopOf="parent"
         android:paddingHorizontal="20dp"
-        android:background="#FFFFFF"
+        android:layout_marginBottom="18dp"
+        android:background="@color/white"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
-
         >
 
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/svg_arrowleft"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:layout_marginRight="4dp"
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:paddingTop="2dp"
+            android:text="농장 이름"
+            android:textSize="20sp"
+            android:textColor="@color/gray6"
+            android:gravity="left|center"
+            android:fontFamily="@font/notosans_bold"
+            android:includeFontPadding="false"
             />
 
-        <TextView
+        <View
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="농장이름"
-            android:textSize="24sp"
-            android:layout_gravity="left"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/close"
+            android:src="@drawable/svg_close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:background="@color/white"
             />
 
     </LinearLayout>
 
 <!--    농장위치 텍스트뷰-->
     <TextView
+        android:id="@+id/textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/appbar"
         android:paddingVertical="12dp"
         android:paddingHorizontal="20dp"
         android:text="농장위치"
@@ -50,8 +61,10 @@
 
 <!--    농장위치 지도 + 지역명-->
     <LinearLayout
+        android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/textview"
         android:paddingHorizontal="20dp"
         android:orientation="vertical">
 
@@ -62,6 +75,7 @@
 
 
         <TextView
+            android:id="@+id/text_position"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -73,8 +87,10 @@
 
     <!--    농장주-->
     <LinearLayout
+        android:id="@+id/farmer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/map"
         android:paddingHorizontal="20dp"
         android:layout_marginVertical="16dp"
         android:orientation="vertical">
@@ -84,62 +100,113 @@
             android:layout_height="wrap_content"
             android:paddingVertical="12dp"
             android:text="농장주 정보"
-            android:textSize="16sp"
+            android:textColor="@color/gray6"
+            android:textSize="18sp"
             android:textStyle="bold"
+            android:fontFamily="@font/notosans_bold"
+            android:includeFontPadding="false"
             />
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="농장주 이름"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
+            <ImageView
+                android:src="@drawable/svg_farmer"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+
+            <TextView
+                android:id="@+id/text_farmer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="농장주 이름"
+                android:textColor="@color/gray5"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="8dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="농장주 연락처"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
+            <ImageView
+                android:src="@drawable/svg_phone"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+            <TextView
+                android:id="@+id/text_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="농장주 연락처"
+                android:textColor="@color/gray5"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
 
     </LinearLayout>
 
 <!--농장 메이트 텍스트뷰-->
     <TextView
+        android:id="@+id/text_mate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/farmer"
         android:paddingVertical="12dp"
         android:paddingHorizontal="20dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="10dp"
         android:text="농장 메이트"
         android:textSize="16sp"
         android:textStyle="bold"
         />
 
     <!--    농장 노동자 목록-->
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
-        android:layout_marginVertical="16dp"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/text_mate"
+        app:layout_constraintBottom_toTopOf="@id/exit"
+        android:layout_marginBottom="10dp"
+        >
 
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/mate_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:layout_marginVertical="16dp"
+            android:orientation="vertical">
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
 
     <Button
+        android:id="@+id/exit"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_gray_rectangle"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/chip_not_select"
+        android:layout_marginBottom="40dp"
         android:text="농장 나가기"
         android:textSize="12sp"
+        android:textColor="@color/gray5"
         android:layout_gravity="center"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

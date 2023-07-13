@@ -56,7 +56,7 @@ public class FarmgroupSidebar extends Activity {
 
 
 
-        this.backButton = findViewById(R.id.back_button);
+        this.backButton = findViewById(R.id.close);
         this.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

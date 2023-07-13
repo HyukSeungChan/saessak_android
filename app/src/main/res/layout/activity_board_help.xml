@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+
+    <HorizontalScrollView
+        android:id="@+id/filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/upbar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingVertical="12dp"
+        android:background="#FFFFFF"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_all"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/chip"
+                android:text="전체"
+                android:textColor="@drawable/chip_font"
+                android:fontFamily="@font/notosans_regular"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="8dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_vegetable"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/chip"
+                android:text="농작물채소"
+                android:textColor="@drawable/chip_font"
+                android:textSize="12sp"
+                android:layout_marginRight="8dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_fruit"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/chip"
+                android:text="과실"
+                android:textColor="@drawable/chip_font"
+                android:textSize="12sp"
+                android:layout_marginRight="8dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_flower"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/chip"
+                android:text="화훼작물"
+                android:textColor="@drawable/chip_font"
+                android:textSize="12sp"
+                android:layout_marginRight="8dp"
+                />
+
+            <Button
+                android:id="@+id/chip_other"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/chip"
+                android:text="기타"
+                android:textColor="@drawable/chip_font"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:layout_marginRight="20dp"
+                />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+
+        <LinearLayout
+            android:id="@+id/layout_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+    </ScrollView>
+
+</LinearLayout>

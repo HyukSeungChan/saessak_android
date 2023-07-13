@@ -2,7 +2,6 @@ package com.example.ssaesak.Farmgroup;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -27,6 +26,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class FarmgroupActivity extends Activity {
 
@@ -41,26 +41,26 @@ public class FarmgroupActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_farm_group);
+        setContentView(R.layout.activity_farm);
 
         MaterialDatePicker.Builder.datePicker();
 
         this.calendarView = findViewById(R.id.calendarView);
 
-        ArrayList<CalendarDay> list = new ArrayList<>();
-        list.add(CalendarDay.from(2023, 6, 15));
-        list.add(CalendarDay.from(2023, 6, 12));
-        list.add(CalendarDay.from(2023, 6, 17));
-        list.add(CalendarDay.from(2023, 6, 1));
-        list.add(CalendarDay.from(2023, 6, 5));
+        ArrayList<CalendarDay> farmdayList = new ArrayList<>();
+        farmdayList.add(CalendarDay.from(2023, 6, 15));
+        farmdayList.add(CalendarDay.from(2023, 6, 12));
+        farmdayList.add(CalendarDay.from(2023, 6, 17));
+        farmdayList.add(CalendarDay.from(2023, 6, 1));
+        farmdayList.add(CalendarDay.from(2023, 6, 5));
 
-        ArrayList<CalendarDay> list2 = new ArrayList<>();
-        list2.add(CalendarDay.from(2023, 6, 13));
-        list2.add(CalendarDay.from(2023, 6, 12));
+        ArrayList<CalendarDay> workdayList = new ArrayList<>();
+        workdayList.add(CalendarDay.from(2023, 6, 13));
+        workdayList.add(CalendarDay.from(2023, 6, 12));
 
 
-        EventDecoratorWorkday eventDecoratorWorkday = new EventDecoratorWorkday(list, this, new TextView(getApplicationContext()));
-        EventDecoratorSelect eventDecoratorSelect = new EventDecoratorSelect(list2, this, new TextView(getApplicationContext()));
+        EventDecoratorWorkday eventDecoratorWorkday = new EventDecoratorWorkday(farmdayList, this, new TextView(getApplicationContext()));
+        EventDecoratorSelect eventDecoratorSelect = new EventDecoratorSelect(workdayList, this, new TextView(getApplicationContext()));
         this.calendarView.addDecorators(eventDecoratorSelect, eventDecoratorWorkday);
 
 
@@ -68,6 +68,10 @@ public class FarmgroupActivity extends Activity {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 Log.e("selectedDate", calendarView.getSelectedDate() + "");
+//                calendarView.removeDecorator();
+                HashSet<CalendarDay> dates = new HashSet<>();
+                dates.add(date);
+                calendarView.addDecorator(new EventDecoratorWorkdaySelect(dates, FarmgroupActivity.this, new TextView(getApplicationContext())));
             }
         });
 

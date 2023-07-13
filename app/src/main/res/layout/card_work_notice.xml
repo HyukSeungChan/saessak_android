@@ -55,6 +55,7 @@
                 android:background="@drawable/background_gray_rectangle"
                 android:paddingVertical="2dp"
                 android:paddingHorizontal="4dp"
+                android:textColor="@color/sea_green_dark2"
                 android:text="농장구분"
                 android:textSize="12sp"/>
 
@@ -66,6 +67,7 @@
                 android:paddingHorizontal="4dp"
                 android:text="재배작물"
                 android:layout_marginLeft="8dp"
+                android:textColor="@color/sea_green_dark2"
                 android:textSize="12sp"/>
 
 
@@ -81,9 +83,10 @@
         />
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/svg_bookmark"
-        android:background="#ffffff"/>
+        android:id="@+id/bookmark"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:padding="800dp"
+        android:background="@drawable/svg_bookmark"/>
 
 </LinearLayout>

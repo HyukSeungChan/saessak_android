@@ -3,7 +3,7 @@ package com.example.ssaesak.Retrofit;
 public class Constatnts_url {
 
 //    public static final String BASE_URL = "http://localhost:8080/";
-    public static final String BASE_URL_EMULATOR = "http://172.16.7.17:8080/";
+    public static final String BASE_URL_EMULATOR = "http://172.30.1.67:8080/";
 //    public static final String BASE_URL_EMULATOR = "http://127.0.0.1:8080/";
 //    public static final String BASE_URL_MYDEVICE_DH = "http://172.30.1.33:7777/";
 //    public static final String BASE_URL_MYDEVICE = "http://172.30.1.59:7777/";

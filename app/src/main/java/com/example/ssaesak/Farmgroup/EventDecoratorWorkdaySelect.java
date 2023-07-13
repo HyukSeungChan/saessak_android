@@ -12,15 +12,15 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class EventDecoratorSelect implements DayViewDecorator {
+public class EventDecoratorWorkdaySelect implements DayViewDecorator {
 
 
     private final Drawable drawable;
     private int color;
     private HashSet<CalendarDay> dates;
     private TextView textView;
-    public EventDecoratorSelect(Collection<CalendarDay> dates, Activity context, TextView textView) {
-        drawable = context.getResources().getDrawable(R.drawable.calendar_select_backgorund, null);
+    public EventDecoratorWorkdaySelect(Collection<CalendarDay> dates, Activity context, TextView textView) {
+        drawable = context.getResources().getDrawable(R.drawable.calendar_workday_select_layer, null);
 
         this.dates = new HashSet<>(dates);
         this.textView = textView;

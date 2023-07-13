@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sea_green_bg"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:paddingVertical="2dp"
+        android:paddingHorizontal="20dp"
+        android:layout_marginBottom="18dp"
+        android:background="@color/white"
+        android:text="농장터"
+        android:textSize="20sp"
+        android:textColor="@color/gray6"
+        android:gravity="left|center"
+        android:fontFamily="@font/notosans_bold"
+        android:includeFontPadding="false"
+        />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+        <ImageView
+            android:src="@drawable/temp_img"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="등록된 농장이 없어요\n일자리를 찾아 지원해보세요!"
+            android:textAlignment="center"
+            android:textColor="@color/gray5"
+            android:fontFamily="@font/notosans_bold"
+            android:includeFontPadding="false"
+            android:layout_marginTop="24dp"
+            />
+
+
+    </LinearLayout>
+
+
+   <View
+       android:layout_width="wrap_content"
+       android:layout_height="0dp"
+       android:layout_weight="1"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/fragment_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/menu_fragment"
+        app:itemTextColor="@color/sea_green_dark2"
+        app:itemIconTint="@color/sea_green_dark2"
+        app:labelVisibilityMode="labeled"
+        />
+</LinearLayout>
