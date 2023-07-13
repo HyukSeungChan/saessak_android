@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 
+
     <application
         android:allowBackup="true"
         android:usesCleartextTraffic="true"
@@ -38,6 +39,16 @@
         <activity android:name="com.example.ssaesak.Board.BoardActivity"/>
         <activity android:name="com.example.ssaesak.Farmgroup.FarmgroupActivity"/>
         <activity android:name="com.example.ssaesak.Study.StudyActivity"/>
+
+        <activity android:name="com.example.ssaesak.Login.LoginActivity"/>
+        <activity android:name="com.example.ssaesak.Login.SignupTypeActivity"/>
+        <activity android:name="com.example.ssaesak.Login.SignupNameActivity"/>
+        <activity android:name="com.example.ssaesak.Login.SignupProfileActivity"/>
+        <activity android:name="com.example.ssaesak.Login.SignupPhoneActivity"/>
+        <activity android:name="com.example.ssaesak.Login.SignupWorkerPositionActivity"/>
+        <activity android:name="com.example.ssaesak.Login.SignupWorkerCropActivity"/>
+        <activity android:name="com.example.ssaesak.Login.SignupWorkerAgricultureActivity"/>
+        <activity android:name="com.example.ssaesak.Login.SignupWorkerPayActivity"/>
 <!--        <activity android:name="com.example.ssaesak.Farmgroup.FarmgroupSidebar"/>-->
 
         <activity
@@ -52,9 +63,25 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+                <data android:host="oauth"
+                    android:scheme="kakao4caf1a2e579000e6cd8d530264db7aed" />
+            </intent-filter>
+        </activity>
 
 <!--        <activity android:name="com.colorful.colorful_android.Home.HomeMainDialog"/>-->
 <!--        <activity android:name="com.colorful.colorful_android.Home.PopupTourSpotPalette" android:theme="@android:style/Theme.Dialog"/>-->
+
+
+
 
     <meta-data android:name="com.kakao.sdk.AppKey" android:value="4caf1a2e579000e6cd8d530264db7aed" />
     </application>

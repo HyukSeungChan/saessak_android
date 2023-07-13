@@ -1,83 +1,78 @@
 package com.example.ssaesak.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
     private static final User user = new User();
-
-    private String userId;
-    private String name;
-    private String profileImage;
-    private String gender;
-    private String phone;
-    private String birthyear;
-    private String birthday;
-    private String type;
-
-
 
     public static User getInstance() { // 테스트
         return user;
     }
 
+    private Long userId;
+    private String name;
+    private String profileImage;
+    private String phone;
+    private String type;
 
-    public static User getInstance(String userId,
+
+
+
+    public static User setInstance(Long userId,
                                     String name,
                                     String profileImage,
-                                    String gender,
                                     String phone,
-                                    String birthyear,
-                                    String birthday,
                                     String type) {
         user.setUserId(userId);
         user.setName(name);
         user.setProfileImage(profileImage);
-        user.setGender(gender);
         user.setPhone(phone);
-        user.setBirthyear(birthyear);
-        user.setBirthday(birthday);
         user.setType(type);
+
+        return user;
+    }
+
+    public static User setInstance(User user) {
+        user.setUserId(user.getUserId());
+        user.setName(user.getName());
+        user.setProfileImage(user.getProfileImage());
+        user.setPhone(user.getPhone());
+        user.setType(user.getType());
 
         return user;
     }
 
 
     public User() {
-        this.userId = "";
+        this.userId = null;
         this.name = "";
         this.profileImage = "";
-        this.gender = "";
         this.phone = "";
-        this.birthyear = "";
-        this.birthday = "";
         this.type = "";
     }
 
-    public User(String userId,
+    public User(Long userId,
                 String name,
                 String profileImage,
-                String gender,
                 String phone,
-                String birthyear,
-                String birthday,
                 String type) {
 
         this.userId = userId;
         this.name = name;
         this.profileImage = profileImage;
-        this.gender = gender;
         this.phone = phone;
-        this.birthyear = birthyear;
-        this.birthday = birthday;
         this.type = type;
 
     }
 
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -97,36 +92,12 @@ public class User {
         this.profileImage = profileImage;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public String getPhone() {
         return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getBirthyear() {
-        return birthyear;
-    }
-
-    public void setBirthyear(String birthyear) {
-        this.birthyear = birthyear;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
     }
 
     public String getType() {

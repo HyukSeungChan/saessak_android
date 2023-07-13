@@ -15,7 +15,7 @@ android:padding="16dp"
         android:paddingHorizontal="4dp"
         android:text="농작물채소"
         android:textSize="10sp"
-        android:textStyle="bold"
+        android:textColor="@color/sea_green_dark2"
         />
 
 
@@ -48,6 +48,7 @@ android:padding="16dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
         >
 
         <TextView
@@ -67,7 +68,7 @@ android:padding="16dp"
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/svg_thumb_up_alt"
+            android:src="@drawable/svg_like"
             />
 
         <TextView

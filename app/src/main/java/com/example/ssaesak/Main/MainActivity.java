@@ -11,20 +11,35 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.ssaesak.Board.BoardActivity;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
+import com.example.ssaesak.Login.LoginActivity;
+import com.example.ssaesak.Login.SignupProfileActivity;
+import com.example.ssaesak.Login.SignupTypeActivity;
+import com.example.ssaesak.Login.SignupWorkerPositionActivity;
+import com.example.ssaesak.Model.User;
 import com.example.ssaesak.R;
+import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Study.StudyActivity;
 import com.example.ssaesak.Working.WorkingActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.kakao.sdk.common.KakaoSdk;
+import com.kakao.sdk.user.UserApiClient;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 import me.relex.circleindicator.CircleIndicator3;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        KakaoSdk.init(this, "4caf1a2e579000e6cd8d530264db7aed");
+        isKakaologin();
+
+//        startActivity(new Intent(getBaseContext(), SignupWorkerPositionActivity.class));
 
         this.mypageButton = findViewById(R.id.mypage_button);
         this.mypageButton.setOnClickListener(new View.OnClickListener() {
@@ -190,5 +209,52 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         }
+    }
+
+
+
+    private void isKakaologin() {
+        UserApiClient.getInstance().me(new Function2<com.kakao.sdk.user.model.User, Throwable, Unit>() {
+            @Override
+            public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
+                if(user_kakao == null) {
+                    startActivity(new Intent(getBaseContext(), LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    overridePendingTransition(0, 0);
+                } else {
+                    login(user_kakao.getId());
+                }
+                    return null;
+            }
+        });
+    }
+
+
+    private void login(Long id) {
+        Log.e("login", "start!!");
+        User.getInstance().setUserId(id);
+        Call<User> call = MyRetrofit.getApiService().login(id);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                if(response.code() == 404) {
+                    Log.e("login", "처음 들어온 유저입니다~ : " + response.code());
+                    startActivity(new Intent(getBaseContext(), SignupTypeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    overridePendingTransition(0, 0);
+                    return;
+                }
+
+                if (!response.isSuccessful()) {
+                    Toast.makeText( getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                    return;
+                }
+                User.getInstance().setInstance(response.body());
+                Log.e("login", "code : " + response.code());
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {Log.e("연결실패", t.getMessage() + "");}
+        });
     }
 }

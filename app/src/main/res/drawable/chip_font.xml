@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:state_checked="true"
+        android:state_selected="true"
+        android:state_pressed="true"
+        android:color="#FFFFFF"
+        android:fontFamily="@font/notosans_bold"
+        android:textSize="12sp"/>
+
+    <item
+        android:color="#787878"
+        android:fontFamily="@font/notosans_regular"
+        android:textSize="12sp"/>
+
+</selector>

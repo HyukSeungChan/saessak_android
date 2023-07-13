@@ -2,11 +2,12 @@ package com.example.ssaesak.Retrofit;
 
 public class Constatnts_url {
 
-//    public static final String BASE_URL = "http://localhost:7777/";
-    public static final String BASE_URL_EMULATOR = "http://10.0.2.2:7777/";
-    public static final String BASE_URL_MYDEVICE_DH = "http://172.30.1.33:7777/";
-    public static final String BASE_URL_MYDEVICE = "http://172.30.1.59:7777/";
-    public static final String BASE_URL_MYDEVICE_FLASK = "http://172.30.104.131:5000/";
+//    public static final String BASE_URL = "http://localhost:8080/";
+    public static final String BASE_URL_EMULATOR = "http://172.16.7.17:8080/";
+//    public static final String BASE_URL_EMULATOR = "http://127.0.0.1:8080/";
+//    public static final String BASE_URL_MYDEVICE_DH = "http://172.30.1.33:7777/";
+//    public static final String BASE_URL_MYDEVICE = "http://172.30.1.59:7777/";
+//    public static final String BASE_URL_MYDEVICE_FLASK = "http://172.30.104.131:5000/";
 
     public static final String BASE_URL_EC2 = "http://13.124.152.109:8080/Colorful/";
 
@@ -21,11 +22,10 @@ public class Constatnts_url {
 
 
     // 유저
-    public static final String LOGIN_URL = "customer/login/";
-    public static final String LOGIN_SANGHYUK_URL = "customer/login/sanghyuk/";
-    public static final String SIGNUP_URL = "customer/signup/";
-    public static final String LOGOUT_URL = "customer/logout/";
-    public static final String WITHDRAWAL_URL = "customer/withdrawal/";
+    public static final String LOGIN_URL = "user/info/";
+    public static final String SIGNUP_URL = "user/";
+    public static final String SIGNUP_KAKAO_URL = "user/kakao/";
+    public static final String SIGNUP_WORKER_URL = "worker/";
 
     // 여행지
     public static final String TOURSPOT_DETAIL = "tourspot/detail/";

@@ -4,32 +4,31 @@
 
     <item
         android:id="@+id/fragment_home"
-        android:enabled="true"
-        android:icon="@drawable/black_radius"
+        android:icon="@drawable/fragment_home"
         android:title="@string/fragment_home"/>
 
     <item
         android:id="@+id/fragment_working"
         android:enabled="true"
-        android:icon="@drawable/black_radius"
+        android:icon="@drawable/fragment_working"
         android:title="@string/fragment_working"/>
 
     <item
         android:id="@+id/fragment_notice"
         android:enabled="true"
-        android:icon="@drawable/black_radius"
+        android:icon="@drawable/fragment_board"
         android:title="@string/fragment_notice"/>
 
     <item
         android:id="@+id/fragment_farm"
         android:enabled="true"
-        android:icon="@drawable/black_radius"
+        android:icon="@drawable/fragment_farm"
         android:title="@string/fragment_farm"/>
 
     <item
         android:id="@+id/fragment_study"
         android:enabled="true"
-        android:icon="@drawable/black_radius"
+        android:icon="@drawable/fragment_study"
         android:title="@string/fragment_study"/>
 
 </menu>

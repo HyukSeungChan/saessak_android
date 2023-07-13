@@ -46,11 +46,11 @@
 <!--필터 칩-->
     <HorizontalScrollView
         android:id="@+id/filter"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/upbar"
         app:layout_constraintStart_toStartOf="parent"
-        android:paddingHorizontal="20dp"
+        android:layout_marginHorizontal="20dp"
         android:paddingVertical="12dp"
         android:background="#F4F4F4"
         android:scrollbars="none"
@@ -64,58 +64,8 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:layout_marginRight="8dp"
-                android:background="#E0E0E0"
-                android:gravity="center_vertical"
-                >
+<!--        드랍다운 리스트 ~-->
 
-                <!-- 액티비티에서 사용자에게 보여지는 스피너 안의 텍스트뷰. 선택된 상태로 취급받음 -->
-                <TextView
-                    android:id="@+id/spinner_area"
-                    android:text="지역"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="#737373"
-                    android:layout_marginRight="8dp"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="14dp"
-                    android:src="@drawable/svg_spinner" />
-
-            </LinearLayout>
-
-
-        <Spinner
-            android:id="@+id/spinner_agriculture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/working_spinner"
-            />
-
-        <Spinner
-            android:id="@+id/spinner_crop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/working_spinner"
-            />
-
-        <Spinner
-            android:id="@+id/spinner_career"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/working_spinner"
-            />
 
         </LinearLayout>
 
@@ -151,7 +101,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="#FFFFFFFF"
-        app:menu="@menu/menu_fragment"/>
+        app:menu="@menu/menu_fragment"
+        app:itemTextColor="@color/sea_green_dark2"
+        app:itemIconTint="@color/sea_green_dark2"
+        app:labelVisibilityMode="labeled"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

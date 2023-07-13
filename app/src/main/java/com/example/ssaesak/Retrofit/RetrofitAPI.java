@@ -1,6 +1,10 @@
 package com.example.ssaesak.Retrofit;
 
 
+import com.example.ssaesak.Dto.WorkerDTO;
+import com.example.ssaesak.Model.User;
+import com.example.ssaesak.Model.Worker;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,11 +28,20 @@ public interface RetrofitAPI {
 //    @POST(Constatnts_url.PSYCHOLOGICAL_COLOR_TEST_UPDATE_RESULT_URL)
 //    Call<Integer> updatePsycologicalResult(@Query("customerId")int customerId, @Query("result")String result);
 //
-//    // 유저
-//    @POST(Constatnts_url.SIGNUP_URL)
-//    Call<Customer> signup(@Body Customer customer);
-//    @POST(Constatnts_url.LOGIN_URL)
-//    Call<Customer> login(@Query("token") String token);
+    // 유저
+    @POST(Constatnts_url.SIGNUP_URL)
+    Call<User> signup(@Body User user);
+
+    @POST(Constatnts_url.SIGNUP_KAKAO_URL)
+    Call<User> signupkakao(@Body User user);
+
+    @GET(Constatnts_url.LOGIN_URL)
+    Call<User> login(@Query("userId") Long userId);
+
+    @POST(Constatnts_url.SIGNUP_WORKER_URL)
+    Call<WorkerDTO> signupWorker(@Body WorkerDTO workerDto);
+
+
 //    @POST(Constatnts_url.LOGIN_SANGHYUK_URL)
 //    Call<Customer> loginSanghyuk(@Query("customerId") int customerId);
 //    @POST(Constatnts_url.LOGOUT_URL)

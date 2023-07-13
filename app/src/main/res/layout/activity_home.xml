@@ -451,7 +451,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/svg_thumb_up_alt"
+                    android:src="@drawable/svg_like"
                     />
 
                 <TextView
@@ -557,7 +557,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/svg_thumb_up_alt"
+                    android:src="@drawable/svg_like"
                     />
 
                 <TextView
@@ -645,6 +645,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="#FFFFFFFF"
-        app:menu="@menu/menu_fragment"/>
+        app:menu="@menu/menu_fragment"
+        app:itemTextColor="@color/sea_green_dark2"
+        app:itemIconTint="@color/sea_green_dark2"
+        app:labelVisibilityMode="labeled"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

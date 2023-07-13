@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+
+    <ImageView
+        android:src="@drawable/temp_img"
+        android:layout_width="103dp"
+        android:layout_height="103dp"
+        android:layout_marginBottom="59dp"
+        android:scaleType="centerCrop"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "새로운 농촌 라이프 \n똑똑한 일자리터 새싹새싹"
+        android:fontFamily="@font/notosans_bold"
+        android:textColor="@color/gray6"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        />
+
+    <ImageButton
+        android:id="@+id/kakao_login"
+        android:src="@drawable/kakao_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:layout_marginTop="100dp"
+        />
+
+</LinearLayout>

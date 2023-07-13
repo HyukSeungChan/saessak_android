@@ -6,6 +6,8 @@
         android:font="@font/notosans_bold_otf"
         app:font="@font/notosans_bold_otf"
         android:fontWeight="700"
+        android:includeFontPadding="false"
         />
+
 
 </font-family>

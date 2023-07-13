@@ -269,6 +269,10 @@
         android:layout_height="wrap_content"
         android:background="#FFFFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_fragment"/>
+        app:menu="@menu/menu_fragment"
+        app:itemTextColor="@color/sea_green_dark2"
+        app:itemIconTint="@color/sea_green_dark2"
+        app:labelVisibilityMode="labeled"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

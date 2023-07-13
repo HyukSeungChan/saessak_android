@@ -3,51 +3,162 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/sea_green_bg"
     >
 
-    <include
-        layout="@layout/appbar_onlyback"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/notosans_bold"
-        android:textSize="20sp"
-        android:layout_marginHorizontal="24dp"
-        android:text="회원가입 계정 선택"
-        />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        />
-
-
+    <!--    상단바-->
     <LinearLayout
+        android:id="@+id/upbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="36dp"
+        android:layout_height="56dp"
+        android:paddingVertical="2dp"
+        android:paddingHorizontal="20dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+
         >
 
-    <!-- Auto layout, variables, and unit scale are not yet supported -->
-        <LinearLayout
-            android:id="@+id/worker"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/svg_arrowleft"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="4dp"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingVertical="21dp"
-            android:paddingHorizontal="16dp"
-            android:background="#E0E0E0"
-            android:orientation="vertical"
+            android:text="회원가입 계정 선택"
+            android:textSize="20sp"
+            android:layout_gravity="left|center"
+            android:textColor="@color/gray6"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/notosans_bold"
             />
 
     </LinearLayout>
 
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="46dp"
+        android:orientation="vertical"
+        >
+
+
+<!--        농장주 회원가입-->
+            <LinearLayout
+                android:id="@+id/farmer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="64dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="49dp"
+                android:gravity="center_horizontal"
+                android:background="@drawable/background_white_rectangle"
+                >
+
+                <ImageView
+                    android:src="@drawable/temp_img"
+                    android:layout_width="140dp"
+                    android:layout_height="105dp"
+                    android:layout_marginBottom="10dp"
+                    android:scaleType="centerCrop"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="농장주"
+                    android:fontFamily="@font/notosans_bold"
+                    android:textSize="12sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray6"
+                    android:includeFontPadding="false"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="지역, 관심 분야를 입력해\n맞춤 일자리를 찾아보세요!"
+                    android:fontFamily="@font/notosans_regular"
+                    android:textSize="12sp"
+                    android:textColor="@color/gray6"
+                    android:textAlignment="center"
+                    android:includeFontPadding="false"/>
+
+            </LinearLayout>
+
+        <!--        구직자 회원가입-->
+        <LinearLayout
+            android:id="@+id/worker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="64dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@drawable/background_white_rectangle"
+            >
+
+            <ImageView
+                android:src="@drawable/temp_img"
+                android:layout_width="140dp"
+                android:layout_height="105dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="고용 농부"
+                android:fontFamily="@font/notosans_bold"
+                android:textSize="12sp"
+                android:textColor="@color/gray6"
+                android:textAlignment="center"
+                android:includeFontPadding="false"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지역, 관심 분야를 입력해\n맞춤 일자리를 찾아보세요!"
+                android:fontFamily="@font/notosans_regular"
+                android:textSize="12sp"
+                android:textColor="@color/gray6"
+                android:textAlignment="center"
+                android:includeFontPadding="false"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/button_next"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="22dp"
+        android:text="다음으로"
+        android:textColor="@color/white"
+        android:fontFamily="@font/notosans_bold"
+        android:background="@drawable/button_gray"
+        android:includeFontPadding="false"
         />
+
 
 </LinearLayout>

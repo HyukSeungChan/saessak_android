@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+    <!--    상단바-->
+    <LinearLayout
+        android:id="@+id/upbar"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:paddingVertical="2dp"
+        android:paddingHorizontal="20dp"
+        android:layout_marginBottom="18dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+
+        >
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/svg_arrowleft"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="4dp"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취향 농업 입력"
+            android:textSize="20sp"
+            android:layout_gravity="left|center"
+            android:textAlignment="center"
+            android:fontFamily="@font/notosans_bold"
+            android:includeFontPadding="false"
+            />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/button_after"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="건너뛰기"
+            android:background="@color/white"
+            android:textColor="@color/sea_green_dark3"
+            android:fontFamily="@font/notosans_regular"
+            android:textAlignment="center"
+            android:includeFontPadding="false"
+            android:layout_gravity="center"
+            android:stateListAnimator="@null"
+            />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:progress="25"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="희망 위치를 선택해 주세요"
+        android:fontFamily="@font/notosans_bold"
+        android:textSize="18sp"
+        android:textColor="@color/gray6"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:includeFontPadding="false"
+        />
+
+    <TextView
+        android:id="@+id/tooltip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0/3"
+        android:fontFamily="@font/notosans_regular"
+        android:textSize="12sp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/gray6"
+        android:layout_marginTop="8dp"
+        android:includeFontPadding="false"
+        />
+    <TextView
+        android:id="@+id/tooltip_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="최대 3개까지만 선택 가능합니다"
+        android:fontFamily="@font/notosans_regular"
+        android:textSize="12sp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/active_red"
+        android:layout_marginBottom="40dp"
+        android:includeFontPadding="false"
+        android:visibility="invisible"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="충청북도"
+        android:fontFamily="@font/notosans_bold"
+        android:textSize="18sp"
+        android:textColor="@color/gray5"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="24dp"
+        android:includeFontPadding="false"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="left">
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_all"
+            android:layout_width="55dp"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_not_select"
+            android:text="전체"
+            android:textColor="@drawable/chip_font"
+            android:textAlignment="center"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginRight="12dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_rhltks"
+            android:layout_width="66dp"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_not_select"
+            android:text="괴산군"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginRight="12dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_eksdid"
+            android:layout_width="66dp"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_not_select"
+            android:text="단양군"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginRight="12dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_qhdms"
+            android:layout_width="66dp"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_not_select"
+            android:text="보은군"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="left">
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_dudehd"
+            android:layout_width="66dp"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_not_select"
+            android:text="영동군"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginRight="12dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_dhrcjs"
+            android:layout_width="66dp"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_not_select"
+            android:text="옥천군"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginRight="12dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_dmatjd"
+            android:layout_width="66dp"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_not_select"
+            android:text="음성군"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginRight="12dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_wpcjs"
+            android:layout_width="66dp"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_not_select"
+            android:text="제천시"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="left">
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_wmdvud"
+            android:layout_width="66dp"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_not_select"
+            android:text="증평군"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginRight="12dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_wlscjs"
+            android:layout_width="66dp"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_not_select"
+            android:text="진천군"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginRight="12dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_cjdwn"
+            android:layout_width="66dp"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_not_select"
+            android:text="청주시"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginRight="12dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_cndwn"
+            android:layout_width="66dp"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_not_select"
+            android:text="충주시"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/button_next"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="22dp"
+        android:text="다음으로"
+        android:textColor="@color/white"
+        android:fontFamily="@font/notosans_bold"
+        android:background="@drawable/button_gray"
+        android:includeFontPadding="false"
+        />
+
+</LinearLayout>

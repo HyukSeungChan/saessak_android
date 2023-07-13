@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+    <!--    상단바-->
+    <LinearLayout
+        android:id="@+id/upbar"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:paddingVertical="2dp"
+        android:paddingHorizontal="20dp"
+        android:layout_marginBottom="18dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+
+        >
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/svg_arrowleft"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="4dp"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기본 정보 입력"
+            android:textSize="20sp"
+            android:layout_gravity="left|center"
+            android:textAlignment="center"
+            android:fontFamily="@font/notosans_bold"
+            android:includeFontPadding="false"
+            />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:progress="33"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="이름을 입력해주세요"
+        android:fontFamily="@font/notosans_bold"
+        android:textSize="18sp"
+        android:textColor="@color/gray6"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="32dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/edittext_layout"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/edittext_normal"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <EditText
+            android:id="@+id/edittext"
+            android:layout_width="match_parent"
+            android:hint="이름"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/background_white_rectangle"
+            android:layout_weight="1"
+            android:layout_height="46dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tooltip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="한글 이름을 사용해 주세요"
+        android:fontFamily="@font/notosans_bold"
+        android:textSize="10sp"
+        android:layout_marginHorizontal="30dp"
+        android:textColor="#9B9B9B"
+        />
+
+
+
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/button_next"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="22dp"
+        android:text="다음으로"
+        android:textColor="@color/white"
+        android:fontFamily="@font/notosans_bold"
+        android:background="@drawable/button_gray"
+        android:includeFontPadding="false"
+        />
+
+</LinearLayout>

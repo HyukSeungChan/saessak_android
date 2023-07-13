@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/button_after"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginBottom="22dp"
+    android:text="나중에 입력"
+    android:fontFamily="@font/notosans_bold"
+    android:background="@drawable/background_gray_rectangle"
+    />
