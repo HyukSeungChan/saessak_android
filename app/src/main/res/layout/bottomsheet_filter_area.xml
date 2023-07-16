@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:behavior_hideable="false"
+    app:behavior_draggable="false"
+    android:orientation="vertical"
+    android:background="@drawable/bottomsheet">
+
+    <TextView
+        android:id="@+id/top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="24dp"
+        android:text="지역"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/top"
+        app:layout_constraintBottom_toTopOf="@id/button_ok"
+        android:layout_marginTop="24dp"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        >
+
+        <LinearLayout
+            android:id="@+id/layout_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="충청북도 전체"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:visibility="visible"
+                    android:id="@+id/check_all"
+                    android:background="@drawable/svg_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_rhltks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_rhltks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="괴산군"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/check_rhltks"
+                    android:background="@drawable/svg_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_eksdid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_eksdid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="단양군"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/check_eksdid"
+                    android:background="@drawable/svg_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_qhdms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_qhdms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="보은군"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/check_qhdms"
+                    android:background="@drawable/svg_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_dudehd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_dudehd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="영동"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/check_dudehd"
+                    android:background="@drawable/svg_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_dhrcjs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_dhrcjs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="옥천군"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/check_dhrcjs"
+                    android:background="@drawable/svg_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_dmatjd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_dmatjd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="음성군"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/check_dmatjd"
+                    android:background="@drawable/svg_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_wpcjs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_wpcjs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="제천시"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/check_wpcjs"
+                    android:background="@drawable/svg_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_wmdvud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_wmdvud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="증평군"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/check_wmdvud"
+                    android:background="@drawable/svg_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_wlscjs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_wlscjs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="진천군"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/check_wlscjs"
+                    android:background="@drawable/svg_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_cjdwn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_cjdwn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="청주시"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/check_cjdwn"
+                    android:background="@drawable/svg_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_cndwn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_cndwn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="충주시"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/check_cndwn"
+                    android:background="@drawable/svg_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/button_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="@color/sea_green_dark1"
+        android:text="완료"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

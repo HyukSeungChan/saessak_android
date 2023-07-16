@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -21,6 +22,8 @@ public class FarmgroupSidebar extends Activity {
 
     ImageButton backButton;
 
+    Button exitButton;
+
 
     private MapView mapView;
     private ViewGroup mapViewContainer;
@@ -33,14 +36,7 @@ public class FarmgroupSidebar extends Activity {
         Intent intentData = getIntent();
         this.farmId = intentData.getIntExtra("farmId", -1);
 
-
-
-
-//        mapView = new MapView(this);
-//        mapViewContainer = (ViewGroup) findViewById(R.id.kakaomap);
-//        mapViewContainer.addView(mapView);
-//        mapView.setMapViewEventListener(this);
-//        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
+        this.exitButton = findViewById(R.id.exit);
 
         MapView mapView = new MapView(this);
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.kakaomap);
@@ -51,7 +47,11 @@ public class FarmgroupSidebar extends Activity {
 
 
 
-
+        this.exitButton.setOnClickListener(v -> {
+            //데이터 담아서 팝업(액티비티) 호출
+            Intent intent = new Intent(this, PopupExit.class);
+            startActivityForResult(intent, 1);
+        });
 
 
 
@@ -67,70 +67,18 @@ public class FarmgroupSidebar extends Activity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==1){
+            if(resultCode==RESULT_OK){
+                //데이터 받기
+                Log.e("farmgroup", "나갔어나갔어 그룹을 나가버려써!");
+                startActivity(new Intent(getBaseContext(), FarmgroupReview.class));
+                String result = data.getStringExtra("exit");
+                finish();
+                overridePendingTransition(0, 0); //애니메이션 없애기
+            }
+        }
+    }
 
-
-//    @Override
-//    public void onCurrentLocationUpdate(MapView mapView, MapPoint mapPoint, float v) {
-//
-//    }
-//
-//    @Override
-//    public void onCurrentLocationDeviceHeadingUpdate(MapView mapView, float v) {
-//
-//    }
-//
-//    @Override
-//    public void onCurrentLocationUpdateFailed(MapView mapView) {
-//
-//    }
-//
-//    @Override
-//    public void onCurrentLocationUpdateCancelled(MapView mapView) {
-//
-//    }
-//
-//    @Override
-//    public void onMapViewInitialized(MapView mapView) {
-//
-//    }
-//
-//    @Override
-//    public void onMapViewCenterPointMoved(MapView mapView, MapPoint mapPoint) {
-//
-//    }
-//
-//    @Override
-//    public void onMapViewZoomLevelChanged(MapView mapView, int i) {
-//
-//    }
-//
-//    @Override
-//    public void onMapViewSingleTapped(MapView mapView, MapPoint mapPoint) {
-//
-//    }
-//
-//    @Override
-//    public void onMapViewDoubleTapped(MapView mapView, MapPoint mapPoint) {
-//
-//    }
-//
-//    @Override
-//    public void onMapViewLongPressed(MapView mapView, MapPoint mapPoint) {
-//
-//    }
-//
-//    @Override
-//    public void onMapViewDragStarted(MapView mapView, MapPoint mapPoint) {
-//
-//    }
-//
-//    @Override
-//    public void onMapViewDragEnded(MapView mapView, MapPoint mapPoint) {
-//
-//    }
-//
-//    @Override
-//    public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
-//
-//    }
 }

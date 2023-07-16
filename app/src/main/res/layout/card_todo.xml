@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="8dp"
+    android:gravity="center_vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:src="@drawable/svg_todo"
+        android:layout_width="20dp"
+        android:layout_height="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="감자 수확하기"
+        android:textSize="16sp"
+        android:fontFamily="@font/notosans_bold"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/gray5"
+        android:includeFontPadding="false"
+        />
+
+</LinearLayout>

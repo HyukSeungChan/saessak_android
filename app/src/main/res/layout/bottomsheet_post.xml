@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:behavior_hideable="false"
+    app:behavior_draggable="false"
+    android:orientation="vertical"
+    android:background="@drawable/bottomsheet">
+
+    <TextView
+        android:id="@+id/top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="8dp"
+        android:paddingVertical="8dp"
+        android:text="게시글의 주제를 선택해 주세요"
+        android:textColor="@color/gray6"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:fontFamily="@font/notosans_bold"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <LinearLayout
+        android:id="@+id/layout_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/story"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:text="농촌 이야기"
+            android:textSize="14sp"
+            android:textColor="@color/gray6"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            />
+
+
+        <TextView
+            android:id="@+id/help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:text="도와줘요"
+            android:textSize="14sp"
+            android:textColor="@color/gray6"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>

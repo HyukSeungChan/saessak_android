@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingHorizontal="20dp"
+    android:orientation="vertical">
+
+    <!--    상단바-->
+    <LinearLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingVertical="12dp"
+        android:layout_marginBottom="18dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+
+        >
+
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/svg_arrowleft"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="4dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="농업 필수 교육"
+            android:textSize="20sp"
+            android:textColor="@color/gray5"
+            android:gravity="left|center"
+            android:fontFamily="@font/notosans_bold"
+            android:includeFontPadding="false"
+            />
+
+    </LinearLayout>
+
+
+    <!--            농업 필수 교육-->
+    <LinearLayout
+        android:id="@+id/essential_study"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="교육 진행률"
+            android:fontFamily="@font/notosans_bold"
+            android:includeFontPadding="false"
+            android:textSize="18sp"
+            android:lineHeight="24sp"
+            android:textColor="#404040"/>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="교육 수료증 획득을 위해 필요한 교육이에요"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="14sp"
+            android:lineHeight="20sp"
+            android:textColor="#737373"/>
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:max="100"
+            android:progress="50"
+            android:progressDrawable="@drawable/progressbar_study"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/description_master"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="교육 수료증 획득을 위해 필요한 교육이에요"
+        android:fontFamily="@font/notosans_regular"
+        android:includeFontPadding="false"
+        android:textSize="14sp"
+        android:lineHeight="20sp"
+        android:textColor="#737373"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="12dp"
+        android:orientation="horizontal"
+        >
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_all"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:background="@drawable/chip_select"
+            android:text="전체"
+            android:textColor="@color/white"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginRight="8dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_before"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:background="@drawable/chip"
+            android:text="미시청"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginRight="8dp"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip_after"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:background="@drawable/chip"
+            android:text="시청 완료"
+            android:textColor="@drawable/chip_font"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginRight="8dp"
+            />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:id="@+id/movie_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            />
+
+    </ScrollView>
+
+
+</LinearLayout>

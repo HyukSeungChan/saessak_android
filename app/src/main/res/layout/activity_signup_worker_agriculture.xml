@@ -83,195 +83,201 @@
         android:layout_marginBottom="40dp"
         />
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="농업 구분"
-        android:fontFamily="@font/notosans_bold"
-        android:textSize="18sp"
-        android:textColor="@color/gray5"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="24dp"
-        android:includeFontPadding="false"
-        />
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="left">
+        android:layout_marginHorizontal="20dp"
+        android:orientation="vertical">
+        
+        
 
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/chip_qkxshdtk"
-            android:layout_width="66dp"
-            android:layout_height="32dp"
-            android:background="@drawable/chip_not_select"
-            android:text="밭농사"
-            android:textColor="@drawable/chip_font"
-            android:fontFamily="@font/notosans_regular"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="농업 구분"
+            android:fontFamily="@font/notosans_bold"
+            android:textSize="18sp"
+            android:textColor="@color/gray5"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="24dp"
             android:includeFontPadding="false"
-            android:textSize="12sp"
-            android:layout_marginRight="12dp"
             />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/chip_rhktn"
-            android:layout_width="55dp"
-            android:layout_height="32dp"
-            android:background="@drawable/chip_not_select"
-            android:text="과수"
-            android:textColor="@drawable/chip_font"
-            android:fontFamily="@font/notosans_regular"
+    
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:gravity="left">
+    
+    
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_qkxshdtk"
+                android:layout_width="66dp"
+                android:layout_height="32dp"
+                android:background="@drawable/chip_not_select"
+                android:text="밭농사"
+                android:textColor="@drawable/chip_font"
+                android:fontFamily="@font/notosans_regular"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                android:layout_marginRight="12dp"
+                />
+    
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_rhktn"
+                android:layout_width="55dp"
+                android:layout_height="32dp"
+                android:background="@drawable/chip_not_select"
+                android:text="과수"
+                android:textColor="@drawable/chip_font"
+                android:fontFamily="@font/notosans_regular"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                android:layout_marginRight="12dp"
+                />
+    
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_gkdntm"
+                android:layout_width="66dp"
+                android:layout_height="32dp"
+                android:background="@drawable/chip_not_select"
+                android:text="하우스"
+                android:textColor="@drawable/chip_font"
+                android:fontFamily="@font/notosans_regular"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                android:layout_marginRight="12dp"
+                />
+    
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_shs"
+                android:layout_width="44dp"
+                android:layout_height="32dp"
+                android:background="@drawable/chip_not_select"
+                android:text="논"
+                android:textColor="@drawable/chip_font"
+                android:fontFamily="@font/notosans_regular"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                />
+    
+        </LinearLayout>
+    
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:gravity="left">
+    
+    
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_xmrdydwkranf"
+                android:layout_width="79dp"
+                android:layout_height="32dp"
+                android:background="@drawable/chip_not_select"
+                android:text="특용 작물"
+                android:textColor="@drawable/chip_font"
+                android:fontFamily="@font/notosans_regular"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                android:layout_marginRight="12dp"
+                />
+    
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_rlxk_shddjq"
+                android:layout_width="55dp"
+                android:layout_height="32dp"
+                android:background="@drawable/chip_not_select"
+                android:text="기타"
+                android:textColor="@drawable/chip_font"
+                android:fontFamily="@font/notosans_regular"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                android:layout_marginRight="12dp"
+                />
+    
+    
+        </LinearLayout>
+    
+    
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="희망 작목"
+            android:fontFamily="@font/notosans_bold"
+            android:textSize="18sp"
+            android:textColor="@color/gray5"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="24dp"
             android:includeFontPadding="false"
-            android:textSize="12sp"
-            android:layout_marginRight="12dp"
             />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/chip_gkdntm"
-            android:layout_width="66dp"
-            android:layout_height="32dp"
-            android:background="@drawable/chip_not_select"
-            android:text="하우스"
-            android:textColor="@drawable/chip_font"
-            android:fontFamily="@font/notosans_regular"
-            android:includeFontPadding="false"
-            android:textSize="12sp"
-            android:layout_marginRight="12dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/chip_shs"
-            android:layout_width="44dp"
-            android:layout_height="32dp"
-            android:background="@drawable/chip_not_select"
-            android:text="논"
-            android:textColor="@drawable/chip_font"
-            android:fontFamily="@font/notosans_regular"
-            android:includeFontPadding="false"
-            android:textSize="12sp"
-            />
-
+    
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:gravity="left">
+    
+    
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_shdwkranfcoth"
+                android:layout_width="90dp"
+                android:layout_height="32dp"
+                android:background="@drawable/chip_not_select"
+                android:text="농작물 채소"
+                android:textColor="@drawable/chip_font"
+                android:fontFamily="@font/notosans_regular"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                android:layout_marginRight="12dp"
+                />
+    
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_rhktlf"
+                android:layout_width="55dp"
+                android:layout_height="32dp"
+                android:background="@drawable/chip_not_select"
+                android:text="과실"
+                android:textColor="@drawable/chip_font"
+                android:fontFamily="@font/notosans_regular"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                android:layout_marginRight="12dp"
+                />
+    
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_ghkgnpwkranf"
+                android:layout_width="77dp"
+                android:layout_height="32dp"
+                android:background="@drawable/chip_not_select"
+                android:text="화훼작물"
+                android:textColor="@drawable/chip_font"
+                android:fontFamily="@font/notosans_regular"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                android:layout_marginRight="12dp"
+                />
+    
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chip_rlxk_wkrahr"
+                android:layout_width="55dp"
+                android:layout_height="32dp"
+                android:background="@drawable/chip_not_select"
+                android:text="기타"
+                android:textColor="@drawable/chip_font"
+                android:fontFamily="@font/notosans_regular"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                />
+    
+        </LinearLayout>
+        
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="left">
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/chip_xmrdydwkranf"
-            android:layout_width="79dp"
-            android:layout_height="32dp"
-            android:background="@drawable/chip_not_select"
-            android:text="특용 작물"
-            android:textColor="@drawable/chip_font"
-            android:fontFamily="@font/notosans_regular"
-            android:includeFontPadding="false"
-            android:textSize="12sp"
-            android:layout_marginRight="12dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/chip_rlxk_shddjq"
-            android:layout_width="55dp"
-            android:layout_height="32dp"
-            android:background="@drawable/chip_not_select"
-            android:text="기타"
-            android:textColor="@drawable/chip_font"
-            android:fontFamily="@font/notosans_regular"
-            android:includeFontPadding="false"
-            android:textSize="12sp"
-            android:layout_marginRight="12dp"
-            />
-
-
-    </LinearLayout>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="희망 작목"
-        android:fontFamily="@font/notosans_bold"
-        android:textSize="18sp"
-        android:textColor="@color/gray5"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="24dp"
-        android:includeFontPadding="false"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="left">
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/chip_shdwkranfcoth"
-            android:layout_width="90dp"
-            android:layout_height="32dp"
-            android:background="@drawable/chip_not_select"
-            android:text="농작물 채소"
-            android:textColor="@drawable/chip_font"
-            android:fontFamily="@font/notosans_regular"
-            android:includeFontPadding="false"
-            android:textSize="12sp"
-            android:layout_marginRight="12dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/chip_rhktlf"
-            android:layout_width="55dp"
-            android:layout_height="32dp"
-            android:background="@drawable/chip_not_select"
-            android:text="과실"
-            android:textColor="@drawable/chip_font"
-            android:fontFamily="@font/notosans_regular"
-            android:includeFontPadding="false"
-            android:textSize="12sp"
-            android:layout_marginRight="12dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/chip_ghkgnpwkranf"
-            android:layout_width="77dp"
-            android:layout_height="32dp"
-            android:background="@drawable/chip_not_select"
-            android:text="화훼작물"
-            android:textColor="@drawable/chip_font"
-            android:fontFamily="@font/notosans_regular"
-            android:includeFontPadding="false"
-            android:textSize="12sp"
-            android:layout_marginRight="12dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/chip_rlxk_wkrahr"
-            android:layout_width="55dp"
-            android:layout_height="32dp"
-            android:background="@drawable/chip_not_select"
-            android:text="기타"
-            android:textColor="@drawable/chip_font"
-            android:fontFamily="@font/notosans_regular"
-            android:includeFontPadding="false"
-            android:textSize="12sp"
-            />
-
-    </LinearLayout>
+        
+        
 
     <View
         android:layout_width="wrap_content"

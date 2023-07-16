@@ -41,7 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+    public class MainActivity extends AppCompatActivity {
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
@@ -53,27 +53,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        KakaoSdk.init(this, "4caf1a2e579000e6cd8d530264db7aed");
-        isKakaologin();
-
-//        startActivity(new Intent(getBaseContext(), SignupWorkerPositionActivity.class));
-
-        this.mypageButton = findViewById(R.id.mypage_button);
-        this.mypageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), MypageActivity.class));
-                overridePendingTransition(0, 0);
-            }
-        });
-
-
-
-
-
-
-
 
         // 권한ID를 가져옵니다
         int permission = ContextCompat.checkSelfPermission(this,
@@ -96,6 +75,30 @@ public class MainActivity extends AppCompatActivity {
             }
             return;
         }
+        KakaoSdk.init(this, "4caf1a2e579000e6cd8d530264db7aed");
+        isKakaologin();
+
+        setContentView(R.layout.activity_home);
+
+//        startActivity(new Intent(getBaseContext(), SignupWorkerPositionActivity.class));
+
+        this.mypageButton = findViewById(R.id.mypage_button);
+        this.mypageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), MypageActivity.class));
+                overridePendingTransition(0, 0);
+            }
+        });
+
+
+
+
+
+
+
+
+
 
 /**
  * 가로 슬라이드 뷰 Fragment
@@ -156,7 +159,10 @@ public class MainActivity extends AppCompatActivity {
 //                    overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_working) {
-                    startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
+
+                    Intent intent = new Intent(getApplicationContext(), WorkingActivity.class);
+//                    intent.putExtra("bottom", );
+                    startActivity(intent);
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_farm) {

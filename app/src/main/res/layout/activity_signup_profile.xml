@@ -41,24 +41,6 @@
             android:includeFontPadding="false"
             />
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-        <Button
-            android:id="@+id/button_after"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="건너뛰기"
-            android:background="@color/white"
-            android:textColor="@color/sea_green_dark3"
-            android:fontFamily="@font/notosans_regular"
-            android:textAlignment="center"
-            android:includeFontPadding="false"
-            android:layout_gravity="center"
-            android:stateListAnimator="@null"
-            />
 
     </LinearLayout>
 

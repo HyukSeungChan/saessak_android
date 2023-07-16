@@ -1,30 +1,24 @@
 package com.example.ssaesak.Working;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ssaesak.Adapter.AgricultureAdapter;
 import com.example.ssaesak.Adapter.CareerAdapter;
 import com.example.ssaesak.Adapter.CropAdapter;
 import com.example.ssaesak.Board.BoardActivity;
-import com.example.ssaesak.Common.Constants;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
 import com.example.ssaesak.Main.MainActivity;
 import com.example.ssaesak.R;
@@ -33,10 +27,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class WorkingActivity  extends Activity {
+public class WorkingActivity  extends AppCompatActivity implements BottomsheetAreaDialog.BottomSheetAreaListener,BottomsheetCropDialog.BottomSheetCropListener,  BottomsheetCareerDialog.BottomSheetCareerListener, BottomsheetAgricultureDialog.BottomSheetAgricultureListener {
+//public class WorkingActivity  extends Activity {
 
     private final String TAG = this.getClass().getSimpleName();
 
@@ -56,22 +50,15 @@ public class WorkingActivity  extends Activity {
     private String filter;
 
     private List<LinearLayout> layoutList;
-    private LinearLayout areaLayout;
-    private LinearLayout agricultureLayout;
-    private LinearLayout cropLayout;
-    private LinearLayout careerLayout;
 
     private List<TextView> textList;
-    private TextView areaText;
-    private TextView agricultureText;
-    private TextView cropText;
-    private TextView careerText;
 
     private List<ImageView> imageList;
-    private ImageView areaImage;
-    private ImageView agricultureImage;
-    private ImageView cropImage;
-    private ImageView careerImage;
+
+    private String filterArea;
+    private String filterAgriculture;
+    private String filterCrop;
+    private String filterCareer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,30 +67,18 @@ public class WorkingActivity  extends Activity {
         filter = "";
 
         this.layoutList = new ArrayList<>();
-//        this.areaLayout = findViewById(R.id.area_layout);
-//        this.agricultureLayout = findViewById(R.id.agriculture_layout);
-//        this.cropLayout = findViewById(R.id.crop_layout);
-//        this.careerLayout = findViewById(R.id.career_layout);
         this.layoutList.add(findViewById(R.id.area_layout));
         this.layoutList.add(findViewById(R.id.agriculture_layout));
         this.layoutList.add(findViewById(R.id.crop_layout));
         this.layoutList.add(findViewById(R.id.career_layout));
 
         this.textList = new ArrayList<>();
-//        this.areaText = findViewById(R.id.area_text);
-//        this.agricultureText = findViewById(R.id.agriculture_text);
-//        this.cropText = findViewById(R.id.crop_text);
-//        this.careerText = findViewById(R.id.career_text);
         this.textList.add(findViewById(R.id.area_text));
         this.textList.add(findViewById(R.id.agriculture_text));
         this.textList.add(findViewById(R.id.crop_text));
         this.textList.add(findViewById(R.id.career_text));
 
         this.imageList = new ArrayList<>();
-//        this.areaImage = findViewById(R.id.area_image);
-//        this.agricultureImage = findViewById(R.id.agriculture_image);
-//        this.cropImage = findViewById(R.id.crop_image);
-//        this.careerImage = findViewById(R.id.career_image);
         this.imageList.add(findViewById(R.id.area_image));
         this.imageList.add(findViewById(R.id.agriculture_image));
         this.imageList.add(findViewById(R.id.crop_image));
@@ -114,7 +89,6 @@ public class WorkingActivity  extends Activity {
             layout.setOnClickListener(v -> {
                 layout.setBackground(getResources().getDrawable(R.drawable.filter_select, null));
                 textList.get(layoutList.indexOf(layout)).setTextColor(getResources().getColor(R.color.gray1, null));
-//                imageList.get(layoutList.indexOf(layout)).
                 imageList.get(layoutList.indexOf(layout)).setBackground(getResources().getDrawable(R.drawable.svg_dropdown_select, null));
                 setSelectedFalse(layout);
             });
@@ -123,9 +97,46 @@ public class WorkingActivity  extends Activity {
 
 
         LinearLayout layout = findViewById(R.id.layout_notice);
+        this.filterArea = "";
+        this.filterAgriculture = "";
+        this.filterCrop = "";
+        this.filterCareer = "";
 
+        LinearLayout layoutArea = findViewById(R.id.area_layout);
+        layoutArea.setOnClickListener(view -> {
+            BottomsheetAreaDialog bottomsheetAreaDialog = new BottomsheetAreaDialog();
+            Bundle args = new Bundle();
+            args.putString("area", filterArea);
+            bottomsheetAreaDialog.setArguments(args);
+            bottomsheetAreaDialog.show(getSupportFragmentManager(), "dd");
+        });
 
+        LinearLayout layoutAgriculture = findViewById(R.id.agriculture_layout);
+        layoutAgriculture.setOnClickListener(view -> {
+            BottomsheetAgricultureDialog bottomsheetAgricultureDialog = new BottomsheetAgricultureDialog();
+            Bundle args = new Bundle();
+            args.putString("agriculture", filterAgriculture);
+            bottomsheetAgricultureDialog.setArguments(args);
+            bottomsheetAgricultureDialog.show(getSupportFragmentManager(), "dd");
+        });
 
+        LinearLayout layoutCrop = findViewById(R.id.crop_layout);
+        layoutCrop.setOnClickListener(view -> {
+            BottomsheetCropDialog bottomsheetCropDialog = new BottomsheetCropDialog();
+            Bundle args = new Bundle();
+            args.putString("crop", filterCrop);
+            bottomsheetCropDialog.setArguments(args);
+            bottomsheetCropDialog.show(getSupportFragmentManager(), "dd");
+        });
+
+        LinearLayout layoutCareer = findViewById(R.id.career_layout);
+        layoutCareer.setOnClickListener(view -> {
+            BottomsheetCareerDialog bottomsheetCareerDialog = new BottomsheetCareerDialog();
+            Bundle args = new Bundle();
+            args.putString("career", filterCareer);
+            bottomsheetCareerDialog.setArguments(args);
+            bottomsheetCareerDialog.show(getSupportFragmentManager(), "dd");
+        });
 
 
 
@@ -160,6 +171,11 @@ public class WorkingActivity  extends Activity {
         this.layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         this.card = (LinearLayout)layoutInflater.inflate(R.layout.card_work_notice, this.noticeList, false);
         this.card.setVisibility(View.VISIBLE);
+        this.card.setOnClickListener(v -> {
+            Intent intent = new Intent(getBaseContext(), NoticeDetailActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        });
 
         this.card.findViewById(R.id.bookmark).setOnClickListener(v -> {
             if(this.card.findViewById(R.id.bookmark).isSelected()) {
@@ -261,6 +277,8 @@ public class WorkingActivity  extends Activity {
 
     }
 
+
+
     @Override
     public void onBackPressed() {
         this.startActivity(new Intent(this, MainActivity.class));
@@ -277,5 +295,33 @@ public class WorkingActivity  extends Activity {
                 imageList.get(layoutList.indexOf(nonLayout)).setBackground(getResources().getDrawable(R.drawable.svg_dropdown, null));
             }
         }
+    }
+
+    @Override
+    public void onButtonArea(String filterArea) {
+        this.filterArea = filterArea;
+
+        Log.e("filter", filterArea);
+    }
+
+    @Override
+    public void onButtonAgiculture(String filterAgriculture) {
+        this.filterAgriculture = filterAgriculture;
+
+        Log.e("filter", filterAgriculture);
+    }
+
+    @Override
+    public void onButtonCrop(String filterCrop) {
+        this.filterCrop = filterCrop;
+
+        Log.e("filter", filterCrop);
+    }
+
+    @Override
+    public void onButtonCareer(String filterCareer) {
+        this.filterCareer = filterCareer;
+
+        Log.e("filter", filterCareer);
     }
 }

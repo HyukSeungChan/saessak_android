@@ -52,7 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_gray_rectangle"
+                android:background="@drawable/rectangle_primary_stroke"
                 android:paddingVertical="2dp"
                 android:paddingHorizontal="4dp"
                 android:textColor="@color/sea_green_dark2"
@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_gray_rectangle"
+                android:background="@drawable/rectangle_primary_stroke"
                 android:paddingVertical="2dp"
                 android:paddingHorizontal="4dp"
                 android:text="재배작물"

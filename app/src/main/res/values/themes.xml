@@ -14,5 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="windowNoTitle">true</item>
 
+        <item name="bottomSheetStyle">@drawable/bottomsheet</item>
+
     </style>
 </resources>

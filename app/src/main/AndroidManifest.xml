@@ -35,9 +35,17 @@
         </activity>
 
         <activity android:name="com.example.ssaesak.Main.MypageActivity"/>
+
         <activity android:name="com.example.ssaesak.Working.WorkingActivity"/>
+        <activity android:name="com.example.ssaesak.Working.NoticeDetailActivity"/>
+        <activity android:name="com.example.ssaesak.Working.ResumeActivity"/>
+
         <activity android:name="com.example.ssaesak.Board.BoardActivity"/>
+
         <activity android:name="com.example.ssaesak.Farmgroup.FarmgroupActivity"/>
+        <activity android:name="com.example.ssaesak.Farmgroup.FarmgroupReview"/>
+        <activity android:name="com.example.ssaesak.Farmgroup.PopupExit" android:theme="@android:style/Theme.Dialog"/>
+
         <activity android:name="com.example.ssaesak.Study.StudyActivity"/>
 
         <activity android:name="com.example.ssaesak.Login.LoginActivity"/>

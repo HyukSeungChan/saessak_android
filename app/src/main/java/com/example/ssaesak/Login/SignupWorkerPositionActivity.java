@@ -80,7 +80,7 @@ public class SignupWorkerPositionActivity extends Activity {
                     button.setBackground(getResources().getDrawable(R.drawable.chip_not_select, null));
                     button.setTextColor(Color.rgb(120, 120, 120));
                     positionList.remove(button);
-                    tooltip.setText(positionList.size() + "/3");
+                    tooltip.setText(positionList.size());
                 } else if (positionList.size() < 3){
                     Log.e("area", "not press button!!");
                     tooltipWarning.setVisibility(View.INVISIBLE);
@@ -88,9 +88,10 @@ public class SignupWorkerPositionActivity extends Activity {
                     button.setBackground(getResources().getDrawable(R.drawable.chip_select, null));
                     button.setTextColor(Color.rgb(255, 255, 255));
                     positionList.add(button);
-                    tooltip.setText(positionList.size() + "/3");
+                    tooltip.setText(positionList.size());
                 } else {
                     Log.e("area", "outofindex!!");
+                    tooltip.setTextColor(getResources().getColor(R.color.active_red, null));
                     tooltipWarning.setVisibility(View.VISIBLE);
                 }
 

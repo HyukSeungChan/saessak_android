@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_marginRight="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageButton
+        android:src="@drawable/temp_img"
+        android:scaleType="centerCrop"
+        android:background="#FFFFFF"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="10sp"
+        android:lineHeight="14sp"
+        android:fontFamily="@font/notosans_regular"
+        android:text="관심작물1"
+        android:includeFontPadding="false"/>
+</LinearLayout>

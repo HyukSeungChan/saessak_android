@@ -37,8 +37,9 @@ public class SignupTypeActivity extends Activity {
             @Override
             public void onClick(View view) {
                 type = "도시농부";
-                farmer.setBackgroundColor(Color.rgb(238, 238, 238));
-                worker.setBackgroundColor(Color.rgb(205, 205, 205));
+                farmer.setBackground(getResources().getDrawable(R.drawable.background_white_rectangle, null));
+                worker.setBackground(getResources().getDrawable(R.drawable.button_primary_stroke, null));
+
                 nextButton.setClickable(true);
                 nextButton.setBackground(getResources().getDrawable(R.drawable.button_primary, null));
             }
@@ -48,8 +49,8 @@ public class SignupTypeActivity extends Activity {
             @Override
             public void onClick(View view) {
                 type = "농장주";
-                worker.setBackgroundColor(Color.rgb(238, 238, 238));
-                farmer.setBackgroundColor(Color.rgb(205, 205, 205));
+                farmer.setBackground(getResources().getDrawable(R.drawable.button_primary_stroke, null));
+                worker.setBackground(getResources().getDrawable(R.drawable.background_white_rectangle, null));
                 nextButton.setClickable(true);
                 nextButton.setBackground(getResources().getDrawable(R.drawable.button_primary, null));
             }
@@ -57,13 +58,13 @@ public class SignupTypeActivity extends Activity {
 
         if (User.getInstance().getType().equals("도시농부")) {
             type = "도시농부";
-            farmer.setBackgroundColor(Color.rgb(238, 238, 238));
-            worker.setBackgroundColor(Color.rgb(205, 205, 205));
+            farmer.setBackground(getResources().getDrawable(R.drawable.background_white_rectangle, null));
+            worker.setBackground(getResources().getDrawable(R.drawable.button_primary_stroke, null));
             nextButton.setClickable(true);
         } else if (User.getInstance().getType().equals("농장주")) {
             type = "농장주";
-            worker.setBackgroundColor(Color.rgb(238, 238, 238));
-            farmer.setBackgroundColor(Color.rgb(205, 205, 205));
+            farmer.setBackground(getResources().getDrawable(R.drawable.button_primary_stroke, null));
+            worker.setBackground(getResources().getDrawable(R.drawable.background_white_rectangle, null));
             nextButton.setClickable(true);
         }
 
