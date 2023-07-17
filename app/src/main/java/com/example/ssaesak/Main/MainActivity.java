@@ -20,31 +20,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ssaesak.Board.BoardActivity;
-import com.example.ssaesak.Dto.BoardDTO;
+import com.example.ssaesak.Dto.BoardDetailDTO;
 import com.example.ssaesak.Dto.WorkNoticeRecommendDTO;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
 import com.example.ssaesak.Login.LoginActivity;
-import com.example.ssaesak.Login.SignupProfileActivity;
 import com.example.ssaesak.Login.SignupTypeActivity;
-import com.example.ssaesak.Login.SignupWorkerPositionActivity;
 import com.example.ssaesak.Model.User;
 import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
-import com.example.ssaesak.Retrofit.MyObjectMapper;
 import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Study.StudyActivity;
 import com.example.ssaesak.Working.WorkingActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.gson.JsonObject;
 import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.user.UserApiClient;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,7 +58,7 @@ import retrofit2.Response;
 
     private ImageButton mypageButton;
 
-    private List<BoardDTO> hotNoticeList;
+    private List<BoardDetailDTO> hotNoticeList;
 
     private String TAG = "main";
 
@@ -319,7 +311,12 @@ import retrofit2.Response;
                 String body = response.body().getData().toString();
                 String json = body.substring(1, body.length()-1).replace("\\", "");
                 try {
-                List<BoardDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDTO[].class));
+
+//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+                List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
+                
+                } catch (Exception e1) {e1.printStackTrace();}
+
 
                     ((TextView)findViewById(R.id.hot_notice1_title)).setText(dtos.get(0).getTitle());
                     ((TextView)findViewById(R.id.hot_notice2_title)).setText(dtos.get(1).getTitle());

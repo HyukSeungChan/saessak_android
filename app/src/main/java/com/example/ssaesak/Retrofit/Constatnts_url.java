@@ -40,10 +40,20 @@ public class Constatnts_url {
     // 해당 일자리 조회
     public static final String WORK_DETAIL = "work/worker/workId/";
 
-
-
     // 도와줘요 전체 조회
     public static final String NOTICE_HELP_LIST = "board/help/";
+
+
+    //resume
+
+    // 이력서 작성
+    public static final String RESUME_CREATE = "resume/";
+
+    // board
+
+    // 글 작성
+    public static final String BOARD_CREATE = "board/";
+
 
 }
 
