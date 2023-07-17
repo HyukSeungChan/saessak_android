@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ssaesak.Board.BoardActivity;
@@ -77,6 +78,7 @@ import retrofit2.Response;
 
         KakaoSdk.init(this, "4caf1a2e579000e6cd8d530264db7aed");
         isKakaologin(this);
+
 
         setContentView(R.layout.activity_home);
 
@@ -178,9 +180,10 @@ import retrofit2.Response;
                     // 도시농부 테이블 받기
                     getWorker();
                     // 농장 정보 받고 없으면 추천 데이터 받기
-                    getWorkRecommend(MainActivity.this);
+
                 } else {
                     // 지원현황, 일감 가져오기
+                    getFarmer();
                 }
             }
 
@@ -192,59 +195,71 @@ import retrofit2.Response;
 
 
     private List<WorkNoticeRecommendDTO> list = new ArrayList<>();
-    private List<WorkNoticeRecommendDTO> getWorkRecommend(MainActivity mainActivity) {
-        Call<List<WorkNoticeRecommendDTO>> call = MyRetrofit.getApiService().recommendWorkerNotice(Worker.getInstance().getArea(),
-                                                                                            Worker.getInstance().getAgriculture(),
-                                                                                            Worker.getInstance().getCrops());
-        Log.e("main", "getWorkRecommend !! : " + Worker.getInstance().getArea());
-        call.enqueue(new Callback<List<WorkNoticeRecommendDTO>>() {
+    private List<WorkNoticeRecommendDTO> getWorkRecommend() {
+        Call<ApiResponse> call = MyRetrofit.getApiService().recommendWorkerNotice(Worker.getInstance().getArea(),
+                                                                                    Worker.getInstance().getAgriculture(),
+                                                                                    Worker.getInstance().getCrops());
+        call.enqueue(new Callback<ApiResponse>() {
+             @Override
+             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                 ObjectMapper mapper = new ObjectMapper();
+                 String body = response.body().getData().toString();
+                 String json = body.substring(1, body.length() - 1).replace("\\", "");
+                 Log.e("main", "getWorkRecommend !! : " + json);
+                 try {
+                     List<WorkNoticeRecommendDTO> list = Arrays.asList(mapper.readValue(json, WorkNoticeRecommendDTO[].class));
+//                     List<BoardDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDTO[].class));
+
+                     Log.e("main", "getWorkRecommend !! : " + json);
+
+                     //ViewPager2
+                     mPager = findViewById(R.id.viewpager);
+                     //Adapter
+
+                     pagerAdapter = new MyAdapter(MainActivity.this, num_page, list.get(0), list.get(1));
+                     mPager.setAdapter(pagerAdapter);
+                     //Indicator
+                     mIndicator = findViewById(R.id.indicator);
+                     mIndicator.setViewPager(mPager);
+                     mIndicator.createIndicators(num_page,0);
+                     //ViewPager Setting
+                     mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+
+                     /**
+                      * 이 부분 조정하여 처음 시작하는 이미지 설정.
+                      * 2000장 생성하였으니 현재위치 1002로 설정하여
+                      * 좌 우로 슬라이딩 할 수 있게 함. 거의 무한대로
+                      */
+
+                     mPager.setCurrentItem(1000); //시작 지점
+                     mPager.setOffscreenPageLimit(2); //최대 이미지 수
+
+                     mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                         @Override
+                         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                             super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                             if (positionOffsetPixels == 0) {
+                                 mPager.setCurrentItem(position);
+                             }
+                         }
+
+                         @Override
+                         public void onPageSelected(int position) {
+                             super.onPageSelected(position);
+                             mIndicator.animatePageSelected(position%num_page);
+                         }
+                     });
+
+                 } catch (Exception e1) {
+                     e1.printStackTrace();
+                 }
+             }
+
             @Override
-            public void onResponse(Call<List<WorkNoticeRecommendDTO>> call, Response<List<WorkNoticeRecommendDTO>> response) {
-                list = response.body();
-                Log.e("main", "getWorkRecommend !! : " + response.body());
+            public void onFailure(Call<ApiResponse> call, Throwable t) {Log.e("연결실패", t.getMessage() + "");}
+         });
 
-                //ViewPager2
-                mPager = findViewById(R.id.viewpager);
-                //Adapter
 
-                pagerAdapter = new MyAdapter(mainActivity, num_page, list.get(0), list.get(1));
-                mPager.setAdapter(pagerAdapter);
-                //Indicator
-                mIndicator = findViewById(R.id.indicator);
-                mIndicator.setViewPager(mPager);
-                mIndicator.createIndicators(num_page,0);
-                //ViewPager Setting
-                mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-
-                /**
-                 * 이 부분 조정하여 처음 시작하는 이미지 설정.
-                 * 2000장 생성하였으니 현재위치 1002로 설정하여
-                 * 좌 우로 슬라이딩 할 수 있게 함. 거의 무한대로
-                 */
-
-                mPager.setCurrentItem(1000); //시작 지점
-                mPager.setOffscreenPageLimit(2); //최대 이미지 수
-
-                mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-                    @Override
-                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                        super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-                        if (positionOffsetPixels == 0) {
-                            mPager.setCurrentItem(position);
-                        }
-                    }
-
-                    @Override
-                    public void onPageSelected(int position) {
-                        super.onPageSelected(position);
-                        mIndicator.animatePageSelected(position%num_page);
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure(Call<List<WorkNoticeRecommendDTO>> call, Throwable t) {Log.e("연결실패", t.getMessage() + "");}
-        });
 
         return list;
     }
@@ -255,7 +270,14 @@ import retrofit2.Response;
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.substring(1, body.length()-1).replace("\\", "");
+                Log.e("worker", " string -> " + json);
+                try {
+                    Worker.setInstance(mapper.readValue(json, Worker.class));
+                    getWorkRecommend();
+                } catch (Exception e1) {e1.printStackTrace();}
             }
 
             @Override
@@ -291,28 +313,33 @@ import retrofit2.Response;
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                Log.e("hotnotice", "hotNoticeList : ");
-                Log.e("hotnotice", "hotNoticeList : " + response.body());
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
                 String json = body.substring(1, body.length()-1).replace("\\", "");
-                Log.e("hotnotice", " body -> " + body);
-                Log.e("hotnotice", " json -> " + json);
                 try {
-//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
                 List<BoardDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDTO[].class));
-                
-                } catch (Exception e1) {e1.printStackTrace();}
 
-//                List<UserDTO> dtos = Arrays.asList(mapper.readValue(strList, UserDTO[].class));
+                    ((TextView)findViewById(R.id.hot_notice1_title)).setText(dtos.get(0).getTitle());
+                    ((TextView)findViewById(R.id.hot_notice2_title)).setText(dtos.get(1).getTitle());
+
+                    ((TextView)findViewById(R.id.hot_notice1_content)).setText(dtos.get(0).getContent());
+                    ((TextView)findViewById(R.id.hot_notice2_content)).setText(dtos.get(1).getContent());
+
+                    ((TextView)findViewById(R.id.hot_notice1_time)).setText(dtos.get(0).getUploadTime());
+                    ((TextView)findViewById(R.id.hot_notice2_time)).setText(dtos.get(1).getUploadTime());
+
+                    ((TextView)findViewById(R.id.hot_notice1_like_count)).setText(dtos.get(0).getLikes()+"");
+                    ((TextView)findViewById(R.id.hot_notice2_like_count)).setText(dtos.get(1).getLikes()+"");
+
+                    ((TextView)findViewById(R.id.hot_notice1_comment_count)).setText(dtos.get(0).getReplies()+"");
+                    ((TextView)findViewById(R.id.hot_notice2_comment_count)).setText(dtos.get(1).getReplies()+"");
+                } catch (Exception e1) {e1.printStackTrace();}
             }
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("hotnotice failed", t.getMessage() + "");}
         });
     }
-
-
 
 
 //    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2

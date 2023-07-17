@@ -1,8 +1,11 @@
 package com.example.ssaesak.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Worker {
 
     private static final Worker worker = new Worker();
@@ -45,6 +48,19 @@ public class Worker {
         worker.setCrops(crops);
         worker.setInterestCrops(interestCrops);
         worker.setBadge(badge);
+
+        return worker;
+    }
+
+    public static Worker setInstance(Worker workerJson) {
+        worker.setWorkerId(workerJson.getWorkerId());
+        worker.setCertificate(workerJson.getCertificate());
+        worker.setArea(workerJson.getArea());
+        worker.setAgriculture(workerJson.getAgriculture());
+        worker.setPay(workerJson.getPay());
+        worker.setCrops(workerJson.getCrops());
+        worker.setInterestCrops(workerJson.getInterestCrops());
+        worker.setBadge(workerJson.getBadge());
 
         return worker;
     }

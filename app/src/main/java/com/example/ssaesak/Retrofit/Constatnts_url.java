@@ -4,6 +4,7 @@ public class Constatnts_url {
 
 //    public static final String BASE_URL = "http://localhost:8080/";
     public static final String BASE_URL_EMULATOR = "http://172.30.1.43:8080/";
+//    public static final String BASE_URL_EMULATOR = "http://10.0.2.2:8080/";
 
     // 유저
     public static final String LOGIN_URL = "user/info/";

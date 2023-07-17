@@ -53,7 +53,7 @@ public interface RetrofitAPI {
     Call<WorkerDTO> signupWorker(WorkerDTO worker);
 
     @GET(Constatnts_url.WORK_RECOMMEND)
-    Call<List<WorkNoticeRecommendDTO>> recommendWorkerNotice(@Query("address") String address,
+    Call<ApiResponse> recommendWorkerNotice(@Query("address") String address,
                                                              @Query("agriculture") String agriculture,
                                                              @Query("crops") String crops);
 

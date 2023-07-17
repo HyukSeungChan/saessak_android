@@ -385,6 +385,7 @@
 
 <!--        인기글 1개의 카드 -> 나중에 따로 뺄 듯 -->
         <LinearLayout
+            android:id="@+id/hot_notice1_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -392,18 +393,21 @@
             >
 
             <TextView
+                android:id="@+id/hot_notice1_agriculture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_gray_rectangle"
+                android:background="@drawable/rectangle_primary_stroke"
                 android:paddingVertical="2dp"
                 android:paddingHorizontal="4dp"
                 android:text="농작물채소"
                 android:textSize="10sp"
+                android:textColor="@color/sea_green_dark1"
                 android:textStyle="bold"
                 />
 
 
             <TextView
+                android:id="@+id/hot_notice1_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="제목"
@@ -415,6 +419,7 @@
 
 
             <TextView
+                android:id="@+id/hot_notice1_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용"
@@ -435,6 +440,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/hot_notice1_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="n시간 전"
@@ -449,12 +455,14 @@
                     />
 
                 <ImageView
+                    android:id="@+id/hot_notice1_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/svg_like"
                     />
 
                 <TextView
+                    android:id="@+id/hot_notice1_like_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="20"
@@ -471,6 +479,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/hot_notice1_comment_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="20"
@@ -491,6 +500,7 @@
 
         <!--        인기글 1개의 카드 -> 나중에 따로 뺄 듯 -->
         <LinearLayout
+            android:id="@+id/hot_notice2_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -498,18 +508,21 @@
             >
 
             <TextView
+                android:id="@+id/hot_notice2_agriculture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_gray_rectangle"
+                android:background="@drawable/rectangle_primary_stroke"
                 android:paddingVertical="2dp"
                 android:paddingHorizontal="4dp"
                 android:text="농작물채소"
                 android:textSize="10sp"
+                android:textColor="@color/sea_green_dark1"
                 android:textStyle="bold"
                 />
 
 
             <TextView
+                android:id="@+id/hot_notice2_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="제목"
@@ -521,6 +534,7 @@
 
 
             <TextView
+                android:id="@+id/hot_notice2_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용"
@@ -541,6 +555,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/hot_notice2_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="n시간 전"
@@ -555,12 +570,14 @@
                     />
 
                 <ImageView
+                    android:id="@+id/hot_notice2_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/svg_like"
                     />
 
                 <TextView
+                    android:id="@+id/hot_notice2_like_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="20"
@@ -577,6 +594,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/hot_notice2_comment_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="20"
@@ -620,7 +638,7 @@
             android:layout_height="wrap_content"
             android:text="참여자 연수비 및 거주시설 프로그램 제공"
             android:textSize="14sp"
-            android:textColor="#737373"
+            android:textColor="@color/sea_green_dark3"
             android:layout_marginTop="12dp"
             />
 
