@@ -5,13 +5,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.ssaesak.Dto.WorkNoticeRecommendDTO;
+
 public class MyAdapter extends FragmentStateAdapter {
 
     public int mCount;
+    public WorkNoticeRecommendDTO work1;
+    public WorkNoticeRecommendDTO work2;
 
-    public MyAdapter(FragmentActivity fa, int count) {
+    public MyAdapter(FragmentActivity fa, int count, WorkNoticeRecommendDTO work1, WorkNoticeRecommendDTO work2) {
         super(fa);
         mCount = count;
+        this.work1 = work1;
+        this.work2 = work2;
     }
 
     @NonNull
@@ -19,8 +25,8 @@ public class MyAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         int index = getRealPosition(position);
 
-        if(index==0) return new recommendCard1();
-        else return new recommendCard2();
+        if(index==0) return new recommendCard1(work1);
+        else return new recommendCard1(work2);
 
     }
 

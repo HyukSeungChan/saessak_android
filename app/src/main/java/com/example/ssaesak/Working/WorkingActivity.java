@@ -249,12 +249,12 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.fragment_home) {
-//                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                    overridePendingTransition(0, 0);
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_working) {
-                    startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
-                    overridePendingTransition(0, 0);
+//                    startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
+//                    overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_farm) {
                     startActivity(new Intent(getApplicationContext(), FarmgroupActivity.class));

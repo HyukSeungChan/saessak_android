@@ -1,10 +1,13 @@
 package com.example.ssaesak.Retrofit;
 
 
+import com.example.ssaesak.Dto.BoardDTO;
+import com.example.ssaesak.Dto.WorkNoticeRecommendDTO;
 import com.example.ssaesak.Dto.WorkerDTO;
 import com.example.ssaesak.Model.User;
 import com.example.ssaesak.Model.Worker;
 
+import java.lang.reflect.Parameter;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,11 +39,28 @@ public interface RetrofitAPI {
     Call<User> signupkakao(@Body User user);
 
     @GET(Constatnts_url.LOGIN_URL)
-    Call<User> login(@Query("userId") Long userId);
+    Call<ApiResponse> login(@Query("userId") Long userId);
 
+    @GET(Constatnts_url.LOGIN_WORKER_URL)
+    Call<ApiResponse> loginWorker(@Query("userId") Long userId);
+
+
+
+
+
+    // 홈화면
     @POST(Constatnts_url.SIGNUP_WORKER_URL)
-    Call<WorkerDTO> signupWorker(@Body WorkerDTO workerDto);
+    Call<WorkerDTO> signupWorker(WorkerDTO worker);
 
+    @GET(Constatnts_url.WORK_RECOMMEND)
+    Call<List<WorkNoticeRecommendDTO>> recommendWorkerNotice(@Query("address") String address,
+                                                             @Query("agriculture") String agriculture,
+                                                             @Query("crops") String crops);
+
+
+    // Board
+    @GET(Constatnts_url.HOT_NOTICE)
+    Call<ApiResponse> hotNotice();
 
 //    @POST(Constatnts_url.LOGIN_SANGHYUK_URL)
 //    Call<Customer> loginSanghyuk(@Query("customerId") int customerId);

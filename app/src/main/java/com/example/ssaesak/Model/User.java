@@ -1,5 +1,7 @@
 package com.example.ssaesak.Model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +36,13 @@ public class User {
         return user;
     }
 
-    public static User setInstance(User user) {
-        user.setUserId(user.getUserId());
-        user.setName(user.getName());
-        user.setProfileImage(user.getProfileImage());
-        user.setPhone(user.getPhone());
-        user.setType(user.getType());
+    public static User setInstance(User userJson) {
+        Log.e("user", " name -> " + userJson.getName());
+        user.setUserId(userJson.getUserId());
+        user.setName(userJson.getName());
+        user.setProfileImage(userJson.getProfileImage());
+        user.setPhone(userJson.getPhone());
+        user.setType(userJson.getType());
 
         return user;
     }

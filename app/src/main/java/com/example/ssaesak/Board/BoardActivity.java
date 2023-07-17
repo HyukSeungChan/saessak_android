@@ -31,7 +31,7 @@ public class BoardActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board);
+        setContentView(R.layout.activity_board_help);
 
         chipList = new ArrayList<>();
         chipList.add(findViewById(R.id.chip_all));
@@ -41,7 +41,6 @@ public class BoardActivity extends Activity {
         chipList.add(findViewById(R.id.chip_other));
 
         for (Button chip : chipList) {
-            chip.isPressed();
             chip.setOnClickListener(v -> {
                 selectFilter(chip);
 
