@@ -16,6 +16,9 @@ public class WorkNoticeRecommendDTO {
 
     private String farmerName;
 
+    public WorkNoticeRecommendDTO() {
+
+    }
 
     public WorkNoticeRecommendDTO(WorkNoticeRecommendDTO work) {
         this.name = work.getName();
@@ -23,6 +26,7 @@ public class WorkNoticeRecommendDTO {
         this.farmImage = work.getFarmImage();
         this.agriculture = work.getAgriculture();
         this.crops = work.getCrops();
+        this.farmerName = work.getFarmerName();
     }
 
 
@@ -64,5 +68,13 @@ public class WorkNoticeRecommendDTO {
 
     public void setCrops(String crops) {
         this.crops = crops;
+    }
+
+    public String getFarmerName() {
+        return farmerName;
+    }
+
+    public void setFarmerName(String farmerName) {
+        this.farmerName = farmerName;
     }
 }
