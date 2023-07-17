@@ -62,6 +62,39 @@ public interface RetrofitAPI {
     @GET(Constatnts_url.HOT_NOTICE)
     Call<ApiResponse> hotNotice();
 
+
+    // work
+
+    // 일자리 리스트
+    @GET(Constatnts_url.WORK_LIST)
+    Call<ApiResponse> workList();
+
+    // 일자리 필터링 (지역)
+    @GET(Constatnts_url.WORK_LIST_ADDRESS)
+    Call<ApiResponse> workListAddress(@Query ("address") String address);
+
+    // 일자리 필터링 (농업기술)
+    @GET(Constatnts_url.WORK_LIST_AGRICULTURE)
+    Call<ApiResponse> workListAgriculture(@Query ("agriculture") String agriculture);
+
+    // 일자리 필터링 (작목)
+    @GET(Constatnts_url.WORK_LIST_CROPS)
+    Call<ApiResponse> workListCrops(@Query ("crops") String crops);
+
+    // 일자리 필터링 (경력)
+    @GET(Constatnts_url.WORK_LIST_CAREER)
+    Call<ApiResponse> workListCareer(@Query ("address") float career);
+
+    // 일자리 즐겨찾기
+    @GET(Constatnts_url.USER_WORK_LIST)
+    Call<ApiResponse> userWorkList();
+
+    // 해당 일자리 조회
+    @GET(Constatnts_url.WORK_DETAIL)
+    Call<ApiResponse> workDetail(@Query("workId") int workId);
+
+
+
 //    @POST(Constatnts_url.LOGIN_SANGHYUK_URL)
 //    Call<Customer> loginSanghyuk(@Query("customerId") int customerId);
 //    @POST(Constatnts_url.LOGOUT_URL)
