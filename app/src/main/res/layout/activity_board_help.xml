@@ -91,17 +91,12 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-
 
         <LinearLayout
             android:id="@+id/layout_notice"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/sea_green_dark3"
             android:orientation="vertical"/>
-
-    </ScrollView>
 
 </LinearLayout>

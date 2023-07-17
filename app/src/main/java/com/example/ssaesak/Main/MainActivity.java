@@ -77,8 +77,8 @@ import retrofit2.Response;
         this.checkPermissionCustom();
 
         KakaoSdk.init(this, "4caf1a2e579000e6cd8d530264db7aed");
-        User.getInstance().setUserId(2905062448L);
-//        isKakaologin(this);
+//        User.getInstance().setUserId(2905062448L);
+        isKakaologin(this);
 
 
         setContentView(R.layout.activity_home);
@@ -135,13 +135,13 @@ import retrofit2.Response;
             @Override
             public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
                 login(user_kakao.getId());
-//                if(user_kakao == null) {
-//                    startActivity(new Intent(getBaseContext(), LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-//                    overridePendingTransition(0, 0);
-//                    finish();
-//                } else {
-//                    login(user_kakao.getId());
-//                }
+                if(user_kakao == null) {
+                    startActivity(new Intent(getBaseContext(), LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    overridePendingTransition(0, 0);
+                    finish();
+                } else {
+                    login(user_kakao.getId());
+                }
                     return null;
             }
         });

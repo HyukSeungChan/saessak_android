@@ -369,12 +369,13 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
                 Log.e("workHome", "workHomeList : " + response.body());
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.substring(1, body.length()-1).replace("\\", "");
+                String json = body.replace("\\", "");
                 Log.e("workHome", " body -> " + body);
                 Log.e("workHome", " json -> " + json);
                 try {
 //                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
                     List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+                    Log.e("workHome", "notice count !! : " + dtos.size());
 
                 } catch (Exception e1) {e1.printStackTrace();}
 

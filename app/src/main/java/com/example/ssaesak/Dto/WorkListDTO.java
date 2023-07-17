@@ -24,6 +24,9 @@ public class WorkListDTO {
     private String crops;
     private String cropsDetail;
 
+    public WorkListDTO() {
+    }
+
     public WorkListDTO(int workId, int farmId, String title, String recruitmentStart, String recruitmentEnd, String name, String address, String farmImage, String crops, String cropsDetail) {
         this.workId = workId;
         this.farmId = farmId;
