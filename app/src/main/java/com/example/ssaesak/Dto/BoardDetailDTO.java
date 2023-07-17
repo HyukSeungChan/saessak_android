@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BoardDTO implements Serializable {
+public class BoardDetailDTO implements Serializable {
 
     private int boardId;
     private String title;
@@ -26,12 +26,12 @@ public class BoardDTO implements Serializable {
 
     private Long userId;
 
-    public BoardDTO() {
+    public BoardDetailDTO() {
 
     }
 
-    public BoardDTO(int boardId, String title, String content, String image, String uploadTime,
-                            String area, int likes, int replies, String agriculture) {
+    public BoardDetailDTO(int boardId, String title, String content, String image, String uploadTime,
+                          String area, int likes, int replies, String agriculture) {
         super();
         this.boardId = boardId;
         this.title = title;

@@ -1,20 +1,22 @@
 package com.example.ssaesak.Retrofit;
 
 
-import com.example.ssaesak.Dto.BoardDTO;
+import com.example.ssaesak.Dto.BoardRequestDTO;
+import com.example.ssaesak.Dto.ResumeRequestDTO;
 import com.example.ssaesak.Dto.WorkNoticeRecommendDTO;
 import com.example.ssaesak.Dto.WorkerDTO;
 import com.example.ssaesak.Model.User;
-import com.example.ssaesak.Model.Worker;
 
-import java.lang.reflect.Parameter;
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface RetrofitAPI {
@@ -92,6 +94,18 @@ public interface RetrofitAPI {
     // 해당 일자리 조회
     @GET(Constatnts_url.WORK_DETAIL)
     Call<ApiResponse> workDetail(@Query("workId") int workId);
+
+    // resume
+
+    // 이력서 작성
+    @POST(Constatnts_url.RESUME_CREATE)
+    Call<ResumeRequestDTO> resumeCreate(@Body ResumeRequestDTO resumeRequestDto);
+
+    // board
+    @Headers("Content-Type: multipart/form-data")
+    @Multipart
+    @POST(Constatnts_url.BOARD_CREATE)
+    Call<BoardRequestDTO> boardCreate(@Part BoardRequestDTO boardRequestDTO, @Part MultipartBody.Part image);
 
 
 
