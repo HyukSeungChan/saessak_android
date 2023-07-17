@@ -2,7 +2,9 @@ package com.example.ssaesak.Dto;
 
 import com.example.ssaesak.Model.User;
 import com.example.ssaesak.Model.Worker;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WorkerDTO {
 
     // 노동자ID

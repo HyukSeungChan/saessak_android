@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,15 +20,26 @@ import com.example.ssaesak.Adapter.AgricultureAdapter;
 import com.example.ssaesak.Adapter.CareerAdapter;
 import com.example.ssaesak.Adapter.CropAdapter;
 import com.example.ssaesak.Board.BoardActivity;
+import com.example.ssaesak.Dto.WorkListDTO;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
+import com.example.ssaesak.Login.SignupTypeActivity;
 import com.example.ssaesak.Main.MainActivity;
+import com.example.ssaesak.Model.User;
 import com.example.ssaesak.R;
+import com.example.ssaesak.Retrofit.ApiResponse;
+import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Study.StudyActivity;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class WorkingActivity  extends AppCompatActivity implements BottomsheetAreaDialog.BottomSheetAreaListener,BottomsheetCropDialog.BottomSheetCropListener,  BottomsheetCareerDialog.BottomSheetCareerListener, BottomsheetAgricultureDialog.BottomSheetAgricultureListener {
 //public class WorkingActivity  extends Activity {
@@ -64,6 +76,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_notice);
+        workList();
         filter = "";
 
         this.layoutList = new ArrayList<>();
@@ -273,8 +286,6 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
                 }
             }
         });
-
-
     }
 
 
@@ -302,6 +313,8 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
         this.filterArea = filterArea;
 
         Log.e("filter", filterArea);
+
+        this.workListAddress(filterArea);
     }
 
     @Override
@@ -309,6 +322,8 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
         this.filterAgriculture = filterAgriculture;
 
         Log.e("filter", filterAgriculture);
+
+        this.workListAgriculture(filterAgriculture);
     }
 
     @Override
@@ -316,12 +331,199 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
         this.filterCrop = filterCrop;
 
         Log.e("filter", filterCrop);
+
+        this.workListCrops(filterCrop);
     }
 
     @Override
     public void onButtonCareer(String filterCareer) {
         this.filterCareer = filterCareer;
+        float career = 0;
+
+        if (filterCareer.equals("경력 무관")) {
+            career = 99;
+        } else if (filterCareer.equals("0~12개월")) {
+            career = 1;
+        } else if (filterCareer.equals("1~3년")) {
+            career = 3;
+        } else if (filterCareer.equals("3~5년")) {
+            career = 5;
+        } else if (filterCareer.equals("5년 이상")) {
+            career = 7;
+        }
 
         Log.e("filter", filterCareer);
+
+        this.workListCareer(career);
     }
+
+
+    // 일자리 공고 전부 받아오기
+    private void workList() {
+        Log.e("workHome", "get workHome start!!");
+        Call<ApiResponse> call = MyRetrofit.getApiService().workList();
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.e("workHome", "workHomeList : ");
+                Log.e("workHome", "workHomeList : " + response.body());
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.substring(1, body.length()-1).replace("\\", "");
+                Log.e("workHome", " body -> " + body);
+                Log.e("workHome", " json -> " + json);
+                try {
+//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+                    List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+
+                } catch (Exception e1) {e1.printStackTrace();}
+
+//                List<UserDTO> dtos = Arrays.asList(mapper.readValue(strList, UserDTO[].class));
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("workHome failed", t.getMessage() + "");}
+        });
+    }
+
+    // 일자리 필터링 (지역)
+    private void workListAddress(String address) {
+        Log.e("workListAddress", "get workListAddress start!!");
+        Call<ApiResponse> call = MyRetrofit.getApiService().workListAddress(address);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.e("workListAddress", "workListAddress : ");
+                Log.e("workListAddress", "workListAddress : " + response.body());
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.substring(1, body.length()-1).replace("\\", "");
+                Log.e("workListAddress", " body -> " + body);
+                Log.e("workListAddress", " json -> " + json);
+                try {
+//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+                    List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+
+                } catch (Exception e1) {e1.printStackTrace();}
+
+//                List<UserDTO> dtos = Arrays.asList(mapper.readValue(strList, UserDTO[].class));
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("workHome failed", t.getMessage() + "");}
+        });
+    }
+
+    // 일자리 필터링 (농업구분)
+    private void workListAgriculture(String agriculture) {
+        Log.e("workListAgriculture", "get workListAgriculture start!!");
+        Call<ApiResponse> call = MyRetrofit.getApiService().workListAgriculture(agriculture);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.e("workListAgriculture", "workListAgriculture : ");
+                Log.e("workListAgriculture", "workListAgriculture : " + response.body());
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.substring(1, body.length()-1).replace("\\", "");
+                Log.e("workListAgriculture", " body -> " + body);
+                Log.e("workListAgriculture", " json -> " + json);
+                try {
+//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+                    List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+
+                } catch (Exception e1) {e1.printStackTrace();}
+
+//                List<UserDTO> dtos = Arrays.asList(mapper.readValue(strList, UserDTO[].class));
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("workHome failed", t.getMessage() + "");}
+        });
+    }
+
+    // 일자리 필터링 (작목)
+    private void workListCrops(String crops) {
+        Log.e("workListCrops", "get workListCrops start!!");
+        Call<ApiResponse> call = MyRetrofit.getApiService().workListCrops(crops);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.e("workListCrops", "workListCrops : ");
+                Log.e("workListCrops", "workListCrops : " + response.body());
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.substring(1, body.length()-1).replace("\\", "");
+                Log.e("workListCrops", " body -> " + body);
+                Log.e("workListCrops", " json -> " + json);
+                try {
+//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+                    List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+
+                } catch (Exception e1) {e1.printStackTrace();}
+
+//                List<UserDTO> dtos = Arrays.asList(mapper.readValue(strList, UserDTO[].class));
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("workHome failed", t.getMessage() + "");}
+        });
+    }
+
+    // 일자리 필터링 (경력)
+    private void workListCareer(float career) {
+        Log.e("workListCareer", "get workListCareer start!!");
+        Call<ApiResponse> call = MyRetrofit.getApiService().workListCareer(career);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.e("workListCareer", "workListCareer : ");
+                Log.e("workListCareer", "workListCareer : " + response.body());
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.substring(1, body.length()-1).replace("\\", "");
+                Log.e("workListCareer", " body -> " + body);
+                Log.e("workListCareer", " json -> " + json);
+                try {
+//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+                    List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+
+                } catch (Exception e1) {e1.printStackTrace();}
+
+//                List<UserDTO> dtos = Arrays.asList(mapper.readValue(strList, UserDTO[].class));
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("workHome failed", t.getMessage() + "");}
+        });
+    }
+
+    // 일자리 즐겨찾기
+    private void userWorkList() {
+        Log.e("userWorkList", "get userWorkList start!!");
+        Call<ApiResponse> call = MyRetrofit.getApiService().userWorkList();
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.e("userWorkList", "userWorkList : ");
+                Log.e("userWorkList", "userWorkList : " + response.body());
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.substring(1, body.length()-1).replace("\\", "");
+                Log.e("userWorkList", " body -> " + body);
+                Log.e("userWorkList", " json -> " + json);
+                try {
+//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+                    List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+
+                } catch (Exception e1) {e1.printStackTrace();}
+
+//                List<UserDTO> dtos = Arrays.asList(mapper.readValue(strList, UserDTO[].class));
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("workHome failed", t.getMessage() + "");}
+        });
+    }
+
 }
