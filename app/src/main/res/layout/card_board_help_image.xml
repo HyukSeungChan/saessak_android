@@ -7,6 +7,7 @@ android:padding="16dp"
 >
 
     <TextView
+        android:id="@+id/agriculture"
         android:background="@drawable/rectangle_primary_stroke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,6 +34,7 @@ android:padding="16dp"
 
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="제목"
@@ -44,6 +46,7 @@ android:padding="16dp"
 
 
         <TextView
+            android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용"
@@ -57,6 +60,7 @@ android:padding="16dp"
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/image"
             android:layout_marginLeft="16dp"
             android:layout_width="64dp"
             android:layout_height="64dp"
@@ -79,6 +83,7 @@ android:padding="16dp"
 
 
         <TextView
+            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="n시간 전"
@@ -93,12 +98,14 @@ android:padding="16dp"
             />
 
         <ImageView
+            android:id="@+id/like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/svg_like"
             />
 
         <TextView
+            android:id="@+id/like_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="20"
@@ -115,6 +122,7 @@ android:padding="16dp"
             />
 
         <TextView
+            android:id="@+id/comment_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="20"

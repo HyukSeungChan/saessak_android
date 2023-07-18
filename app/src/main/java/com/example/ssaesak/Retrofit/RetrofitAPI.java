@@ -64,6 +64,10 @@ public interface RetrofitAPI {
     @GET(Constatnts_url.HOT_NOTICE)
     Call<ApiResponse> hotNotice();
 
+    // 일자리 리스트
+    @GET(Constatnts_url.NOTICE_HELP_LIST)
+    Call<ApiResponse> noticeHelpList();
+
 
     // work
 

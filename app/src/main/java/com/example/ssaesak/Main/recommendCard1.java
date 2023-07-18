@@ -24,6 +24,10 @@ public class recommendCard1 extends Fragment {
     private TextView agriculture;
     private TextView crop;
 
+    public recommendCard1() {
+    }
+
+
 
     public recommendCard1(WorkNoticeRecommendDTO work) {
         this.work = work;
