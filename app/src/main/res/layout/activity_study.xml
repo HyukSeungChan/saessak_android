@@ -88,6 +88,7 @@
                 />
 
             <Button
+                android:id="@+id/essential_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingVertical="8dp"
@@ -191,10 +192,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"/>
                     <ImageButton
+                        android:id="@+id/crop"
                         android:src="@drawable/svg_arrowright"
                         android:padding="8dp"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:background="#FFFFFF"/>
                 </LinearLayout>
 
@@ -213,6 +215,7 @@
 
 
                         <TextView
+                            android:id="@+id/interesting_crop_layout_null"
                             android:layout_width="300dp"
                             android:layout_height="100dp"
                             android:text="마이페이지에서 관심 농작물을 설정하면\n여기서 보여드려요"
@@ -247,7 +250,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="12dp"
-                        android:text="농업 교육 더보기"
+                        android:text="생활 농업 팁"
                         android:includeFontPadding="false"
                         android:fontFamily="@font/notosans_bold"
                         android:textSize="18sp"
@@ -258,10 +261,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"/>
                     <ImageButton
+                        android:id="@+id/agriculture"
                         android:src="@drawable/svg_arrowright"
                         android:padding="8dp"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:background="#FFFFFF"/>
 
                 </LinearLayout>

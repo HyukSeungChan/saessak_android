@@ -2,39 +2,23 @@ package com.example.ssaesak.Board;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.ssaesak.Dto.BoardDTO;
-import com.example.ssaesak.Dto.WorkListDTO;
-import com.example.ssaesak.Farmgroup.FarmgroupActivity;
-import com.example.ssaesak.Main.MainActivity;
+import com.example.ssaesak.Dto.BoardDetailDTO;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
-import com.example.ssaesak.Study.StudyActivity;
-import com.example.ssaesak.Working.WorkingActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,14 +70,14 @@ public class BoardHelpActivity extends Fragment {
 
 
 
-    private void setList(List<BoardDTO> list) {
+    private void setList(List<BoardDetailDTO> list) {
         LinearLayout linearLayout = view.findViewById(R.id.layout_notice);
         linearLayout.removeAllViews();
         LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
 
         Log.e("board", "list size : " + list.size());
 //        CardBoardHelpImage card;
-        for (BoardDTO notice : list) {
+        for (BoardDetailDTO notice : list) {
             LinearLayout card = (LinearLayout)layoutInflater.inflate(R.layout.card_board_help_image, linearLayout, false);
             card.setVisibility(View.VISIBLE);
             ((TextView)card.findViewById(R.id.agriculture)).setText(notice.getAgriculture());
@@ -143,7 +127,7 @@ public class BoardHelpActivity extends Fragment {
                 String json = body.replace("\\", "");
                 Log.e("board", "json -> " + json);
                 try {
-                    setList(Arrays.asList(mapper.readValue(json, BoardDTO[].class)));
+                    setList(Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class)));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

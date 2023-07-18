@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="24dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:fontFamily="@font/notosans_bold"
+        android:includeFontPadding="false"
+        android:text="교육 수료 시 지원할 수 있습니다"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp"
+        />
+    
+    
+    <ImageView
+        android:src="@drawable/svg_completion_before"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Lets go!"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/notosans_bold"
+        android:includeFontPadding="false"
+        android:textColor="@color/gray5"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/notosans_regular"
+        android:includeFontPadding="false"
+        android:text="지원에 필요한 교육을 이수해야합니다.\n
+필수 교육 정보를 확인해 보세요"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right|center_vertical"
+        android:layout_marginBottom="16dp"
+        >
+
+        <Button
+            android:id="@+id/no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취소"
+            android:textSize="14sp"
+            android:textColor="@color/sea_green_dark2"
+            android:background="@color/white"
+            android:stateListAnimator="@null"
+            />
+
+        <Button
+            android:id="@+id/yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="확인"
+            android:textSize="14sp"
+            android:textColor="@color/sea_green_dark2"
+            android:background="@color/white"
+            android:stateListAnimator="@null"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

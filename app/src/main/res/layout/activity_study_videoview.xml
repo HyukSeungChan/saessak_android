@@ -85,6 +85,7 @@
                     android:layout_weight="1"/>
 
                 <ImageButton
+                    android:id="@+id/bookmark"
                     android:src="@drawable/svg_bookmark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -122,7 +123,11 @@
         </LinearLayout>
 
 
-
+<SeekBar
+    android:id="@+id/seekbar"
+    android:visibility="gone"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
 
 
 </LinearLayout>

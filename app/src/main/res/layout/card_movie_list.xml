@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_marginVertical="12dp">
 
     <ImageView
+        android:id="@+id/thumbnail"
         android:src="@drawable/temp_img"
         android:layout_width="128dp"
         android:layout_height="76.694dp"
@@ -19,9 +20,10 @@
         android:layout_weight="1"/>
 
     <TextView
-        android:layout_width="160dp"
+        android:id="@+id/title"
+        android:layout_width="163dp"
         android:layout_height="wrap_content"
-        android:text="영상 제목"
+        android:text="안전한 농산물 생산을 위한 올바른 농약 사용"
         android:textSize="16sp"
         android:textColor="@color/gray6"
         android:fontFamily="@font/notosans_regular"

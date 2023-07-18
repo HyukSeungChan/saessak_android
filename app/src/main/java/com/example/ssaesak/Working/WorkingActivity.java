@@ -179,7 +179,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
 
         List<CardWorkNotice> cardViewList = new ArrayList<>();
         cardViewList.add(cardView);
-        this.card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice, null, false);
+//        this.card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice, null, false);
 
         this.layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         this.card = (LinearLayout)layoutInflater.inflate(R.layout.card_work_notice, this.noticeList, false);
@@ -356,6 +356,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
 
         this.workListCareer(career);
     }
+
 
 
     // 일자리 공고 전부 받아오기

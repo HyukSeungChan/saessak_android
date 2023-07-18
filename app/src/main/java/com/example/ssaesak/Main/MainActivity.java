@@ -12,20 +12,26 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ssaesak.Board.BoardActivity;
 import com.example.ssaesak.Dto.BoardDetailDTO;
+import com.example.ssaesak.Dto.UserTodoFarmResponseDto;
 import com.example.ssaesak.Dto.WorkNoticeRecommendDTO;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
+import com.example.ssaesak.Farmgroup.FarmgroupNullActivity;
 import com.example.ssaesak.Login.LoginActivity;
 import com.example.ssaesak.Login.SignupTypeActivity;
 import com.example.ssaesak.Model.User;
+import com.example.ssaesak.Model.UserFarm;
+import com.example.ssaesak.Model.UserFarmList;
 import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
@@ -35,6 +41,8 @@ import com.example.ssaesak.Working.WorkingActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.user.UserApiClient;
 
@@ -79,7 +87,7 @@ import retrofit2.Response;
         this.mypageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), MypageActivity.class));
+                startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
                 overridePendingTransition(0, 0);
             }
         });
@@ -174,7 +182,7 @@ import retrofit2.Response;
                     // 도시농부 테이블 받기
                     getWorker();
                     // 농장 정보 받고 없으면 추천 데이터 받기
-
+                    getFarm();
                 } else {
                     // 지원현황, 일감 가져오기
                     getFarmer();
@@ -270,7 +278,6 @@ import retrofit2.Response;
                 Log.e("worker", " string -> " + json);
                 try {
                     Worker.setInstance(mapper.readValue(json, Worker.class));
-                    getWorkRecommend();
                 } catch (Exception e1) {e1.printStackTrace();}
             }
 
@@ -281,14 +288,113 @@ import retrofit2.Response;
         });
     }
 
-
-    // 농장주 정보 받아오기
-    private void getFarmer() {
-        Call<ApiResponse> call = MyRetrofit.getApiService().loginWorker(User.getInstance().getUserId());
+    private void getFarm() {
+        Log.e("main", "get my farm start!!");
+        Call<ApiResponse> call = MyRetrofit.getApiService().loginGetFarmList(User.getInstance().getUserId());
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.e("main", "my farm count : " + response.body().getData().toString());
+                if (response.body().getData().toString().equals("[]")) {
+                    Log.e("main", "not farm!! start recommend!!");
+                    findViewById(R.id.recommand_layout).setVisibility(View.VISIBLE);
+                    findViewById(R.id.today_work).setVisibility(View.GONE);
+                    findViewById(R.id.weather).setVisibility(View.GONE);
 
+                    getWorkRecommend();
+                    return;
+                }
+                findViewById(R.id.recommand_layout).setVisibility(View.GONE);
+                findViewById(R.id.today_work).setVisibility(View.VISIBLE);
+                findViewById(R.id.weather).setVisibility(View.VISIBLE);
+
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.replace("\\", "");
+                try {
+                    List<UserFarm> dtos = Arrays.asList(mapper.readValue(json, UserFarm[].class));
+                    new UserFarmList(dtos);
+
+                    getTodoList(dtos.get(0).getFarmId());
+
+                    Log.e("main", "my farm count : " + UserFarmList.getInstance().size());
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+
+        private void getTodoList(int farmId) {
+            Log.e("main", "get my farm start!!");
+            LinearLayout linearLayout = findViewById(R.id.todo_layout);
+            linearLayout.removeAllViews();
+            Call<ApiResponse> call = MyRetrofit.getApiService().getTodoList(User.getInstance().getUserId(), farmId);
+            call.enqueue(new Callback<ApiResponse>() {
+                @Override
+                public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                    Log.e("main", "todoList : " + response.body().getData().toString());
+                    if (response.body().getData().toString().equals("[]")) {
+                        LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+                        LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo_null, linearLayout, false);
+                        linearLayout.addView(video);
+                        return;
+                    }
+
+                    ObjectMapper mapper = new ObjectMapper();
+                    String body = response.body().getData().toString();
+                    String json = body.replace("\\", "");
+
+                    try {
+                        List<UserTodoFarmResponseDto> dtos = Arrays.asList(mapper.readValue(json, UserTodoFarmResponseDto[].class));
+
+                        for (UserTodoFarmResponseDto dto : dtos) {
+                            LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+                            LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo, linearLayout, false);
+                            ((TextView)video.findViewById(R.id.task_name)).setText(dto.getTask());
+                            video.setVisibility(View.VISIBLE);
+                            linearLayout.addView(video);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+                @Override
+                public void onFailure(Call<ApiResponse> call, Throwable t) {
+
+                }
+            });
+
+        }
+
+
+    // 농장주 정보 받아오기
+    private void getFarmer() {
+        Call<ApiResponse> call = MyRetrofit.getApiService().loginGetFarmList(User.getInstance().getUserId());
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.substring(1, body.length()-1).replace("\\", "");
+                try {
+
+//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+                    List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
+                } catch (Exception e) {
+
+                }
             }
 
             @Override
@@ -314,10 +420,6 @@ import retrofit2.Response;
 
 //                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
                 List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
-                
-                } catch (Exception e1) {e1.printStackTrace();}
-
-
                     ((TextView)findViewById(R.id.hot_notice1_title)).setText(dtos.get(0).getTitle());
                     ((TextView)findViewById(R.id.hot_notice2_title)).setText(dtos.get(1).getTitle());
 
@@ -333,6 +435,7 @@ import retrofit2.Response;
                     ((TextView)findViewById(R.id.hot_notice1_comment_count)).setText(dtos.get(0).getReplies()+"");
                     ((TextView)findViewById(R.id.hot_notice2_comment_count)).setText(dtos.get(1).getReplies()+"");
                 } catch (Exception e1) {e1.printStackTrace();}
+
             }
 
             @Override
@@ -368,6 +471,13 @@ import retrofit2.Response;
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_farm) {
+                    Log.e("main", "my farm count : " + UserFarmList.getInstance().size()+"");
+                    if(UserFarmList.getInstance().size() < 1) {
+                        startActivity(new Intent(getApplicationContext(), FarmgroupNullActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    }
+
                     startActivity(new Intent(getApplicationContext(), FarmgroupActivity.class));
                     overridePendingTransition(0, 0);
                     return true;

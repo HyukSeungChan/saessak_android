@@ -46,6 +46,9 @@ public interface RetrofitAPI {
     @GET(Constatnts_url.LOGIN_WORKER_URL)
     Call<ApiResponse> loginWorker(@Query("userId") Long userId);
 
+    @GET(Constatnts_url.LOGIN_GET_FARM_URL)
+    Call<ApiResponse> loginGetFarmList(@Query("userId") Long userId);
+
 
 
 
@@ -59,6 +62,10 @@ public interface RetrofitAPI {
                                                              @Query("agriculture") String agriculture,
                                                              @Query("crops") String crops);
 
+
+    // 농장
+    @GET(Constatnts_url.TODO_LIST)
+    Call<ApiResponse> getTodoList(@Query("userId") Long userId, @Query("farmId") int farmId);
 
     // Board
     @GET(Constatnts_url.HOT_NOTICE)
@@ -112,6 +119,18 @@ public interface RetrofitAPI {
     Call<BoardRequestDTO> boardCreate(@Part BoardRequestDTO boardRequestDTO, @Part MultipartBody.Part image);
 
 
+    @GET(Constatnts_url.WATCHING_VIDEO)
+    Call<ApiResponse> watchingVideo(@Query("videoId") int videoId, @Query("userId") int userId);
+
+    // study
+    @GET(Constatnts_url.VIDEO_LIST)
+    Call<ApiResponse> videoList(@Query("type") String type);
+
+    @POST(Constatnts_url.VIDEO_LIST)
+    Call<ApiResponse> cropVideoList(@Query("type") String type);
+
+    @POST(Constatnts_url.VIDEO_LIST)
+    Call<ApiResponse> agricultureVideoList(@Query("type") String type);
 
 //    @POST(Constatnts_url.LOGIN_SANGHYUK_URL)
 //    Call<Customer> loginSanghyuk(@Query("customerId") int customerId);

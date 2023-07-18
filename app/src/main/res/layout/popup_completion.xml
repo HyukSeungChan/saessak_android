@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="312dp"
+    android:layout_height="wrap_content"
+    android:padding="24dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:fontFamily="@font/notosans_bold"
+        android:includeFontPadding="false"
+        android:text="수료를 완료했습니다!"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp"
+        />
+    
+    
+    <ImageView
+        android:src="@drawable/svg_completion_after"
+        android:layout_width="116dp"
+        android:layout_height="86dp"
+        android:layout_gravity="center_horizontal"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="PERFECT"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/notosans_bold"
+        android:includeFontPadding="false"
+        android:textColor="@color/sea_green_dark1"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/notosans_regular"
+        android:includeFontPadding="false"
+        android:text="지원에 필요한 모든 교육을 이수했어요.\n
+이제 일자리를 찾아봐요"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right|center_vertical"
+        android:layout_marginBottom="16dp"
+        >
+
+        <Button
+            android:id="@+id/no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취소"
+            android:textSize="14sp"
+            android:textColor="@color/sea_green_dark2"
+            android:background="@color/white"
+            android:stateListAnimator="@null"
+            />
+
+        <Button
+            android:id="@+id/yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="확인"
+            android:textSize="14sp"
+            android:textColor="@color/sea_green_dark2"
+            android:background="@color/white"
+            android:stateListAnimator="@null"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

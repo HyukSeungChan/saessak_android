@@ -106,220 +106,190 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <!--    오늘 일감-->
     <LinearLayout
-        android:visibility="invisible"
-        android:id="@+id/today_work"
+        android:id="@+id/userinfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/welcome"
         app:layout_constraintStart_toStartOf="parent"
-        android:orientation="vertical"
-        android:paddingTop="12dp"
-        android:paddingBottom="16dp"
-        android:paddingHorizontal="20dp"
-        android:layout_marginVertical="16dp"
-        android:background="@drawable/background_white_rectangle"
-        >
+        android:orientation="vertical">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="충북에서 살아보기"
-            android:textSize="14sp"
-            android:textColor="#404040"
-            android:textStyle="bold"/>
-
+        <!--    오늘 일감-->
         <LinearLayout
+            android:id="@+id/today_work"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            >
-
-            <ImageView
-                android:src="@drawable/svg_info"
-                android:layout_width="20dp"
-                android:layout_height="20dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="감자 수확하기"
-                android:textSize="14sp"
-                android:layout_marginLeft="8dp"
-                android:textColor="#737373"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            >
-
-            <ImageView
-                android:src="@drawable/svg_info"
-                android:layout_width="20dp"
-                android:layout_height="20dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="감자 수확하기"
-                android:textSize="14sp"
-                android:layout_marginLeft="8dp"
-                android:textColor="#737373"
-                />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-<!--        날씨 정보-->
-    <LinearLayout
-        android:visibility="invisible"
-        android:id="@+id/weather"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/today_work"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="@drawable/background_white_rectangle"
-        >
-
-        <ImageView
-            android:src="@drawable/temp_img_ellipse"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/welcome"
+            app:layout_constraintStart_toStartOf="parent"
             android:orientation="vertical"
+            android:paddingTop="12dp"
+            android:paddingBottom="16dp"
+            android:paddingHorizontal="20dp"
+            android:layout_marginVertical="16dp"
+            android:background="@drawable/background_white_rectangle"
             >
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2023.07.20"
-                android:textSize="12sp"
-                android:textColor="#737373"
+                android:text="오늘 일감"
+                android:textSize="14sp"
+                android:textColor="#404040"
+                android:fontFamily="@font/notosans_bold"
+                android:includeFontPadding="false"/>
+
+            <LinearLayout
+                android:id="@+id/todo_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+        </LinearLayout>
+
+
+    <!--        날씨 정보-->
+        <LinearLayout
+            android:visibility="visible"
+            android:id="@+id/weather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/today_work"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/background_white_rectangle"
+            >
+
+            <ImageView
+                android:src="@drawable/temp_img_ellipse"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:orientation="horizontal"
+                android:layout_marginLeft="12dp"
+                android:orientation="vertical"
                 >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="25°C"
-                    android:textSize="20sp"
+                    android:text="2023.07.20"
+                    android:textSize="12sp"
                     android:textColor="#737373"
-                    android:textStyle="bold"
                     />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="25°C"
+                        android:textSize="20sp"
+                        android:textColor="#737373"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="맑음"
+                        android:textSize="14sp"
+                        android:textColor="#737373"
+                        android:layout_marginHorizontal="4dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="최고 30°C | 최저 18°C | 60%"
+                        android:textSize="12sp"
+                        android:textColor="#737373"
+                        />
+
+                </LinearLayout>
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="맑음"
-                    android:textSize="14sp"
-                    android:textColor="#737373"
-                    android:layout_marginHorizontal="4dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="최고 30°C | 최저 18°C | 60%"
+                    android:text="충청북도 청주시"
                     android:textSize="12sp"
                     android:textColor="#737373"
                     />
 
             </LinearLayout>
 
+        </LinearLayout>
+
+
+
+
+            <!--    추천 일자리터-->
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/recommand_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="16dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/welcome"
+            android:background="@drawable/background_white_rectangle"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="충청북도 청주시"
-                android:textSize="12sp"
-                android:textColor="#737373"
+                android:text="추천 일자리터"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#404040"
+                android:layout_marginBottom="8dp"
+                />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager"
+                android:layout_gravity="center"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                />
+
+
+            <me.relex.circleindicator.CircleIndicator3
+                android:id="@+id/indicator"
+                app:ci_drawable="@drawable/black_radius"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="bottom"
                 />
 
         </LinearLayout>
 
     </LinearLayout>
 
-
-
-
-        <!--    추천 일자리터-->
-    <LinearLayout
-        android:id="@+id/recommand_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="16dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/welcome"
-        android:background="@drawable/background_white_rectangle"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="추천 일자리터"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:textColor="#404040"
-            android:layout_marginBottom="8dp"
-            />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpager"
-            android:layout_gravity="center"
-            android:clipToPadding="false"
-            android:clipChildren="false"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            />
-
-
-        <me.relex.circleindicator.CircleIndicator3
-            android:id="@+id/indicator"
-            app:ci_drawable="@drawable/black_radius"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="bottom"
-            />
-
-    </LinearLayout>
-
-
 <!--    이달의 농업 기술-->
     <LinearLayout
         android:id="@+id/month_tech"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/recommand_layout"
+        app:layout_constraintTop_toBottomOf="@+id/userinfo"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical"
         android:padding="12dp"

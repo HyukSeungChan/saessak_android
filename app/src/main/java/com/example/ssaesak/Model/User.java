@@ -18,6 +18,7 @@ public class User {
     private String profileImage;
     private String phone;
     private String type;
+    private int complete;
 
 
 
@@ -26,12 +27,14 @@ public class User {
                                     String name,
                                     String profileImage,
                                     String phone,
-                                    String type) {
+                                    String type,
+                                    int complete) {
         user.setUserId(userId);
         user.setName(name);
         user.setProfileImage(profileImage);
         user.setPhone(phone);
         user.setType(type);
+        user.setComplete(complete);
 
         return user;
     }
@@ -43,6 +46,7 @@ public class User {
         user.setProfileImage(userJson.getProfileImage());
         user.setPhone(userJson.getPhone());
         user.setType(userJson.getType());
+        user.setComplete(userJson.getComplete());
 
         return user;
     }
@@ -54,19 +58,22 @@ public class User {
         this.profileImage = "";
         this.phone = "";
         this.type = "";
+        this.complete = 0;
     }
 
     public User(Long userId,
                 String name,
                 String profileImage,
                 String phone,
-                String type) {
+                String type,
+                int complete) {
 
         this.userId = userId;
         this.name = name;
         this.profileImage = profileImage;
         this.phone = phone;
         this.type = type;
+        this.complete = complete;
 
     }
 
@@ -109,5 +116,13 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getComplete() {
+        return complete;
+    }
+
+    public void setComplete(int complete) {
+        this.complete = complete;
     }
 }

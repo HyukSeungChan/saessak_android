@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.ssaesak.Dto.BoardDTO;
+import com.example.ssaesak.Dto.BoardDetailDTO;
 import com.example.ssaesak.R;
 
 import java.io.Serializable;
@@ -48,7 +48,7 @@ public class CardBoardHelpImage implements Serializable {
         return (LinearLayout)card;
     }
 
-    public View init(BoardDTO notice) {
+    public View init(BoardDetailDTO notice) {
 
         ((TextView)card.findViewById(R.id.agriculture)).setText(notice.getAgriculture());
         ((TextView)card.findViewById(R.id.title)).setText(notice.getAgriculture());

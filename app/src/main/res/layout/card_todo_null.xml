@@ -6,21 +6,37 @@
     android:gravity="center_vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:src="@drawable/svg_todo"
-        android:layout_width="20dp"
-        android:layout_height="20dp"/>
 
     <TextView
-        android:id="@+id/task_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="감자 수확하기"
+        android:text="일감이 아직 등록되지 않았어요"
         android:textSize="16sp"
         android:fontFamily="@font/notosans_bold"
         android:layout_marginLeft="8dp"
         android:textColor="@color/gray5"
         android:includeFontPadding="false"
         />
+
+
+    <ImageView
+        android:src="@drawable/svg_todonull"
+        android:padding="4dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"/>
+
+
+    <ImageView
+        android:src="@drawable/svg_todonull"
+        android:padding="4dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"/>
+
+
+    <ImageView
+        android:src="@drawable/svg_todonull"
+        android:padding="4dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"/>
 
 </LinearLayout>

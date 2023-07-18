@@ -40,10 +40,10 @@ public class recommendCard1 extends Fragment {
                 R.layout.card_recommend_work_notice, container, false);
 
         this.image = rootView.findViewById(R.id.image);
-        Glide.with(this)
-                .load(work.getFarmImage())
-                .diskCacheStrategy(DiskCacheStrategy.ALL) // 캐시 옵션 설정
-                .into(image);
+//        Glide.with(this)
+//                .load(work.getFarmImage())
+//                .diskCacheStrategy(DiskCacheStrategy.ALL) // 캐시 옵션 설정
+//                .into(image);
 
         this.farmName = rootView.findViewById(R.id.farm_name);
         this.farmName.setText(work.getName());

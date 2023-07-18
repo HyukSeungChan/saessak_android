@@ -3,12 +3,14 @@ package com.example.ssaesak.Retrofit;
 public class Constatnts_url {
 
 //    public static final String BASE_URL = "http://localhost:8080/";
-    public static final String BASE_URL_EMULATOR = "http://172.30.1.43:8080/";
+    public static final String BASE_URL_EMULATOR = "http://172.30.1.58:8080/";
 
 
     // 유저
     public static final String LOGIN_URL = "user/info/";
     public static final String LOGIN_WORKER_URL = "worker/";
+    public static final String LOGIN_GET_FARM_URL = "user/farm/group/";
+    public static final String LOGIN_FARMER_URL = "worker/";
     public static final String SIGNUP_URL = "user/";
     public static final String SIGNUP_KAKAO_URL = "user/kakao/";
     public static final String SIGNUP_WORKER_URL = "worker/";
@@ -17,6 +19,7 @@ public class Constatnts_url {
 
     // 홈
     public static final String WORK_RECOMMEND = "work/recommend/";
+    public static final String TODO_LIST = "user/todo/all/";
 
 
     // Board
@@ -25,13 +28,9 @@ public class Constatnts_url {
 
     // work
     public static final String WORK_LIST = "work/worker/all/";
-
     public static final String WORK_LIST_ADDRESS = "work/worker/address/";
-
     public static final String WORK_LIST_AGRICULTURE = "/work/worker/agriculture/";
-
     public static final String WORK_LIST_CROPS = "/work/worker/crops/";
-
     public static final String WORK_LIST_CAREER = "/work/worker/career/";
 
     // 일자리 즐겨찾기
@@ -54,6 +53,15 @@ public class Constatnts_url {
     // 글 작성
     public static final String BOARD_CREATE = "board/";
 
+
+
+
+    // study
+    public static final String VIDEO_LIST = "video/";
+    public static final String ESSENTIAL_VIDEO_TYPE = "농업필수교육";
+    public static final String AGRICULTURE_VIDEO_TYPE = "생활농업";
+    public static final String CROP_VIDEO_TYPE = "농작물영상";
+    public static final String WATCHING_VIDEO = "video/watching/";
 
 }
 

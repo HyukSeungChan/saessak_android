@@ -280,12 +280,29 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"/>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="23dp"
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="91dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/completion_before"/>
+
+                    <ImageView
+                        android:src="@drawable/svg_completion_before"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Lets go!"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/notosans_bold"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/gray5"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -337,6 +354,7 @@
                     android:orientation="vertical"
                     >
 
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -356,19 +374,35 @@
                         android:textColor="@color/gray5"
                         android:textSize="12sp"/>
 
-                </LinearLayout>
 
+                </LinearLayout>
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"/>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="23dp"
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="91dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/completion_after"/>
+                    <ImageView
+                        android:src="@drawable/svg_completion_after"
+                        android:layout_width="116dp"
+                        android:layout_height="86dp"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="PERFECT"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/notosans_bold"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/sea_green_dark1"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 

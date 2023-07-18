@@ -114,11 +114,14 @@
                     android:id="@+id/edittext"
                     android:layout_width="match_parent"
                     android:hint="제목을 입력해주세요"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:includeFontPadding="false"
                     android:layout_marginVertical="16dp"
                     android:layout_marginHorizontal="16dp"
                     android:background="@drawable/background_white_rectangle"
                     android:layout_weight="1"
-                    android:layout_height="46dp"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -407,7 +410,9 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_right_half_circle"
                     android:layout_weight="1"
-                    android:text="경력있어요"/>
+                    android:text="경력있어요"
+                    android:fontFamily="@font/notosans_bold"
+                    android:textColor="@color/sea_green_dark1"/>
 
             </LinearLayout>
 
@@ -751,6 +756,7 @@
                     android:layout_height="46dp"/>
 
                 <ImageView
+                    android:id="@+id/calender_start"
                     android:src="@drawable/svg_calender"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
