@@ -61,7 +61,7 @@ public class SignupFarmerActivity extends Activity {
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                descriptionLength.setText(editTextDescription.getText().toString().length() + "/300자");
+                descriptionLength.setText(descriptionLength.getText().toString().length() + "/300자");
                 if (editTextDescription.getText().toString().length() == 0) {
                     Log.e("signupname", "글자수 통과!");
                     nextButton.setClickable(false);
