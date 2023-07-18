@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
+    android:paddingVertical="16dp"
     android:orientation="horizontal"
     android:gravity="center_vertical"
     >
 
-    <ImageView
-        android:layout_width="106dp"
-        android:layout_height="79.5dp"
-        android:src="@drawable/temp_img"
-        />
-
-
-
+<!--    <ImageView-->
+<!--        android:id="@+id/farm_image"-->
+<!--        android:layout_width="106dp"-->
+<!--        android:layout_height="79.5dp"-->
+<!--        android:src="@drawable/temp_img"-->
+<!--        />-->
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -24,12 +23,14 @@
 
 
         <TextView
+            android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="강원 양평군 | 농장주"
             android:textSize="12sp"/>
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="일자리 참여자 모집"
@@ -38,6 +39,7 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/due"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="7/21 ~ 7/24"
@@ -50,6 +52,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/crops"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rectangle_primary_stroke"
@@ -60,6 +63,7 @@
                 android:textSize="12sp"/>
 
             <TextView
+                android:id="@+id/crops_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rectangle_primary_stroke"

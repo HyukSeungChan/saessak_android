@@ -15,12 +15,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.ssaesak.Adapter.AgricultureAdapter;
 import com.example.ssaesak.Adapter.CareerAdapter;
 import com.example.ssaesak.Adapter.CropAdapter;
 import com.example.ssaesak.Board.BoardActivity;
-import com.example.ssaesak.Dto.WorkListDTO;
+import com.example.ssaesak.Dto.WorkDTO;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
 import com.example.ssaesak.Login.SignupTypeActivity;
 import com.example.ssaesak.Main.MainActivity;
@@ -36,6 +37,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,6 +63,8 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
     private LinearLayout card;
     private String filter;
 
+    private LinearLayout layout;
+
     private List<LinearLayout> layoutList;
 
     private List<TextView> textList;
@@ -76,7 +80,6 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_notice);
-        workList();
         filter = "";
 
         this.layoutList = new ArrayList<>();
@@ -97,7 +100,6 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
         this.imageList.add(findViewById(R.id.crop_image));
         this.imageList.add(findViewById(R.id.career_image));
 
-
         for (LinearLayout layout : layoutList) {
             layout.setOnClickListener(v -> {
                 layout.setBackground(getResources().getDrawable(R.drawable.filter_select, null));
@@ -109,7 +111,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
 
 
 
-        LinearLayout layout = findViewById(R.id.layout_notice);
+        layout = findViewById(R.id.layout_notice);
         this.filterArea = "";
         this.filterAgriculture = "";
         this.filterCrop = "";
@@ -174,35 +176,39 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
 //
 //        this.noticeList = findViewById(R.id.layout_notice);
 //
+
+
         this.layoutInflater = LayoutInflater.from(getBaseContext());
-        CardWorkNotice cardView = new CardWorkNotice(getBaseContext());
+        this.noticeList = findViewById(R.id.layout_notice);
 
-        List<CardWorkNotice> cardViewList = new ArrayList<>();
-        cardViewList.add(cardView);
-        this.card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice, null, false);
-
-        this.layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        this.card = (LinearLayout)layoutInflater.inflate(R.layout.card_work_notice, this.noticeList, false);
-        this.card.setVisibility(View.VISIBLE);
-        this.card.setOnClickListener(v -> {
-            Intent intent = new Intent(getBaseContext(), NoticeDetailActivity.class);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
-        });
-
-        this.card.findViewById(R.id.bookmark).setOnClickListener(v -> {
-            if(this.card.findViewById(R.id.bookmark).isSelected()) {
-                Log.e("card", "press cancel!!");
-                this.card.findViewById(R.id.bookmark).setSelected(false);
-                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark, null));
-            } else {
-                Log.e("card", "press !!");
-                this.card.findViewById(R.id.bookmark).setSelected(true);
-                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark_select, null));
-            }
-        });
-
-        layout.addView(card);
+        workList();
+//        CardWorkNotice cardView = new CardWorkNotice(getBaseContext());
+//
+//        List<CardWorkNotice> cardViewList = new ArrayList<>();
+//        cardViewList.add(cardView);
+//
+//        this.layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+//        this.card = (LinearLayout)layoutInflater.inflate(R.layout.card_work_notice, this.noticeList, false);
+//        this.card.setVisibility(View.VISIBLE);
+//        this.card.setOnClickListener(v -> {
+//            Intent intent = new Intent(getBaseContext(), NoticeDetailActivity.class);
+//            startActivity(intent);
+//            overridePendingTransition(0, 0);
+//        });
+//
+//        this.card.findViewById(R.id.bookmark).setOnClickListener(v -> {
+//            if(this.card.findViewById(R.id.bookmark).isSelected()) {
+//                Log.e("card", "press cancel!!");
+//                this.card.findViewById(R.id.bookmark).setSelected(false);
+//                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark, null));
+//            } else {
+//                Log.e("card", "press !!");
+//                this.card.findViewById(R.id.bookmark).setSelected(true);
+//                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark_select, null));
+//            }
+//        });
+//
+//        layout.addView(card);
 //
 //        // 스피너에 붙일 어댑터 초기화
 //        adapterAgriculture = new AgricultureAdapter(this, new ArrayList<>(Arrays.asList(Constants.agricultureList)));
@@ -357,6 +363,47 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
         this.workListCareer(career);
     }
 
+    private void addNoticeCard(int workId, String address, String title, String due, String agriculture, String crops, String cropsDetail) {
+
+        Log.e("addNoticeCard","addNoticeCard 입장!!!!!!!!!!!!!!!!!!");
+
+        this.card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice, layout, false);
+
+        this.card.setOnClickListener(v -> {
+            Intent intent = new Intent(getBaseContext(), NoticeDetailActivity.class);
+            intent.putExtra("workId", workId);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        });
+
+        TextView addressTextView = card.findViewById(R.id.address);
+        TextView titleTextView = card.findViewById(R.id.title);
+        TextView dueTextView = card.findViewById(R.id.due);
+        TextView cropsTextView = card.findViewById(R.id.crops);
+        TextView cropsDetailTextView = card.findViewById(R.id.crops_detail);
+
+        addressTextView.setText(address);
+        titleTextView.setText(title);
+        dueTextView.setText(due);
+        cropsTextView.setText(crops);
+        cropsDetailTextView.setText(cropsDetail);
+
+        // CardView를 noticeList에 추가
+        noticeList.addView(card);
+
+        this.card.findViewById(R.id.bookmark).setOnClickListener(v -> {
+            if(this.card.findViewById(R.id.bookmark).isSelected()) {
+                Log.e("card", "press cancel!!");
+                this.card.findViewById(R.id.bookmark).setSelected(false);
+                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark, null));
+            } else {
+                Log.e("card", "press !!");
+                this.card.findViewById(R.id.bookmark).setSelected(true);
+                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark_select, null));
+            }
+        });
+
+    }
 
     // 일자리 공고 전부 받아오기
     private void workList() {
@@ -369,20 +416,28 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
                 Log.e("workHome", "workHomeList : " + response.body());
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.substring(1, body.length()-1).replace("\\", "");
+                String json = body.replace("\\", "");
                 Log.e("workHome", " body -> " + body);
                 Log.e("workHome", " json -> " + json);
                 try {
-//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
-                    List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+                    List<WorkDTO> dtos = Arrays.asList(mapper.readValue(json, WorkDTO[].class));
 
-                } catch (Exception e1) {e1.printStackTrace();}
+                    noticeList.removeAllViews();
 
-//                List<UserDTO> dtos = Arrays.asList(mapper.readValue(strList, UserDTO[].class));
+                    // Loop through the WorkListDTOs and add them to the card views
+                    for (WorkDTO dto : dtos) {
+                        addNoticeCard(dto.getWorkId(), dto.getAddress(), dto.getTitle(), dto.getRecruitmentStart() + "~" + dto.getRecruitmentEnd(), dto.getAgriculture(), dto.getCrops(), dto.getCropsDetail());
+                    }
+                } catch (Exception e1) {
+                    Log.e("workHome", "Error parsing JSON", e1);
+                    e1.printStackTrace();
+                }
             }
 
             @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("workHome failed", t.getMessage() + "");}
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                Log.e("workHome failed", t.getMessage() + "");
+            }
         });
     }
 
@@ -397,12 +452,17 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
                 Log.e("workListAddress", "workListAddress : " + response.body());
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.substring(1, body.length()-1).replace("\\", "");
+                String json = body.replace("\\", "");
                 Log.e("workListAddress", " body -> " + body);
                 Log.e("workListAddress", " json -> " + json);
                 try {
 //                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
-                    List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+                    List<WorkDTO> dtos = Arrays.asList(mapper.readValue(json, WorkDTO[].class));
+
+                    noticeList.removeAllViews();
+                    for (WorkDTO dto : dtos) {
+                        addNoticeCard(dto.getWorkId(), dto.getAddress(), dto.getTitle(), dto.getRecruitmentStart() + "~" + dto.getRecruitmentEnd(), dto.getAgriculture(), dto.getCrops(), dto.getCropsDetail());
+                    }
 
                 } catch (Exception e1) {e1.printStackTrace();}
 
@@ -425,12 +485,16 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
                 Log.e("workListAgriculture", "workListAgriculture : " + response.body());
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.substring(1, body.length()-1).replace("\\", "");
+                String json = body.replace("\\", "");
                 Log.e("workListAgriculture", " body -> " + body);
                 Log.e("workListAgriculture", " json -> " + json);
                 try {
 //                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
-                    List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+                    List<WorkDTO> dtos = Arrays.asList(mapper.readValue(json, WorkDTO[].class));
+
+                    noticeList.removeAllViews();
+                    for (WorkDTO dto : dtos) {
+                        addNoticeCard(dto.getWorkId(), dto.getAddress(), dto.getTitle(), dto.getRecruitmentStart() + "~" + dto.getRecruitmentEnd(), dto.getAgriculture(), dto.getCrops(), dto.getCropsDetail());                    }
 
                 } catch (Exception e1) {e1.printStackTrace();}
 
@@ -453,12 +517,17 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
                 Log.e("workListCrops", "workListCrops : " + response.body());
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.substring(1, body.length()-1).replace("\\", "");
+                String json = body.replace("\\", "");
                 Log.e("workListCrops", " body -> " + body);
                 Log.e("workListCrops", " json -> " + json);
                 try {
 //                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
-                    List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+                    List<WorkDTO> dtos = Arrays.asList(mapper.readValue(json, WorkDTO[].class));
+
+                    noticeList.removeAllViews();
+                    for (WorkDTO dto : dtos) {
+                        addNoticeCard(dto.getWorkId(), dto.getAddress(), dto.getTitle(), dto.getRecruitmentStart() + "~" + dto.getRecruitmentEnd(), dto.getAgriculture(), dto.getCrops(), dto.getCropsDetail());
+                    }
 
                 } catch (Exception e1) {e1.printStackTrace();}
 
@@ -481,12 +550,17 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
                 Log.e("workListCareer", "workListCareer : " + response.body());
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.substring(1, body.length()-1).replace("\\", "");
+                String json = body.replace("\\", "");
                 Log.e("workListCareer", " body -> " + body);
                 Log.e("workListCareer", " json -> " + json);
                 try {
 //                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
-                    List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+                    List<WorkDTO> dtos = Arrays.asList(mapper.readValue(json, WorkDTO[].class));
+
+                    noticeList.removeAllViews();
+                    for (WorkDTO dto : dtos) {
+                        addNoticeCard(dto.getWorkId(), dto.getAddress(), dto.getTitle(), dto.getRecruitmentStart() + "~" + dto.getRecruitmentEnd(), dto.getAgriculture(), dto.getCrops(), dto.getCropsDetail());
+                    }
 
                 } catch (Exception e1) {e1.printStackTrace();}
 
@@ -514,7 +588,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
                 Log.e("userWorkList", " json -> " + json);
                 try {
 //                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
-                    List<WorkListDTO> dtos = Arrays.asList(mapper.readValue(json, WorkListDTO[].class));
+                    List<WorkDTO> dtos = Arrays.asList(mapper.readValue(json, WorkDTO[].class));
 
                 } catch (Exception e1) {e1.printStackTrace();}
 

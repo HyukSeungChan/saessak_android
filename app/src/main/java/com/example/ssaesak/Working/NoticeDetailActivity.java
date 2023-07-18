@@ -10,12 +10,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.ssaesak.Dto.WorkDTO;
 import com.example.ssaesak.Login.SignupTypeActivity;
 import com.example.ssaesak.Model.User;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,9 +43,12 @@ public class NoticeDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_notice_detail);
+
+        int workId = getIntent().getIntExtra("workId", 1);
+
         init();
 
-        workDetail(1);
+        workDetail(workId);
 
         this.nextButton = findViewById(R.id.button_next);
         this.nextButton.setOnClickListener(v -> {
@@ -96,14 +109,89 @@ public class NoticeDetailActivity extends AppCompatActivity {
 
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.substring(1, body.length()-1).replace("\\", "");
+                String json = body.replace("\\", "");
                 Log.e("login", " string -> " + json);
                 try {
+                    WorkDTO workDTO = mapper.readValue(json, WorkDTO.class);
+                    due.setText(workDTO.getRecruitmentStart() + "~" + workDTO.getRecruitmentEnd());
+                    title.setText(workDTO.getTitle());
+                    farmName.setText(workDTO.getName());
+                    pay.setText(workDTO.getPay()+"만원");
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                    try {
+                        Date startDate = sdf.parse(workDTO.getWorkStartDay());
+                        Date endDate = sdf.parse(workDTO.getWorkEndDay());
+
+                        Calendar startCalendar = Calendar.getInstance();
+                        startCalendar.setTime(startDate);
+                        int startYear = startCalendar.get(Calendar.YEAR);
+                        int startMonth = startCalendar.get(Calendar.MONTH);
+
+                        Calendar endCalendar = Calendar.getInstance();
+                        endCalendar.setTime(endDate);
+                        int endYear = endCalendar.get(Calendar.YEAR);
+                        int endMonth = endCalendar.get(Calendar.MONTH);
+
+                        int diffMonths = (endYear - startYear) * 12 + (endMonth - startMonth);
+                        Log.e("diff", diffMonths+"!!!!!!!!!!!!");
+
+                        period.setText(diffMonths + "개월");
+                    } catch (ParseException e) {
+                        Log.e("cattttt", "cattttttt!!!!!!!!!!!!");
+                        e.printStackTrace();
+                    }
+
+                    time.setText(workDTO.getWorkStartTime()+"~"+workDTO.getWorkEndTime());
+                    content.setText(workDTO.getContent());
+                    endDay.setText(workDTO.getRecruitmentEnd());
+                    count.setText(workDTO.getRecruitmentPerson()+"명");
+                    qualification.setText(workDTO.getQualification());
+                    good.setText(workDTO.getPreferentialTreatment());
+                    Log.e("career!!!!!!", workDTO.getCareer()+"!!!!!!!!!!!!!!!!!!!");
+                    if (workDTO.getCareer() == 99) {
+                        career.setText("경력무관");
+                    } else if (workDTO.getCareer() < 1) {
+                        career.setText("0~12개월");
+                    } else if (workDTO.getCareer() < 3) {
+                        career.setText("1년~3년");
+                    } else if (workDTO.getCareer() < 5) {
+                        career.setText("3년~5년");
+                    } else if (workDTO.getCareer() > 5) {
+                        career.setText("5년 이상");
+                    }
+
+                    SimpleDateFormat sdfPay = new SimpleDateFormat("HH:mm", Locale.getDefault());
+                    try {
+                        Date startTime = sdfPay.parse(workDTO.getWorkStartTime());
+                        Date endTime = sdfPay.parse(workDTO.getWorkEndTime());
+
+                        long diffMillis = endTime.getTime() - startTime.getTime();
+
+                        long diffHours = diffMillis / (60 * 60 * 1000);
+
+                        payDetail.setText("시급: " + (workDTO.getPay() * 10000 / (int) diffHours) + "원" + ", " + "일급: " + workDTO.getPay() + "만원");
+                        timeDetail.setText("1일" + " " + diffHours+"시간"+"("+workDTO.getWorkStartTime()+"~"+workDTO.getWorkEndTime()+")");
+                    } catch (ParseException e) {
+                        Log.e("cat!!!!!!!!!!!!!", "cat!!!!!!!!!!!!");
+                        e.printStackTrace();
+                    }
+                    dueDetail.setText(workDTO.getWorkStartDay() + "~" + workDTO.getWorkEndDay());
+                    other.setText(workDTO.getEtc());
+                    textPosition.setText(workDTO.getAddress());
+                    phone.setText(workDTO.getPhone());
+                    Glide.with(getBaseContext())
+                    .load(workDTO.getFarmImage())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL) // 캐시 옵션 설정
+                    .into(farmImage);
+                    welcome.setText(workDTO.getName() + "에 오신걸 환영합니다~!!");
+                    agriculture.setText(workDTO.getAgriculture());
+                    list.setText(workDTO.getCrops());
+                    listDetail.setText(workDTO.getCropsDetail());
                     User.setInstance(mapper.readValue(json, User.class));
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
-
 
             }
 

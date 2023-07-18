@@ -8,9 +8,12 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +41,8 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.user.UserApiClient;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -67,11 +72,13 @@ import retrofit2.Response;
         super.onCreate(savedInstanceState);
 
         this.checkPermissionCustom();
+        User.getInstance().setUserId(1L);
+
+        startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
+        finish();
 
         KakaoSdk.init(this, "4caf1a2e579000e6cd8d530264db7aed");
-//        User.getInstance().setUserId(2905062448L);
-        isKakaologin(this);
-
+//        isKakaologin(this);
 
         setContentView(R.layout.activity_home);
 
@@ -308,15 +315,11 @@ import retrofit2.Response;
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 ObjectMapper mapper = new ObjectMapper();
-                String body = response.body().getData().toString();
-                String json = body.substring(1, body.length()-1).replace("\\", "");
                 try {
-
-//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
-                List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
-                
-                } catch (Exception e1) {e1.printStackTrace();}
-
+                    String body = response.body().getData().toString();
+                    String json = body.substring(1, body.length()-1).replace("\\", "");
+//                  List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+                    List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
 
                     ((TextView)findViewById(R.id.hot_notice1_title)).setText(dtos.get(0).getTitle());
                     ((TextView)findViewById(R.id.hot_notice2_title)).setText(dtos.get(1).getTitle());
@@ -332,7 +335,9 @@ import retrofit2.Response;
 
                     ((TextView)findViewById(R.id.hot_notice1_comment_count)).setText(dtos.get(0).getReplies()+"");
                     ((TextView)findViewById(R.id.hot_notice2_comment_count)).setText(dtos.get(1).getReplies()+"");
+
                 } catch (Exception e1) {e1.printStackTrace();}
+
             }
 
             @Override
@@ -406,4 +411,21 @@ import retrofit2.Response;
             return;
         }
     }
+
+        private void getAppKeyHash() {
+            try {
+                PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+                for (Signature signature : info.signatures) {
+                    MessageDigest md;
+                    md = MessageDigest.getInstance("SHA");
+                    md.update(signature.toByteArray());
+                    String something = new String(Base64.encode(md.digest(), 0));
+                    Log.e("Hash key", something);
+                }
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.e("name not found", e.toString());
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+        }
 }

@@ -51,6 +51,10 @@ public class WorkDTO {
     private String crops;
     private String cropsDetail;
 
+    public WorkDTO() {
+
+    }
+
     public WorkDTO(int workId, int farmId, String title, String content, String recruitmentStart, String recruitmentEnd, int recruitmentPerson, String qualification, String preferentialTreatment, int hourWage, int dayWage, String workStartDay, String workEndDay, String workStartTime, String workEndTime, float career, String state, String etc, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String cropsDetail) {
         this.workId = workId;
         this.farmId = farmId;

@@ -85,7 +85,7 @@ public interface RetrofitAPI {
 
     // 일자리 필터링 (경력)
     @GET(Constatnts_url.WORK_LIST_CAREER)
-    Call<ApiResponse> workListCareer(@Query ("address") float career);
+    Call<ApiResponse> workListCareer(@Query ("career") float career);
 
     // 일자리 즐겨찾기
     @GET(Constatnts_url.USER_WORK_LIST)

@@ -3,11 +3,13 @@ package com.example.ssaesak.Login;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.ssaesak.R;
+import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
 
@@ -16,13 +18,18 @@ import kotlin.jvm.functions.Function2;
 
 public class LoginActivity extends Activity {
 
+    ImageButton loginButton;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
 
 
-        ImageButton loginButton = findViewById(R.id.kakao_login);
+        loginButton = findViewById(R.id.kakao_login);
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,9 +73,7 @@ public class LoginActivity extends Activity {
             }
         });
 
-
-
-
-
     }
+
+
 }
