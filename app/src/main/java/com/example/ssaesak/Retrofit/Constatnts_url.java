@@ -6,6 +6,7 @@ public class Constatnts_url {
     public static final String BASE_URL_EMULATOR = "http://172.30.1.58:8080/";
 
 
+
     // 유저
     public static final String LOGIN_URL = "user/info/";
     public static final String LOGIN_WORKER_URL = "worker/";
@@ -29,12 +30,15 @@ public class Constatnts_url {
     // work
     public static final String WORK_LIST = "work/worker/all/";
     public static final String WORK_LIST_ADDRESS = "work/worker/address/";
-    public static final String WORK_LIST_AGRICULTURE = "/work/worker/agriculture/";
-    public static final String WORK_LIST_CROPS = "/work/worker/crops/";
-    public static final String WORK_LIST_CAREER = "/work/worker/career/";
+
+    public static final String WORK_LIST_AGRICULTURE = "work/worker/agriculture/";
+
+    public static final String WORK_LIST_CROPS = "work/worker/crops/";
+
+    public static final String WORK_LIST_CAREER = "work/worker/career/";
 
     // 일자리 즐겨찾기
-    public static final String USER_WORK_LIST = "/user/work/bookmark/";
+    public static final String USER_WORK_LIST = "user/work/bookmark/";
 
     // 해당 일자리 조회
     public static final String WORK_DETAIL = "work/worker/workId/";
