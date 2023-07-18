@@ -53,30 +53,24 @@ public class SignupFarmerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_farmer);
 
+        this.nextButton = findViewById(R.id.button_next);
+
         this.editTextTitle = findViewById(R.id.edittext_title);
         this.editTextDescription = findViewById(R.id.edittext_description);
         this.descriptionLength = findViewById(R.id.edittext_description);
-        this.editTextDescription.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                descriptionLength.setText(descriptionLength.getText().toString().length() + "/300자");
-                if (editTextDescription.getText().toString().length() == 0) {
-                    Log.e("signupname", "글자수 통과!");
-                    nextButton.setClickable(false);
-                    nextButton.setBackground(getResources().getDrawable(R.drawable.button_gray, null));
-                } else if (editTextDescription.getText().toString().length() > 300) {
-                    Log.e("signupname", "글자수 초과! -> " + editTextDescription.toString().length());
-                    editTextDescription.setText(charSequence.subSequence(0, 300));
-                } else {
-                    nextButton.setClickable(true);
-                    nextButton.setBackground(getResources().getDrawable(R.drawable.button_primary, null));
-                }
-            }
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        });
+//        this.editTextDescription.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                descriptionLength.setText(editTextDescription.getText().toString().length() + "/300자");
+//                if (editTextDescription.getText().toString().length() > 300) {
+//                    editTextDescription.setText(charSequence.subSequence(0, 300));
+//                }
+//            }
+//            @Override
+//            public void afterTextChanged(Editable editable) {}
+//        });
 
         this.editTextPosition = findViewById(R.id.edittext_position);
         this.editTextPhone = findViewById(R.id.edittext_phone);
@@ -96,7 +90,7 @@ public class SignupFarmerActivity extends Activity {
         });
 
 
-        this.nextButton = findViewById(R.id.button_next);
+
     }
 
     private void openGallery() {
