@@ -80,13 +80,12 @@ import retrofit2.Response;
         super.onCreate(savedInstanceState);
 
         this.checkPermissionCustom();
-        User.getInstance().setUserId(1L);
 
         startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
         finish();
 
         KakaoSdk.init(this, "4caf1a2e579000e6cd8d530264db7aed");
-//        isKakaologin(this);
+        isKakaologin(this);
 
         setContentView(R.layout.activity_home);
 

@@ -2,6 +2,7 @@ package com.example.ssaesak.Dto;
 
 public class ResumeRequestDTO {
 
+    private int resumeId;
     private String title;
     private String gender;
     private String birthday;
@@ -23,7 +24,8 @@ public class ResumeRequestDTO {
     private String car;
     private Long userId;
 
-    public ResumeRequestDTO(String title, String gender, String birthday, String phone, String email, String address, float career, String account, String bank, String agriculture, String crops, String workStartDay, String workEndDay, String workStartTime, String workEndTime, String car, Long userId) {
+    public ResumeRequestDTO(int resumeId, String title, String gender, String birthday, String phone, String email, String address, float career, String account, String bank, String agriculture, String crops, String workStartDay, String workEndDay, String workStartTime, String workEndTime, String car, Long userId) {
+        this.resumeId = resumeId;
         this.title = title;
         this.gender = gender;
         this.birthday = birthday;
@@ -41,6 +43,14 @@ public class ResumeRequestDTO {
         this.workEndTime = workEndTime;
         this.car = car;
         this.userId = userId;
+    }
+
+    public int getResumeId() {
+        return resumeId;
+    }
+
+    public void setResumeId(int resumeId) {
+        this.resumeId = resumeId;
     }
 
     public String getTitle() {

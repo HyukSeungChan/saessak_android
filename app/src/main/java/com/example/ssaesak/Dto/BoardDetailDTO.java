@@ -26,13 +26,13 @@ public class BoardDetailDTO implements Serializable {
 
     private Long userId;
 
+    private Boolean bookmark;
+
     public BoardDetailDTO() {
 
     }
 
-    public BoardDetailDTO(int boardId, String title, String content, String image, String uploadTime,
-                          String area, int likes, int replies, String agriculture) {
-        super();
+    public BoardDetailDTO(int boardId, String title, String content, String image, String uploadTime, String area, int likes, int replies, String agriculture, Long userId, Boolean bookmark) {
         this.boardId = boardId;
         this.title = title;
         this.content = content;
@@ -42,9 +42,9 @@ public class BoardDetailDTO implements Serializable {
         this.likes = likes;
         this.replies = replies;
         this.agriculture = agriculture;
-
+        this.userId = userId;
+        this.bookmark = bookmark;
     }
-
 
     public int getBoardId() {
         return boardId;
@@ -124,5 +124,13 @@ public class BoardDetailDTO implements Serializable {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Boolean getBookmark() {
+        return bookmark;
+    }
+
+    public void setBookmark(Boolean bookmark) {
+        this.bookmark = bookmark;
     }
 }
