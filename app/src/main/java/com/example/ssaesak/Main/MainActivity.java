@@ -31,7 +31,9 @@ import com.example.ssaesak.Dto.WorkNoticeRecommendDTO;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
 import com.example.ssaesak.Farmgroup.FarmgroupNullActivity;
 import com.example.ssaesak.Login.LoginActivity;
+import com.example.ssaesak.Login.SignupFarmerActivity;
 import com.example.ssaesak.Login.SignupTypeActivity;
+import com.example.ssaesak.Login.SignupWorkerPositionActivity;
 import com.example.ssaesak.Model.User;
 import com.example.ssaesak.Model.UserFarm;
 import com.example.ssaesak.Model.UserFarmList;
@@ -81,8 +83,13 @@ import retrofit2.Response;
 
         this.checkPermissionCustom();
 
-        startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
+        startActivity(new Intent(getBaseContext(), SignupFarmerActivity.class));
+        overridePendingTransition(0, 0);
         finish();
+//        User.getInstance().setUserId(1L);
+//
+//        startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
+//        finish();
 
         KakaoSdk.init(this, "4caf1a2e579000e6cd8d530264db7aed");
         isKakaologin(this);
@@ -93,7 +100,7 @@ import retrofit2.Response;
         this.mypageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
+                startActivity(new Intent(getApplicationContext(), MypageActivity.class));
                 overridePendingTransition(0, 0);
             }
         });
@@ -140,7 +147,8 @@ import retrofit2.Response;
         UserApiClient.getInstance().me(new Function2<com.kakao.sdk.user.model.User, Throwable, Unit>() {
             @Override
             public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
-                login(user_kakao.getId());
+//                Log.e("login", "user !! : " + user_kakao.getId());
+//                login(user_kakao.getId());
                 if(user_kakao == null) {
                     startActivity(new Intent(getBaseContext(), LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                     overridePendingTransition(0, 0);
@@ -339,50 +347,50 @@ import retrofit2.Response;
     }
 
 
-        private void getTodoList(int farmId) {
-            Log.e("main", "get my farm start!!");
-            LinearLayout linearLayout = findViewById(R.id.todo_layout);
-            linearLayout.removeAllViews();
-            Call<ApiResponse> call = MyRetrofit.getApiService().getTodoList(User.getInstance().getUserId(), farmId);
-            call.enqueue(new Callback<ApiResponse>() {
-                @Override
-                public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                    Log.e("main", "todoList : " + response.body().getData().toString());
-                    if (response.body().getData().toString().equals("[]")) {
+    private void getTodoList(int farmId) {
+        Log.e("main", "get my farm start!!");
+        LinearLayout linearLayout = findViewById(R.id.todo_layout);
+        linearLayout.removeAllViews();
+        Call<ApiResponse> call = MyRetrofit.getApiService().getTodoList(User.getInstance().getUserId(), farmId);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.e("main", "todoList : " + response.body().getData().toString());
+                if (response.body().getData().toString().equals("[]")) {
+                    LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+                    LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo_null, linearLayout, false);
+                    linearLayout.addView(video);
+                    return;
+                }
+
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.replace("\\", "");
+
+                try {
+                    List<UserTodoFarmResponseDto> dtos = Arrays.asList(mapper.readValue(json, UserTodoFarmResponseDto[].class));
+
+                    for (UserTodoFarmResponseDto dto : dtos) {
                         LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
-                        LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo_null, linearLayout, false);
+                        LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo, linearLayout, false);
+                        ((TextView)video.findViewById(R.id.task_name)).setText(dto.getTask());
+                        video.setVisibility(View.VISIBLE);
                         linearLayout.addView(video);
-                        return;
                     }
-
-                    ObjectMapper mapper = new ObjectMapper();
-                    String body = response.body().getData().toString();
-                    String json = body.replace("\\", "");
-
-                    try {
-                        List<UserTodoFarmResponseDto> dtos = Arrays.asList(mapper.readValue(json, UserTodoFarmResponseDto[].class));
-
-                        for (UserTodoFarmResponseDto dto : dtos) {
-                            LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
-                            LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo, linearLayout, false);
-                            ((TextView)video.findViewById(R.id.task_name)).setText(dto.getTask());
-                            video.setVisibility(View.VISIBLE);
-                            linearLayout.addView(video);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
-                @Override
-                public void onFailure(Call<ApiResponse> call, Throwable t) {
 
-                }
-            });
+            }
 
-        }
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
 
 
     // 농장주 정보 받아오기

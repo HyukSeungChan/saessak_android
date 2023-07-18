@@ -397,7 +397,6 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
         cropsDetailTextView.setText(cropsDetail);
 
         // CardView를 noticeList에 추가
-        noticeList.addView(card);
 
         this.card.findViewById(R.id.bookmark).setOnClickListener(v -> {
             if(this.card.findViewById(R.id.bookmark).isSelected()) {
@@ -411,6 +410,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
             }
         });
 
+        noticeList.addView(card);
     }
 
 
@@ -425,7 +425,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
                 Log.e("workHome", "workHomeList : " + response.body());
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.substring(1,body.length()-1).replace("\\", "");
+                String json = body.substring(1, body.length()-1).replace("\\", "");
                 Log.e("workHome", " body -> " + body);
                 Log.e("workHome", " json -> " + json);
                 try {
@@ -494,7 +494,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
                 Log.e("workListAgriculture", "workListAgriculture : " + response.body());
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.substring(1,body.length()-1).replace("\\", "");
+                String json = body.substring(1, body.length()-1).replace("\\", "");
                 Log.e("workListAgriculture", " body -> " + body);
                 Log.e("workListAgriculture", " json -> " + json);
                 try {
@@ -526,7 +526,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
                 Log.e("workListCrops", "workListCrops : " + response.body());
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.substring(1,body.length()-1).replace("\\", "");
+                String json = body.substring(1, body.length()-1).replace("\\", "");
                 Log.e("workListCrops", " body -> " + body);
                 Log.e("workListCrops", " json -> " + json);
                 try {
@@ -559,7 +559,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
                 Log.e("workListCareer", "workListCareer : " + response.body());
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.substring(1,body.length()-1).replace("\\", "");
+                String json = body.substring(1, body.length()-1).replace("\\", "");
                 Log.e("workListCareer", " body -> " + body);
                 Log.e("workListCareer", " json -> " + json);
                 try {

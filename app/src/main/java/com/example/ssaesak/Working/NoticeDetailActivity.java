@@ -109,7 +109,7 @@ public class NoticeDetailActivity extends AppCompatActivity {
 
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.substring(1,body.length()-1).replace("\\", "");
+                String json = body.substring(1, body.length()-1).replace("\\", "");
                 Log.e("login", " string -> " + json);
                 try {
                     WorkDTO workDTO = mapper.readValue(json, WorkDTO.class);

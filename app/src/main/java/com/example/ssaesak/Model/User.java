@@ -1,6 +1,7 @@
 package com.example.ssaesak.Model;
 
 import android.util.Log;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class User {
     private String phone;
     private String type;
     private int complete;
+//    private ImageView profileImageView;
 
 
 

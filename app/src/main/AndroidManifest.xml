@@ -41,6 +41,10 @@
         </activity>
 
         <activity android:name="com.example.ssaesak.Main.MypageActivity"/>
+        <activity android:name="com.example.ssaesak.Main.MypageUseActivity"/>
+        <activity android:name="com.example.ssaesak.Main.MypagePrivacyActivity"/>
+        <activity android:name="com.example.ssaesak.Main.MypageActivityHistory"/>
+        <activity android:name="com.example.ssaesak.Main.MypageApplyStatusActivity"/>
 
         <activity android:name="com.example.ssaesak.Working.WorkingActivity"/>
         <activity android:name="com.example.ssaesak.Working.NoticeDetailActivity"/>
@@ -68,6 +72,7 @@
         <activity android:name="com.example.ssaesak.Login.SignupWorkerCropActivity"/>
         <activity android:name="com.example.ssaesak.Login.SignupWorkerAgricultureActivity"/>
         <activity android:name="com.example.ssaesak.Login.SignupWorkerPayActivity"/>
+        <activity android:name="com.example.ssaesak.Login.SignupFarmerActivity"/>
 <!--        <activity android:name="com.example.ssaesak.Farmgroup.FarmgroupSidebar"/>-->
 
         <activity

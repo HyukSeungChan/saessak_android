@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    >
+
+    <!--    상단바-->
+    <LinearLayout
+        android:id="@+id/upbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="20dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+
+        >
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/svg_arrowleft"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="4dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="지원현황"
+            android:textSize="20sp"
+            android:layout_gravity="left"
+            android:fontFamily="@font/notosans_bold"
+            android:includeFontPadding="false"
+            />
+
+    </LinearLayout>
+
+
+
+
+<!--    지원현황 이력서 북마크-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="16dp"
+        android:background="@drawable/edittext_normal"
+        >
+
+        <TextView
+            android:id="@+id/complete_after"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="지원완료"
+            android:textSize="14sp"
+            android:textColor="@color/gray6"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="4dp"
+            android:paddingVertical="14dp"
+            />
+
+        <TextView
+            android:id="@+id/complete_apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="승인완료"
+            android:textSize="14sp"
+            android:textColor="@color/gray6"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="14dp"
+            />
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="지원취소"
+            android:textSize="14sp"
+            android:textColor="@color/gray6"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:paddingLeft="4dp"
+            android:paddingRight="20dp"
+            android:paddingVertical="14dp"
+            />
+
+    </LinearLayout>
+
+
+<!--    나머지 여기서부터-->
+    <LinearLayout
+        android:id="@+id/resume_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        >
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
