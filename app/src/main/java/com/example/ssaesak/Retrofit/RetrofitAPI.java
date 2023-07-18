@@ -3,11 +3,8 @@ package com.example.ssaesak.Retrofit;
 
 import com.example.ssaesak.Dto.BoardRequestDTO;
 import com.example.ssaesak.Dto.ResumeRequestDTO;
-import com.example.ssaesak.Dto.WorkNoticeRecommendDTO;
 import com.example.ssaesak.Dto.WorkerDTO;
 import com.example.ssaesak.Model.User;
-
-import java.util.List;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -56,6 +53,9 @@ public interface RetrofitAPI {
     // 홈화면
     @POST(Constatnts_url.SIGNUP_WORKER_URL)
     Call<WorkerDTO> signupWorker(WorkerDTO worker);
+
+    @GET(Constatnts_url.RESUME_LIST)
+    Call<ApiResponse> resume(@Query("userId") Long userId);
 
     @GET(Constatnts_url.WORK_RECOMMEND)
     Call<ApiResponse> recommendWorkerNotice(@Query("address") String address,

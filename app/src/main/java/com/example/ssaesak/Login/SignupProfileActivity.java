@@ -1,7 +1,9 @@
 package com.example.ssaesak.Login;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -43,7 +45,12 @@ import kotlin.jvm.functions.Function2;
 
 public class SignupProfileActivity extends Activity {
 
+    private static final int REQUEST_PERMISSION = 1;
+    private static final int REQUEST_GALLERY = 2;
+
     String name;
+
+    ImageView imageButton;
 
 
     @Override
@@ -61,23 +68,13 @@ public class SignupProfileActivity extends Activity {
             }
         });
 
-        Button afterButton = findViewById(R.id.button_after);
-        afterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(), SignupPhoneActivity.class));
-                overridePendingTransition(0, 0);
-                finish();
-            }
-        });
-
         EditText editText = findViewById(R.id.edittext);
 
         this.name = "";
 
 
 
-        ImageView imageButton = findViewById(R.id.profile_image);
+        imageButton = findViewById(R.id.profile_image);
         UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
             @Override
             public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
@@ -98,10 +95,14 @@ public class SignupProfileActivity extends Activity {
             @Override
             public void onClick(View view) {
                 //갤러리 호출
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                intent.setAction(Intent.ACTION_PICK);
-//                launcher_gallery.launch(intent);
+                if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(SignupProfileActivity.this,
+                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                            REQUEST_PERMISSION);
+                } else {
+                    openGallery();
+                }
             }
         });
 
@@ -118,5 +119,33 @@ public class SignupProfileActivity extends Activity {
         });
     }
 
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQUEST_GALLERY);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openGallery();
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_GALLERY && resultCode == RESULT_OK && data != null) {
+            Uri selectedImageUri = data.getData();
+            Log.e("image", selectedImageUri.toString());
+            imageButton.setImageURI(selectedImageUri);
+        }
+    }
 
 }

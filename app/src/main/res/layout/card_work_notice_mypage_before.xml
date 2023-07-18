@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="16dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    >
+
+<!--    <ImageView-->
+<!--        android:id="@+id/farm_image"-->
+<!--        android:layout_width="106dp"-->
+<!--        android:layout_height="79.5dp"-->
+<!--        android:src="@drawable/temp_img"-->
+<!--        />-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="16dp">
+
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="충청북도 제천시 | 하연농장"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="하연농장 고용인력 찾습니다"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/due"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7/21 ~ 7/24"
+            android:layout_marginVertical="12dp"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="미열람"
+            android:textAlignment="center"
+            android:padding="4dp"
+            android:textColor="@color/gray5"
+            android:fontFamily="@font/notosans_regular"
+            android:includeFontPadding="false"
+            android:background="@drawable/button_gray_storke_nopadding"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:text="지원취소"
+        android:textAlignment="center"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        android:textColor="@color/gray6"
+        android:fontFamily="@font/notosans_regular"
+        android:includeFontPadding="false"
+        android:background="@drawable/button_gray_nopadding"
+        android:textSize="12sp"/>
+
+</LinearLayout>

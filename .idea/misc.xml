@@ -9,9 +9,13 @@
         <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/black_radius.xml" value="0.1375" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/bottomsheet.xml" value="0.1625" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/button_gray.xml" value="0.1475" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/button_gray_nopadding.xml" value="0.2" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/button_gray_storke_nopadding.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/button_left_half_circle.xml" value="0.1575" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/button_primary.xml" value="0.1475" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/button_primary_nopadding.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/button_primary_stroke.xml" value="0.1605" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/button_primary_stroke_nopadding.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/button_right_half_circle.xml" value="0.1575" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/calendar_backgorund.xml" value="0.1605" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/drawable/calendar_not_select_backgorund.xml" value="0.1605" />
@@ -76,9 +80,13 @@
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_login.xml" value="0.20735356990166737" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage.xml" value="0.264" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_apply_status.xml" value="0.20820863616930313" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_privacy.xml" value="0.264" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_use.xml" value="0.1" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_notice_detail.xml" value="0.20735356990166737" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_resume.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_review_farmgroup.xml" value="0.34496919917864477" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_farmer.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_name.xml" value="0.34946236559139787" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_phone.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_profile.xml" value="0.264" />
@@ -118,13 +126,13 @@
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_agriculture_movie.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_agriculture_movie_list.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_board_help.xml" value="0.264" />
-        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_board_help_image.xml" value="0.1" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_board_help_image.xml" value="0.4" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_board_story_image.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_comment.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_farm_mate.xml" value="0.72" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_filter.xml" value="0.176" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_interesting_crop.xml" value="0.20820863616930313" />
-        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_movie_list.xml" value="0.152" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_movie_list.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_recommend_work_notice.xml" value="0.1" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_review.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_study_notice.xml" value="0.2" />
@@ -132,6 +140,11 @@
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_todo_null.xml" value="0.4" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_user_profile.xml" value="0.536" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_work_notice.xml" value="0.264" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_work_notice_mypage_after.xml" value="0.536" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_work_notice_mypage_before.xml" value="0.264" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_work_notice_mypage_cancel.xml" value="0.20820863616930313" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_work_notice_mypage_end.xml" value="0.6" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_work_notice_status.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_worker.xml" value="0.4" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/fragment_board_help.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/fragment_board_story.xml" value="0.20735356990166737" />

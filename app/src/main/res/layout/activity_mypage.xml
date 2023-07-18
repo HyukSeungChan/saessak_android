@@ -33,8 +33,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="마이페이지"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_gravity="left"
+            android:fontFamily="@font/notosans_bold"
+            android:includeFontPadding="false"
             />
 
     </LinearLayout>
@@ -155,6 +157,7 @@
         >
 
         <TextView
+            android:id="@+id/apply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="지원현황"
@@ -170,6 +173,7 @@
             />
 
         <TextView
+            android:id="@+id/resume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이력서"
@@ -184,6 +188,7 @@
             />
 
         <TextView
+            android:id="@+id/bookmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="북마크"
@@ -200,7 +205,10 @@
 
     </LinearLayout>
 
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 <!--    나머지 여기서부터-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -411,6 +419,7 @@
 
 
         <LinearLayout
+            android:id="@+id/activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="21dp"
@@ -444,6 +453,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/use"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="21dp"
@@ -477,6 +487,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/privacy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="21dp"
@@ -524,6 +535,7 @@
             >
 
             <TextView
+                android:id="@+id/logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#787878"
@@ -541,6 +553,7 @@
                 />
 
             <TextView
+                android:id="@+id/signout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#787878"
@@ -551,5 +564,6 @@
         </LinearLayout>
 
     </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

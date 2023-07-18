@@ -35,44 +35,57 @@ public class LoginActivity extends Activity {
             public void onClick(View view) {
                 Log.e("LoginActivity", "로그인 !!");
                 if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
-                    UserApiClient.getInstance().loginWithKakaoTalk(LoginActivity.this,(oAuthToken, error) -> {
-                        if (error != null) {
-                            Log.e("LoginActivity", "로그인 실패", error);
-                        } else if (oAuthToken != null) {
-                            Log.i("LoginActivity", "로그인 성공(토큰) : " + oAuthToken.getAccessToken());
-                            UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
-                                @Override
-                                public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
-                                    com.example.ssaesak.Model.User.getInstance().setUserId(user_kakao.getId());
-                                    startActivity(new Intent(LoginActivity.this, SignupTypeActivity.class));
-                                    return null;
-                                }
-                            });
-                        }
-                        return null;
-                    });
+
+                    try {
+                        UserApiClient.getInstance().loginWithKakaoTalk(LoginActivity.this, (oAuthToken, error) -> {
+                            if(error.toString().contains("302")) {
+                                loginKakaoAccount();
+                            }
+                            if (error != null) {
+                                Log.e("LoginActivity", "로그인 실패", error);
+                            } else if (oAuthToken != null) {
+                                Log.i("LoginActivity", "로그인 성공(토큰) : " + oAuthToken.getAccessToken());
+                                UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
+                                    @Override
+                                    public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
+                                        com.example.ssaesak.Model.User.getInstance().setUserId(user_kakao.getId());
+                                        startActivity(new Intent(LoginActivity.this, SignupTypeActivity.class));
+                                        return null;
+                                    }
+                                });
+                            }
+                            return null;
+                        });
+                    } catch (Exception e) {
+
+                    }
                 } else {
-                    UserApiClient.getInstance().loginWithKakaoAccount(getBaseContext(),(oAuthToken, error) -> {
-                        if (error != null) {
-                            Log.e("LoginActivity", "로그인 실패", error);
-                        } else if (oAuthToken != null) {
-                            Log.i("LoginActivity", "로그인 성공(토큰) : " + oAuthToken.getAccessToken());
-                            UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
-                                @Override
-                                public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
-                                    com.example.ssaesak.Model.User.getInstance().setUserId(user_kakao.getId());
-                                    Log.e("userId", user_kakao.getId() + "");
-                                    startActivity(new Intent(LoginActivity.this, SignupTypeActivity.class));
-                                    return null;
-                                }
-                            });
-                        }
-                        return null;
-                    });
+                    loginKakaoAccount();
                 }
             }
         });
 
+    }
+
+
+    private void loginKakaoAccount() {
+        UserApiClient.getInstance().loginWithKakaoAccount(getBaseContext(),(oAuthToken, error) -> {
+            if (error != null) {
+                Log.e("LoginActivity", "로그인 실패", error);
+            } else if (oAuthToken != null) {
+                Log.i("LoginActivity", "로그인 성공(토큰) : " + oAuthToken.getAccessToken());
+                UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
+                    @Override
+                    public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
+                        com.example.ssaesak.Model.User.getInstance().setUserId(user_kakao.getId());
+                        Log.e("userId", user_kakao.getId() + "");
+                        startActivity(new Intent(LoginActivity.this, SignupTypeActivity.class));
+                        return null;
+                    }
+                });
+            }
+            return null;
+        });
     }
 
 

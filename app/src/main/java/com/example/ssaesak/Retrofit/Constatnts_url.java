@@ -3,7 +3,8 @@ package com.example.ssaesak.Retrofit;
 public class Constatnts_url {
 
 //    public static final String BASE_URL = "http://localhost:8080/";
-    public static final String BASE_URL_EMULATOR = "http://172.30.1.58:8080/";
+    public static final String BASE_URL_EMULATOR = "http://172.30.1.43:8080/";
+    public static final String BASE_URL_EC2 = "http://13.209.186.237:8080/saessak-0.0.1-SNAPSHOT/";
 
 
 
@@ -21,6 +22,7 @@ public class Constatnts_url {
     // 홈
     public static final String WORK_RECOMMEND = "work/recommend/";
     public static final String TODO_LIST = "user/todo/all/";
+    public static final String RESUME_LIST = "work/resume/worker/";
 
 
     // Board

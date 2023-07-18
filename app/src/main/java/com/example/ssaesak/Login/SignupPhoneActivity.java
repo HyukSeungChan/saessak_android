@@ -61,7 +61,9 @@ public class SignupPhoneActivity extends Activity {
                     overridePendingTransition(0, 0);
                     finish();
                 } else {
-
+                    startActivity(new Intent(getBaseContext(), SignupFarmerActivity.class));
+                    overridePendingTransition(0, 0);
+                    finish();
                 }
             }
         });
