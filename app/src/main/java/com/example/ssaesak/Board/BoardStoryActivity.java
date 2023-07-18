@@ -30,7 +30,7 @@ public class BoardStoryActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_board_story, container, false);
 
-        Log.e("Board", "stroy tab start!!");
+        Log.e("Board", "story tab start!!");
 
         return inflater.inflate(R.layout.activity_board_story, container, false);
     }

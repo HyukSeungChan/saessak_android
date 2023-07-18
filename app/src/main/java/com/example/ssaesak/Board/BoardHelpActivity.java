@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.ssaesak.Dto.BoardDetailDTO;
+import com.example.ssaesak.Dto.WorkDTO;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
@@ -110,11 +111,13 @@ public class BoardHelpActivity extends Fragment {
                 chip.setTextColor(Color.rgb(255, 255, 255));
 
                 filter = chip.getText().toString();
+
             }
         }
     }
 
 
+    // 다 받아온다
     private void getAllNotice() {
         // 초기화 필요
 
@@ -124,9 +127,10 @@ public class BoardHelpActivity extends Fragment {
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.replace("\\", "");
+                String json = body.substring(1, body.length()-1).replace("\\", "");
                 Log.e("board", "json -> " + json);
                 try {
+//                    List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
                     setList(Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class)));
                 } catch (IOException e) {
                     e.printStackTrace();

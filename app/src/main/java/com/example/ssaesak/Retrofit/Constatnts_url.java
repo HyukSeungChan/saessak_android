@@ -28,6 +28,8 @@ public class Constatnts_url {
     // Board
     public static final String HOT_NOTICE = "board/hot/";
 
+    public static final String BOARD_LIST = "board/all";
+
 
     // work
     public static final String WORK_LIST = "work/worker/all/";

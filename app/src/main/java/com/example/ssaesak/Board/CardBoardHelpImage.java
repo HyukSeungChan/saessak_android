@@ -20,6 +20,10 @@ public class CardBoardHelpImage implements Serializable {
 
     private LinearLayout card;
 
+//    private TextView agriculture, title, content, time, like_count, comment_count;
+//
+//    private ImageView image;
+
 
     private LayoutInflater layoutInflater;
     private Context context;
@@ -41,7 +45,13 @@ public class CardBoardHelpImage implements Serializable {
     }
 
     private void init(Context context){
-
+//        this.agriculture = card.findViewById(R.id.agriculture);
+//        this.title = card.findViewById(R.id.title);
+//        this.content = card.findViewById(R.id.content);
+//        this.time = card.findViewById(R.id.time);
+//        this.like_count = card.findViewById(R.id.like_count);
+//        this.comment_count= card.findViewById(R.id.comment_count);
+//        this.image = card.findViewById(R.id.image);
     }
 
     public LinearLayout getCard() {

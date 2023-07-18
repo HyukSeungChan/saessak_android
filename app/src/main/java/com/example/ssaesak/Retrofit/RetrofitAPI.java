@@ -1,6 +1,7 @@
 package com.example.ssaesak.Retrofit;
 
 
+import com.example.ssaesak.Dto.BoardDetailDTO;
 import com.example.ssaesak.Dto.BoardRequestDTO;
 import com.example.ssaesak.Dto.ResumeRequestDTO;
 import com.example.ssaesak.Dto.WorkerDTO;
@@ -117,6 +118,9 @@ public interface RetrofitAPI {
     @Multipart
     @POST(Constatnts_url.BOARD_CREATE)
     Call<BoardRequestDTO> boardCreate(@Part BoardRequestDTO boardRequestDTO, @Part MultipartBody.Part image);
+
+    @GET(Constatnts_url.BOARD_LIST)
+    Call<BoardDetailDTO> boardList();
 
 
     @GET(Constatnts_url.WATCHING_VIDEO)
