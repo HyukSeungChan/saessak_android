@@ -33,4 +33,14 @@
         android:layout_marginTop="100dp"
         />
 
+    <TextView
+        android:id="@+id/account_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="@color/gray4"
+        android:textSize="12sp"
+        android:text="카카오 계정으로 로그인"
+        android:layout_marginTop="8dp"/>
+
 </LinearLayout>

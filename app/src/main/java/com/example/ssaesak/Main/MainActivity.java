@@ -54,8 +54,10 @@ import com.kakao.sdk.user.UserApiClient;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import kotlin.Unit;
@@ -217,6 +219,10 @@ import retrofit2.Response;
         call.enqueue(new Callback<ApiResponse>() {
              @Override
              public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                 findViewById(R.id.recommand_layout).setVisibility(View.VISIBLE);
+                 findViewById(R.id.today_work).setVisibility(View.GONE);
+                 findViewById(R.id.weather).setVisibility(View.GONE);
+
                  ObjectMapper mapper = new ObjectMapper();
                  String body = response.body().getData().toString();
                  String json = body.substring(1, body.length() - 1).replace("\\", "");
@@ -281,10 +287,17 @@ import retrofit2.Response;
 
     // 도시농부 정보 받아오기
     private void getWorker() {
+        Log.e("main", "get worker!!");
         Call<ApiResponse> call = MyRetrofit.getApiService().loginWorker(User.getInstance().getUserId());
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() == null) {
+                    getWorkRecommend();
+                    return;
+                }
+
+
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
                 String json = body.substring(1, body.length()-1).replace("\\", "");
@@ -302,7 +315,7 @@ import retrofit2.Response;
     }
 
     private void getFarm() {
-        Log.e("main", "get my farm start!!");
+        Log.e("main", "get farm!!");
         Call<ApiResponse> call = MyRetrofit.getApiService().loginGetFarmList(User.getInstance().getUserId());
         call.enqueue(new Callback<ApiResponse>() {
             @Override
@@ -323,10 +336,12 @@ import retrofit2.Response;
 
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.replace("\\", "");
+                String json = body.substring(1, body.length()-1).replace("\\", "");
                 try {
                     List<UserFarm> dtos = Arrays.asList(mapper.readValue(json, UserFarm[].class));
+                    Log.e("main", "my farm id : " + dtos.get(0).getFarmId());
                     new UserFarmList(dtos);
+                    Log.e("main", "my farm id : " + UserFarmList.getInstance().get(0).getFarmId());
 
                     getTodoList(dtos.get(0).getFarmId());
 
@@ -349,8 +364,13 @@ import retrofit2.Response;
     private void getTodoList(int farmId) {
         Log.e("main", "get my farm start!!");
         LinearLayout linearLayout = findViewById(R.id.todo_layout);
+
+        findViewById(R.id.recommand_layout).setVisibility(View.GONE);
+        findViewById(R.id.today_work).setVisibility(View.VISIBLE);
+        findViewById(R.id.weather).setVisibility(View.VISIBLE);
         linearLayout.removeAllViews();
-        Call<ApiResponse> call = MyRetrofit.getApiService().getTodoList(User.getInstance().getUserId(), farmId);
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        Call<ApiResponse> call = MyRetrofit.getApiService().getTodoList(User.getInstance().getUserId(), farmId, date.format(new Date()));
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -404,7 +424,7 @@ import retrofit2.Response;
                 try {
 
 //                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
-                    List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
+//                    List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
                     getTodoList(Farm.getInstance().getFarmId());
                 } catch (Exception e) {
 
@@ -490,7 +510,7 @@ import retrofit2.Response;
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_farm) {
-                    Log.e("main", "my farm count : " + UserFarmList.getInstance().size()+"");
+                    Log.e("main", "navi ! my farm count : " + UserFarmList.getInstance().size()+"");
                     if(UserFarmList.getInstance().size() < 1) {
                         startActivity(new Intent(getApplicationContext(), FarmgroupNullActivity.class));
                         overridePendingTransition(0, 0);
