@@ -50,8 +50,9 @@ public class BoardStoryActivity extends Fragment {
         this.view = inflater.inflate(R.layout.activity_board_story, container, false);
 
         Log.e("Board", "story tab start!!");
+        getAllNotice();
 
-        return inflater.inflate(R.layout.activity_board_story, container, false);
+        return view;
     }
 
 
@@ -66,7 +67,7 @@ public class BoardStoryActivity extends Fragment {
 //        CardBoardHelpImage card;
         for (BoardDetailDTO notice : list) {
             LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
-            LinearLayout card = (LinearLayout)layoutInflater.inflate(R.layout.card_board_help_image, linearLayout, false);
+            LinearLayout card = (LinearLayout)layoutInflater.inflate(R.layout.card_board_story_image, linearLayout, false);
             card.setVisibility(View.VISIBLE);
             ((TextView)card.findViewById(R.id.title)).setText(notice.getTitle());
             ((TextView)card.findViewById(R.id.content)).setText(notice.getContent());
@@ -87,19 +88,19 @@ public class BoardStoryActivity extends Fragment {
 
 
 
-//    private void selectFilter(Button button) {
-//        for (Button chip : chipList) {
-//            if (!chip.equals(button)) {
-//                chip.setBackground(getResources().getDrawable(R.drawable.chip_not_select, null));
-//                chip.setTextColor(Color.rgb(120, 120, 120));
-//            } else {
-//                chip.setBackground(getResources().getDrawable(R.drawable.chip_select, null));
-//                chip.setTextColor(Color.rgb(255, 255, 255));
-//
-//                filter = chip.getText().toString();
-//            }
-//        }
-//    }
+    private void selectFilter(Button button) {
+        for (Button chip : chipList) {
+            if (!chip.equals(button)) {
+                chip.setBackground(getResources().getDrawable(R.drawable.chip_not_select, null));
+                chip.setTextColor(Color.rgb(120, 120, 120));
+            } else {
+                chip.setBackground(getResources().getDrawable(R.drawable.chip_select, null));
+                chip.setTextColor(Color.rgb(255, 255, 255));
+
+                filter = chip.getText().toString();
+            }
+        }
+    }
 
     // 다 받아온다
     private void getAllNotice() {

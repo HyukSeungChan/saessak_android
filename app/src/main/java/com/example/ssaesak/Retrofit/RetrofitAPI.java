@@ -101,6 +101,10 @@ public interface RetrofitAPI {
     @GET(Constatnts_url.BOARD_DETAIL)
     Call<ApiResponse> boardDetail(@Query("boardId") int boardId);
 
+    // 댓글 조회
+    @GET(Constatnts_url.COMMENT_LIST)
+    Call<ApiResponse> commentList(@Query("boardId") int boardId);
+
 
     // work
 

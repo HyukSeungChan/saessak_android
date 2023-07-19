@@ -3,7 +3,10 @@ package com.example.ssaesak.Board;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.ssaesak.Dto.BoardDetailDTO;
+import com.example.ssaesak.Dto.ReplyResponseDTO;
+import com.example.ssaesak.Dto.UserFarmResponseDTO;
 import com.example.ssaesak.Dto.WorkDTO;
 import com.example.ssaesak.Login.SignupTypeActivity;
 import com.example.ssaesak.Model.User;
@@ -23,8 +28,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -33,8 +40,12 @@ import retrofit2.Response;
 
 public class BoardDetailActivity  extends AppCompatActivity {
 
-    private TextView category, name, time, title, content, likeCount, commentCount;
-    private ImageView profileImage;
+    private TextView category, name, time, title, content, likeCount, commentCount, commentName, commentArea, commentTime, commentContent;
+    private ImageView profileImage, commentProfileImage;
+
+    private LayoutInflater layoutInflater;
+
+    private LinearLayout commentLists;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +57,7 @@ public class BoardDetailActivity  extends AppCompatActivity {
         init();
 
         boardDetail(boardId);
+        commentAll(boardId);
 
     }
 
@@ -87,6 +99,9 @@ public class BoardDetailActivity  extends AppCompatActivity {
                 Log.e("boardDetail", " string -> " + json);
                 try {
                     BoardDetailDTO boardDetailDTO = mapper.readValue(json, BoardDetailDTO.class);
+                    if (boardDetailDTO.getCrops() == null) {
+                        category.setVisibility(View.GONE);
+                    }
                     category.setText(boardDetailDTO.getCrops());
                     name.setText(boardDetailDTO.getName());
                     time.setText(boardDetailDTO.getUploadTime());
@@ -108,5 +123,77 @@ public class BoardDetailActivity  extends AppCompatActivity {
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {Log.e("연결실패", t.getMessage() + "");}
         });
+    }
+
+    // 댓글 조회 후 추가
+    public void addCommentList(ReplyResponseDTO dto, LinearLayout parentLayout) {
+
+        Log.e("addCommentList", "addCommentList 입장!!");
+        this.layoutInflater = LayoutInflater.from(getBaseContext());
+
+
+        this.commentLists = (LinearLayout) layoutInflater.inflate(R.layout.card_comment, parentLayout, false);
+
+
+        this.commentName = commentLists.findViewById(R.id.name);
+        this.commentProfileImage = commentLists.findViewById(R.id.profile_image);
+        this.commentArea = commentLists.findViewById(R.id.area);
+        this.commentTime = commentLists.findViewById(R.id.time);
+        this.commentContent = commentLists.findViewById(R.id.comment);
+
+        Log.e("addCommentList", "addCommentListDTO 입장!!" + dto.getName() + " " + dto.getContent() + " " + dto.getArea() + " " + dto.getUploadTime() + " " + dto.getProfileImage());
+
+        commentName.setText(dto.getName()+"");
+
+        Glide.with(getBaseContext())
+                .load(dto.getProfileImage())
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // 캐시 옵션 설정
+                .into(commentProfileImage);
+        commentArea.setText(dto.getArea()+"");
+        commentTime.setText(dto.getUploadTime()+"");
+        commentContent.setText(dto.getContent()+"");
+
+        parentLayout.addView(commentLists);
+    }
+
+    // 댓글 조회
+    public void commentAll(int boardId) {
+        Log.e("commentList","commentList 입장!!!!!!!!!!!!!!!!!!");
+        Call<ApiResponse> call = MyRetrofit.getApiService().commentList(boardId);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.e("commentList", "findMemberList : ");
+                Log.e("commentList", "findMemberList : " + response.body());
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.substring(1, body.length()-1).replace("\\", "");
+                Log.e("commentList", " body -> " + body);
+                Log.e("commentList", " json -> " + json);
+                try {
+                    List<ReplyResponseDTO> dtos = Arrays.asList(mapper.readValue(json, ReplyResponseDTO[].class));
+
+//                    memberList.removeAllViews();
+                    LinearLayout parentLayout = findViewById(R.id.comment_list);
+                    parentLayout.removeAllViews();
+                    // Loop through the WorkListDTOs and add them to the card views
+                    Log.e("Dto size", dtos.size() + "!!");
+                    for (ReplyResponseDTO dto : dtos) {
+                        addCommentList(dto, parentLayout);
+                    }
+                } catch (Exception e1) {
+                    Log.e("findMemberList", "Error parsing JSON", e1);
+                    e1.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                Log.e("workHome failed", t.getMessage() + "");
+            }
+        });
+
+
+
     }
 }
