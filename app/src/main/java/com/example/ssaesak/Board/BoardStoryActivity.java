@@ -50,6 +50,7 @@ public class BoardStoryActivity extends Fragment {
         this.view = inflater.inflate(R.layout.activity_board_story, container, false);
 
         Log.e("Board", "story tab start!!");
+        getAllNotice();
 
         return inflater.inflate(R.layout.activity_board_story, container, false);
     }
