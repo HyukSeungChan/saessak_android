@@ -1,5 +1,8 @@
 package com.example.ssaesak.Dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ResumeRequestDTO {
 
     private int resumeId;
@@ -23,6 +26,10 @@ public class ResumeRequestDTO {
     private String workEndTime;
     private String car;
     private Long userId;
+
+    public ResumeRequestDTO() {
+
+    }
 
     public ResumeRequestDTO(int resumeId, String title, String gender, String birthday, String phone, String email, String address, float career, String account, String bank, String agriculture, String crops, String workStartDay, String workEndDay, String workStartTime, String workEndTime, String car, Long userId) {
         this.resumeId = resumeId;

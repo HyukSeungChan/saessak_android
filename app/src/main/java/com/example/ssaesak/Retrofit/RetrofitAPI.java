@@ -2,8 +2,10 @@ package com.example.ssaesak.Retrofit;
 
 
 import com.example.ssaesak.Dto.BoardDetailDTO;
+import com.example.ssaesak.Dto.BoardLikeRequestDTO;
 import com.example.ssaesak.Dto.BoardRequestDTO;
 import com.example.ssaesak.Dto.FarmDTO;
+import com.example.ssaesak.Dto.ReplyRequestDTO;
 import com.example.ssaesak.Dto.ResumeRequestDTO;
 import com.example.ssaesak.Dto.UserVideoWatchRequestDto;
 import com.example.ssaesak.Dto.WorkerDTO;
@@ -105,6 +107,17 @@ public interface RetrofitAPI {
     @GET(Constatnts_url.COMMENT_LIST)
     Call<ApiResponse> commentList(@Query("boardId") int boardId);
 
+    // 댓글 생성
+    @POST(Constatnts_url.COMMENT_CREATE)
+    Call<ReplyRequestDTO> commentCreate(@Body ReplyRequestDTO replyRequestDTO);
+
+    // 좋아요 증가
+    @POST(Constatnts_url.LIKE_INCREASE)
+    Call<Boolean> likeIncrease(@Body BoardLikeRequestDTO boardLikeRequestDTO);
+
+    // 좋아요 감소
+    @POST(Constatnts_url.LIKE_DECREASE)
+    Call<Boolean> likeDecrease(@Body BoardLikeRequestDTO boardLikeRequestDTO);
 
     // work
 

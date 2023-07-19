@@ -2,7 +2,9 @@ package com.example.ssaesak.Dto;
 
 import com.example.ssaesak.Model.Farm;
 import com.example.ssaesak.Model.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class FarmDTO {
 
     private static final FarmDTO farm = new FarmDTO();

@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +38,8 @@ public class BoardActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
 
+    private LinearLayout movePost;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class BoardActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.layout_tab);
         viewPager = findViewById(R.id.pager_content);
+        movePost = findViewById(R.id.button_post);
 
         // ViewPager2 어댑터 설정
         MyPagerAdapter pagerAdapter = new MyPagerAdapter(this);
@@ -99,6 +104,14 @@ public class BoardActivity extends AppCompatActivity {
             }
         });
 
+        // 글쓰는 화면 이동
+        movePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),BoardPostActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
