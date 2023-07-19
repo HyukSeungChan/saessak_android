@@ -83,9 +83,6 @@ import retrofit2.Response;
 
         this.checkPermissionCustom();
 
-        startActivity(new Intent(getBaseContext(), SignupFarmerActivity.class));
-        overridePendingTransition(0, 0);
-        finish();
 //        User.getInstance().setUserId(1L);
 //
 //        startActivity(new Intent(getApplicationContext(), WorkingActivity.class));

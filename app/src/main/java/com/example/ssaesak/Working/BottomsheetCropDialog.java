@@ -43,17 +43,17 @@ public class BottomsheetCropDialog extends BottomSheetDialogFragment {
         // 레이아웃, 텍스트, 체크버튼 -> 3개가 같이 들어간 게 있고 그걸 여러개 가진 리스트
 
         this.filterCrop = getArguments().getString("crop");
-        String[] selected = this.filterCrop.split(",");
-        for (String s : selected) {
-            cropList.add(s);
-        }
-        for (ArrayList list : filter_list) {
-            for (String s : cropList) {
-                if (((TextView)list.get(1)).toString().equals(s)) {
-                    ((ImageView)list.get(2)).setVisibility(View.VISIBLE);
-                }
-            }
-        }
+//        String[] selected = this.filterCrop.split(",");
+//        for (String s : selected) {
+//            cropList.add(s);
+//        }
+//        for (ArrayList list : filter_list) {
+//            for (String s : cropList) {
+//                if (((TextView)list.get(1)).toString().equals(s)) {
+//                    ((ImageView)list.get(2)).setVisibility(View.VISIBLE);
+//                }
+//            }
+//        }
 
         // 전체일 경우 나머지 제외 + 여러개 선택 가능 + 이미 선택되어있는 경우가 문제
         for (ArrayList list : filter_list) {

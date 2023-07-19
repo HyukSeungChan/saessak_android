@@ -96,7 +96,6 @@
             android:id="@+id/layout_notice"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/sea_green_dark3"
             android:orientation="vertical"/>
 
 </LinearLayout>

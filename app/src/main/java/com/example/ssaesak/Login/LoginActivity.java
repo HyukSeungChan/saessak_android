@@ -57,6 +57,7 @@ public class LoginActivity extends Activity {
                                     @Override
                                     public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
                                         com.example.ssaesak.Model.User.getInstance().setUserId(user_kakao.getId());
+                                        login(user_kakao.getId());
                                         startActivity(new Intent(LoginActivity.this, SignupTypeActivity.class));
                                         return null;
                                     }
@@ -87,6 +88,7 @@ public class LoginActivity extends Activity {
                     public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
                         com.example.ssaesak.Model.User.getInstance().setUserId(user_kakao.getId());
                         Log.e("userId", user_kakao.getId() + "");
+                        login(user_kakao.getId());
                         startActivity(new Intent(LoginActivity.this, SignupTypeActivity.class));
                         return null;
                     }

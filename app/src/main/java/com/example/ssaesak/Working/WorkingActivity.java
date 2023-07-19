@@ -189,7 +189,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
         this.layoutInflater = LayoutInflater.from(getBaseContext());
         this.noticeList = findViewById(R.id.layout_notice);
 
-        workList();
+        workList(User.getInstance().getUserId());
 //        CardWorkNotice cardView = new CardWorkNotice(getBaseContext());
 //
 //        List<CardWorkNotice> cardViewList = new ArrayList<>();
@@ -328,7 +328,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
 
         Log.e("filter", filterArea);
 
-        this.workListAddress(filterArea);
+        this.workListAddress(filterArea, User.getInstance().getUserId());
     }
 
     @Override
@@ -337,7 +337,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
 
         Log.e("filter", filterAgriculture);
 
-        this.workListAgriculture(filterAgriculture);
+        this.workListAgriculture(filterAgriculture, User.getInstance().getUserId());
     }
 
     @Override
@@ -346,7 +346,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
 
         Log.e("filter", filterCrop);
 
-        this.workListCrops(filterCrop);
+        this.workListCrops(filterCrop, User.getInstance().getUserId());
     }
 
     @Override
@@ -368,7 +368,7 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
 
         Log.e("filter", filterCareer);
 
-        this.workListCareer(career);
+        this.workListCareer(career, User.getInstance().getUserId());
     }
 
     private void addNoticeCard(int workId, String address, String title, String due, String agriculture, String crops, String cropsDetail) {
@@ -415,9 +415,9 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
 
 
     // 일자리 공고 전부 받아오기
-    private void workList() {
+    private void workList(Long userId) {
         Log.e("workHome", "get workHome start!!");
-        Call<ApiResponse> call = MyRetrofit.getApiService().workList();
+        Call<ApiResponse> call = MyRetrofit.getApiService().workList(userId);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -451,9 +451,9 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
     }
 
     // 일자리 필터링 (지역)
-    private void workListAddress(String address) {
+    private void workListAddress(String address, Long userId) {
         Log.e("workListAddress", "get workListAddress start!!");
-        Call<ApiResponse> call = MyRetrofit.getApiService().workListAddress(address);
+        Call<ApiResponse> call = MyRetrofit.getApiService().workListAddress(address, userId);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -484,9 +484,9 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
     }
 
     // 일자리 필터링 (농업구분)
-    private void workListAgriculture(String agriculture) {
+    private void workListAgriculture(String agriculture, Long userId) {
         Log.e("workListAgriculture", "get workListAgriculture start!!");
-        Call<ApiResponse> call = MyRetrofit.getApiService().workListAgriculture(agriculture);
+        Call<ApiResponse> call = MyRetrofit.getApiService().workListAgriculture(agriculture, userId);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -516,9 +516,9 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
     }
 
     // 일자리 필터링 (작목)
-    private void workListCrops(String crops) {
+    private void workListCrops(String crops, Long userId) {
         Log.e("workListCrops", "get workListCrops start!!");
-        Call<ApiResponse> call = MyRetrofit.getApiService().workListCrops(crops);
+        Call<ApiResponse> call = MyRetrofit.getApiService().workListCrops(crops, userId);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -549,9 +549,9 @@ public class WorkingActivity  extends AppCompatActivity implements BottomsheetAr
     }
 
     // 일자리 필터링 (경력)
-    private void workListCareer(float career) {
+    private void workListCareer(float career, Long userId) {
         Log.e("workListCareer", "get workListCareer start!!");
-        Call<ApiResponse> call = MyRetrofit.getApiService().workListCareer(career);
+        Call<ApiResponse> call = MyRetrofit.getApiService().workListCareer(career, userId);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {

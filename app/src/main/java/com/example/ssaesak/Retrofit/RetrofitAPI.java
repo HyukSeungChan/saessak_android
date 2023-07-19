@@ -68,6 +68,10 @@ public interface RetrofitAPI {
     @GET(Constatnts_url.TODO_LIST)
     Call<ApiResponse> getTodoList(@Query("userId") Long userId, @Query("farmId") int farmId);
 
+    // 농장 정보 조회
+    @GET(Constatnts_url.FARM_INFO)
+    Call<ApiResponse> getFarmInfo(@Query("farmId") int farmId);
+
     // Board
     @GET(Constatnts_url.HOT_NOTICE)
     Call<ApiResponse> hotNotice();
@@ -81,23 +85,23 @@ public interface RetrofitAPI {
 
     // 일자리 리스트
     @GET(Constatnts_url.WORK_LIST)
-    Call<ApiResponse> workList();
+    Call<ApiResponse> workList(@Query("userId") Long userId);
 
     // 일자리 필터링 (지역)
     @GET(Constatnts_url.WORK_LIST_ADDRESS)
-    Call<ApiResponse> workListAddress(@Query ("address") String address);
+    Call<ApiResponse> workListAddress(@Query ("address") String address, @Query("userId") Long userId);
 
     // 일자리 필터링 (농업기술)
     @GET(Constatnts_url.WORK_LIST_AGRICULTURE)
-    Call<ApiResponse> workListAgriculture(@Query ("agriculture") String agriculture);
+    Call<ApiResponse> workListAgriculture(@Query ("agriculture") String agriculture, @Query("userId") Long userId);
 
     // 일자리 필터링 (작목)
     @GET(Constatnts_url.WORK_LIST_CROPS)
-    Call<ApiResponse> workListCrops(@Query ("crops") String crops);
+    Call<ApiResponse> workListCrops(@Query ("crops") String crops, @Query("userId") Long userId);
 
     // 일자리 필터링 (경력)
     @GET(Constatnts_url.WORK_LIST_CAREER)
-    Call<ApiResponse> workListCareer(@Query ("career") float career);
+    Call<ApiResponse> workListCareer(@Query ("career") float career, @Query("userId") Long userId);
 
     // 일자리 즐겨찾기
     @GET(Constatnts_url.USER_WORK_LIST)

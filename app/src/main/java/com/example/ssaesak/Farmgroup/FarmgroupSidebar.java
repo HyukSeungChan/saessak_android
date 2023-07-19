@@ -9,11 +9,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.ssaesak.Dto.FarmResponseDTO;
+import com.example.ssaesak.Model.User;
+import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
+import com.example.ssaesak.Retrofit.ApiResponse;
+import com.example.ssaesak.Retrofit.MyRetrofit;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FarmgroupSidebar extends Activity {
 //        implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener {
@@ -24,6 +35,8 @@ public class FarmgroupSidebar extends Activity {
 
     Button exitButton;
 
+    TextView textPosition, textFarmer, textPhone;
+
 
     private MapView mapView;
     private ViewGroup mapViewContainer;
@@ -33,16 +46,23 @@ public class FarmgroupSidebar extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sidebar_activity_farm_group);
 
+        init();
+
+
         Intent intentData = getIntent();
         this.farmId = intentData.getIntExtra("farmId", -1);
 
         this.exitButton = findViewById(R.id.exit);
+
+        getFarmInfo(1);
 
         MapView mapView = new MapView(this);
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.kakaomap);
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.895378, 127.051985), true);
 
         mapViewContainer.addView(mapView);
+
+
 
 
 
@@ -67,6 +87,12 @@ public class FarmgroupSidebar extends Activity {
 
     }
 
+    private void init(){
+        this.textPosition = findViewById(R.id.text_position);
+        this.textFarmer = findViewById(R.id.text_farmer);
+        this.textPhone = findViewById(R.id.text_phone);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==1){
@@ -79,6 +105,38 @@ public class FarmgroupSidebar extends Activity {
                 overridePendingTransition(0, 0); //애니메이션 없애기
             }
         }
+    }
+
+    // 해당 농장정보 조회
+    public void getFarmInfo(int farmId) {
+        Call<ApiResponse> call = MyRetrofit.getApiService().getFarmInfo(farmId);
+        Log.e("farmInfo", "입장 !!");
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                try {
+                    ObjectMapper mapper = new ObjectMapper();
+                    String body = response.body().getData().toString();
+                    String json = body.substring(1, body.length() - 1).replace("\\", "");
+                    Log.e("farmInfo", " body -> " + body);
+                    Log.e("farmInfo", " string -> " + json);
+
+                    FarmResponseDTO farmResponseDTO = mapper.readValue(json, FarmResponseDTO.class);
+
+                    textPosition.setText(farmResponseDTO.getAddress());
+                    textFarmer.setText(farmResponseDTO.getUserName());
+                    textPhone.setText(farmResponseDTO.getPhone());
+                } catch (Exception e) {
+                    Log.e("addresssss", "aaaaaaaaaaaaaa!!!!!!!!!!!!!!!!!!!!!");
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                Log.e("farmInfo", "asdasd" + t);
+            }
+        });
     }
 
 }
