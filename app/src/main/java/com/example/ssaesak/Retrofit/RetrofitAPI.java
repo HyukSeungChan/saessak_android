@@ -68,7 +68,7 @@ public interface RetrofitAPI {
 
     // 농장
     @GET(Constatnts_url.TODO_LIST)
-    Call<ApiResponse> getTodoList(@Query("userId") Long userId, @Query("farmId") int farmId);
+    Call<ApiResponse> getTodoList(@Query("userId") Long userId, @Query("farmId") int farmId, @Query("date") String date);
 
     // 농장 정보 조회
     @GET(Constatnts_url.FARM_INFO)

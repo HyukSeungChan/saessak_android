@@ -266,6 +266,12 @@
                 android:textColor="#404040"
                 android:textStyle="bold"/>
 
+            <LinearLayout
+                android:id="@+id/todo_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                />
 
 
         </LinearLayout>

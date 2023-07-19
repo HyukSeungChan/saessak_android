@@ -7,6 +7,7 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ssaesak.Main.MainActivity;
@@ -27,6 +28,7 @@ import retrofit2.Response;
 public class LoginActivity extends Activity {
 
     ImageButton loginButton;
+    TextView loginButtonAccount;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,10 @@ public class LoginActivity extends Activity {
 
 
         loginButton = findViewById(R.id.kakao_login);
+        loginButtonAccount = findViewById(R.id.account_login);
+        loginButtonAccount.setOnClickListener(v -> {
+            loginKakaoAccount();
+        });
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {

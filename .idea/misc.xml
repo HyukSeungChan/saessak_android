@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -76,7 +77,7 @@
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_farm_group_menu.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_form_group.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_home.xml" value="0.264" />
-        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_login.xml" value="0.20735356990166737" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_login.xml" value="0.536" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_apply_status.xml" value="0.20820863616930313" />
