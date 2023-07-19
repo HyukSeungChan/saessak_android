@@ -24,15 +24,19 @@ public class BoardDetailDTO implements Serializable {
 
     private String agriculture;
 
+    private String crops;
+
     private Long userId;
 
-    private Boolean bookmark;
+    // 유저 정보
+    private String name;
+    private String profileImage;
 
     public BoardDetailDTO() {
 
     }
 
-    public BoardDetailDTO(int boardId, String title, String content, String image, String uploadTime, String area, int likes, int replies, String agriculture, Long userId, Boolean bookmark) {
+    public BoardDetailDTO(int boardId, String title, String content, String image, String uploadTime, String area, int likes, int replies, String agriculture, String crops, Long userId, String name, String profileImage) {
         this.boardId = boardId;
         this.title = title;
         this.content = content;
@@ -42,8 +46,10 @@ public class BoardDetailDTO implements Serializable {
         this.likes = likes;
         this.replies = replies;
         this.agriculture = agriculture;
+        this.crops = crops;
         this.userId = userId;
-        this.bookmark = bookmark;
+        this.name = name;
+        this.profileImage = profileImage;
     }
 
     public int getBoardId() {
@@ -118,6 +124,14 @@ public class BoardDetailDTO implements Serializable {
         this.agriculture = agriculture;
     }
 
+    public String getCrops() {
+        return crops;
+    }
+
+    public void setCrops(String crops) {
+        this.crops = crops;
+    }
+
     public Long getUserId() {
         return userId;
     }
@@ -126,11 +140,19 @@ public class BoardDetailDTO implements Serializable {
         this.userId = userId;
     }
 
-    public Boolean getBookmark() {
-        return bookmark;
+    public String getName() {
+        return name;
     }
 
-    public void setBookmark(Boolean bookmark) {
-        this.bookmark = bookmark;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 }

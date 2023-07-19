@@ -21,6 +21,7 @@ public class FarmResponseDTO {
     private String userName;
 
     public FarmResponseDTO() {
+
     }
 
     public FarmResponseDTO(int farmId, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String cropsDetail, Long userId, String userName) {

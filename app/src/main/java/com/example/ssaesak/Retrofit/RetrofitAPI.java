@@ -73,6 +73,10 @@ public interface RetrofitAPI {
     // 농장 정보 조회
     @GET(Constatnts_url.FARM_INFO)
     Call<ApiResponse> getFarmInfo(@Query("farmId") int farmId);
+
+    // 농장 메이트 조회
+    @GET(Constatnts_url.FARM_MEMBER_LIST)
+    Call<ApiResponse> getMemberList(@Query("farmId") int farmId);
    
     @POST(Constatnts_url.SIGNUP_FARMER_URL)
     Call<ApiResponse> signFarmer(@Body FarmDTO farm);
@@ -81,9 +85,20 @@ public interface RetrofitAPI {
     @GET(Constatnts_url.HOT_NOTICE)
     Call<ApiResponse> hotNotice();
 
-    // 일자리 리스트
+    // 도와줘요 리스트
     @GET(Constatnts_url.NOTICE_HELP_LIST)
     Call<ApiResponse> noticeHelpList();
+
+    @GET(Constatnts_url.NOTICE_STORY_LIST)
+    Call<ApiResponse> noticeStoryList();
+
+    // 도와줘요 필터링
+    @GET(Constatnts_url.NOTICE_HELP_LIST_FILTER)
+    Call<ApiResponse> noticeHelpListFilter(@Query("crops") String crops);
+
+    // 상세 글 조회
+    @GET(Constatnts_url.BOARD_DETAIL)
+    Call<ApiResponse> boardDetail(@Query("boardId") int boardId);
 
 
     // work
@@ -128,8 +143,8 @@ public interface RetrofitAPI {
     @POST(Constatnts_url.BOARD_CREATE)
     Call<BoardRequestDTO> boardCreate(@Part BoardRequestDTO boardRequestDTO, @Part MultipartBody.Part image);
 
-    @GET(Constatnts_url.BOARD_LIST)
-    Call<BoardDetailDTO> boardList();
+//    @GET(Constatnts_url.BOARD_LIST)
+//    Call<BoardDetailDTO> boardList();
 
 
     @GET(Constatnts_url.WATCHING_VIDEO)

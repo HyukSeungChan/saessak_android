@@ -2,6 +2,7 @@ package com.example.ssaesak.Board;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.example.ssaesak.Dto.WorkDTO;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
+import com.example.ssaesak.Working.NoticeDetailActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -76,14 +78,26 @@ public class BoardHelpActivity extends Fragment {
         linearLayout.removeAllViews();
 
         Log.e("board", "list size : " + list.size());
+
+
+
 //        CardBoardHelpImage card;
         for (BoardDetailDTO notice : list) {
             LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
             LinearLayout card = (LinearLayout)layoutInflater.inflate(R.layout.card_board_help_image, linearLayout, false);
             card.setVisibility(View.VISIBLE);
-            ((TextView)card.findViewById(R.id.agriculture)).setText(notice.getAgriculture());
+            ((TextView)card.findViewById(R.id.agriculture)).setText(notice.getCrops());
             ((TextView)card.findViewById(R.id.title)).setText(notice.getTitle());
             ((TextView)card.findViewById(R.id.content)).setText(notice.getContent());
+            ((TextView)card.findViewById(R.id.like_count)).setText(notice.getLikes()+"");
+            ((TextView)card.findViewById(R.id.comment_count)).setText(notice.getReplies()+"");
+            ((TextView)card.findViewById(R.id.time)).setText(notice.getUploadTime());
+
+            card.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), BoardDetailActivity.class);
+                intent.putExtra("boardId", notice.getBoardId());
+                startActivity(intent);
+            });
 
             linearLayout.addView(card);
         }
@@ -101,7 +115,7 @@ public class BoardHelpActivity extends Fragment {
                 chip.setTextColor(Color.rgb(255, 255, 255));
 
                 filter = chip.getText().toString();
-
+                noticeHelpListFilter(filter);
             }
         }
     }
@@ -133,6 +147,36 @@ public class BoardHelpActivity extends Fragment {
             }
         });
     }
+
+    // 도와줘요 필터링
+    private void noticeHelpListFilter(String crops) {
+        Log.e("noticeHelpListFilter", "get noticeHelpListFilter start!!");
+        Call<ApiResponse> call = MyRetrofit.getApiService().noticeHelpListFilter(crops);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.e("noticeHelpListFilter", "noticeHelpListFilter : ");
+                Log.e("noticeHelpListFilter", "noticeHelpListFilter : " + response.body());
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.substring(1, body.length()-1).replace("\\", "");
+                Log.e("noticeHelpListFilter", " body -> " + body);
+                Log.e("noticeHelpListFilter", " json -> " + json);
+                try {
+//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+                    setList(Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class)));
+                } catch (Exception e1) {e1.printStackTrace();}
+
+//                List<UserDTO> dtos = Arrays.asList(mapper.readValue(strList, UserDTO[].class));
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("workHome failed", t.getMessage() + "");}
+        });
+    }
+
+    // 상세 글 조회
+
 
 
 }
