@@ -34,6 +34,7 @@ import com.example.ssaesak.Login.LoginActivity;
 import com.example.ssaesak.Login.SignupFarmerActivity;
 import com.example.ssaesak.Login.SignupTypeActivity;
 import com.example.ssaesak.Login.SignupWorkerPositionActivity;
+import com.example.ssaesak.Model.Farm;
 import com.example.ssaesak.Model.User;
 import com.example.ssaesak.Model.UserFarm;
 import com.example.ssaesak.Model.UserFarmList;
@@ -186,6 +187,7 @@ import retrofit2.Response;
                 Log.e("login", " string -> " + json);
                 try {
                     User.setInstance(mapper.readValue(json, User.class));
+                    ((TextView)findViewById(R.id.userId)).setText(User.getInstance().getName());
                 } catch (Exception e1) {e1.printStackTrace();}
 
 
@@ -353,7 +355,7 @@ import retrofit2.Response;
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 Log.e("main", "todoList : " + response.body().getData().toString());
-                if (response.body().getData().toString().equals("[]")) {
+                if (response.body().getData() == null || response.body().getData().toString().length() < 10) {
                     LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
                     LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo_null, linearLayout, false);
                     linearLayout.addView(video);
@@ -403,6 +405,7 @@ import retrofit2.Response;
 
 //                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
                     List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
+                    getTodoList(Farm.getInstance().getFarmId());
                 } catch (Exception e) {
 
                 }

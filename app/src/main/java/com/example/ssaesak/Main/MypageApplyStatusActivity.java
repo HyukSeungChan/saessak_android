@@ -59,7 +59,7 @@ public class MypageApplyStatusActivity extends Activity {
         List<WorkResumeResponseDto> list = new ArrayList<>();
         for (WorkResumeResponseDto resume : dtos) {
             if(resume.getState().equals("승인완료")) {
-
+                list.add(resume);
             }
         }
     }

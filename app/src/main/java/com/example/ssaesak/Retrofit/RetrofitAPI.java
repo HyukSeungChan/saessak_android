@@ -3,8 +3,10 @@ package com.example.ssaesak.Retrofit;
 
 import com.example.ssaesak.Dto.BoardDetailDTO;
 import com.example.ssaesak.Dto.BoardRequestDTO;
+import com.example.ssaesak.Dto.FarmDTO;
 import com.example.ssaesak.Dto.ResumeRequestDTO;
 import com.example.ssaesak.Dto.WorkerDTO;
+import com.example.ssaesak.Model.Farm;
 import com.example.ssaesak.Model.User;
 
 import okhttp3.MultipartBody;
@@ -71,6 +73,9 @@ public interface RetrofitAPI {
     // 농장 정보 조회
     @GET(Constatnts_url.FARM_INFO)
     Call<ApiResponse> getFarmInfo(@Query("farmId") int farmId);
+   
+    @POST(Constatnts_url.SIGNUP_FARMER_URL)
+    Call<ApiResponse> signFarmer(@Body FarmDTO farm);
 
     // Board
     @GET(Constatnts_url.HOT_NOTICE)
