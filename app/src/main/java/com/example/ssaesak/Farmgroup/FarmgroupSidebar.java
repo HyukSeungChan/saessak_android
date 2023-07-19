@@ -4,23 +4,34 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.ssaesak.Dto.FarmResponseDTO;
+import com.example.ssaesak.Dto.UserFarmResponseDTO;
+import com.example.ssaesak.Dto.WorkDTO;
 import com.example.ssaesak.Model.User;
 import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
+import com.example.ssaesak.Working.CardWorkNotice;
+import com.example.ssaesak.Working.NoticeDetailActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
+
+import java.util.Arrays;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,8 +46,13 @@ public class FarmgroupSidebar extends Activity {
 
     Button exitButton;
 
-    TextView textPosition, textFarmer, textPhone;
+    private TextView textPosition, textFarmer, textPhone, name;
 
+    private ImageView profileImage;
+
+    private LayoutInflater layoutInflater;
+
+    private LinearLayout memberList;
 
     private MapView mapView;
     private ViewGroup mapViewContainer;
@@ -49,12 +65,14 @@ public class FarmgroupSidebar extends Activity {
         init();
 
 
+
         Intent intentData = getIntent();
         this.farmId = intentData.getIntExtra("farmId", -1);
 
         this.exitButton = findViewById(R.id.exit);
 
-        getFarmInfo(1);
+        getFarmInfo(farmId);
+        findMemberList(farmId);
 
         MapView mapView = new MapView(this);
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.kakaomap);
@@ -123,12 +141,14 @@ public class FarmgroupSidebar extends Activity {
 
                     FarmResponseDTO farmResponseDTO = mapper.readValue(json, FarmResponseDTO.class);
 
+                    Log.e("farmInfo", " farmDto -> " + json);
                     textPosition.setText(farmResponseDTO.getAddress());
                     textFarmer.setText(farmResponseDTO.getUserName());
                     textPhone.setText(farmResponseDTO.getPhone());
                 } catch (Exception e) {
                     Log.e("addresssss", "aaaaaaaaaaaaaa!!!!!!!!!!!!!!!!!!!!!");
                     e.printStackTrace();
+                    Log.e("addresssss", "aaaaaaaaaaaaaa!!!!!!!!!!!!!!!!!!!!!");
                 }
             }
 
@@ -137,6 +157,69 @@ public class FarmgroupSidebar extends Activity {
                 Log.e("farmInfo", "asdasd" + t);
             }
         });
+    }
+
+    // 농장 메이트 추가
+    public void addMemberList(UserFarmResponseDTO dto, LinearLayout parentLayout) {
+
+        Log.e("addMemberList", "addMemberList 입장!!");
+        this.layoutInflater = LayoutInflater.from(getBaseContext());
+
+
+        this.memberList = (LinearLayout) layoutInflater.inflate(R.layout.card_worker, parentLayout, false);
+
+        this.name = memberList.findViewById(R.id.name);
+        this.profileImage = memberList.findViewById(R.id.profile_image);
+        Log.e("name", dto.getName()+"!!");
+        name.setText(dto.getName());
+
+        Glide.with(getBaseContext())
+                .load(dto.getProfileImage())
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // 캐시 옵션 설정
+                .into(profileImage);
+
+        parentLayout.addView(memberList);
+    }
+
+    // 농장 메이트 조회
+    public void findMemberList(int farmId) {
+        Log.e("findMemberList","findMemberList 입장!!!!!!!!!!!!!!!!!!");
+        Call<ApiResponse> call = MyRetrofit.getApiService().getMemberList(farmId);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.e("findMemberList", "findMemberList : ");
+                Log.e("findMemberList", "findMemberList : " + response.body());
+                ObjectMapper mapper = new ObjectMapper();
+                String body = response.body().getData().toString();
+                String json = body.substring(1, body.length()-1).replace("\\", "");
+                Log.e("findMemberList", " body -> " + body);
+                Log.e("findMemberList", " json -> " + json);
+                try {
+                    List<UserFarmResponseDTO> dtos = Arrays.asList(mapper.readValue(json, UserFarmResponseDTO[].class));
+
+//                    memberList.removeAllViews();
+                    LinearLayout parentLayout = findViewById(R.id.mate_layout);
+                    parentLayout.removeAllViews();
+                    // Loop through the WorkListDTOs and add them to the card views
+                    Log.e("Dto size", dtos.size() + "!!");
+                    for (UserFarmResponseDTO dto : dtos) {
+                        addMemberList(dto, parentLayout);
+                    }
+                } catch (Exception e1) {
+                    Log.e("findMemberList", "Error parsing JSON", e1);
+                    e1.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                Log.e("workHome failed", t.getMessage() + "");
+            }
+        });
+
+
+
     }
 
 }
