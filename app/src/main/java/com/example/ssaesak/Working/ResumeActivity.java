@@ -3,6 +3,7 @@ package com.example.ssaesak.Working;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,13 +13,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ssaesak.Dto.BoardDetailDTO;
 import com.example.ssaesak.Dto.ReplyRequestDTO;
 import com.example.ssaesak.Dto.ResumeRequestDTO;
+import com.example.ssaesak.Model.User;
 import com.example.ssaesak.R;
+import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -43,11 +49,18 @@ public class ResumeActivity extends AppCompatActivity {
 
     private LinearLayout editTextLayoutCareerDueStart, editTextLayoutCareerDueEnd;
 
+    private String agricultureChoice, cropsChoice, car;
+
+    private float careerFloat;
+
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resume);
+
+        init();
 
         agricultureList = new ArrayList<>();
         agricultureList.add(findViewById(R.id.chip_qkxshdtk));
@@ -63,16 +76,60 @@ public class ResumeActivity extends AppCompatActivity {
         cropsList.add(findViewById(R.id.chip_ghkgnpwkranf));
         cropsList.add(findViewById(R.id.chip_rlxk_wkrahr));
 
-//        for (Button chip : agricultureList) {
-//            chip.setOnClickListener(v -> {
-//                selectFilter(chip);
-//
-//                Log.e("boardActivity", filter);
-//            });
-//        }
+        for (Button chip : agricultureList) {
+            chip.setOnClickListener(v -> {
+                agricultureChoice = chip.toString();
+                Log.e("agriculture", agricultureChoice);
+            });
+        }
+
+        for (Button chip : cropsList) {
+            chip.setOnClickListener(v -> {
+                cropsChoice = chip.toString();
+                Log.e("crops", cropsChoice);
+            });
+        }
+
+        String[] acc = account.toString().split(" ");
+        newestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                careerFloat = 99;
+            }
+        });
+
+        seniorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                careerFloat = Float.parseFloat(editTextCareerYear.toString() + "." + editTextCareerMonth.toString());
+            }
+        });
+
+        have.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                car = "여";
+            }
+        });
+
+        notHave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                car = "부";
+            }
+        });
 
 
-        init();
+
+        buttonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resumeCreate(editTitle.toString(), gender.toString(), birth.toString(), phone.toString(),
+                        email.toString(), address.toString(), acc[0], acc[1], careerFloat, agricultureChoice,
+                        cropsChoice, editTextCareerDueStart.toString(), editTextCareerDueEnd.toString(),
+                        editTextCareerTimeStart.toString(), editTextCareerTimeEnd.toString(), car, User.getInstance().getUserId());
+            }
+        });
     }
 
     private void init() {
@@ -108,9 +165,34 @@ public class ResumeActivity extends AppCompatActivity {
 //                chip.setTextColor(Color.rgb(255, 255, 255));
 //
 //                filter = chip.getText().toString();
-//                noticeHelpListFilter(filter);
 //            }
 //        }
+//    }
+
+//    private void agricultureListFilter(String crops) {
+//        Log.e("noticeHelpListFilter", "get noticeHelpListFilter start!!");
+//        Call<ApiResponse> call = MyRetrofit.getApiService().noticeHelpListFilter(crops);
+//        call.enqueue(new Callback<ApiResponse>() {
+//            @Override
+//            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+//                Log.e("noticeHelpListFilter", "noticeHelpListFilter : ");
+//                Log.e("noticeHelpListFilter", "noticeHelpListFilter : " + response.body());
+//                ObjectMapper mapper = new ObjectMapper();
+//                String body = response.body().getData().toString();
+//                String json = body.substring(1, body.length()-1).replace("\\", "");
+//                Log.e("noticeHelpListFilter", " body -> " + body);
+//                Log.e("noticeHelpListFilter", " json -> " + json);
+//                try {
+////                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+//                    setList(Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class)));
+//                } catch (Exception e1) {e1.printStackTrace();}
+//
+////                List<UserDTO> dtos = Arrays.asList(mapper.readValue(strList, UserDTO[].class));
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("workHome failed", t.getMessage() + "");}
+//        });
 //    }
 
     // 이력서 생성
