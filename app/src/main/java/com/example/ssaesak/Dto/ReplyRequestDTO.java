@@ -3,33 +3,27 @@ package com.example.ssaesak.Dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReplyResponseDTO {
-
+public class ReplyRequestDTO {
     private int replyId;
+
     private String content;
+    private String uploadTime;
 
     private String area;
-    private String uploadTime;
     private int boardId;
     private Long userId;
 
-    // 유저정보
-    private String name;
-    private String profileImage;
-
-    public ReplyResponseDTO() {
+    public ReplyRequestDTO() {
 
     }
 
-    public ReplyResponseDTO(int replyId, String content, String area, String uploadTime, int boardId, Long userId, String name, String profileImage) {
+    public ReplyRequestDTO(int replyId, String content, String uploadTime, String area, int boardId, Long userId) {
         this.replyId = replyId;
         this.content = content;
-        this.area = area;
         this.uploadTime = uploadTime;
+        this.area = area;
         this.boardId = boardId;
         this.userId = userId;
-        this.name = name;
-        this.profileImage = profileImage;
     }
 
     public int getReplyId() {
@@ -48,20 +42,20 @@ public class ReplyResponseDTO {
         this.content = content;
     }
 
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
     public String getUploadTime() {
         return uploadTime;
     }
 
     public void setUploadTime(String uploadTime) {
         this.uploadTime = uploadTime;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public int getBoardId() {
@@ -78,21 +72,5 @@ public class ReplyResponseDTO {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
     }
 }

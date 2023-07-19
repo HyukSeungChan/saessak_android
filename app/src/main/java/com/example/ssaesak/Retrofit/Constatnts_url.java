@@ -56,6 +56,15 @@ public class Constatnts_url {
     // 댓글 조회
     public static final String COMMENT_LIST = "reply/";
 
+    // 댓글 생성
+    public static final String COMMENT_CREATE = "reply/";
+
+    // 좋아요 증가
+    public static final String LIKE_INCREASE = "board/like/";
+
+    // 좋아요 감소
+    public static final String LIKE_DECREASE = "board/unlike/";
+
 
 
 

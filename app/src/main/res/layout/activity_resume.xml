@@ -111,7 +111,7 @@
                 >
 
                 <EditText
-                    android:id="@+id/edittext"
+                    android:id="@+id/editTitle"
                     android:layout_width="match_parent"
                     android:hint="제목을 입력해주세요"
                     android:textSize="14sp"
@@ -746,8 +746,8 @@
 
                 <EditText
                     android:id="@+id/edittext_career_due_start"
-                    android:layout_width="match_parent"
                     android:hint="근무 시작일"
+                    android:layout_width="match_parent"
                     android:textSize="14sp"
                     android:layout_marginVertical="16dp"
                     android:layout_marginLeft="16dp"
@@ -786,8 +786,8 @@
 
                 <EditText
                     android:id="@+id/edittext_career_due_end"
-                    android:layout_width="match_parent"
                     android:hint="근무 종료일"
+                    android:layout_width="match_parent"
                     android:textSize="14sp"
                     android:layout_marginVertical="16dp"
                     android:layout_marginLeft="16dp"
@@ -796,6 +796,7 @@
                     android:layout_height="46dp"/>
 
                 <ImageView
+                    android:id="@+id/calender_end"
                     android:src="@drawable/svg_calender"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -818,7 +819,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="희망 일금"
+                android:text="희망 일급"
                 android:textSize="18sp"
                 android:fontFamily="@font/notosans_bold"
                 android:textColor="@color/gray6"
