@@ -175,7 +175,6 @@ public class BoardHelpActivity extends Fragment {
         });
     }
 
-    // 상세 글 조회
 
 
 
