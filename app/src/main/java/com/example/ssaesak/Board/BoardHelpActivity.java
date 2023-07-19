@@ -65,7 +65,7 @@ public class BoardHelpActivity extends Fragment {
             });
         }
 
-        return inflater.inflate(R.layout.activity_board_help, container, false);
+        return view;
     }
 
 
@@ -73,26 +73,16 @@ public class BoardHelpActivity extends Fragment {
     private void setList(List<BoardDetailDTO> list) {
         LinearLayout linearLayout = view.findViewById(R.id.layout_notice);
         linearLayout.removeAllViews();
-        LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
 
         Log.e("board", "list size : " + list.size());
 //        CardBoardHelpImage card;
         for (BoardDetailDTO notice : list) {
+            LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
             LinearLayout card = (LinearLayout)layoutInflater.inflate(R.layout.card_board_help_image, linearLayout, false);
             card.setVisibility(View.VISIBLE);
             ((TextView)card.findViewById(R.id.agriculture)).setText(notice.getAgriculture());
             ((TextView)card.findViewById(R.id.title)).setText(notice.getTitle());
             ((TextView)card.findViewById(R.id.content)).setText(notice.getContent());
-//            if (notice.getImage() == null) {
-//                ((ImageView)card.findViewById(R.id.image)).setVisibility(View.GONE);
-//                ((TextView)card.findViewById(R.id.content)).setMaxLines(2);
-//            } else {
-//                Glide.with(getContext())
-//                        .load(notice.getImage())
-//                        .diskCacheStrategy(DiskCacheStrategy.ALL) // 캐시 옵션 설정
-//                        .into(((ImageView)card.findViewById(R.id.image)));
-//
-//            }
 
             linearLayout.addView(card);
         }
@@ -124,7 +114,7 @@ public class BoardHelpActivity extends Fragment {
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.replace("\\", "");
+                String json = body.substring(1, body.length()-1).replace("\\", "");
                 Log.e("board", "json -> " + json);
                 try {
                     setList(Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class)));

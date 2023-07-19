@@ -1,10 +1,13 @@
-package com.example.ssaesak.Model;
+package com.example.ssaesak.Dto;
 
-public class Farm {
+import com.example.ssaesak.Model.Farm;
+import com.example.ssaesak.Model.User;
 
-    private static final Farm farm = new Farm();
+public class FarmDTO {
 
-    public static Farm getInstance() { // 테스트
+    private static final FarmDTO farm = new FarmDTO();
+
+    public static FarmDTO getInstance() { // 테스트
         return farm;
     }
 
@@ -37,10 +40,12 @@ public class Farm {
     // 작목 상세정보
     private String crops_detail;
 
-    public Farm() {
+    private Long userId;
+
+    public FarmDTO() {
     }
 
-    public Farm(int farmId, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String crops_detail) {
+    public FarmDTO(int farmId, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String crops_detail) {
         this.farmId = farmId;
         this.name = name;
         this.address = address;
@@ -51,9 +56,10 @@ public class Farm {
         this.agriculture = agriculture;
         this.crops = crops;
         this.crops_detail = crops_detail;
+        this.userId = userId;
     }
 
-    public static Farm setInstance(int farmId, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String crops_detail) {
+    public static FarmDTO setInstance(int farmId, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String crops_detail, Long userId) {
         farm.setFarmId(farmId);
         farm.setName(name);
         farm.setAddress(address);
@@ -64,10 +70,11 @@ public class Farm {
         farm.setAgriculture(agriculture);
         farm.setCrops(crops);
         farm.setCrops_detail(crops_detail);
+        farm.setUserId(userId);
 
         return farm;
     }
-    public static Farm setInstance(Farm farm1) {
+    public static FarmDTO setInstance(Farm farm1) {
         farm.setFarmId(farm1.getFarmId());
         farm.setName(farm1.getName());
         farm.setAddress(farm1.getAddress());
@@ -78,6 +85,7 @@ public class Farm {
         farm.setAgriculture(farm1.getAgriculture());
         farm.setCrops(farm1.getCrops());
         farm.setCrops_detail(farm1.getCrops_detail());
+        farm.setUserId(User.getInstance().getUserId());
 
         return farm;
     }
@@ -160,5 +168,13 @@ public class Farm {
 
     public void setCrops_detail(String crops_detail) {
         this.crops_detail = crops_detail;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

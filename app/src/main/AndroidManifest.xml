@@ -73,6 +73,9 @@
         <activity android:name="com.example.ssaesak.Login.SignupWorkerAgricultureActivity"/>
         <activity android:name="com.example.ssaesak.Login.SignupWorkerPayActivity"/>
         <activity android:name="com.example.ssaesak.Login.SignupFarmerActivity"/>
+        <activity android:name="com.example.ssaesak.Login.SignupFarmerAgricultureActivity"/>
+        <activity android:name="com.example.ssaesak.Login.SignupFarmerCropActivity"/>
+        <activity android:name="com.example.ssaesak.Login.SignupFarmerPayActivity"/>
 <!--        <activity android:name="com.example.ssaesak.Farmgroup.FarmgroupSidebar"/>-->
 
         <activity

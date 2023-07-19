@@ -23,6 +23,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.ssaesak.Farmgroup.FarmgroupReview;
+import com.example.ssaesak.Model.Farm;
 import com.example.ssaesak.Model.User;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.MyRetrofit;
@@ -90,6 +91,13 @@ public class SignupFarmerActivity extends Activity {
         });
 
 
+        this.nextButton.setOnClickListener(v -> {
+            Farm.getInstance().setName(editTextTitle.getText().toString());
+            Farm.getInstance().setIntroduction(editTextDescription.getText().toString());
+            Farm.getInstance().setAddress(editTextPosition.getText().toString());
+            Farm.getInstance().setPhone(editTextPhone.getText().toString());
+            startActivity(new Intent(getBaseContext(), SignupFarmerAgricultureActivity.class));
+        });
 
     }
 

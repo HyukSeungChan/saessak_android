@@ -10,20 +10,18 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.ssaesak.Model.Farm;
-import com.example.ssaesak.Model.User;
-import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignupWorkerAgricultureActivity extends Activity {
+public class SignupFarmerAgricultureActivity extends Activity {
 
     String name;
     List<Button> buttonCropList;
     List<Button> buttonInterestList;
-    List<Button> cropList;
-    List<Button> interestList;
+    List<Button> cropList; // 농업구분 선택
+    List<Button> interestList; // 희망작목 선택
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +37,7 @@ public class SignupWorkerAgricultureActivity extends Activity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(), SignupWorkerPositionActivity.class));
+                startActivity(new Intent(getBaseContext(), SignupFarmerActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
             }
@@ -47,14 +45,15 @@ public class SignupWorkerAgricultureActivity extends Activity {
 
         Button nextButton = findViewById(R.id.button_next);
         Button afterButton = findViewById(R.id.button_after);
-        afterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(), SignupWorkerCropActivity.class));
-                overridePendingTransition(0, 0);
-                finish();
-            }
-        });
+        afterButton.setVisibility(View.INVISIBLE);
+//        afterButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getBaseContext(), SignupWorkerCropActivity.class));
+//                overridePendingTransition(0, 0);
+//                finish();
+//            }
+//        });
 
         buttonCropList.add(findViewById(R.id.chip_qkxshdtk));
         buttonCropList.add(findViewById(R.id.chip_rhktn));
@@ -121,22 +120,21 @@ public class SignupWorkerAgricultureActivity extends Activity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String crops = "";
                 for (Button button : cropList) {
                     crops += button.getText().toString();
                 }
                 crops = crops.substring(0, crops.length()-1);
-                Worker.getInstance().setCrops(crops);
+                Farm.getInstance().setCrops(crops);
 
                 String agricultures = "";
                 for (Button button : interestList) {
                     agricultures += button.getText().toString();
                 }
                 agricultures = agricultures.substring(0, crops.length()-1);
-                Worker.getInstance().setAgriculture(agricultures);
+                Farm.getInstance().setAgriculture(agricultures);
 
-                startActivity(new Intent(getBaseContext(), SignupWorkerCropActivity.class));
+                startActivity(new Intent(getBaseContext(), SignupFarmerCropActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
             }

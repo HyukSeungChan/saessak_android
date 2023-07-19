@@ -16,6 +16,7 @@ public class Constatnts_url {
     public static final String SIGNUP_URL = "user/";
     public static final String SIGNUP_KAKAO_URL = "user/kakao/";
     public static final String SIGNUP_WORKER_URL = "worker/";
+    public static final String SIGNUP_FARMER_URL = "farm/";
 
 
 
