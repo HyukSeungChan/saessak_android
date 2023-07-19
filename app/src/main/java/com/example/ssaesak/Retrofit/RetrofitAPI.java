@@ -5,6 +5,7 @@ import com.example.ssaesak.Dto.BoardDetailDTO;
 import com.example.ssaesak.Dto.BoardRequestDTO;
 import com.example.ssaesak.Dto.FarmDTO;
 import com.example.ssaesak.Dto.ResumeRequestDTO;
+import com.example.ssaesak.Dto.UserVideoWatchRequestDto;
 import com.example.ssaesak.Dto.WorkerDTO;
 import com.example.ssaesak.Model.Farm;
 import com.example.ssaesak.Model.User;
@@ -148,11 +149,14 @@ public interface RetrofitAPI {
 
 
     @GET(Constatnts_url.WATCHING_VIDEO)
-    Call<ApiResponse> watchingVideo(@Query("videoId") int videoId, @Query("userId") int userId);
+    Call<ApiResponse> watchingVideo(@Query("userId") Long userId);
 
     // study
     @GET(Constatnts_url.VIDEO_LIST)
     Call<ApiResponse> videoList(@Query("type") String type);
+
+    @POST(Constatnts_url.POST_WATCHING_VIDEO)
+    Call<ApiResponse> postWatchingVideo(@Body UserVideoWatchRequestDto dto);
 
     @POST(Constatnts_url.VIDEO_LIST)
     Call<ApiResponse> cropVideoList(@Query("type") String type);

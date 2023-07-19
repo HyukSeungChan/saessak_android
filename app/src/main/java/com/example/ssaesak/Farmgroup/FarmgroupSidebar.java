@@ -128,7 +128,7 @@ public class FarmgroupSidebar extends Activity {
     // 해당 농장정보 조회
     public void getFarmInfo(int farmId) {
         Call<ApiResponse> call = MyRetrofit.getApiService().getFarmInfo(farmId);
-        Log.e("farmInfo", "입장 !!");
+        Log.e("farmInfo", "입장 !! : " + farmId);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -217,8 +217,6 @@ public class FarmgroupSidebar extends Activity {
                 Log.e("workHome failed", t.getMessage() + "");
             }
         });
-
-
 
     }
 

@@ -2,8 +2,11 @@ package com.example.ssaesak.Dto;
 
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class VideoResponseDto implements Serializable {
 
     private int videoId;

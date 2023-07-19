@@ -88,6 +88,7 @@ public class Constatnts_url {
     public static final String AGRICULTURE_VIDEO_TYPE = "생활농업";
     public static final String CROP_VIDEO_TYPE = "농작물영상";
     public static final String WATCHING_VIDEO = "video/watching/";
+    public static final String POST_WATCHING_VIDEO = "user/video/watch/";
 
 }
 

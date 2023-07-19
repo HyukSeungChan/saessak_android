@@ -112,7 +112,7 @@ public class CropStudyActivity extends Activity {
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.replace("\\", "");
+                String json = body.substring(1, body.length()-1).replace("\\", "");
                 Log.e("crop", "json !! : " + json);
                 try {
 

@@ -18,6 +18,7 @@ import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 
+import com.example.ssaesak.Dto.UserVideoWatchRequestDto;
 import com.example.ssaesak.Dto.VideoResponseDto;
 import com.example.ssaesak.Main.MainActivity;
 import com.example.ssaesak.Model.User;
@@ -78,7 +79,7 @@ public class EssentialVideoActivity extends Activity {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 Log.e("study", "영상 시청 완료!! : " + dto.getTitle());
-                // watchingVideo(); // 이거 서버 만들고나서 하기
+                 watchingVideo(); // 이거 서버 만들고나서 하기
             }
         });
 
@@ -86,19 +87,12 @@ public class EssentialVideoActivity extends Activity {
 
 
     private void watchingVideo() {
-        retrofit2.Call<ApiResponse> call = MyRetrofit.getApiService().videoList(Constatnts_url.ESSENTIAL_VIDEO_TYPE);
+        UserVideoWatchRequestDto temp = new UserVideoWatchRequestDto(User.getInstance().getUserId(), dto.getVideoId());
+        retrofit2.Call<ApiResponse> call = MyRetrofit.getApiService().postWatchingVideo(temp);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(retrofit2.Call<ApiResponse> call, Response<ApiResponse> response) {
-                ObjectMapper mapper = new ObjectMapper();
-                String body = response.body().getData().toString();
-                String json = body.replace("\\", "");
-                Log.e("essential", "json !! : " + json);
-                try {
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
 
             @Override
@@ -109,9 +103,9 @@ public class EssentialVideoActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-//        this.startActivity(new Intent(this, EssentialStudyActivity.class));
-//        overridePendingTransition(0, 0); //애니메이션 없애기
-//        finish();
+        this.startActivity(new Intent(this, StudyActivity.class));
+        overridePendingTransition(0, 0); //애니메이션 없애기
+        finish();
     }
 
 }

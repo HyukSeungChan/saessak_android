@@ -76,7 +76,8 @@ public class StudyActivity extends Activity {
         }
 
         this.progressBar = findViewById(R.id.progressbar);
-        this.progressBar.setProgress(User.getInstance().getComplete());
+//        Log.e("study", "user interesting crop :: " + User.getInstance().getComplete()/15*100);
+        this.progressBar.setProgress(User.getInstance().getComplete()*100/15);
 
         this.essentialButton = findViewById(R.id.essential_button);
         this.essentialButton.setOnClickListener(v -> {
@@ -158,7 +159,7 @@ public class StudyActivity extends Activity {
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.replace("\\", "");
+                String json = body.substring(1, body.length()-1).replace("\\", "");
                 Log.e("crop", "json !! : " + json);
                 try {
 

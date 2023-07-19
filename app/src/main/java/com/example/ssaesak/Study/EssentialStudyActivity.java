@@ -59,7 +59,7 @@ public class EssentialStudyActivity extends Activity {
             ((TextView)findViewById(R.id.text)).setText("농업 일에 도움이 될만한 영상들이에요");
         } else {
             this.progressBar.setVisibility(View.VISIBLE);
-            this.progressBar.setProgress(User.getInstance().getComplete());
+            this.progressBar.setProgress(User.getInstance().getComplete()*100/15);
         }
 
         this.filterList = new ArrayList<>();
@@ -69,33 +69,35 @@ public class EssentialStudyActivity extends Activity {
         for (Button button : filterList) {
             button.setOnClickListener(v -> {
                 filter(button);
-                setVideoList(button.getText().toString());
+//                setVideoList();
             });
         }
 
     }
 
-    private void setVideoList(String filter) {
+    private void setVideoList() {
         this.videoLayout.removeAllViews();
 
         int count = 0;
         for(VideoResponseDto dto : dtos) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
-            LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_movie_list, videoLayout, false);
-//            video.setId(count);
-            count++;
-            video.setVisibility(View.VISIBLE);
-//            this.videoLayout.addView(video);
-            this.videoLayout.addView(setVideo(video, dto));
+
+            Log.e("study", "video id : -> " + dto.getVideoId());
+            if (dto.getType().equals("농업필수교육")) {
+                Log.e("study", "successful");
+
+                Log.e("study", "successful");
+                LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+                LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_movie_list, videoLayout, false);
+    //            video.setId(count);
+                count++;
+                video.setVisibility(View.VISIBLE);
+    //            this.videoLayout.addView(video);
+                this.videoLayout.addView(setVideo(video, dto));
+            }
         }
     }
 
     private LinearLayout setVideo(LinearLayout video, VideoResponseDto dto) {
-//        Glide.with(this)
-//        .load(dto.getLink())
-//        .diskCacheStrategy(DiskCacheStrategy.ALL) // 캐시 옵션 설정
-//        .into((ImageView) video.findViewById(R.id.thumbnail));
-
 
         ((TextView)video.findViewById(R.id.title)).setText(dto.getTitle());
 
@@ -109,12 +111,59 @@ public class EssentialStudyActivity extends Activity {
         return video;
     }
 
+    private void watchingVideoList() {
+        this.videoLayout.removeAllViews();
+
+        int count = 0;
+        for(VideoResponseDto dto : dtos) {
+
+            if (dto.getType().equals(Constatnts_url.ESSENTIAL_VIDEO_TYPE) && dto.isWatching()) {
+                LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+                LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_movie_list, videoLayout, false);
+    //            video.setId(count);
+                count++;
+                video.setVisibility(View.VISIBLE);
+    //            this.videoLayout.addView(video);
+                this.videoLayout.addView(setVideo(video, dto));
+            }
+
+        }
+    }
+
+    private void notVideoList() {
+        this.videoLayout.removeAllViews();
+
+        int count = 0;
+        for(VideoResponseDto dto : dtos) {
+
+            if (dto.getType().equals(Constatnts_url.ESSENTIAL_VIDEO_TYPE) && !dto.isWatching()) {
+                LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+                LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_movie_list, videoLayout, false);
+    //            video.setId(count);
+                count++;
+                video.setVisibility(View.VISIBLE);
+    //            this.videoLayout.addView(video);
+                this.videoLayout.addView(setVideo(video, dto));
+            }
+
+        }
+    }
+
     private void filter(Button selectButton) {
         for (Button button : filterList) {
             if (button == selectButton) {
                 button.setBackground(getResources().getDrawable(R.drawable.chip_select, null));
                 button.setTextColor(getResources().getColor(R.color.gray5, null));
                 button.setTypeface(button.getTypeface(), Typeface.BOLD);
+
+                if(button.getText().equals("전체")) {
+                    setVideoList();
+                } else if(button.getText().equals("미시청")) {
+                    notVideoList();
+                } else {
+                    watchingVideoList();
+                }
+
             } else {
                 button.setBackground(getResources().getDrawable(R.drawable.chip_not_select, null));
                 button.setTextColor(getResources().getColor(R.color.black, null));
@@ -125,20 +174,20 @@ public class EssentialStudyActivity extends Activity {
 
 
     private void getVideoList() {
-        Call<ApiResponse> call = MyRetrofit.getApiService().videoList(Constatnts_url.ESSENTIAL_VIDEO_TYPE);
+        Call<ApiResponse> call = MyRetrofit.getApiService().watchingVideo(User.getInstance().getUserId());
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.replace("\\", "");
+                String json = body.substring(1, body.length()-1).replace("\\", "");
                 Log.e("essential", "json !! : " + json);
                 try {
 
 //                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
                     dtos = Arrays.asList(mapper.readValue(json, VideoResponseDto[].class));
                     Log.e("essential", "video count !! : " + dtos.size());
-                    setVideoList("전체");
+                    setVideoList();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

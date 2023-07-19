@@ -173,9 +173,10 @@ public class FarmgroupActivity extends Activity {
     }
 
 
+    // 해당 농장정보 조회
     public void getFarmInfo(int farmId) {
         Call<ApiResponse> call = MyRetrofit.getApiService().getFarmInfo(farmId);
-        Log.e("farmInfo", "입장 !!" + farmId);
+        Log.e("farmInfo", "입장 !!");
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -188,6 +189,7 @@ public class FarmgroupActivity extends Activity {
 
                     FarmResponseDTO farmResponseDTO = mapper.readValue(json, FarmResponseDTO.class);
 
+                    Log.e("farmInfo", " farmDto -> " + json);
                     TextView farmName = findViewById(R.id.title);
                     farmName.setText(farmResponseDTO.getName());
                     TextView textPosition = findViewById(R.id.area);
@@ -195,6 +197,7 @@ public class FarmgroupActivity extends Activity {
                 } catch (Exception e) {
                     Log.e("addresssss", "aaaaaaaaaaaaaa!!!!!!!!!!!!!!!!!!!!!");
                     e.printStackTrace();
+                    Log.e("addresssss", "aaaaaaaaaaaaaa!!!!!!!!!!!!!!!!!!!!!");
                 }
             }
 
@@ -204,6 +207,8 @@ public class FarmgroupActivity extends Activity {
             }
         });
     }
+
+
 
 
     private void getTodoList(int farmId) {
