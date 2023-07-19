@@ -34,8 +34,8 @@ public class MyRetrofit  extends Application {
 
         Gson gson = new GsonBuilder().setLenient().create();
         return new Retrofit.Builder()
-                .baseUrl(Constatnts_url.BASE_URL_EMULATOR)
-//                .baseUrl(Constatnts_url.BASE_URL_MYDEVICE_DH)
+//                .baseUrl(Constatnts_url.BASE_URL_EMULATOR)
+                .baseUrl(Constatnts_url.BASE_URL_EC2)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build();

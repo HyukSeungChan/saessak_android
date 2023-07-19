@@ -133,8 +133,13 @@ public class SignupWorkerAgricultureActivity extends Activity {
                 for (Button button : interestList) {
                     agricultures += button.getText().toString();
                 }
-                agricultures = agricultures.substring(0, crops.length()-1);
-                Worker.getInstance().setAgriculture(agricultures);
+                Log.e("signup", agricultures.length()+"");
+                if(agricultures.length() > 2) {
+                    agricultures = agricultures.substring(0, agricultures.length() - 2);
+                    Worker.getInstance().setAgriculture(agricultures);
+                } else {
+                    Worker.getInstance().setAgriculture("");
+                }
 
                 startActivity(new Intent(getBaseContext(), SignupWorkerCropActivity.class));
                 overridePendingTransition(0, 0);

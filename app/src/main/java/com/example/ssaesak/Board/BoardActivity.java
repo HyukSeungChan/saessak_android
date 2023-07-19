@@ -15,7 +15,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
+import com.example.ssaesak.Farmgroup.FarmgroupNullActivity;
 import com.example.ssaesak.Main.MainActivity;
+import com.example.ssaesak.Model.UserFarmList;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Study.StudyActivity;
 import com.example.ssaesak.Working.WorkingWorkerActivity;
@@ -77,6 +79,13 @@ public class BoardActivity extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_farm) {
+
+                    if(UserFarmList.getInstance().size() < 1) {
+                        startActivity(new Intent(getApplicationContext(), FarmgroupNullActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    }
+
                     startActivity(new Intent(getApplicationContext(), FarmgroupActivity.class));
                     overridePendingTransition(0, 0);
                     return true;

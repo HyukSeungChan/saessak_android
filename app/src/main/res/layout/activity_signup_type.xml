@@ -55,6 +55,48 @@
         android:orientation="vertical"
         >
 
+        <!--        구직자 회원가입-->
+        <LinearLayout
+            android:id="@+id/worker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="64dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@drawable/background_white_rectangle"
+            >
+
+            <ImageView
+                android:src="@drawable/temp_img"
+                android:layout_width="140dp"
+                android:layout_height="105dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="고용 농부"
+                android:fontFamily="@font/notosans_bold"
+                android:textSize="12sp"
+                android:textColor="@color/gray6"
+                android:textAlignment="center"
+                android:includeFontPadding="false"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지역, 관심 분야를 입력해\n맞춤 일자리를 찾아보세요!"
+                android:fontFamily="@font/notosans_regular"
+                android:textSize="12sp"
+                android:textColor="@color/gray6"
+                android:textAlignment="center"
+                android:includeFontPadding="false"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 <!--        농장주 회원가입-->
             <LinearLayout
@@ -98,48 +140,6 @@
 
             </LinearLayout>
 
-        <!--        구직자 회원가입-->
-        <LinearLayout
-            android:id="@+id/worker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="10dp"
-            android:paddingHorizontal="64dp"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:background="@drawable/background_white_rectangle"
-            >
-
-            <ImageView
-                android:src="@drawable/temp_img"
-                android:layout_width="140dp"
-                android:layout_height="105dp"
-                android:layout_marginBottom="10dp"
-                android:scaleType="centerCrop"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="고용 농부"
-                android:fontFamily="@font/notosans_bold"
-                android:textSize="12sp"
-                android:textColor="@color/gray6"
-                android:textAlignment="center"
-                android:includeFontPadding="false"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="지역, 관심 분야를 입력해\n맞춤 일자리를 찾아보세요!"
-                android:fontFamily="@font/notosans_regular"
-                android:textSize="12sp"
-                android:textColor="@color/gray6"
-                android:textAlignment="center"
-                android:includeFontPadding="false"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
 
 
     <View

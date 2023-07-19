@@ -81,11 +81,13 @@ import retrofit2.Response;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+//        getAppKeyHash();
+
         this.checkPermissionCustom();
 
 //        User.getInstance().setUserId(1L);
 //
-//        startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
+//        startActivity(new Intent(getApplicationContext(), SignupTypeActivity.class));
 //        finish();
 
         KakaoSdk.init(this, "4caf1a2e579000e6cd8d530264db7aed");
@@ -220,6 +222,7 @@ import retrofit2.Response;
                  findViewById(R.id.today_work).setVisibility(View.GONE);
                  findViewById(R.id.weather).setVisibility(View.GONE);
 
+                 Log.e("main", "getWorkRecommend !! : " + response.body().getData().toString());
                  ObjectMapper mapper = new ObjectMapper();
                  String body = response.body().getData().toString();
                  String json = body.substring(1, body.length() - 1).replace("\\", "");
@@ -318,7 +321,7 @@ import retrofit2.Response;
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 Log.e("main", "my farm count : " + response.body().getData().toString());
-                if (response.body().getData().toString().equals("[]")) {
+                if (response.body().getData().toString().equals("\"[]\"") || response.body().getData().toString().equals(null) || response.body().getData().toString().equals("[]") || response.body().getData().toString() == null) {
                     Log.e("main", "not farm!! start recommend!!");
                     findViewById(R.id.recommand_layout).setVisibility(View.VISIBLE);
                     findViewById(R.id.today_work).setVisibility(View.GONE);
@@ -574,6 +577,35 @@ import retrofit2.Response;
                 Log.e("name not found", e.toString());
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
+            }
+        }
+
+        private void getHashKey()
+        {
+            PackageInfo packageInfo = null;
+            try
+            {
+                packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+            }
+            catch (PackageManager.NameNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+            if (packageInfo == null)
+                Log.e("KeyHash", "KeyHash:null");
+
+            for (Signature signature : packageInfo.signatures)
+            {
+                try
+                {
+                    MessageDigest md = MessageDigest.getInstance("SHA");
+                    md.update(signature.toByteArray());
+                    Log.e("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+                }
+                catch (NoSuchAlgorithmException e)
+                {
+                    Log.e("KeyHash", "Unable to get MessageDigest. signature=" + signature, e);
+                }
             }
         }
 }

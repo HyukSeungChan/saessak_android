@@ -60,7 +60,6 @@ public class FarmgroupActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_farm);
 
-
         MaterialDatePicker.Builder.datePicker();
 
         this.calendarView = findViewById(R.id.calendarView);

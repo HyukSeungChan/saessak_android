@@ -58,7 +58,7 @@ public interface RetrofitAPI {
 
     // 홈화면
     @POST(Constatnts_url.SIGNUP_WORKER_URL)
-    Call<WorkerDTO> signupWorker(WorkerDTO worker);
+    Call<WorkerDTO> signupWorker(@Body WorkerDTO worker);
 
     @GET(Constatnts_url.RESUME_LIST)
     Call<ApiResponse> resume(@Query("userId") Long userId);

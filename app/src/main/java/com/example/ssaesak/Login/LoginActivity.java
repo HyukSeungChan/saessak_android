@@ -52,10 +52,14 @@ public class LoginActivity extends Activity {
 
                     try {
                         UserApiClient.getInstance().loginWithKakaoTalk(LoginActivity.this, (oAuthToken, error) -> {
-                            if(error.toString().contains("302")) {
-                                loginKakaoAccount();
-                            }
+//                            Log.e("error", error.toString());
+
                             if (error != null) {
+                                if(error.toString().contains("302")) {
+                                    loginKakaoAccount();
+//                                    return;
+                                }
+
                                 Log.e("LoginActivity", "로그인 실패", error);
                             } else if (oAuthToken != null) {
                                 Log.i("LoginActivity", "로그인 성공(토큰) : " + oAuthToken.getAccessToken());
