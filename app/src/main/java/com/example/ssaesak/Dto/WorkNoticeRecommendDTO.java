@@ -8,6 +8,7 @@ public class WorkNoticeRecommendDTO {
 
 
     // 농장 정보
+    private int workId;
     private String name;
     private String address;
     private String farmImage;
@@ -21,6 +22,7 @@ public class WorkNoticeRecommendDTO {
     }
 
     public WorkNoticeRecommendDTO(WorkNoticeRecommendDTO work) {
+        this.workId = work.getWorkId();
         this.name = work.getName();
         this.address = work.getAddress();
         this.farmImage = work.getFarmImage();
@@ -76,5 +78,13 @@ public class WorkNoticeRecommendDTO {
 
     public void setFarmerName(String farmerName) {
         this.farmerName = farmerName;
+    }
+
+    public int getWorkId() {
+        return workId;
+    }
+
+    public void setWorkId(int workId) {
+        this.workId = workId;
     }
 }

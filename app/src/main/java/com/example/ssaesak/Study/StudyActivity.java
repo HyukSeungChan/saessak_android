@@ -2,7 +2,6 @@ package com.example.ssaesak.Study;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,10 +12,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 
@@ -30,7 +27,7 @@ import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.Constatnts_url;
 import com.example.ssaesak.Retrofit.MyRetrofit;
-import com.example.ssaesak.Working.WorkingActivity;
+import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -68,6 +65,10 @@ public class StudyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study);
         getVideoList();
+
+        if (User.getInstance().getType().equals("농장주")) {
+            findViewById(R.id.essential_study).setVisibility(View.GONE);
+        }
 
         this.cropLayout = findViewById(R.id.interesting_crop_layout);
         Log.e("study", "user interesting crop :: " + Worker.getInstance().getInterestCrops());
@@ -118,7 +119,7 @@ public class StudyActivity extends Activity {
                     finish();
                     return true;
                 } else if (item.getItemId() == R.id.fragment_working) {
-                    startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
+                    startActivity(new Intent(getApplicationContext(), WorkingWorkerActivity.class));
                     overridePendingTransition(0, 0);
                     finish();
                     return true;

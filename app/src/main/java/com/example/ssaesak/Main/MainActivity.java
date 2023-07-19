@@ -25,15 +25,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ssaesak.Board.BoardActivity;
+import com.example.ssaesak.Board.BoardDetailActivity;
 import com.example.ssaesak.Dto.BoardDetailDTO;
 import com.example.ssaesak.Dto.UserTodoFarmResponseDto;
 import com.example.ssaesak.Dto.WorkNoticeRecommendDTO;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
 import com.example.ssaesak.Farmgroup.FarmgroupNullActivity;
 import com.example.ssaesak.Login.LoginActivity;
-import com.example.ssaesak.Login.SignupFarmerActivity;
 import com.example.ssaesak.Login.SignupTypeActivity;
-import com.example.ssaesak.Login.SignupWorkerPositionActivity;
 import com.example.ssaesak.Model.Farm;
 import com.example.ssaesak.Model.User;
 import com.example.ssaesak.Model.UserFarm;
@@ -43,12 +42,10 @@ import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Study.StudyActivity;
-import com.example.ssaesak.Working.WorkingActivity;
+import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.user.UserApiClient;
 
@@ -473,6 +470,13 @@ import retrofit2.Response;
                     ((TextView)findViewById(R.id.hot_notice1_comment_count)).setText(dtos.get(0).getReplies()+"");
                     ((TextView)findViewById(R.id.hot_notice2_comment_count)).setText(dtos.get(1).getReplies()+"");
 
+
+                    findViewById(R.id.hot_notice1_layout).setOnClickListener(v -> {
+                        Intent intent = new Intent(getBaseContext(), BoardDetailActivity.class);
+                        intent.putExtra("workId", dtos.get(0).getBoardId());
+                        startActivity(intent);
+                    });
+
                 } catch (Exception e1) {e1.printStackTrace();}
 
             }
@@ -504,7 +508,7 @@ import retrofit2.Response;
                     return true;
                 } else if (item.getItemId() == R.id.fragment_working) {
 
-                    Intent intent = new Intent(getApplicationContext(), WorkingActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), WorkingWorkerActivity.class);
 //                    intent.putExtra("bottom", );
                     startActivity(intent);
                     overridePendingTransition(0, 0);

@@ -12,7 +12,7 @@ import com.example.ssaesak.Board.BoardActivity;
 import com.example.ssaesak.Main.MainActivity;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Study.StudyActivity;
-import com.example.ssaesak.Working.WorkingActivity;
+import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -40,7 +40,7 @@ public class FarmgroupNullActivity extends Activity {
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_working) {
-                    startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
+                    startActivity(new Intent(getApplicationContext(), WorkingWorkerActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_farm) {

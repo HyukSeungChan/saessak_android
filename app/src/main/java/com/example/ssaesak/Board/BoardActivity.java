@@ -1,21 +1,13 @@
 package com.example.ssaesak.Board;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -23,14 +15,11 @@ import com.example.ssaesak.Farmgroup.FarmgroupActivity;
 import com.example.ssaesak.Main.MainActivity;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Study.StudyActivity;
-import com.example.ssaesak.Working.WorkingActivity;
+import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BoardActivity extends AppCompatActivity {
     private TabLayout tabLayout;
@@ -78,7 +67,7 @@ public class BoardActivity extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_working) {
-                    startActivity(new Intent(getApplicationContext(), WorkingActivity.class));
+                    startActivity(new Intent(getApplicationContext(), WorkingWorkerActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_farm) {

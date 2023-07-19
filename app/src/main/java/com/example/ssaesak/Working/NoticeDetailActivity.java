@@ -88,18 +88,18 @@ public class NoticeDetailActivity extends AppCompatActivity {
 
     // 해당 일자리 조회
     private void workDetail(int workId) {
-        Log.e("workDetail", "start!!");
+        Log.e("workDetail", "start!! : " + workId);
         Call<ApiResponse> call = MyRetrofit.getApiService().workDetail(workId);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
 
-                if(response.code() == 404) {
-                    Log.e("workDetail", "workDetail~ : " + response.code());
-                    startActivity(new Intent(getBaseContext(), SignupTypeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                    overridePendingTransition(0, 0);
-                    return;
-                }
+//                if(response.code() == 404) {
+//                    Log.e("workDetail", "workDetail~ : " + response.code());
+//                    startActivity(new Intent(getBaseContext(), SignupTypeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+//                    overridePendingTransition(0, 0);
+//                    return;
+//                }
 
                 if (!response.isSuccessful()) {
                     Toast.makeText( getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);

@@ -46,7 +46,7 @@
         <activity android:name="com.example.ssaesak.Main.MypageActivityHistory"/>
         <activity android:name="com.example.ssaesak.Main.MypageApplyStatusActivity"/>
 
-        <activity android:name="com.example.ssaesak.Working.WorkingActivity"/>
+        <activity android:name="com.example.ssaesak.Working.WorkingWorkerActivity"/>
         <activity android:name="com.example.ssaesak.Working.NoticeDetailActivity"/>
         <activity android:name="com.example.ssaesak.Working.ResumeActivity"/>
 

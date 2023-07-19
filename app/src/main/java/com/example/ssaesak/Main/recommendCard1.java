@@ -1,6 +1,8 @@
 package com.example.ssaesak.Main;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.ssaesak.Dto.WorkNoticeRecommendDTO;
 import com.example.ssaesak.R;
+import com.example.ssaesak.Working.NoticeDetailActivity;
 
 public class recommendCard1 extends Fragment {
 
@@ -53,6 +56,13 @@ public class recommendCard1 extends Fragment {
         this.agriculture.setText(work.getAgriculture());
         this.crop = rootView.findViewById(R.id.crop);
         this.crop.setText(work.getCrops());
+
+        rootView.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), NoticeDetailActivity.class);
+            Log.e("recommendcard", "workId : " + work.getWorkId());
+            intent.putExtra("workId", work.getWorkId());
+            startActivity(intent);
+        });
 
         return rootView;
     }
