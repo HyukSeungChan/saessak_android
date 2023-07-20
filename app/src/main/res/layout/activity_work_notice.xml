@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:paddingVertical="12dp"
         android:paddingHorizontal="20dp"
-        android:gravity="center"
+        android:gravity="left"
         android:background="@color/white"
         >
 
@@ -27,19 +27,6 @@
             android:layout_gravity="left"
             />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            />
-
-        <ImageButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/svg_search"
-            android:layout_gravity="right|center_horizontal"
-            android:background="@android:color/transparent"
-            />
 
     </LinearLayout>
 

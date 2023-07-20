@@ -39,7 +39,6 @@ public class EssentialVideoActivity extends Activity {
     private VideoResponseDto dto;
 
     private TextView title;
-    private ImageButton bookmark;
     private TextView referenceName;
 
     private VideoView videoview;
@@ -64,10 +63,6 @@ public class EssentialVideoActivity extends Activity {
 
         this.title = findViewById(R.id.title);
         this.title.setText(dto.getTitle());
-        this.bookmark = findViewById(R.id.bookmark);
-        this.bookmark.setOnClickListener(v -> {
-
-        });
         this.referenceName = findViewById(R.id.reference_name);
         this.referenceName.setText(dto.getSource());
 

@@ -3,7 +3,11 @@ package com.example.ssaesak.Retrofit;
 public class Constatnts_url {
 
 //    public static final String BASE_URL = "http://localhost:8080/";
-    public static final String BASE_URL_EMULATOR = "http://172.20.10.2:8080/";
+
+//    public static final String BASE_URL_EMULATOR = "http://192.168.0.13:8080/";
+    public static final String BASE_URL_EC2 = "http://13.209.186.237:8080/saessak-0.0.1-SNAPSHOT/";
+
+    public static final String BASE_URL_EMULATOR = "http://172.30.1.43:8080/";
 //    public static final String BASE_URL_EC2 = "http://13.209.186.237:8080/saessak-0.0.1-SNAPSHOT/";
 
 
@@ -38,6 +42,7 @@ public class Constatnts_url {
 
     // Board
     public static final String HOT_NOTICE = "board/hot/";
+    public static final String MY_NOTICE = "board/my/";
 
     // 도와줘요 전체 조회
     public static final String NOTICE_HELP_LIST = "board/help/";
@@ -56,6 +61,7 @@ public class Constatnts_url {
 
     // 댓글 조회
     public static final String COMMENT_LIST = "reply/";
+    public static final String COMMENT_LIST_ALL = "reply/user/";
 
     // 댓글 생성
     public static final String COMMENT_CREATE = "reply/";
@@ -79,9 +85,6 @@ public class Constatnts_url {
     public static final String WORK_LIST_CROPS = "work/worker/crops/";
 
     public static final String WORK_LIST_CAREER = "work/worker/career/";
-
-    // 일자리 즐겨찾기
-    public static final String USER_WORK_LIST = "user/work/bookmark/";
 
     // 해당 일자리 조회
     public static final String WORK_DETAIL = "work/worker/workId/";

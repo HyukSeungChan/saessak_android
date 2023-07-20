@@ -21,7 +21,6 @@ public class MypageActivity extends Activity {
 
     TextView apply;
     TextView resume;
-    TextView bookmark;
 
     LinearLayout activityHistory;
     LinearLayout useButton;
@@ -41,10 +40,9 @@ public class MypageActivity extends Activity {
             startActivity(new Intent(getBaseContext(), MypageApplyStatusActivity.class));
         });
         this.resume = findViewById(R.id.resume);
-        this.bookmark = findViewById(R.id.bookmark);
 
         this.activityHistory = findViewById(R.id.activity);
-        this.activityHistory.setOnClickListener(v -> {startActivity(new Intent(getBaseContext(), MypageActivityHistory.class));});
+        this.activityHistory.setOnClickListener(v -> {startActivity(new Intent(getBaseContext(), MypageActivityHistoryActivity.class));});
         this.useButton = findViewById(R.id.use);
         this.useButton.setOnClickListener(v -> {startActivity(new Intent(getBaseContext(), MypageUseActivity.class));});
         this.privacyButton = findViewById(R.id.privacy);
