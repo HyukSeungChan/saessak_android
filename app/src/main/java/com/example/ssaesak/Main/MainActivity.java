@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.example.ssaesak.Board.BoardActivity;
 import com.example.ssaesak.Board.BoardDetailActivity;
 import com.example.ssaesak.Dto.BoardDetailDTO;
+import com.example.ssaesak.Dto.UserTodoFarmDTO;
 import com.example.ssaesak.Dto.UserTodoFarmResponseDto;
 import com.example.ssaesak.Dto.WorkNoticeRecommendDTO;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
@@ -44,14 +45,18 @@ import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Study.StudyActivity;
 import com.example.ssaesak.Working.WorkingWorkerActivity;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.user.UserApiClient;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -376,32 +381,55 @@ import retrofit2.Response;
         findViewById(R.id.weather).setVisibility(View.VISIBLE);
         linearLayout.removeAllViews();
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        Call<ApiResponse> call = MyRetrofit.getApiService().getTodoList(User.getInstance().getUserId(), farmId, date.format(new Date()));
+        Call<ApiResponse> call = MyRetrofit.getApiService().getTodoList(User.getInstance().getUserId(), farmId);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                Log.e("main", "todoList : " + response.body().getData().toString());
-                if (response.body().getData() == null || response.body().getData().toString().length() < 10) {
+//                Log.e("main", "todoList : " + response.body().getData().toString());
+
+                try {
+                    ObjectMapper mapper = new ObjectMapper();
+                    String body = response.body().getData().toString();
+                    String json = body.substring(1,body.length()-1).replace("\\", "");
+
+
+                    List<UserTodoFarmDTO> dtos = Arrays.asList(mapper.readValue(json, UserTodoFarmDTO[].class));
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    int count = 0;
+                        Date nowDate = new Date();
+                        String today = formatter.format(nowDate);
+                    for (UserTodoFarmDTO dto : dtos) {
+                        Log.e("main", "dto date !!!! : " + dto.getDate().equals(today));
+                        Log.e("main", "dto date !!!! : " + (dto.getUserId() == User.getInstance().getUserId()));
+//                        Log.e("main", "new Date !!!!" + formatter.parse(String.valueOf(new Date())).toString());
+                        Log.e("main", "new Date !!!!" + today);
+
+
+
+                        if (dto.getDate().equals(today)) {
+                            Log.e("main", "일감 있음!!!!");
+                            count++;
+                            LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+                            LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo, linearLayout, false);
+                            ((TextView)video.findViewById(R.id.task_name)).setText(dto.getTask());
+                            video.setVisibility(View.VISIBLE);
+                            linearLayout.addView(video);
+                        }
+
+                    }
+                    if (count == 0) {
+                        Log.e("main", "일감 없음!!!!");
+                        LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+                        LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo_null, linearLayout, false);
+                        linearLayout.addView(video);
+                        return;
+                    }
+                } catch (NullPointerException e) {
+                    Log.e("main", "널 포인터!!!!!");
                     LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
                     LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo_null, linearLayout, false);
                     linearLayout.addView(video);
                     return;
-                }
-
-                ObjectMapper mapper = new ObjectMapper();
-                String body = response.body().getData().toString();
-                String json = body.replace("\\", "");
-
-                try {
-                    List<UserTodoFarmResponseDto> dtos = Arrays.asList(mapper.readValue(json, UserTodoFarmResponseDto[].class));
-
-                    for (UserTodoFarmResponseDto dto : dtos) {
-                        LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
-                        LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo, linearLayout, false);
-                        ((TextView)video.findViewById(R.id.task_name)).setText(dto.getTask());
-                        video.setVisibility(View.VISIBLE);
-                        linearLayout.addView(video);
-                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

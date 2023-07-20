@@ -7,7 +7,7 @@ public class Constatnts_url {
 //    public static final String BASE_URL_EMULATOR = "http://192.168.0.13:8080/";
     public static final String BASE_URL_EC2 = "http://13.209.186.237:8080/saessak-0.0.1-SNAPSHOT/";
 
-    public static final String BASE_URL_EMULATOR = "http://172.20.10.6:8080/";
+    public static final String BASE_URL_EMULATOR = "http://192.168.0.10:8080/";
 //    public static final String BASE_URL_EC2 = "http://13.209.186.237:8080/saessak-0.0.1-SNAPSHOT/";
 
 
@@ -27,8 +27,9 @@ public class Constatnts_url {
 
     // 홈
     public static final String WORK_RECOMMEND = "work/recommend/";
-    public static final String TODO_LIST = "user/todo/";
-    public static final String TODO_ALL_LIST = "user/todo/all/";
+    public static final String TODO_LIST_DATE = "user/todo/date";
+    public static final String TODO_LIST_USER = "user/todo/";
+    public static final String TODO_LIST_ALL = "user/todo/all/";
     public static final String RESUME_LIST = "work/resume/worker/";
 
     // 농장

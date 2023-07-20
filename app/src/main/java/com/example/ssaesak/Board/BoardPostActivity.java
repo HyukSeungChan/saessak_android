@@ -69,27 +69,27 @@ public class BoardPostActivity extends AppCompatActivity {
 
 
 
-        Call<BoardRequestDTO> call = MyRetrofit.getApiService().boardCreate(boardRequestDTO, image);
-        call.enqueue(new Callback<BoardRequestDTO>() {
-            @Override
-            public void onResponse(Call<BoardRequestDTO> call, Response<BoardRequestDTO> response) {
-                if (response.isSuccessful()) {
-                    // 댓글 생성 성공
-//                    Toast.makeText(getApplicationContext(), "글이 성공적으로 생성되었습니다.", Toast.LENGTH_SHORT).show();
-                    // 댓글 목록을 갱신하는 등의 작업 수행
-                    // ...
-                } else {
-                    // 댓글 생성 실패
-//                    Toast.makeText(getApplicationContext(), "글 생성에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BoardRequestDTO> call, Throwable t) {
-                // 통신 실패
-//                Toast.makeText(getApplicationContext(), "글 생성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        Call<BoardRequestDTO> call = MyRetrofit.getApiService().boardCreate(boardRequestDTO, image);
+//        call.enqueue(new Callback<BoardRequestDTO>() {
+//            @Override
+//            public void onResponse(Call<BoardRequestDTO> call, Response<BoardRequestDTO> response) {
+//                if (response.isSuccessful()) {
+//                    // 댓글 생성 성공
+////                    Toast.makeText(getApplicationContext(), "글이 성공적으로 생성되었습니다.", Toast.LENGTH_SHORT).show();
+//                    // 댓글 목록을 갱신하는 등의 작업 수행
+//                    // ...
+//                } else {
+//                    // 댓글 생성 실패
+////                    Toast.makeText(getApplicationContext(), "글 생성에 실패했습니다.", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<BoardRequestDTO> call, Throwable t) {
+//                // 통신 실패
+////                Toast.makeText(getApplicationContext(), "글 생성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
 

@@ -74,7 +74,7 @@ public class FarmgroupSidebar extends Activity {
             public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
                 String profileUrl = user_kakao.getKakaoAccount().getProfile().getThumbnailImageUrl();
                 ImageView imageView = (ImageView) findViewById(R.id.profile_image);
-                Glide.with(getBaseContext()).load(profileUrl).into(imageView);
+//                Glide.with(getBaseContext()).load(profileUrl).into(imageView);
 
                 com.example.ssaesak.Model.User.getInstance().setProfileImage("kakao");
                 Log.e("profile", user_kakao.getKakaoAccount().getProfile().getThumbnailImageUrl() + "");
