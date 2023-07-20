@@ -7,7 +7,8 @@ public class Constatnts_url {
 //    public static final String BASE_URL_EMULATOR = "http://192.168.0.13:8080/";
     public static final String BASE_URL_EC2 = "http://13.209.186.237:8080/saessak-0.0.1-SNAPSHOT/";
 
-    public static final String BASE_URL_EMULATOR = "http://192.168.0.10:8080/";
+    public static final String BASE_URL_EMULATOR = "http://192.168.0.7:8080/";
+>>>>>>> 4d072b423cdde10bc9fc04b4a724f68d50a0f9a8
 //    public static final String BASE_URL_EC2 = "http://13.209.186.237:8080/saessak-0.0.1-SNAPSHOT/";
 
 
@@ -72,6 +73,9 @@ public class Constatnts_url {
 
     // 좋아요 감소
     public static final String LIKE_DECREASE = "board/unlike/";
+
+    // 이미지만 보내가
+    public static final String SAVE_IMAGE = "/image";
 
 
 

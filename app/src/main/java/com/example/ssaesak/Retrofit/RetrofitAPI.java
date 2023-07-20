@@ -98,6 +98,12 @@ public interface RetrofitAPI {
             @Part("boardRequestDto") BoardRequestDTO boardRequestDto,
             @Part MultipartBody.Part file);
 
+
+    // 이미지만 넘기기
+    @POST(Constatnts_url.SAVE_IMAGE)
+    @Multipart
+    Call<String> saveImage(@Body String url);
+
     // 인기 게시글
     @GET(Constatnts_url.HOT_NOTICE)
     Call<ApiResponse> hotNotice();
@@ -172,7 +178,7 @@ public interface RetrofitAPI {
 
     // 이력서 작성
     @POST(Constatnts_url.RESUME_CREATE)
-    Call<ApiResponse> resumeCreate(@Body ResumeRequestDTO resumeRequestDto);
+    Call<ResumeDTO> resumeCreate(@Body ResumeRequestDTO resumeRequestDto);
 
     // 일자리에 이력서 제출(노동자)
     @POST(Constatnts_url.WORK_RESUME_CREATE)
