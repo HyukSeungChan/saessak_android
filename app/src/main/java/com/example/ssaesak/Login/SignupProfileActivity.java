@@ -89,6 +89,18 @@ public class SignupProfileActivity extends Activity {
         });
 
 
+        Button nextButton = findViewById(R.id.button_next);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//               User.getInstance().setName(editText.getText().toString());
+                startActivity(new Intent(getBaseContext(), SignupPhoneActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+            }
+        });
+
 
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -103,18 +115,6 @@ public class SignupProfileActivity extends Activity {
                 } else {
                     openGallery();
                 }
-            }
-        });
-
-        Button nextButton = findViewById(R.id.button_next);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-//               User.getInstance().setName(editText.getText().toString());
-                startActivity(new Intent(getBaseContext(), SignupPhoneActivity.class));
-                overridePendingTransition(0, 0);
-                finish();
             }
         });
     }

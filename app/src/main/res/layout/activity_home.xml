@@ -312,7 +312,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/temp_img_long"
+            android:src="@drawable/monthtech_png"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/imageview_radius"
@@ -321,7 +321,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="안전 농산물 생산 지름길은 비료사용처방 현장 실천"
+            android:text="여름철 약용작물 병해충 방제 기술"
             android:textSize="12sp"
             android:textColor="#737373"
             />

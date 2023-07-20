@@ -65,7 +65,7 @@
                     android:layout_weight="1"/>
 
                 <ImageView
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     android:id="@+id/check_all"
                     android:background="@drawable/svg_check"
                     android:layout_width="24dp"

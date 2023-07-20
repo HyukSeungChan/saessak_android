@@ -87,6 +87,9 @@ public class EssentialVideoActivity extends Activity {
 
 
     private void watchingVideo() {
+        if(dto.isWatching()) {
+            return;
+        }
         UserVideoWatchRequestDto temp = new UserVideoWatchRequestDto(User.getInstance().getUserId(), dto.getVideoId());
         retrofit2.Call<ApiResponse> call = MyRetrofit.getApiService().postWatchingVideo(temp);
         call.enqueue(new Callback<ApiResponse>() {

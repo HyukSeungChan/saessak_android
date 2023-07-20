@@ -112,17 +112,7 @@
                         android:orientation="horizontal">
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:text="충주시"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/notosans_regular"
-                            android:textColor="@color/gray5"
-                            android:layout_gravity="left"
-                            android:includeFontPadding="false"
-                            />
+
 
                         <TextView
                             android:id="@+id/time"
@@ -190,35 +180,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/like_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/notice"
-                android:layout_marginHorizontal="20dp"
-                android:orientation="horizontal"
-                android:gravity="left|center_vertical"
-                >
-
-                <ImageView
-                    android:id="@+id/like_button"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:background="@drawable/svg_like"
-                    />
-
-                <TextView
-                    android:id="@+id/like_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:text="0"
-                    android:textSize="12sp"
-                    android:textColor="@color/gray4"
-                    android:textAlignment="center"
-                    />
-
-            </LinearLayout>
 
             <View
                 android:id="@+id/line"
@@ -301,27 +262,20 @@
         android:gravity="center_vertical"
         >
 
-        <ImageView
-            android:id="@+id/like_button_comment"
-            android:layout_margin="10dp"
-            android:padding="10dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/svg_like"
-            />
 
         <LinearLayout
             android:id="@+id/edittext_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:background="@drawable/edittext_normal"
             android:layout_height="40dp"
             android:gravity="center"
+            android:layout_weight="1"
             android:layout_gravity="center_horizontal"
             >
 
             <EditText
                 android:id="@+id/edittext"
-                android:layout_width="270dp"
+                android:layout_width="match_parent"
                 android:hint="댓글을 입력해주세요"
                 android:layout_marginVertical="16dp"
                 android:layout_marginHorizontal="16dp"
@@ -330,10 +284,6 @@
                 android:background="@drawable/background_white_rectangle"
                 android:layout_height="26dp"/>
         </LinearLayout>
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
         <ImageView
             android:id="@+id/send"
             android:src="@drawable/svg_send"

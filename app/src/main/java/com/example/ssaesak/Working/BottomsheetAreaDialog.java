@@ -26,25 +26,62 @@ public class BottomsheetAreaDialog extends BottomSheetDialogFragment {
 
     private Button buttonOk;
 
-    private String filterArea;
+    private String filter;
 
-    private List<String> areaList;
+    private List<String> selectList;
+
+    private LinearLayout allLayout;
+    private TextView allTextview;
+    private ImageView allCheck;
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container, @NonNull Bundle savedInsranceState) {
         view = inflater.inflate(R.layout.bottomsheet_filter_area, container, false);
         List<ArrayList> filter_list = init(view);
-        this.areaList = new ArrayList<>();
+
+        allLayout = (view.findViewById(R.id.layout_all));
+        allTextview = (view.findViewById(R.id.text_all));
+        allCheck = (view.findViewById(R.id.check_all));
+        this.selectList = new ArrayList<>();
+        this.selectList.add("충청북도 전체");
+        allLayout.setSelected(true);
+        allCheck.setVisibility(View.VISIBLE);
         Log.e("bottom", getContext().toString());
+
+        allLayout.setOnClickListener( v -> {
+            Log.e("filter", "전체 필터 클릭!! 이미 선택중!!");
+            allLayout.setSelected(true);
+            allCheck.setVisibility(View.VISIBLE);
+            selectList = new ArrayList<>();
+            selectList.add("충청북도 전체");
+            for (ArrayList listOther : filter_list) {
+                ((LinearLayout) listOther.get(0)).setSelected(false);
+//                            ((TextView) list.get(1));
+                ((ImageView) listOther.get(2)).setVisibility(View.INVISIBLE);
+            }
+        });
+
+
         bottomSheetListener = (BottomSheetAreaListener) getContext();
+        this.filter = getArguments().getString("area");
+        Log.e("filter", "start filter!! " + filter);
 
-        // 레이아웃, 텍스트, 체크버튼 -> 3개가 같이 들어간 게 있고 그걸 여러개 가진 리스트
+        for (String s : filter.split(",")) {
+            for (ArrayList list : filter_list) {
+                LinearLayout linearLayout = (LinearLayout) list.get(0);
+                TextView textView = (TextView) list.get(1);
+                ImageView imageView = (ImageView) list.get(2);
+                if (textView.getText().toString().equals(s)) {
+                    selectList.add(textView.getText().toString());
+                    allLayout.setSelected(false);
+                    allCheck.setVisibility(View.INVISIBLE);
+                    linearLayout.setSelected(true);
+                    imageView.setVisibility(View.VISIBLE);
+                }
+            }
+        }
 
-        this.filterArea = getArguments().getString("area");
-//        this.filterAgriculture = getArguments().getString("agriculture");
-//        this.filterCrop = getArguments().getString("crop");
-//        this.filterCareer = getArguments().getString("career");
 
 
         // 전체일 경우 나머지 제외 + 여러개 선택 가능 + 이미 선택되어있는 경우가 문제
@@ -53,23 +90,37 @@ public class BottomsheetAreaDialog extends BottomSheetDialogFragment {
             TextView textView = (TextView) list.get(1);
             ImageView imageView = (ImageView) list.get(2);
             linearLayout.setOnClickListener(v -> {
-                if (areaList.contains(textView.getText().toString())) {
-                    areaList.remove(textView.getText().toString());
-                    imageView.setVisibility(View.INVISIBLE);
+                if (selectList.contains(textView.getText().toString())) {
+                        allLayout.setSelected(false);
+                        allCheck.setVisibility(View.INVISIBLE);
+                        selectList.remove(textView.getText().toString());
+                        imageView.setVisibility(View.INVISIBLE);
+//                    }
+
                 } else {
-                    areaList.add(textView.getText().toString());
-                    imageView.setVisibility(View.VISIBLE);
+                        selectList.remove("충청북도 전체");
+                        allLayout.setSelected(false);
+                        allCheck.setVisibility(View.INVISIBLE);
+                        selectList.add(textView.getText().toString());
+                        imageView.setVisibility(View.VISIBLE);
+//                    }
                 }
             });
         }
 
         buttonOk = view.findViewById(R.id.button_ok);
         buttonOk.setOnClickListener(v -> {
-            filterArea = "";
-            for (String area : areaList) {
-                filterArea += area + ",";
+            filter = "";
+            for (String area : selectList) {
+                filter += area + ",";
             }
-            bottomSheetListener.onButtonArea(filterArea.substring(0, filterArea.length()-1));
+
+            if (filter.length() > 0) {
+                bottomSheetListener.onButtonArea(filter.substring(0, filter.length() - 1));
+            } else {
+                filter = "충청북도 전체";
+            }
+            Log.e("filter", "end filter!! " + filter);
             dismiss();
         });
 
@@ -85,11 +136,8 @@ public class BottomsheetAreaDialog extends BottomSheetDialogFragment {
     private List<ArrayList> init(View view) {
         List<ArrayList> list = new ArrayList<>();
         ArrayList<View> temp;
-        temp = new ArrayList<>(); // layout, text, check
-        temp.add(view.findViewById(R.id.layout_all));
-        temp.add(view.findViewById(R.id.text_all));
-        temp.add(view.findViewById(R.id.check_all));
-        list.add(temp);
+//        temp = new ArrayList<>(); // layout, text, check
+//        list.add(temp);
 
         temp = new ArrayList<>(); // layout, text, check
         temp.add(view.findViewById(R.id.layout_rhltks));

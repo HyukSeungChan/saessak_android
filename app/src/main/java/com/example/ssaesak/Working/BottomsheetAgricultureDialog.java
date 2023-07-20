@@ -26,20 +26,61 @@ public class BottomsheetAgricultureDialog extends BottomSheetDialogFragment {
 
     private Button buttonOk;
 
-    private String filterAgriculture;
+    private String filter;
 
-    private List<String> agricultureList;
+    private List<String> selectList;
+
+    private LinearLayout allLayout;
+    private TextView allTextview;
+    private ImageView allCheck;
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container, @NonNull Bundle savedInsranceState) {
         view = inflater.inflate(R.layout.bottomsheet_filter_agriculture, container, false);
         List<ArrayList> filter_list = init(view);
-        this.agricultureList = new ArrayList<>();
-        Log.e("bottom", getContext().toString());
-        bottomSheetAgricultureListener = (BottomSheetAgricultureListener) getContext();
+//        this.selectList = new ArrayList<>();
 
-        this.filterAgriculture = getArguments().getString("agriculture");
+        allLayout = (view.findViewById(R.id.layout_all));
+        allTextview = (view.findViewById(R.id.text_all));
+        allCheck = (view.findViewById(R.id.check_all));
+        this.selectList = new ArrayList<>();
+        this.selectList.add("농업 전체");
+        allLayout.setSelected(true);
+        allCheck.setVisibility(View.VISIBLE);
+        Log.e("bottom", getContext().toString());
+
+        allLayout.setOnClickListener( v -> {
+            Log.e("filter", "전체 필터 클릭!! 이미 선택중!!");
+            allLayout.setSelected(true);
+            allCheck.setVisibility(View.VISIBLE);
+            selectList = new ArrayList<>();
+            selectList.add("농업 전체");
+            for (ArrayList listOther : filter_list) {
+                ((LinearLayout) listOther.get(0)).setSelected(false);
+//                            ((TextView) list.get(1));
+                ((ImageView) listOther.get(2)).setVisibility(View.INVISIBLE);
+            }
+        });
+
+
+        bottomSheetAgricultureListener = (BottomSheetAgricultureListener) getContext();
+        this.filter = getArguments().getString("agriculture");
+
+        for (String s : filter.split(",")) {
+            for (ArrayList list : filter_list) {
+                LinearLayout linearLayout = (LinearLayout) list.get(0);
+                TextView textView = (TextView) list.get(1);
+                ImageView imageView = (ImageView) list.get(2);
+                if (textView.getText().toString().equals(s)) {
+                    selectList.add(textView.getText().toString());
+                    allLayout.setSelected(false);
+                    allCheck.setVisibility(View.INVISIBLE);
+                    linearLayout.setSelected(true);
+                    imageView.setVisibility(View.VISIBLE);
+                }
+            }
+        }
 
 
         // 전체일 경우 나머지 제외 + 여러개 선택 가능 + 이미 선택되어있는 경우가 문제
@@ -49,11 +90,16 @@ public class BottomsheetAgricultureDialog extends BottomSheetDialogFragment {
             TextView textView = (TextView) list.get(1);
             ImageView imageView = (ImageView) list.get(2);
             linearLayout.setOnClickListener(v -> {
-                if (agricultureList.contains(textView.getText().toString())) {
-                    agricultureList.remove(textView.getText().toString());
+                if (selectList.contains(textView.getText().toString())) {
+                    allLayout.setSelected(false);
+                    allCheck.setVisibility(View.INVISIBLE);
+                    selectList.remove(textView.getText().toString());
                     imageView.setVisibility(View.INVISIBLE);
                 } else {
-                    agricultureList.add(textView.getText().toString());
+                    selectList.remove("농업 전체");
+                    allLayout.setSelected(false);
+                    allCheck.setVisibility(View.INVISIBLE);
+                    selectList.add(textView.getText().toString());
                     imageView.setVisibility(View.VISIBLE);
                 }
             });
@@ -61,11 +107,16 @@ public class BottomsheetAgricultureDialog extends BottomSheetDialogFragment {
 
         buttonOk = view.findViewById(R.id.button_ok);
         buttonOk.setOnClickListener(v -> {
-            filterAgriculture = "";
-            for (String area : agricultureList) {
-                filterAgriculture += area + ",";
+            filter = "";
+            for (String area : selectList) {
+                filter += area + ",";
             }
-            bottomSheetAgricultureListener.onButtonAgiculture(filterAgriculture.substring(0, filterAgriculture.length()-1));
+
+            if(filter.length() > 0) {
+                bottomSheetAgricultureListener.onButtonAgiculture(filter.substring(0, filter.length() - 1));
+            } else {
+                filter = "농업 전체";
+            }
             dismiss();
         });
 
@@ -81,11 +132,11 @@ public class BottomsheetAgricultureDialog extends BottomSheetDialogFragment {
     private List<ArrayList> init(View view) {
         List<ArrayList> list = new ArrayList<>();
         ArrayList<View> temp;
-        temp = new ArrayList<>(); // layout, text, check
-        temp.add(view.findViewById(R.id.layout_all));
-        temp.add(view.findViewById(R.id.text_all));
-        temp.add(view.findViewById(R.id.check_all));
-        list.add(temp);
+//        temp = new ArrayList<>(); // layout, text, check
+//        temp.add(view.findViewById(R.id.layout_all));
+//        temp.add(view.findViewById(R.id.text_all));
+//        temp.add(view.findViewById(R.id.check_all));
+//        list.add(temp);
 
         temp = new ArrayList<>(); // layout, text, check
         temp.add(view.findViewById(R.id.layout_rhktn));
