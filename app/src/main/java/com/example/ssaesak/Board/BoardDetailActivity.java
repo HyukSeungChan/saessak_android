@@ -28,6 +28,7 @@
     import com.example.ssaesak.Retrofit.ApiResponse;
     import com.example.ssaesak.Retrofit.MyRetrofit;
     import com.fasterxml.jackson.databind.ObjectMapper;
+    import com.kakao.sdk.user.UserApiClient;
 
     import java.text.ParseException;
     import java.text.SimpleDateFormat;
@@ -37,6 +38,8 @@
     import java.util.List;
     import java.util.Locale;
 
+    import kotlin.Unit;
+    import kotlin.jvm.functions.Function2;
     import retrofit2.Call;
     import retrofit2.Callback;
     import retrofit2.Response;
@@ -62,6 +65,21 @@
             int boardId = getIntent().getIntExtra("boardId", 1);
 
             init();
+
+//            ImageView imageButton = findViewById(R.id.profile_image);
+            profileImage = findViewById(R.id.profile_image);
+            UserApiClient.getInstance().me(new Function2<com.kakao.sdk.user.model.User, Throwable, Unit>() {
+                @Override
+                public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
+                    String profileUrl = user_kakao.getKakaoAccount().getProfile().getThumbnailImageUrl();
+                    ImageView imageView = (ImageView) findViewById(R.id.profile_image);
+                    Glide.with(getBaseContext()).load(profileUrl).into(imageView);
+
+                    com.example.ssaesak.Model.User.getInstance().setProfileImage("kakao");
+                    Log.e("profile", user_kakao.getKakaoAccount().getProfile().getThumbnailImageUrl() + "");
+                    return null;
+                }
+            });
 
             boardDetail(boardId);
             commentAll(boardId);
@@ -174,6 +192,20 @@
 
             this.commentName = commentLists.findViewById(R.id.name);
             this.commentProfileImage = commentLists.findViewById(R.id.profile_image);
+//            ImageView imageButton = findViewById(R.id.profile_image);
+            commentProfileImage = findViewById(R.id.profile_image);
+            UserApiClient.getInstance().me(new Function2<com.kakao.sdk.user.model.User, Throwable, Unit>() {
+                @Override
+                public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
+                    String profileUrl = user_kakao.getKakaoAccount().getProfile().getThumbnailImageUrl();
+                    ImageView imageView = (ImageView) findViewById(R.id.profile_image);
+                    Glide.with(getBaseContext()).load(profileUrl).into(imageView);
+
+                    com.example.ssaesak.Model.User.getInstance().setProfileImage("kakao");
+                    Log.e("profile", user_kakao.getKakaoAccount().getProfile().getThumbnailImageUrl() + "");
+                    return null;
+                }
+            });
             this.commentArea = commentLists.findViewById(R.id.area);
             this.commentTime = commentLists.findViewById(R.id.time);
             this.commentContent = commentLists.findViewById(R.id.comment);

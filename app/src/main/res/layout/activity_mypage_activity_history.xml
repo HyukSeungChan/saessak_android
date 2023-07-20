@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,12 +10,12 @@
 
     <!--    상단바-->
     <LinearLayout
-        android:id="@+id/appbar"
+        android:id="@+id/upbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingVertical="12dp"
+        android:layout_height="52dp"
+        android:paddingVertical="2dp"
         android:paddingHorizontal="20dp"
+        android:layout_marginBottom="18dp"
         android:background="#FFFFFF"
         android:orientation="horizontal"
         android:gravity="center_vertical"
@@ -33,14 +33,17 @@
             />
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="개인정보보호정책"
+            android:text="활동 내역"
             android:textSize="20sp"
-            android:layout_gravity="left"
+            android:layout_gravity="left|center"
+            android:textAlignment="center"
             android:fontFamily="@font/notosans_bold"
             android:includeFontPadding="false"
             />
+
 
     </LinearLayout>
 
@@ -59,19 +62,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         app:layout_constraintTop_toBottomOf="@id/layout_tab"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_bottom"
         />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/fragment_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="#FFFFFFFF"
-        app:itemTextColor="@color/sea_green_dark2"
-        app:itemIconTint="@color/sea_green_dark2"
-        app:menu="@menu/menu_fragment"
-        app:labelVisibilityMode="labeled"
-        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

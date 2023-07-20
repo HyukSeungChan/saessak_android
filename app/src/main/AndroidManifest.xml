@@ -46,8 +46,14 @@
         <activity android:name="com.example.ssaesak.Main.MypageActivityHistory"/>
         <activity android:name="com.example.ssaesak.Main.MypageApplyStatusActivity"/>
         <activity android:name="com.example.ssaesak.Main.MypageActivityHistoryActivity"/>
+        <activity android:name="com.example.ssaesak.Main.MypageUpdateWorker"/>
+        <activity android:name="com.example.ssaesak.Main.MypageUpdateFarmer"/>
 <!--        <activity android:name="com.example.ssaesak.Main.MypageActivityHistoryComment"/>-->
         <activity android:name="com.example.ssaesak.Main.AgricultureTechActivity"/>
+        <activity android:name="com.example.ssaesak.Main.UpdateWorkerPositionActivity"/>
+        <activity android:name="com.example.ssaesak.Main.UpdateWorkerPayActivity"/>
+        <activity android:name="com.example.ssaesak.Main.UpdateWorkerAgricultureActivity"/>
+        <activity android:name="com.example.ssaesak.Main.UpdateWorkerCropActivity"/>
 
         <activity android:name="com.example.ssaesak.Working.WorkingWorkerActivity"/>
         <activity android:name="com.example.ssaesak.Working.NoticeDetailActivity"/>

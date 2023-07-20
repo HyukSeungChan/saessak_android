@@ -1,8 +1,7 @@
-package com.example.ssaesak.Login;
+package com.example.ssaesak.Main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,14 +10,22 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.ssaesak.Main.MypageUpdateWorker;
+import com.example.ssaesak.Dto.WorkerDTO;
+import com.example.ssaesak.Login.SignupProfileActivity;
+import com.example.ssaesak.Login.SignupWorkerAgricultureActivity;
+import com.example.ssaesak.Model.User;
 import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
+import com.example.ssaesak.Retrofit.MyRetrofit;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignupWorkerPositionActivity extends Activity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class UpdateWorkerPositionActivity extends Activity {
 
     String name;
     TextView tooltip;
@@ -69,10 +76,6 @@ public class SignupWorkerPositionActivity extends Activity {
         buttonList.add(findViewById(R.id.chip_cndwn));
 
         for (Button button : buttonList) {
-            button.setPressed(false);
-        }
-
-        for (Button button : buttonList) {
             button.setOnClickListener(v -> {
                 tooltipWarning.setVisibility(View.INVISIBLE);
                 if (positionList.contains(button)) {
@@ -107,25 +110,51 @@ public class SignupWorkerPositionActivity extends Activity {
             });
         }
 
+        String temp = "";
+        for (Button button : buttonList) {
+            if (Worker.getInstance().getArea().contains(button.getText().toString())) {
+                Log.e("signup", button.getText().toString() + " size : " + buttonList.size());
+                button.callOnClick();
+            }
+            //Worker.getInstance().getArea().split(",")
+        }
+
+        afterButton.setVisibility(View.GONE);
         nextButton.setOnClickListener(v -> {
 
             String result = "";
-            for (Button b : buttonList) {
+            for (Button b : positionList) {
                 result += b.getText().toString() + ",";
             }
-            if(buttonList.size() > 1) {
-                result = result.substring(0, result.length() - 1);
-                Worker.getInstance().setArea(result);
-            } else {
-                Worker.getInstance().setArea("");
-            }
-
+            if (positionList.size() > 1)
+                result = result.substring(0, result.length()-1);
             Log.e("signup", result);
             Worker.getInstance().setArea(result);
 
-            startActivity(new Intent(getBaseContext(), SignupWorkerAgricultureActivity.class));
+            signup();
+
+            startActivity(new Intent(getBaseContext(), MypageUpdateWorker.class));
             overridePendingTransition(0, 0);
             finish();
+        });
+    }
+
+    private void signup() {
+        Log.e("signup", "worker!! : " + Worker.getInstance().getWorkerId());
+        WorkerDTO dto = new WorkerDTO(Worker.getInstance());
+
+        Log.e("signup", "worker user id :!! : " + dto.getUserId());
+        Call<WorkerDTO> call = MyRetrofit.getApiService().signupWorker(dto);
+        call.enqueue(new Callback<WorkerDTO>() {
+            @Override
+            public void onResponse(Call<WorkerDTO> call, Response<WorkerDTO> response) {
+                Log.e("signup", "success!!");
+            }
+
+            @Override
+            public void onFailure(Call<WorkerDTO> call, Throwable t) {
+                Log.e("signup", "failed");
+            }
         });
     }
 
@@ -136,5 +165,4 @@ public class SignupWorkerPositionActivity extends Activity {
         overridePendingTransition(0, 0);
         finish();
     }
-
 }
