@@ -1,4 +1,4 @@
-package com.example.ssaesak.Login;
+package com.example.ssaesak.Main;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,8 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ssaesak.Dto.WorkerDTO;
-import com.example.ssaesak.Main.MainActivity;
-import com.example.ssaesak.Model.User;
+import com.example.ssaesak.Login.SignupWorkerCropActivity;
 import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.MyRetrofit;
@@ -26,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignupWorkerPayActivity extends Activity {
+public class UpdateWorkerPayActivity extends Activity {
 
     String name;
     TextView tooltip;
@@ -52,18 +51,14 @@ public class SignupWorkerPayActivity extends Activity {
 
         Button nextButton = findViewById(R.id.button_next);
         Button afterButton = findViewById(R.id.button_after);
-        afterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signup();
-                startActivity(new Intent(getBaseContext(), MainActivity.class));
-                overridePendingTransition(0, 0);
-                finish();
-            }
-        });
+        afterButton.setVisibility(View.GONE);
 
 
         EditText editText = findViewById(R.id.edittext);
+        if (Worker.getInstance().getPay() != null) {
+            editText.setText(Worker.getInstance().getPay());
+        }
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -103,12 +98,9 @@ public class SignupWorkerPayActivity extends Activity {
                 Worker.getInstance().setPay(editText.getText().toString());
                 signup();
 
-                Intent i = new Intent(getBaseContext(), MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(i);
+                startActivity(new Intent(getBaseContext(), MypageUpdateWorker.class));
                 overridePendingTransition(0, 0);
-//                finish();
-//                startActivity(new Intent(getBaseContext(), MainActivity.class));
+                finish();
 
             }
         });
@@ -131,5 +123,13 @@ public class SignupWorkerPayActivity extends Activity {
                 Log.e("signup", "failed");
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getBaseContext(), MypageUpdateWorker.class));
+        overridePendingTransition(0, 0);
+        finish();
     }
 }

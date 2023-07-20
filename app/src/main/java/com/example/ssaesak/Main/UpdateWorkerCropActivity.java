@@ -1,4 +1,4 @@
-package com.example.ssaesak.Login;
+package com.example.ssaesak.Main;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,13 +10,21 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.ssaesak.Dto.WorkerDTO;
+import com.example.ssaesak.Login.SignupWorkerAgricultureActivity;
+import com.example.ssaesak.Login.SignupWorkerPayActivity;
 import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
+import com.example.ssaesak.Retrofit.MyRetrofit;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignupWorkerCropActivity extends Activity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class UpdateWorkerCropActivity extends Activity {
 
     List<View> filterList; // 리니어레이아웃 + 텍스트뷰
     List<String> filterTextList;
@@ -183,6 +191,30 @@ public class SignupWorkerCropActivity extends Activity {
         });
 
 
+        for (String s : filterNameList) {
+            if (Worker.getInstance().getAgriculture().contains(s)) {
+                Log.e("signup", s + " size : " + filterNameList.size());
+
+            }
+            //Worker.getInstance().getArea().split(",")
+        }
+
+
+
+        for (List<View> list : parentList) {
+
+            for (String s : Worker.getInstance().getInterestCrops().split(",")) {
+                if (((TextView) list.get(1)).getText().toString().contains(s)) {
+                    Log.e("signup", s + " size : " + filterNameList.size());
+                    ((LinearLayout) list.get(0)).setSelected(true);
+                    ((LinearLayout) list.get(0)).setBackground(getResources().getDrawable(R.drawable.background_primary_ellipse, null));
+
+                }
+                //Worker.getInstance().getArea().split(",")
+            }
+            
+        }
+
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -191,23 +223,31 @@ public class SignupWorkerCropActivity extends Activity {
 //                    Toast.makeText(getBaseContext(), "이름을 입력해주세요", Toast.LENGTH_SHORT);
 //                } else {
 //                    User.getInstance().setPhone(editText.getText().toString());
-                    String filter = "";
-                    for (String s : filterNameList) {
-                        filter += s + ",";
-                    }
+                String filter = "";
+                for (String s : filterNameList) {
+                    filter += s + ",";
+                }
 
 
-                    if (filterNameList.size() > 1) filter = filter.substring(0, filter.length()-1);
-                    Log.e("signup", filter);
-                    Worker.getInstance().setInterestCrops(filter);
+                if (filterNameList.size() > 1) filter = filter.substring(0, filter.length()-1);
+                Log.e("signup", filter);
+                Worker.getInstance().setInterestCrops(filter);
 
 
 
-                    startActivity(new Intent(getBaseContext(), SignupWorkerPayActivity.class));
-                    overridePendingTransition(0, 0);
-                    finish();
+                startActivity(new Intent(getBaseContext(), SignupWorkerPayActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
 //                }
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getBaseContext(), MypageUpdateWorker.class));
+        overridePendingTransition(0, 0);
+        finish();
     }
 }

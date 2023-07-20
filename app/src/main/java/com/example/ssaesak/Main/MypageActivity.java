@@ -3,17 +3,24 @@ package com.example.ssaesak.Main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.ssaesak.Login.LoginActivity;
 import com.example.ssaesak.Model.User;
+import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
 import com.kakao.sdk.user.UserApiClient;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 
 public class MypageActivity extends Activity {
 
@@ -34,6 +41,29 @@ public class MypageActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
         TextView d;
+
+
+        ImageView imageButton = findViewById(R.id.profile_image);
+        imageButton = findViewById(R.id.profile_image);
+        UserApiClient.getInstance().me(new Function2<com.kakao.sdk.user.model.User, Throwable, Unit>() {
+            @Override
+            public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
+                String profileUrl = user_kakao.getKakaoAccount().getProfile().getThumbnailImageUrl();
+                ImageView imageView = (ImageView) findViewById(R.id.profile_image);
+                Glide.with(getBaseContext()).load(profileUrl).into(imageView);
+
+                com.example.ssaesak.Model.User.getInstance().setProfileImage("kakao");
+                Log.e("profile", user_kakao.getKakaoAccount().getProfile().getThumbnailImageUrl() + "");
+                return null;
+            }
+        });
+
+        ((TextView) findViewById(R.id.name)).setText(User.getInstance().getName());
+//        if (User.getInstance().getType().equals("도시농부")) {
+//            ((TextView) findViewById(R.id.address)).setText(Worker.getInstance().get());
+//        } else {
+//            ((TextView) findViewById(R.id.address)).setText(User.getInstance().get());
+//        }
 
         this.apply = findViewById(R.id.apply);
         this.apply.setOnClickListener(v -> {
@@ -62,6 +92,11 @@ public class MypageActivity extends Activity {
 
         this.signout = findViewById(R.id.signout);
 
+
+        ImageButton update = findViewById(R.id.update_profile);
+        update.setOnClickListener(v -> {
+            startActivity(new Intent(getBaseContext(), MypageUpdateWorker.class));
+        });
 
         this.backButton = findViewById(R.id.back_button);
         this.backButton.setOnClickListener(new View.OnClickListener() {

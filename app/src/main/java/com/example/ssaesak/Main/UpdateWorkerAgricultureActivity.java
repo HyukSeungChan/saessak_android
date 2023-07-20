@@ -1,4 +1,4 @@
-package com.example.ssaesak.Login;
+package com.example.ssaesak.Main;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,15 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.example.ssaesak.Model.Farm;
-import com.example.ssaesak.Model.User;
+import com.example.ssaesak.Login.SignupWorkerCropActivity;
+import com.example.ssaesak.Login.SignupWorkerPositionActivity;
 import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignupWorkerAgricultureActivity extends Activity {
+public class UpdateWorkerAgricultureActivity extends Activity {
 
     String name;
     List<Button> buttonCropList;
@@ -88,6 +88,15 @@ public class SignupWorkerAgricultureActivity extends Activity {
             });
         }
 
+        String temp = "";
+        for (Button button : buttonCropList) {
+            if (Worker.getInstance().getCrops().contains(button.getText().toString())) {
+                Log.e("signup", button.getText().toString() + " size : " + buttonCropList.size());
+                button.callOnClick();
+            }
+            //Worker.getInstance().getArea().split(",")
+        }
+
         buttonInterestList.add(findViewById(R.id.chip_shdwkranfcoth));
         buttonInterestList.add(findViewById(R.id.chip_rhktlf));
         buttonInterestList.add(findViewById(R.id.chip_ghkgnpwkranf));
@@ -118,24 +127,32 @@ public class SignupWorkerAgricultureActivity extends Activity {
             });
         }
 
+        String temp1 = "";
+        for (Button button : buttonInterestList) {
+            if (Worker.getInstance().getAgriculture().contains(button.getText().toString())) {
+                Log.e("signup", button.getText().toString() + " size : " + buttonInterestList.size());
+                button.callOnClick();
+            }
+            //Worker.getInstance().getArea().split(",")
+        }
+
+
+
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 String crops = "";
                 for (Button button : cropList) {
-                    crops += button.getText().toString() + ",";
+                    crops += button.getText().toString();
                 }
-                if (cropList.size() > 1) {
-                    crops = crops.substring(0, crops.length() - 1);
-                    Worker.getInstance().setCrops(crops);
-                } else {
-                    Worker.getInstance().setCrops("");
-                }
+                if (cropList.size() > 1)
+                crops = crops.substring(0, crops.length()-1);
+                Worker.getInstance().setCrops(crops);
 
                 String agricultures = "";
                 for (Button button : interestList) {
-                    agricultures += button.getText().toString() + ",";
+                    agricultures += button.getText().toString();
                 }
                 Log.e("signup", agricultures.length()+"");
                 if(interestList.size() > 1) {
@@ -145,10 +162,17 @@ public class SignupWorkerAgricultureActivity extends Activity {
                     Worker.getInstance().setAgriculture("");
                 }
 
-                startActivity(new Intent(getBaseContext(), SignupWorkerCropActivity.class));
+                startActivity(new Intent(getBaseContext(), MypageUpdateWorker.class));
                 overridePendingTransition(0, 0);
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getBaseContext(), MypageUpdateWorker.class));
+        overridePendingTransition(0, 0);
+        finish();
     }
 }

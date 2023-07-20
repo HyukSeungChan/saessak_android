@@ -26,6 +26,7 @@ import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Working.CardWorkNotice;
 import com.example.ssaesak.Working.NoticeDetailActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kakao.sdk.user.UserApiClient;
 
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
@@ -33,6 +34,8 @@ import net.daum.mf.map.api.MapView;
 import java.util.Arrays;
 import java.util.List;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,7 +67,20 @@ public class FarmgroupSidebar extends Activity {
 
         init();
 
+//        ImageView imageButton = findViewById(R.id.profile_image);
+        profileImage = findViewById(R.id.profile_image);
+        UserApiClient.getInstance().me(new Function2<com.kakao.sdk.user.model.User, Throwable, Unit>() {
+            @Override
+            public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
+                String profileUrl = user_kakao.getKakaoAccount().getProfile().getThumbnailImageUrl();
+                ImageView imageView = (ImageView) findViewById(R.id.profile_image);
+                Glide.with(getBaseContext()).load(profileUrl).into(imageView);
 
+                com.example.ssaesak.Model.User.getInstance().setProfileImage("kakao");
+                Log.e("profile", user_kakao.getKakaoAccount().getProfile().getThumbnailImageUrl() + "");
+                return null;
+            }
+        });
 
         Intent intentData = getIntent();
         this.farmId = intentData.getIntExtra("farmId", -1);

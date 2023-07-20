@@ -22,6 +22,7 @@ import com.example.ssaesak.Dto.UserVideoWatchRequestDto;
 import com.example.ssaesak.Dto.VideoResponseDto;
 import com.example.ssaesak.Main.MainActivity;
 import com.example.ssaesak.Model.User;
+import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.Constatnts_url;
@@ -74,6 +75,7 @@ public class EssentialVideoActivity extends Activity {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 Log.e("study", "영상 시청 완료!! : " + dto.getTitle());
+                User.getInstance().setComplete(User.getInstance().getComplete() + 1);
                  watchingVideo(); // 이거 서버 만들고나서 하기
             }
         });
