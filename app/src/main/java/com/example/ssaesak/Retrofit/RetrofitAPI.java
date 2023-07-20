@@ -6,6 +6,7 @@ import com.example.ssaesak.Dto.BoardLikeRequestDTO;
 import com.example.ssaesak.Dto.BoardRequestDTO;
 import com.example.ssaesak.Dto.FarmDTO;
 import com.example.ssaesak.Dto.ReplyRequestDTO;
+import com.example.ssaesak.Dto.ResumeDTO;
 import com.example.ssaesak.Dto.ResumeRequestDTO;
 import com.example.ssaesak.Dto.UserVideoWatchRequestDto;
 import com.example.ssaesak.Dto.WorkResumeRequestDTO;
@@ -162,7 +163,7 @@ public interface RetrofitAPI {
 
     // 이력서 작성
     @POST(Constatnts_url.RESUME_CREATE)
-    Call<ResumeRequestDTO> resumeCreate(@Body ResumeRequestDTO resumeRequestDto);
+    Call<ApiResponse> resumeCreate(@Body ResumeRequestDTO resumeRequestDto);
 
     // 일자리에 이력서 제출(노동자)
     @POST(Constatnts_url.WORK_RESUME_CREATE)
@@ -202,6 +203,14 @@ public interface RetrofitAPI {
     // 일자리 지원 취소
     @GET(Constatnts_url.WORKER_APPLICATION_DELETE)
     Call<ApiResponse> workerApplicationDelete(@Query("workResumeId") int workResumeId);
+
+    // help(도움터)
+
+    @GET(Constatnts_url.POLICY_SMART_LIST)
+    Call<ApiResponse> policySmartList();
+
+    @GET(Constatnts_url.POLICY_AGRICULTURE_LIST)
+    Call<ApiResponse> policyAgricultureList();
 
 //    @POST(Constatnts_url.LOGIN_SANGHYUK_URL)
 //    Call<Customer> loginSanghyuk(@Query("customerId") int customerId);

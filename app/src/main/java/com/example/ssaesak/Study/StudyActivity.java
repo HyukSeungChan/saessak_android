@@ -58,6 +58,10 @@ public class StudyActivity extends Activity {
     private ImageButton cropButton;
     private ImageButton agricultureButton;
 
+    private ImageButton policySmartButton;
+
+    private ImageButton policyAgricultureButton;
+
     private List<VideoResponseDto> dtos;
 
     private LinearLayout cropLayout;
@@ -94,6 +98,16 @@ public class StudyActivity extends Activity {
         this.agricultureButton = findViewById(R.id.agriculture);
         this.agricultureButton.setOnClickListener(v -> {
             startActivity(new Intent(getBaseContext(), AgricultureStudyActivity.class));
+        });
+
+        this.policySmartButton = findViewById(R.id.policy_smart);
+        this.policySmartButton.setOnClickListener(v ->{
+            startActivity(new Intent(getBaseContext(), SmartPolicyActivity.class));
+        });
+
+        this.policyAgricultureButton = findViewById(R.id.policy_agriculture);
+        this.policyAgricultureButton.setOnClickListener(v -> {
+            startActivity(new Intent(getBaseContext(), AgriculturePolicyActivity.class));
         });
 
 //        Uri url= Uri.parse("https://saessak-s3.s3.ap-northeast-2.amazonaws.com/powderedrice.mp4");
