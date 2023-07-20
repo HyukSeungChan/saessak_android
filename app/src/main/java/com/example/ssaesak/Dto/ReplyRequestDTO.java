@@ -9,7 +9,7 @@ public class ReplyRequestDTO {
     private String content;
     private String uploadTime;
 
-    private String area;
+//    private String area;
     private int boardId;
     private Long userId;
 
@@ -17,11 +17,10 @@ public class ReplyRequestDTO {
 
     }
 
-    public ReplyRequestDTO(int replyId, String content, String uploadTime, String area, int boardId, Long userId) {
+    public ReplyRequestDTO(int replyId, String content, String uploadTime, int boardId, Long userId) {
         this.replyId = replyId;
         this.content = content;
         this.uploadTime = uploadTime;
-        this.area = area;
         this.boardId = boardId;
         this.userId = userId;
     }
@@ -48,14 +47,6 @@ public class ReplyRequestDTO {
 
     public void setUploadTime(String uploadTime) {
         this.uploadTime = uploadTime;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
     }
 
     public int getBoardId() {

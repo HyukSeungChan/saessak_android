@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ssaesak.Dto.BoardDetailDTO;
 import com.example.ssaesak.Dto.ReplyRequestDTO;
+import com.example.ssaesak.Dto.ResumeDTO;
 import com.example.ssaesak.Dto.ResumeRequestDTO;
 import com.example.ssaesak.Dto.WorkResumeRequestDTO;
 import com.example.ssaesak.Model.User;
@@ -57,7 +58,7 @@ public class ResumeActivity extends AppCompatActivity {
 
     private float careerFloat;
 
-    private int resumeId;
+    private int resumeId, workId;
 
     private DatePickerDialog datePickerDialog;
 
@@ -68,7 +69,7 @@ public class ResumeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resume);
 
-        int workId = getIntent().getIntExtra("workId", 1);
+        workId = getIntent().getIntExtra("workId", 1);
 
         init();
 
@@ -288,12 +289,28 @@ public class ResumeActivity extends AppCompatActivity {
         resumeRequestDTO.setCar(car);
         resumeRequestDTO.setUserId(userId);
 
-        Call<ResumeRequestDTO> call = MyRetrofit.getApiService().resumeCreate(resumeRequestDTO);
-        call.enqueue(new Callback<ResumeRequestDTO>() {
+        Call<ApiResponse> call = MyRetrofit.getApiService().resumeCreate(resumeRequestDTO);
+        call.enqueue(new Callback<ApiResponse>() {
             @Override
-            public void onResponse(Call<ResumeRequestDTO> call, Response<ResumeRequestDTO> response) {
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 if (response.isSuccessful()) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    String body = response.body().getData().toString();
+                    String json = body.substring(1, body.length()-1).replace("\\", "");
+                    try {
 
+                        ResumeDTO dtos = mapper.readValue(json, ResumeDTO.class);
+
+                        Log.e("workId", workId + "!!!!!!!!!!!!");
+                        Log.e("resumeId", dtos.getResumeId() + "!!!!!!!!!!!!");
+                        resumeId = dtos.getResumeId();
+
+                        workResumeCreate(workId, resumeId);
+
+                    } catch (Exception e) {
+
+                    }
+//
 //                    Toast.makeText(getApplicationContext(), "이력서 성공적으로 생성되었습니다.", Toast.LENGTH_SHORT).show();
 
                 } else {
@@ -303,7 +320,7 @@ public class ResumeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResumeRequestDTO> call, Throwable t) {
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
                 // 통신 실패
                 Toast.makeText(getApplicationContext(), "이력서 생성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
             }

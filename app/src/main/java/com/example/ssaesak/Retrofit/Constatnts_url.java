@@ -120,5 +120,10 @@ public class Constatnts_url {
 
     // 지원 취소
     public static final String WORKER_APPLICATION_DELETE = "work/resume/worker/delete/";
+
+    // help (도움터)
+    public static final String POLICY_SMART_LIST = "policy/smart/";
+
+    public static final String POLICY_AGRICULTURE_LIST = "policy/agriculture/";
 }
 
