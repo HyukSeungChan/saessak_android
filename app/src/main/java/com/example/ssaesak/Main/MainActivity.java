@@ -33,6 +33,7 @@ import com.example.ssaesak.Farmgroup.FarmgroupActivity;
 import com.example.ssaesak.Farmgroup.FarmgroupNullActivity;
 import com.example.ssaesak.Login.LoginActivity;
 import com.example.ssaesak.Login.SignupTypeActivity;
+import com.example.ssaesak.Login.SignupWorkerCropActivity;
 import com.example.ssaesak.Model.Farm;
 import com.example.ssaesak.Model.User;
 import com.example.ssaesak.Model.UserFarm;
@@ -87,7 +88,7 @@ import retrofit2.Response;
 
 //        User.getInstance().setUserId(1L);
 //
-//        startActivity(new Intent(getApplicationContext(), SignupTypeActivity.class));
+//        startActivity(new Intent(getApplicationContext(), SignupWorkerCropActivity.class));
 //        finish();
 
         KakaoSdk.init(this, "4caf1a2e579000e6cd8d530264db7aed");
@@ -102,6 +103,11 @@ import retrofit2.Response;
                 startActivity(new Intent(getApplicationContext(), MypageActivity.class));
                 overridePendingTransition(0, 0);
             }
+        });
+
+        LinearLayout month_tech = findViewById(R.id.month_tech);
+        month_tech.setOnClickListener(v -> {
+            startActivity(new Intent(getBaseContext(), AgricultureTechActivity.class));
         });
 
 

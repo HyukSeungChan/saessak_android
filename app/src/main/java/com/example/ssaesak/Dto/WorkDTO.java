@@ -51,13 +51,12 @@ public class WorkDTO {
     private String crops;
     private String cropsDetail;
 
-    private Boolean bookmark;
 
     public WorkDTO() {
 
     }
 
-    public WorkDTO(int workId, int farmId, String title, String content, String recruitmentStart, String recruitmentEnd, int recruitmentPerson, String qualification, String preferentialTreatment, int hourWage, int dayWage, String workStartDay, String workEndDay, String workStartTime, String workEndTime, float career, String state, String etc, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String cropsDetail, Boolean bookmark) {
+    public WorkDTO(int workId, int farmId, String title, String content, String recruitmentStart, String recruitmentEnd, int recruitmentPerson, String qualification, String preferentialTreatment, int hourWage, int dayWage, String workStartDay, String workEndDay, String workStartTime, String workEndTime, float career, String state, String etc, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String cropsDetail) {
         this.workId = workId;
         this.farmId = farmId;
         this.title = title;
@@ -85,7 +84,6 @@ public class WorkDTO {
         this.agriculture = agriculture;
         this.crops = crops;
         this.cropsDetail = cropsDetail;
-        this.bookmark = bookmark;
     }
 
     public int getWorkId() {
@@ -304,11 +302,4 @@ public class WorkDTO {
         this.cropsDetail = cropsDetail;
     }
 
-    public Boolean getBookmark() {
-        return bookmark;
-    }
-
-    public void setBookmark(Boolean bookmark) {
-        this.bookmark = bookmark;
-    }
 }

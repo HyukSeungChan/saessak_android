@@ -45,12 +45,7 @@ android:paddingVertical="16dp"
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_marginLeft="16dp"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/svg_bookmark"
-            />
+
 
     </LinearLayout>
 

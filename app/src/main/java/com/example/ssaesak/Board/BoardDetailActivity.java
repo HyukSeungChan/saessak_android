@@ -76,6 +76,12 @@
             sendBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    if (editText.getText().toString().equals("") || editText.getText().toString() == null) {
+                        Toast.makeText(getApplicationContext(), "댓글을 입력해주세요", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     commentCreate(editText.getText().toString(), boardId, User.getInstance().getUserId());
                     Intent intent = getIntent();
                     finish(); //현재 액티비티 종료 실시
@@ -242,6 +248,7 @@
             call.enqueue(new Callback<ReplyRequestDTO>() {
                 @Override
                 public void onResponse(Call<ReplyRequestDTO> call, Response<ReplyRequestDTO> response) {
+                    Log.e("comment", "result : " + response.code() + "");
                     if (response.isSuccessful()) {
                         // 댓글 생성 성공
                         Toast.makeText(getApplicationContext(), "댓글이 성공적으로 생성되었습니다.", Toast.LENGTH_SHORT).show();
@@ -249,6 +256,7 @@
                         // ...
                     } else {
                         // 댓글 생성 실패
+
                         Toast.makeText(getApplicationContext(), "댓글 생성에 실패했습니다.", Toast.LENGTH_SHORT).show();
                     }
                 }

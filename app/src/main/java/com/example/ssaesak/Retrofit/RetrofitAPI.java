@@ -96,6 +96,9 @@ public interface RetrofitAPI {
     @GET(Constatnts_url.HOT_NOTICE)
     Call<ApiResponse> hotNotice();
 
+    @GET(Constatnts_url.MY_NOTICE)
+    Call<ApiResponse> myNotice(@Query("userId") Long userId);
+
     // 도와줘요 리스트
     @GET(Constatnts_url.NOTICE_HELP_LIST)
     Call<ApiResponse> noticeHelpList();
@@ -114,6 +117,8 @@ public interface RetrofitAPI {
     // 댓글 조회
     @GET(Constatnts_url.COMMENT_LIST)
     Call<ApiResponse> commentList(@Query("boardId") int boardId);
+    @GET(Constatnts_url.COMMENT_LIST_ALL)
+    Call<ApiResponse> commentListALL(@Query("userId") Long userId);
 
     // 댓글 생성
     @POST(Constatnts_url.COMMENT_CREATE)
@@ -150,8 +155,8 @@ public interface RetrofitAPI {
     Call<ApiResponse> workListCareer(@Query ("career") float career, @Query("userId") Long userId);
 
     // 일자리 즐겨찾기
-    @GET(Constatnts_url.USER_WORK_LIST)
-    Call<ApiResponse> userWorkList();
+//    @GET(Constatnts_url.USER_WORK_LIST)
+//    Call<ApiResponse> userWorkList();
 
     // 해당 일자리 조회
     @GET(Constatnts_url.WORK_DETAIL)

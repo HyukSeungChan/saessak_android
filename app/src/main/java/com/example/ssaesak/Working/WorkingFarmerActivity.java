@@ -402,17 +402,17 @@ public class WorkingFarmerActivity extends AppCompatActivity implements Bottomsh
 
         // CardView를 noticeList에 추가
 
-        this.card.findViewById(R.id.bookmark).setOnClickListener(v -> {
-            if(this.card.findViewById(R.id.bookmark).isSelected()) {
-                Log.e("card", "press cancel!!");
-                this.card.findViewById(R.id.bookmark).setSelected(false);
-                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark, null));
-            } else {
-                Log.e("card", "press !!");
-                this.card.findViewById(R.id.bookmark).setSelected(true);
-                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark_select, null));
-            }
-        });
+//        this.card.findViewById(R.id.bookmark).setOnClickListener(v -> {
+//            if(this.card.findViewById(R.id.bookmark).isSelected()) {
+//                Log.e("card", "press cancel!!");
+//                this.card.findViewById(R.id.bookmark).setSelected(false);
+//                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark, null));
+//            } else {
+//                Log.e("card", "press !!");
+//                this.card.findViewById(R.id.bookmark).setSelected(true);
+//                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark_select, null));
+//            }
+//        });
 
         noticeList.addView(card);
     }
@@ -585,32 +585,32 @@ public class WorkingFarmerActivity extends AppCompatActivity implements Bottomsh
         });
     }
 
-    // 일자리 즐겨찾기
-    private void userWorkList() {
-        Log.e("userWorkList", "get userWorkList start!!");
-        Call<ApiResponse> call = MyRetrofit.getApiService().userWorkList();
-        call.enqueue(new Callback<ApiResponse>() {
-            @Override
-            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                Log.e("userWorkList", "userWorkList : ");
-                Log.e("userWorkList", "userWorkList : " + response.body());
-                ObjectMapper mapper = new ObjectMapper();
-                String body = response.body().getData().toString();
-                String json = body.substring(1, body.length()-1).replace("\\", "");
-                Log.e("userWorkList", " body -> " + body);
-                Log.e("userWorkList", " json -> " + json);
-                try {
-//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
-                    List<WorkDTO> dtos = Arrays.asList(mapper.readValue(json, WorkDTO[].class));
-
-                } catch (Exception e1) {e1.printStackTrace();}
-
-//                List<UserDTO> dtos = Arrays.asList(mapper.readValue(strList, UserDTO[].class));
-            }
-
-            @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("workHome failed", t.getMessage() + "");}
-        });
-    }
+//    // 일자리 즐겨찾기
+//    private void userWorkList() {
+//        Log.e("userWorkList", "get userWorkList start!!");
+//        Call<ApiResponse> call = MyRetrofit.getApiService().userWorkList();
+//        call.enqueue(new Callback<ApiResponse>() {
+//            @Override
+//            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+//                Log.e("userWorkList", "userWorkList : ");
+//                Log.e("userWorkList", "userWorkList : " + response.body());
+//                ObjectMapper mapper = new ObjectMapper();
+//                String body = response.body().getData().toString();
+//                String json = body.substring(1, body.length()-1).replace("\\", "");
+//                Log.e("userWorkList", " body -> " + body);
+//                Log.e("userWorkList", " json -> " + json);
+//                try {
+////                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+//                    List<WorkDTO> dtos = Arrays.asList(mapper.readValue(json, WorkDTO[].class));
+//
+//                } catch (Exception e1) {e1.printStackTrace();}
+//
+////                List<UserDTO> dtos = Arrays.asList(mapper.readValue(strList, UserDTO[].class));
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("workHome failed", t.getMessage() + "");}
+//        });
+//    }
 
 }

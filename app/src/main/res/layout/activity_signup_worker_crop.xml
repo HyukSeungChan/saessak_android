@@ -84,7 +84,6 @@
         />
 
     <TextView
-        android:id="@+id/tooltip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="농작물 채소"
@@ -94,6 +93,568 @@
         android:textColor="#9B9B9B"
         />
 
+
+    <HorizontalScrollView
+        android:focusable="false"
+        android:clickable="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_gravity="left"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:focusable="false"
+            android:clickable="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+
+    <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+            <LinearLayout
+                android:focusable="false"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/potato"
+                    android:clickable="false"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/background_gray_ellipse">
+
+                    <ImageView
+                        android:focusable="false"
+                        android:clickable="false"
+                        android:src="@drawable/ic_potato"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:id="@+id/potato_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="감자"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+
+
+            <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/spicy"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/background_gray_ellipse">
+
+                    <ImageView
+                        android:src="@drawable/ic_spicy"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/spicy_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="고추"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+
+
+            <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/onion"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/background_gray_ellipse">
+
+                    <ImageView
+                        android:src="@drawable/ic_onion"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/onion_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="양파"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+
+
+            <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/garlic"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/background_gray_ellipse">
+
+                    <ImageView
+                        android:src="@drawable/ic_garlic"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/garlic_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="마늘"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+
+
+            <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/cabbage"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/background_gray_ellipse">
+
+                    <ImageView
+                        android:src="@drawable/ic_cabbage"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/cabbage_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="배추"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="과실"
+        android:fontFamily="@font/notosans_bold"
+        android:textSize="14sp"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="#9B9B9B"
+        />
+
+
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_gravity="left"
+        android:scrollbars="none"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+
+
+
+        <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/strawberry"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@drawable/background_gray_ellipse">
+
+                <ImageView
+                    android:src="@drawable/ic_strawberry"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/strawberry_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="딸기"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+
+
+
+
+
+        <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/pear"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@drawable/background_gray_ellipse">
+
+                <ImageView
+                    android:src="@drawable/ic_pear"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/pear_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="배"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+
+
+
+
+        <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/apple"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@drawable/background_gray_ellipse">
+
+                <ImageView
+                    android:src="@drawable/ic_apple"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/apple_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사과"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+
+
+
+
+
+        <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/watermelon"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@drawable/background_gray_ellipse">
+
+                <ImageView
+                    android:src="@drawable/ic_wartermelon"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/watermelon_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수박"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+
+
+
+
+        <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/orrange"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@drawable/background_gray_ellipse">
+
+                <ImageView
+                    android:src="@drawable/ic_orrange"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/orange_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="감귤"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="기타"
+        android:fontFamily="@font/notosans_bold"
+        android:textSize="14sp"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="#9B9B9B"
+        />
+
+
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_gravity="left"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+
+
+
+
+            <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/rice"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/background_gray_ellipse">
+
+                    <ImageView
+                        android:src="@drawable/ic_rice"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/rice_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="벼"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+
+
+
+
+            <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/barley"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/background_gray_ellipse">
+
+                    <ImageView
+                        android:src="@drawable/ic_rice"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/barley_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="보리"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+
+
+
+            <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/corn"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/background_gray_ellipse">
+
+                    <ImageView
+                        android:src="@drawable/ic_corn"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/corn_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="옥수수"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+
+
+
+
+            <!--        감자@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/bean"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/background_gray_ellipse">
+
+                    <ImageView
+                        android:src="@drawable/ic_bean"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/bean_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="콩"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
 
 
@@ -109,7 +670,7 @@
         android:layout_height="44dp"
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="22dp"
-        android:text="다음으로"
+        android:text="다음"
         android:textColor="@color/white"
         android:fontFamily="@font/notosans_bold"
         android:background="@drawable/button_gray"

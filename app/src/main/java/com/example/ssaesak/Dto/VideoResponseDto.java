@@ -25,7 +25,6 @@ public class VideoResponseDto implements Serializable {
 
     private boolean watching;
 
-    private boolean bookmark;
 
     public VideoResponseDto() {
 
@@ -40,7 +39,6 @@ public class VideoResponseDto implements Serializable {
         this.crops = video.getCrops();
         this.crops_name = video.getCrops_name();
         this.watching = video.isWatching();
-        this.bookmark = video.isBookmark();
     }
 
     public int getVideoId() {
@@ -107,11 +105,4 @@ public class VideoResponseDto implements Serializable {
         this.watching = watching;
     }
 
-    public boolean isBookmark() {
-        return bookmark;
-    }
-
-    public void setBookmark(boolean bookmark) {
-        this.bookmark = bookmark;
-    }
 }
