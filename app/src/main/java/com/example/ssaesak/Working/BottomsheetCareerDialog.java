@@ -22,7 +22,7 @@ public class BottomsheetCareerDialog extends BottomSheetDialogFragment {
 
     private BottomSheetCareerListener bottomSheetCareerListener;
 
-    private String filterCareer;
+    private String filter;
 
     @NonNull
     @Override
@@ -33,7 +33,34 @@ public class BottomsheetCareerDialog extends BottomSheetDialogFragment {
 
         // 레이아웃, 텍스트, 체크버튼 -> 3개가 같이 들어간 게 있고 그걸 여러개 가진 리스트
 
-        this.filterCareer = getArguments().getString("career");
+        this.filter = getArguments().getString("career");
+        if (filter.equals("") || filter.equals(null) || filter.equals("경력 무관")) {
+            ((LinearLayout)view.findViewById(R.id.layout_all)).setSelected(true);
+            ((ImageView)view.findViewById(R.id.check_all)).setVisibility(View.VISIBLE);
+            for (ArrayList listOther : filter_list) {
+                ((LinearLayout) listOther.get(0)).setSelected(false);
+//                            ((TextView) list.get(1));
+                ((ImageView) listOther.get(2)).setVisibility(View.INVISIBLE);
+            }
+        } else {
+            ((LinearLayout)view.findViewById(R.id.layout_all)).setSelected(false);
+            ((ImageView)view.findViewById(R.id.check_all)).setVisibility(View.INVISIBLE);
+//            for (ArrayList listOther : filter_list) {
+//                ((LinearLayout) listOther.get(0)).setSelected(false);
+////                            ((TextView) list.get(1));
+//                ((ImageView) listOther.get(2)).setVisibility(View.INVISIBLE);
+//            }
+        }
+
+        for (ArrayList list : filter_list) {
+            LinearLayout linearLayout = (LinearLayout) list.get(0);
+            TextView textView = (TextView) list.get(1);
+            ImageView imageView = (ImageView) list.get(2);
+            if (textView.getText().toString().equals(filter)) {
+                linearLayout.setSelected(true);
+                imageView.setVisibility(View.VISIBLE);
+            }
+        }
 
 
 

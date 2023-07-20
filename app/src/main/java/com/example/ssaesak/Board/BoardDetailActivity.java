@@ -43,7 +43,7 @@
 
     public class BoardDetailActivity  extends AppCompatActivity {
 
-        private TextView category, name, time, title, content, likeCount, commentCount, commentName, commentArea, commentTime, commentContent;
+        private TextView category, name, time, title, content, commentCount, commentName, commentArea, commentTime, commentContent;
         private ImageView profileImage, commentProfileImage, sendBtn, likeBtn;
 
         private EditText editText;
@@ -85,30 +85,7 @@
                 }
             });
 
-            // 좋아요 누르기
-            likeBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (count  == 0) {
-                        likeIncrease(boardId);
-                        Intent intent = getIntent();
-                        finish(); //현재 액티비티 종료 실시
-                        overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
-                        startActivity(intent); //현재 액티비티 재실행 실시
-                        overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
-                        count = 1;
-                    } else {
-                        likeDecrease(boardId);
-                        Intent intent = getIntent();
-                        finish(); //현재 액티비티 종료 실시
-                        overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
-                        startActivity(intent); //현재 액티비티 재실행 실시
-                        overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
-                        count = 0;
-                    }
 
-                }
-            });
 
 
 
@@ -120,13 +97,11 @@
             this.time = findViewById(R.id.time);
             this.title = findViewById(R.id.title);
             this.content = findViewById(R.id.content);
-            this.likeCount = findViewById(R.id.like_count);
             this.commentCount = findViewById(R.id.comment_count);
             this.profileImage = findViewById(R.id.profile_image);
 
             this.editText = findViewById(R.id.edittext);
             this.sendBtn = findViewById(R.id.send);
-            this.likeBtn = findViewById(R.id.like_button);
 
         }
 
@@ -164,7 +139,6 @@
                         time.setText(boardDetailDTO.getUploadTime());
                         title.setText(boardDetailDTO.getTitle());
                         content.setText(boardDetailDTO.getContent());
-                        likeCount.setText(boardDetailDTO.getLikes()+"");
                         commentCount.setText((boardDetailDTO.getReplies()+""));
                         Glide.with(getBaseContext())
                                 .load(boardDetailDTO.getProfileImage())

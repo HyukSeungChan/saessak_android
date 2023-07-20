@@ -101,9 +101,14 @@ public class SignupWorkerPayActivity extends Activity {
             @Override
             public void onClick(View view) {
                 signup();
-                startActivity(new Intent(getBaseContext(), MainActivity.class));
+
+                Intent i = new Intent(getBaseContext(), MainActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
                 overridePendingTransition(0, 0);
-                finish();
+//                finish();
+//                startActivity(new Intent(getBaseContext(), MainActivity.class));
+
             }
         });
     }

@@ -38,7 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/appbar"
-        app:layout_constraintBottom_toTopOf="@+id/comment_create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingBottom="30dp"
         >
 
 
@@ -65,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
-            android:text="제모오오옥오오오옥"
+            android:text="여름철 약용작물 병해충 방제 기술"
             android:textSize="18sp"
             android:fontFamily="@font/notosans_bold"
             android:textColor="@color/black"
@@ -76,24 +77,51 @@
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="2023.07.23"
+            android:text="2023.07.05"
             android:textSize="14sp"
             android:fontFamily="@font/notosans_regular"
             android:textColor="@color/gray5"
             android:includeFontPadding="false"
             />
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="79.5dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/monthtech_png"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/imageview_radius"
+                />
+
+
         <TextView
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
-            android:text="내-ㅇ ㅛ ㅇ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard du"
-            android:textSize="14sp"
-            android:fontFamily="@font/notosans_regular"
-            android:textColor="@color/gray5"
+            android:text="장마 전 응애, 총채벌레… 장마 뒤에는 탄저병, 역병 등 발생 우려
+고랑 물 잘 빼주고, 30도 이상 오르면 고온성 병 예방 약제 줘야"
+            android:textSize="21sp"
+            android:fontFamily="@font/notosans_bold"
+            android:textColor="#C33A3A"
             android:includeFontPadding="false"
             />
+
+<!--            -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:text="여름철 기상 조건 변화에 따라 약용작물을 재배하는 포장에 병해충 발생이 늘어날 수 있습니다. 덥고 건조한 날에는 약용작물의 응애류․총채벌레류 발생이 늘어나고, 비 오는 날이 많아지면 탄저병, 역병 등이 발생 됩니다. 약용작물은 줄기와 잎의 병해충을 중점 관리해야 뿌리 수확량까지 확보할 수 있으므로 더 세심하게 주의해서 관리해야 합니다. 더욱이 봄철 이상고온 현상으로 올해는 예년보다 해충 발생 시기가 빠르고 밀도까지 높았던 터라 각별한 주의가 필요합니다."
+                android:textSize="14sp"
+                android:fontFamily="@font/notosans_regular"
+                android:textColor="@color/gray5"
+                android:includeFontPadding="false"
+                />
 
         <ImageView
             android:visibility="gone"
@@ -106,55 +134,65 @@
             android:layout_marginBottom="12dp"
             />
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:text="점무늬병과 탄저병"
+                android:textSize="21sp"
+                android:fontFamily="@font/notosans_bold"
+                android:textColor="@color/black"
+                android:includeFontPadding="false"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:text="- 장마철 이후 덥고 습한 날이 이어지면 점무늬병과 탄저병이 발생하기 쉽습니다. \n
+- 점무늬병과 탄저병은 거의 모든 약용작물에서 발생합니다. 잎에 크고 작은 점무늬를 만들고 복합적으로 감염되며 잎마름으로 확대되기도 합니다.\n
+- 대표적인 피해 작물인 천궁은 여름철 온도가 높아지면 병 피해가 심해지기 때문에 예방 차원에서 적용 약제로 빠르게 방제해야 합니다.\n
+- 토양이 지나치게 습한 상태에서 낮 기온이 30℃ 이상으로 오르면 땅 겉면 위에 있는 잎(지상부)에 각종 점무늬병, 탄저병 증상이 나타날 수 있습니다.\n
+- 점무늬병은 병든 잎 표면에 많은 병원균을 배출하고, 이미 생긴 병 무늬들이 합쳐지면서 잎마름으로 확대되어 피해를 줍니다.\n
+- 탄저병은 덥고 습한 조건에서 잎과 줄기에 불규칙한 점무늬를 형성하는데 심한 경우 식물체 전체가 말라죽기도 합니다."
+                android:textSize="14sp"
+                android:fontFamily="@font/notosans_regular"
+                android:textColor="@color/gray5"
+                android:includeFontPadding="false"
+                />
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:text="흰가루병"
+                android:textSize="21sp"
+                android:fontFamily="@font/notosans_bold"
+                android:textColor="@color/black"
+                android:includeFontPadding="false"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:text="- 흰가루병은 하얀 밀가루를 뿌려놓은 것 같은 병입니다. 황기, 잔대, 작약 등 대부분 약용작물 잎에서 발생하지만, 오미자의 경우 열매에도 발생해 수확량을 떨어뜨립니다.\n
+- 식물체를 튼튼하게 관리해 병에 대한 저항성을 키우고 병든 잎을 제거해 바람이 잘 통하도록 해야 합니다."
+                android:textSize="14sp"
+                android:fontFamily="@font/notosans_regular"
+                android:textColor="@color/gray5"
+                android:includeFontPadding="false"
+                />
+
+
     </LinearLayout>
 
 
     </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/comment_create"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="10dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        >
-
-        <ImageView
-            android:id="@+id/like_button_comment"
-            android:layout_margin="10dp"
-            android:padding="10dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/svg_like"
-            />
-
-        <LinearLayout
-            android:id="@+id/edittext_layout"
-            android:layout_width="match_parent"
-            android:background="@drawable/edittext_normal"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            android:layout_gravity="center_horizontal"
-            >
-
-            <EditText
-                android:id="@+id/edittext"
-                android:layout_width="match_parent"
-                android:hint="댓글을 입력해주세요"
-                android:layout_marginVertical="16dp"
-                android:layout_marginHorizontal="16dp"
-                android:textColor="@color/gray3"
-                android:textSize="14sp"
-                android:background="@drawable/background_white_rectangle"
-                android:layout_weight="1"
-                android:layout_height="26dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
