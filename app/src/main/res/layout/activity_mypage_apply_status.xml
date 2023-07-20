@@ -104,18 +104,20 @@
 
     </LinearLayout>
 
+    <ScrollView
+    android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
+        <LinearLayout
+            android:id="@+id/resume_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
 <!--    나머지 여기서부터-->
-    <LinearLayout
-        android:id="@+id/resume_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        >
 
-
-
-    </LinearLayout>
 
 </LinearLayout>

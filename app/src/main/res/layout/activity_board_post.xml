@@ -195,6 +195,7 @@
         >
 
         <ImageView
+            android:id="@+id/image"
             android:src="@drawable/svg_camera_gray"
             android:layout_width="80dp"
             android:layout_height="80dp"

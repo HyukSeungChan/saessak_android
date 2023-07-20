@@ -85,6 +85,14 @@ public interface RetrofitAPI {
     Call<ApiResponse> signFarmer(@Body FarmDTO farm);
 
     // Board
+
+    @POST(Constatnts_url.BOARD_CREATE)
+    @Multipart
+    Call<BoardRequestDTO> boardCreate(
+            @Part("boardRequestDto") BoardRequestDTO boardRequestDto,
+            @Part MultipartBody.Part file);
+
+    // 인기 게시글
     @GET(Constatnts_url.HOT_NOTICE)
     Call<ApiResponse> hotNotice();
 
@@ -155,11 +163,6 @@ public interface RetrofitAPI {
     @POST(Constatnts_url.RESUME_CREATE)
     Call<ResumeRequestDTO> resumeCreate(@Body ResumeRequestDTO resumeRequestDto);
 
-    // board
-    @Headers("Content-Type: multipart/form-data")
-    @Multipart
-    @POST(Constatnts_url.BOARD_CREATE)
-    Call<BoardRequestDTO> boardCreate(@Part BoardRequestDTO boardRequestDTO, @Part MultipartBody.Part image);
 
 //    @GET(Constatnts_url.BOARD_LIST)
 //    Call<BoardDetailDTO> boardList();
@@ -180,6 +183,12 @@ public interface RetrofitAPI {
 
     @POST(Constatnts_url.VIDEO_LIST)
     Call<ApiResponse> agricultureVideoList(@Query("type") String type);
+
+    // 마이페이지
+
+    // 일자리 지원현황
+    @GET(Constatnts_url.WORKER_APPLICATION_LIST)
+    Call<ApiResponse> workerApplicationList(@Query("userId") Long userId);
 
 //    @POST(Constatnts_url.LOGIN_SANGHYUK_URL)
 //    Call<Customer> loginSanghyuk(@Query("customerId") int customerId);

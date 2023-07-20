@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.ssaesak.Dto.VideoResponseDto;
 import com.example.ssaesak.Dto.WorkResumeResponseDto;
+import com.example.ssaesak.Dto.WorkResumeWorkerResponseDto;
 import com.example.ssaesak.Model.User;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
@@ -32,7 +33,9 @@ public class MypageApplyStatusActivity extends Activity {
     TextView cancel; //지원취소
 
     //열람, 미열람, 공고마감, 승인완료, 지원취소
-    List<WorkResumeResponseDto> dtos;
+    List<WorkResumeWorkerResponseDto> dtos;
+
+    LinearLayout card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,66 +44,100 @@ public class MypageApplyStatusActivity extends Activity {
         dtos = new ArrayList<>();
         getResume();
 
+
         this.before = findViewById(R.id.complete_after);
         this.before.setOnClickListener(v -> {
+            Log.e("before", "before Click");
             setList();
         });
         this.complete = findViewById(R.id.complete_apply);
         this.complete.setOnClickListener(v -> {
+            Log.e("complete", "complete Click");
             setListComplete();
         });
         this.cancel = findViewById(R.id.cancel);
         this.cancel.setOnClickListener(v -> {
+            Log.e("cancel", "cancel Click");
             setListCancel();
         });
     }
 
     private void setListComplete() {
-        List<WorkResumeResponseDto> list = new ArrayList<>();
-        for (WorkResumeResponseDto resume : dtos) {
+        List<WorkResumeWorkerResponseDto> list = new ArrayList<>();
+        for (WorkResumeWorkerResponseDto resume : dtos) {
             if(resume.getState().equals("승인완료")) {
                 list.add(resume);
+                Log.e("list", list.get(0)+"!!!!!!!!!");
             }
         }
+        setListState(list);
     }
 
     private void setListCancel() {
-        List<WorkResumeResponseDto> list = new ArrayList<>();
-        for (WorkResumeResponseDto resume : dtos) {
+        List<WorkResumeWorkerResponseDto> list = new ArrayList<>();
+        for (WorkResumeWorkerResponseDto resume : dtos) {
             if(resume.getState().equals("지원취소")) {
                 list.add(resume);
             }
+            setListState(list);
         }
     }
 
     //열람, 미열람, 공고마감, 승인완료, 지원취소
     private void setList() {
         LinearLayout layout = findViewById(R.id.resume_layout);
-        for (WorkResumeResponseDto resume : dtos) {
+        layout.removeAllViews();
+        for (WorkResumeWorkerResponseDto resume : dtos) {
             LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
-            LinearLayout card = null;
-            if(resume.getState().equals("열람")) {
+            if (resume.getState().equals("열람")) {
                 card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_after, layout, false);
-            } else if(resume.getState().equals("미열람")) {
+            } else if (resume.getState().equals("미열람")) {
                 card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_before, layout, false);
-            } else if(resume.getState().equals("공고마감")) {
+            } else if (resume.getState().equals("공고마감")) {
                 card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_end, layout, false);
-            } else if(resume.getState().equals("승인완료")) {
+            } else if (resume.getState().equals("승인완료")) {
                 card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_complete, layout, false);
             } else { // 지원취소
                 card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_cancel, layout, false);
             }
+
             card.setVisibility(View.VISIBLE);
-            ((TextView)card.findViewById(R.id.title)).setText(resume.getTitle());
-//            ((TextView)card.findViewById(R.id.address)).setText(resume.get());
-//            ((TextView)card.findViewById(R.id.title)).setText(resume.getTitle());
+            ((TextView) card.findViewById(R.id.title)).setText(resume.getTitle());
+            // 상태에 따라 추가적인 정보 설정
+            if (card.findViewById(R.id.address) != null) {
+                ((TextView) card.findViewById(R.id.address)).setText(resume.getAddress());
+            }
+            if (card.findViewById(R.id.date) != null) {
+                ((TextView) card.findViewById(R.id.date)).setText(resume.getDate());
+            }
+
             layout.addView(card);
+
+        }
+    }
+
+    private void setListState(List<WorkResumeWorkerResponseDto> list) {
+        LinearLayout layout = findViewById(R.id.resume_layout);
+        layout.removeAllViews();
+        for (WorkResumeWorkerResponseDto resume : list) {
+            LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+            if (resume.getState().equals("승인완료")) {
+                card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_complete, layout, false);
+            } else { // 지원취소
+                card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_cancel, layout, false);
+            }
+
+            card.setVisibility(View.VISIBLE);
+            ((TextView) card.findViewById(R.id.title)).setText(resume.getTitle());
+
+            layout.addView(card);
+
         }
     }
 
 
     private void getResume() {
-        Call<ApiResponse> call = MyRetrofit.getApiService().resume(User.getInstance().getUserId());
+        Call<ApiResponse> call = MyRetrofit.getApiService().workerApplicationList(User.getInstance().getUserId());
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -108,13 +145,13 @@ public class MypageApplyStatusActivity extends Activity {
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
-                String json = body.replace("\\", "");
+                String json = body.substring(1,body.length()-1).replace("\\", "");
                 Log.e("resume", "json !! : " + json);
 
 //                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
-                    dtos = Arrays.asList(mapper.readValue(json, WorkResumeResponseDto[].class));
+                    dtos = Arrays.asList(mapper.readValue(json, WorkResumeWorkerResponseDto[].class));
                     Log.e("resume", "video count !! : " + dtos.size());
-
+                    setList();
                 } catch (NullPointerException e) {
                     return;
                 } catch (Exception e) {
