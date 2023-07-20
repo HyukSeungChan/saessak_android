@@ -289,21 +289,20 @@ public class ResumeActivity extends AppCompatActivity {
         resumeRequestDTO.setCar(car);
         resumeRequestDTO.setUserId(userId);
 
-        Call<ApiResponse> call = MyRetrofit.getApiService().resumeCreate(resumeRequestDTO);
-        call.enqueue(new Callback<ApiResponse>() {
+        Call<ResumeDTO> call = MyRetrofit.getApiService().resumeCreate(resumeRequestDTO);
+        call.enqueue(new Callback<ResumeDTO>() {
             @Override
-            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+            public void onResponse(Call<ResumeDTO> call, Response<ResumeDTO> response) {
                 if (response.isSuccessful()) {
-                    ObjectMapper mapper = new ObjectMapper();
-                    String body = response.body().getData().toString();
-                    String json = body.substring(1, body.length()-1).replace("\\", "");
+//                    ObjectMapper mapper = new ObjectMapper();
+//                    String body = response.body().getData().toString();
+//                    String json = body.substring(1, body.length()-1).replace("\\", "");
                     try {
 
-                        ResumeDTO dtos = mapper.readValue(json, ResumeDTO.class);
-
-                        Log.e("workId", workId + "!!!!!!!!!!!!");
-                        Log.e("resumeId", dtos.getResumeId() + "!!!!!!!!!!!!");
-                        resumeId = dtos.getResumeId();
+//                        Log.e("workId", workId + "!!!!!!!!!!!!");
+//                        Log.e("resumeId", dtos.getResumeId() + "!!!!!!!!!!!!");
+                        resumeId = response.body().getResumeId();
+                        Log.e("resumeId", resumeId + "!!!!!!!");
 
                         workResumeCreate(workId, resumeId);
 
@@ -320,7 +319,7 @@ public class ResumeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t) {
+            public void onFailure(Call<ResumeDTO> call, Throwable t) {
                 // 통신 실패
                 Toast.makeText(getApplicationContext(), "이력서 생성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
             }

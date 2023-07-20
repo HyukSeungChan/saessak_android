@@ -57,7 +57,7 @@ public class CreateWorkNoticeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board);
+        setContentView(R.layout.activity_work_notice_create);
 
         title_length = findViewById(R.id.title_length);
         edittext_title = findViewById(R.id.edittext_title);

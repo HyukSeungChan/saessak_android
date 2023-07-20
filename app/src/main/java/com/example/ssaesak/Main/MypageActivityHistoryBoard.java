@@ -73,8 +73,6 @@ public class MypageActivityHistoryBoard extends Fragment {
             ((TextView)card.findViewById(R.id.agriculture)).setText(notice.getCrops());
             ((TextView)card.findViewById(R.id.title)).setText(notice.getTitle());
             ((TextView)card.findViewById(R.id.content)).setText(notice.getContent());
-            ((TextView)card.findViewById(R.id.like_count)).setText(notice.getLikes()+"");
-            ((TextView)card.findViewById(R.id.comment_count)).setText(notice.getReplies()+"");
             ((TextView)card.findViewById(R.id.time)).setText(notice.getUploadTime());
 
             card.setOnClickListener(v -> {
