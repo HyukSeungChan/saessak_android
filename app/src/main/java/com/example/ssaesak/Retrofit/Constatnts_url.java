@@ -97,6 +97,12 @@ public class Constatnts_url {
     // 이력서 작성
     public static final String RESUME_CREATE = "resume/";
 
+    // 일자리에 이력서 제출 (노동자)
+    public static final String WORK_RESUME_CREATE = "work/resume/";
+
+    // 자신의 이력서 확인
+    public static final String My_RESUME = "resume/";
+
 
 
     // study
@@ -107,7 +113,12 @@ public class Constatnts_url {
     public static final String WATCHING_VIDEO = "video/watching/";
     public static final String POST_WATCHING_VIDEO = "user/video/watch/";
 
-    // 마이페이지
+    // myPage
+
+    // 지원 현황 리스트
     public static final String WORKER_APPLICATION_LIST = "work/resume/worker/";
+
+    // 지원 취소
+    public static final String WORKER_APPLICATION_DELETE = "work/resume/worker/delete/";
 }
 

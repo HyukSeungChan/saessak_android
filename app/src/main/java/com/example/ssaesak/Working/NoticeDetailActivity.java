@@ -50,9 +50,11 @@ public class NoticeDetailActivity extends AppCompatActivity {
 
         workDetail(workId);
 
-        this.nextButton = findViewById(R.id.button_next);
-        this.nextButton.setOnClickListener(v -> {
+
+
+        nextButton.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), ResumeActivity.class);
+            intent.putExtra("workId", workId);
             startActivity(intent);
             overridePendingTransition(0, 0);
         });
@@ -83,6 +85,7 @@ public class NoticeDetailActivity extends AppCompatActivity {
         agriculture = findViewById(R.id.agriculture);
         list = findViewById(R.id.list);
         listDetail = findViewById(R.id.list_detail);
+        nextButton = findViewById(R.id.button_next);
     }
 
 

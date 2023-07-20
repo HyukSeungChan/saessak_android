@@ -1,10 +1,12 @@
 package com.example.ssaesak.Working;
 
+import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ssaesak.Dto.BoardDetailDTO;
 import com.example.ssaesak.Dto.ReplyRequestDTO;
 import com.example.ssaesak.Dto.ResumeRequestDTO;
+import com.example.ssaesak.Dto.WorkResumeRequestDTO;
 import com.example.ssaesak.Model.User;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
@@ -25,6 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -53,12 +57,18 @@ public class ResumeActivity extends AppCompatActivity {
 
     private float careerFloat;
 
+    private int resumeId;
+
+    private DatePickerDialog datePickerDialog;
+
 
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resume);
+
+        int workId = getIntent().getIntExtra("workId", 1);
 
         init();
 
@@ -78,30 +88,31 @@ public class ResumeActivity extends AppCompatActivity {
 
         for (Button chip : agricultureList) {
             chip.setOnClickListener(v -> {
-                agricultureChoice = chip.toString();
+                agricultureChoice = chip.getText().toString();
                 Log.e("agriculture", agricultureChoice);
             });
         }
 
         for (Button chip : cropsList) {
             chip.setOnClickListener(v -> {
-                cropsChoice = chip.toString();
+                cropsChoice = chip.getText().toString();
                 Log.e("crops", cropsChoice);
             });
         }
 
-        String[] acc = account.toString().split(" ");
+        String[] acc = account.getText().toString().split(" ");
         newestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 careerFloat = 99;
+                Log.e("newestButton", careerFloat + "!!!!");
             }
         });
 
         seniorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                careerFloat = Float.parseFloat(editTextCareerYear.toString() + "." + editTextCareerMonth.toString());
+                careerFloat = Float.parseFloat(editTextCareerYear.getText().toString() + "." + editTextCareerMonth.getText().toString());
             }
         });
 
@@ -109,6 +120,7 @@ public class ResumeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 car = "여";
+                Log.e("car여 입장", car + "!!!!");
             }
         });
 
@@ -116,25 +128,50 @@ public class ResumeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 car = "부";
+                Log.e("car부 입장", car + "!!!!");
             }
         });
+
+        editTextLayoutCareerDueStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("editTextLayoutCareerDueStart", "editTextLayoutCareerDueStart 입장!!");
+                showDatePickerDialog(1);
+            }
+        });
+
+        editTextLayoutCareerDueEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(2);
+            }
+        });
+
 
 
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resumeCreate(editTitle.toString(), gender.toString(), birth.toString(), phone.toString(),
-                        email.toString(), address.toString(), acc[0], acc[1], careerFloat, agricultureChoice,
-                        cropsChoice, editTextCareerDueStart.toString(), editTextCareerDueEnd.toString(),
-                        editTextCareerTimeStart.toString(), editTextCareerTimeEnd.toString(), car, User.getInstance().getUserId());
+                resumeCreate(editTitle.getText().toString(), gender.getText().toString(), birth.getText().toString(), phone.getText().toString(),
+                        email.getText().toString(),
+                        address.getText().toString(),
+                        acc[0],
+                        acc[1],
+                        careerFloat,
+                        agricultureChoice,
+                        cropsChoice, editTextCareerDueStart.getText().toString(), editTextCareerDueEnd.getText().toString(),
+                        editTextCareerTimeStart.getText().toString(), editTextCareerTimeEnd.getText().toString(), car, User.getInstance().getUserId());
+
             }
         });
+
     }
 
     private void init() {
         editTitle = findViewById(R.id.editTitle);
         gender = findViewById(R.id.gender);
+        email = findViewById(R.id.email);
         birth = findViewById(R.id.birth);
         phone = findViewById(R.id.phone);
         address = findViewById(R.id.address);
@@ -144,8 +181,9 @@ public class ResumeActivity extends AppCompatActivity {
         editTextCareerYear = findViewById(R.id.edittext_career_year);
         editTextCareerMonth = findViewById(R.id.edittext_career_month);
         editTextLayoutCareerDueStart = findViewById(R.id.edittext_layout_career_due_start);
+        editTextLayoutCareerDueEnd = findViewById(R.id.edittext_layout_due_end);
         editTextCareerDueStart = findViewById(R.id.edittext_career_due_start);
-        editTextCareerDueEnd = findViewById(R.id.edittext_career_due_start);
+        editTextCareerDueEnd = findViewById(R.id.edittext_career_due_end);
         editTextPay = findViewById(R.id.edittext_pay);
         editTextCareerTimeStart = findViewById(R.id.edittext_career_time_start);
         editTextCareerTimeEnd = findViewById(R.id.edittext_career_time_end);
@@ -195,6 +233,37 @@ public class ResumeActivity extends AppCompatActivity {
 //        });
 //    }
 
+    private void showDatePickerDialog(int dateType) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+        datePickerDialog = new DatePickerDialog(
+                this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        // Update the appropriate EditText with the selected date
+                        // Make sure to format the date as desired
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                        String selectedDate = year + "-" + (month + 1) + "-" + dayOfMonth;
+                        if (dateType == 1) {
+                            editTextCareerDueStart.setText(selectedDate);
+                        } else if (dateType == 2) {
+                            editTextCareerDueEnd.setText(selectedDate);
+                        }
+                    }
+                },
+                year,
+                month,
+                dayOfMonth
+        );
+
+        // Show the date picker dialog
+        datePickerDialog.show();
+    }
+
     // 이력서 생성
     private void resumeCreate(String title, String gender, String birth, String phone, String email, String address,
                               String account, String bank, float career, String agriculture, String crops, String workStartDay,
@@ -236,10 +305,42 @@ public class ResumeActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResumeRequestDTO> call, Throwable t) {
                 // 통신 실패
-                Toast.makeText(getApplicationContext(), "댓글 생성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "이력서 생성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+    // 일자리에 지원서 제출 (노동자)
+    private void workResumeCreate(int workId, int resumeId) {
+
+        WorkResumeRequestDTO workResumeRequestDTO = new WorkResumeRequestDTO();
+        workResumeRequestDTO.setWorkId(workId);
+        workResumeRequestDTO.setResumeId(resumeId);
+
+
+        Call<WorkResumeRequestDTO> call = MyRetrofit.getApiService().workResumeCreate(workResumeRequestDTO);
+        call.enqueue(new Callback<WorkResumeRequestDTO>() {
+            @Override
+            public void onResponse(Call<WorkResumeRequestDTO> call, Response<WorkResumeRequestDTO> response) {
+                if (response.isSuccessful()) {
+
+//                    Toast.makeText(getApplicationContext(), "이력서 성공적으로 생성되었습니다.", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+//                    Toast.makeText(getApplicationContext(), "이력서 생성에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WorkResumeRequestDTO> call, Throwable t) {
+                // 통신 실패
+                Toast.makeText(getApplicationContext(), "이력서 생성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // 내가 작성한 이력서 확인
 
 
 }

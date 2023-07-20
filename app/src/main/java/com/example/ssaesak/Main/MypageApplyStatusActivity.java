@@ -1,6 +1,7 @@
 package com.example.ssaesak.Main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,6 +33,8 @@ public class MypageApplyStatusActivity extends Activity {
     TextView complete; //승인완료
     TextView cancel; //지원취소
 
+    TextView applyCancel;
+
     //열람, 미열람, 공고마감, 승인완료, 지원취소
     List<WorkResumeWorkerResponseDto> dtos;
 
@@ -60,6 +63,7 @@ public class MypageApplyStatusActivity extends Activity {
             Log.e("cancel", "cancel Click");
             setListCancel();
         });
+
     }
 
     private void setListComplete() {
@@ -79,8 +83,8 @@ public class MypageApplyStatusActivity extends Activity {
             if(resume.getState().equals("지원취소")) {
                 list.add(resume);
             }
-            setListState(list);
         }
+        setListState(list);
     }
 
     //열람, 미열람, 공고마감, 승인완료, 지원취소
@@ -91,12 +95,34 @@ public class MypageApplyStatusActivity extends Activity {
             LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
             if (resume.getState().equals("열람")) {
                 card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_after, layout, false);
+                applyCancel = card.findViewById(R.id.cancel);
+                applyCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        workerApplicationDelete(resume.getWorkResumeId());
+                    }
+                });
             } else if (resume.getState().equals("미열람")) {
                 card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_before, layout, false);
+                applyCancel = card.findViewById(R.id.cancel);
+                applyCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        workerApplicationDelete(resume.getWorkResumeId());
+                    }
+                });
             } else if (resume.getState().equals("공고마감")) {
                 card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_end, layout, false);
+
             } else if (resume.getState().equals("승인완료")) {
                 card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_complete, layout, false);
+                applyCancel = card.findViewById(R.id.cancel);
+                applyCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        workerApplicationDelete(resume.getWorkResumeId());
+                    }
+                });
             } else { // 지원취소
                 card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_cancel, layout, false);
             }
@@ -123,12 +149,26 @@ public class MypageApplyStatusActivity extends Activity {
             LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
             if (resume.getState().equals("승인완료")) {
                 card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_complete, layout, false);
+                applyCancel = card.findViewById(R.id.cancel);
+                applyCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        workerApplicationDelete(resume.getWorkResumeId());
+                    }
+                });
             } else { // 지원취소
                 card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice_mypage_cancel, layout, false);
             }
 
             card.setVisibility(View.VISIBLE);
             ((TextView) card.findViewById(R.id.title)).setText(resume.getTitle());
+            // 상태에 따라 추가적인 정보 설정
+            if (card.findViewById(R.id.address) != null) {
+                ((TextView) card.findViewById(R.id.address)).setText(resume.getAddress());
+            }
+            if (card.findViewById(R.id.date) != null) {
+                ((TextView) card.findViewById(R.id.date)).setText(resume.getDate());
+            }
 
             layout.addView(card);
 
@@ -164,4 +204,50 @@ public class MypageApplyStatusActivity extends Activity {
             public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("get video failed", t.getMessage() + "");}
         });
     }
+
+    // 지원 취소
+    private void workerApplicationDelete(int workResumeId) {
+        Call<ApiResponse> call = MyRetrofit.getApiService().workerApplicationDelete(workResumeId);
+        Log.e("workerApplicationDelete", "workerApplicationDelete 입장!!");
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                Log.e("workerApplicationDelete", "workerApplicationDelete onResponse 입장!!");
+
+
+                try {
+                    Log.e("workerApplicationDelete", "workerApplicationDelete try 입장!!");
+                    Log.e("response.body", response.body().getData().toString() + "!!!!!!!!!!!");
+                    ObjectMapper mapper = new ObjectMapper();
+                    String body = response.body().getData().toString();
+                    String json = body.replace("\\", "");
+                    Log.e("resume", "json !! : " + body);
+
+
+//                    dtos = new ArrayList<>();
+//                    dtos = Arrays.asList(mapper.readValue(json, WorkResumeWorkerResponseDto[].class));
+//                    Intent intent = getIntent();
+//                    finish(); //현재 액티비티 종료 실시
+//                    overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
+//                    startActivity(intent); //현재 액티비티 재실행 실시
+//                    overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
+//                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
+
+
+                } catch (NullPointerException e) {
+                    Log.e("workerApplicationDelete", "workerApplicationDelete 널익셉션!!!!");
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    Log.e("workerApplicationDelete", "workerApplicationDelete 익셉션!!!!");
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t)  {Log.e("get video failed", t.getMessage() + "");}
+        });
+    }
+
+
 }
