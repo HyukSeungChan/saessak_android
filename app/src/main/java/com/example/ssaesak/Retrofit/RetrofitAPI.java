@@ -8,6 +8,7 @@ import com.example.ssaesak.Dto.FarmDTO;
 import com.example.ssaesak.Dto.ReplyRequestDTO;
 import com.example.ssaesak.Dto.ResumeRequestDTO;
 import com.example.ssaesak.Dto.UserVideoWatchRequestDto;
+import com.example.ssaesak.Dto.WorkResumeRequestDTO;
 import com.example.ssaesak.Dto.WorkerDTO;
 import com.example.ssaesak.Model.Farm;
 import com.example.ssaesak.Model.User;
@@ -163,6 +164,14 @@ public interface RetrofitAPI {
     @POST(Constatnts_url.RESUME_CREATE)
     Call<ResumeRequestDTO> resumeCreate(@Body ResumeRequestDTO resumeRequestDto);
 
+    // 일자리에 이력서 제출(노동자)
+    @POST(Constatnts_url.WORK_RESUME_CREATE)
+    Call<WorkResumeRequestDTO> workResumeCreate(@Body WorkResumeRequestDTO workResumeRequestDTO);
+
+    @GET(Constatnts_url.My_RESUME)
+    Call<ApiResponse> myResume(@Query("userId") Long userId);
+
+
 
 //    @GET(Constatnts_url.BOARD_LIST)
 //    Call<BoardDetailDTO> boardList();
@@ -184,11 +193,15 @@ public interface RetrofitAPI {
     @POST(Constatnts_url.VIDEO_LIST)
     Call<ApiResponse> agricultureVideoList(@Query("type") String type);
 
-    // 마이페이지
+    // myPage
 
     // 일자리 지원현황
     @GET(Constatnts_url.WORKER_APPLICATION_LIST)
     Call<ApiResponse> workerApplicationList(@Query("userId") Long userId);
+
+    // 일자리 지원 취소
+    @GET(Constatnts_url.WORKER_APPLICATION_DELETE)
+    Call<ApiResponse> workerApplicationDelete(@Query("workResumeId") int workResumeId);
 
 //    @POST(Constatnts_url.LOGIN_SANGHYUK_URL)
 //    Call<Customer> loginSanghyuk(@Query("customerId") int customerId);
