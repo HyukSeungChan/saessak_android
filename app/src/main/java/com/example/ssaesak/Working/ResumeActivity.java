@@ -1,6 +1,7 @@
 package com.example.ssaesak.Working;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -154,16 +155,25 @@ public class ResumeActivity extends AppCompatActivity {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resumeCreate(editTitle.getText().toString(), gender.getText().toString(), birth.getText().toString(), phone.getText().toString(),
-                        email.getText().toString(),
-                        address.getText().toString(),
-                        acc[0],
-                        acc[1],
-                        careerFloat,
-                        agricultureChoice,
-                        cropsChoice, editTextCareerDueStart.getText().toString(), editTextCareerDueEnd.getText().toString(),
-                        editTextCareerTimeStart.getText().toString(), editTextCareerTimeEnd.getText().toString(), car, User.getInstance().getUserId());
 
+                try {
+                    resumeCreate(editTitle.getText().toString(), gender.getText().toString(), birth.getText().toString(), phone.getText().toString(),
+                            email.getText().toString(),
+                            address.getText().toString(),
+                            acc[0],
+                            acc[1],
+                            careerFloat,
+                            agricultureChoice,
+                            cropsChoice, editTextCareerDueStart.getText().toString(), editTextCareerDueEnd.getText().toString(),
+                            editTextCareerTimeStart.getText().toString(), editTextCareerTimeEnd.getText().toString(), car, User.getInstance().getUserId());
+
+                    Toast.makeText(getApplicationContext(), "지원이 완료되었습니다.", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(new Intent(getBaseContext(), WorkingWorkerActivity.class)));
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "다시 한번 시도해주세요", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(new Intent(getBaseContext(), WorkingWorkerActivity.class)));
+                    finish();
+                }
             }
         });
 

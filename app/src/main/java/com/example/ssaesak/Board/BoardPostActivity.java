@@ -85,6 +85,8 @@ public class BoardPostActivity extends AppCompatActivity {
         postComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (title.getText().toString() == null || title.getText().toString().equals("") || title.getText().toString().equals(null)
+                || content.getText().toString() == null || content.getText().toString().equals("") || content.getText().toString().equals(null))
                 boardCreate(title.getText().toString(), content.getText().toString(), User.getInstance().getUserId());
             }
         });
@@ -139,7 +141,10 @@ public class BoardPostActivity extends AppCompatActivity {
                     Log.e("response", "response good" + response.body());
 
                     // 글 생성 성공
-//                    Toast.makeText(getApplicationContext(), "글이 성공적으로 생성되었습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "글이 성공적으로 생성되었습니다.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), BoardActivity.class));
+                    finish();
+
                     // 글 목록을 갱신하는 등의 작업 수행
                     // ...
                 } else {

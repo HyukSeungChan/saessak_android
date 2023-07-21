@@ -144,7 +144,7 @@
                     }
 
                     if (!response.isSuccessful()) {
-                        Toast.makeText( getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                        Toast.makeText( getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT).show();
                         Log.e("연결이 비정상적 : ", "error code : " + response.code());
                         return;
                     }

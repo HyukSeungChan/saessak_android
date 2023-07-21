@@ -14,12 +14,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.ssaesak.Adapter.AgricultureAdapter;
 import com.example.ssaesak.Adapter.CareerAdapter;
 import com.example.ssaesak.Adapter.CropAdapter;
 import com.example.ssaesak.Board.BoardActivity;
 import com.example.ssaesak.Board.BoardDetailActivity;
+import com.example.ssaesak.Board.BoardHelpActivity;
+import com.example.ssaesak.Board.BoardStoryActivity;
 import com.example.ssaesak.Dto.WorkDTO;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
 import com.example.ssaesak.Farmgroup.FarmgroupFarmerActivity;
@@ -34,6 +39,8 @@ import com.example.ssaesak.Study.StudyActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +51,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class WorkingFarmerActivity extends AppCompatActivity {
+    private TabLayout tabLayout;
+    private ViewPager2 viewPager;
+
+    private LinearLayout movePost;
 //        implements BottomsheetAreaDialog.BottomSheetAreaListener,BottomsheetCropDialog.BottomSheetCropListener,  BottomsheetCareerDialog.BottomSheetCareerListener, BottomsheetAgricultureDialog.BottomSheetAgricultureListener {
 //public class WorkingActivity  extends Activity {
 
@@ -74,6 +85,27 @@ public class WorkingFarmerActivity extends AppCompatActivity {
 //        filter = "";
 
 
+        tabLayout = findViewById(R.id.layout_tab);
+        viewPager = findViewById(R.id.pager_content);
+        movePost = findViewById(R.id.button_post);
+
+        // ViewPager2 어댑터 설정
+        WorkingFarmerActivity.MyPagerAdapter pagerAdapter = new WorkingFarmerActivity.MyPagerAdapter(this);
+        viewPager.setAdapter(pagerAdapter);
+
+        // TabLayout과 ViewPager2 연동
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+            // 각 탭의 타이틀 설정 (TabLayout에 탭의 이름 설정)
+            switch (position) {
+                case 0:
+                    tab.setText("농촌 이야기");
+                    break;
+                case 1:
+                    tab.setText("도와줘요");
+                    break;
+            }
+        }).attach();
+
 
 //        for (Button button : chipList) {
 //            button.setOnClickListener(new View.OnClickListener() {
@@ -101,90 +133,12 @@ public class WorkingFarmerActivity extends AppCompatActivity {
 
         List<CardWorkNotice> cardViewList = new ArrayList<>();
         cardViewList.add(cardView);
-//        this.card = (LinearLayout) layoutInflater.inflate(R.layout.card_work_notice, null, false);
-
-
 
         this.layoutInflater = LayoutInflater.from(getBaseContext());
         this.noticeList = findViewById(R.id.layout_notice);
 
-//        workList(User.getInstance().getUserId());
-
-
-//        this.layoutInflater = LayoutInflater.from(getBaseContext());
-//        workList(User.getInstance().getUserId());
-//        CardWorkNotice cardView = new CardWorkNotice(getBaseContext());
-//
-//        List<CardWorkNotice> cardViewList = new ArrayList<>();
-//        cardViewList.add(cardView);
-//
-//        this.layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-//        this.card = (LinearLayout)layoutInflater.inflate(R.layout.card_work_notice, this.noticeList, false);
-//        this.card.setVisibility(View.VISIBLE);
-//        this.card.setOnClickListener(v -> {
-//            Intent intent = new Intent(getBaseContext(), NoticeDetailActivity.class);
-//            startActivity(intent);
-//            overridePendingTransition(0, 0);
-//        });
-//
-//        this.card.findViewById(R.id.bookmark).setOnClickListener(v -> {
-//            if(this.card.findViewById(R.id.bookmark).isSelected()) {
-//                Log.e("card", "press cancel!!");
-//                this.card.findViewById(R.id.bookmark).setSelected(false);
-//                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark, null));
-//            } else {
-//                Log.e("card", "press !!");
-//                this.card.findViewById(R.id.bookmark).setSelected(true);
-//                this.card.findViewById(R.id.bookmark).setBackground(getResources().getDrawable(R.drawable.svg_bookmark_select, null));
-//            }
-//        });
-//
-//        layout.addView(card);
-//
-//        // 스피너에 붙일 어댑터 초기화
-//        adapterAgriculture = new AgricultureAdapter(this, new ArrayList<>(Arrays.asList(Constants.agricultureList)));
-//        adapterCrop = new CropAdapter(this, new ArrayList<>(Arrays.asList(Constants.cropList)));
-//        adapterCareer = new CareerAdapter(this, new ArrayList<>(Arrays.asList(Constants.careerList)));
-//
-//        spinnerAgriculture.setAdapter(adapterAgriculture);
-//        spinnerCrop.setAdapter(adapterCrop);
-//        spinnerCareer.setAdapter(adapterCareer);
-
-//        // 스피너 클릭 리스너
-//        spinnerAgriculture.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedAgriculture = adapterAgriculture.getItem();
-////                String otherItem = (String) spinner.getItemAtPosition(position);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {}
-//        });
-//
-//        spinnerCrop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedCrop = adapterCrop.getItem();
-////                String otherItem = (String) spinner.getItemAtPosition(position);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {}
-//        });
-//
-//
-//        spinnerCareer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedCareer = adapterCareer.getItem();
-////                String otherItem = (String) spinner.getItemAtPosition(position);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {}
-//        });
-
+//        buttonPost = findViewById(R.id.button_post);
+        Log.e("workfarmer", "농장주 일자리터 화면 시작!!");
         buttonPost.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), CreateWorkNoticeActivity.class);
             startActivity(intent);
@@ -492,4 +446,31 @@ public class WorkingFarmerActivity extends AppCompatActivity {
 //        });
 //    }
 
+
+    // ViewPager 어댑터 정의
+    private static class MyPagerAdapter extends FragmentStateAdapter {
+        public MyPagerAdapter(@NonNull AppCompatActivity activity) {
+            super(activity);
+        }
+
+        @NonNull
+        @Override
+        public Fragment createFragment(int position) {
+            // 각 탭에 대응하는 프래그먼트를 반환
+            switch (position) {
+                case 0:
+                    return new WorkingRegisterNoticeActivity();
+                case 1:
+                    return new WorkingRegisterApplicationActivity();
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            // 탭의 개수 반환
+            return 2;
+        }
+    }
 }

@@ -113,7 +113,7 @@ public class SignupNameActivity extends Activity {
             public void onClick(View view) {
 
                 if (editText.getText().toString().length() < 1) {
-                    Toast.makeText(getBaseContext(), "이름을 입력해주세요", Toast.LENGTH_SHORT);
+                    Toast.makeText(getBaseContext(), "이름을 입력해주세요", Toast.LENGTH_SHORT).show();
                 } else {
                     User.getInstance().setName(editText.getText().toString());
                     startActivity(new Intent(getBaseContext(), SignupProfileActivity.class));

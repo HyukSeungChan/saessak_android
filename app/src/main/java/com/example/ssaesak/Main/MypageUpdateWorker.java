@@ -53,19 +53,19 @@ public class MypageUpdateWorker  extends Activity {
         nameButton.setOnClickListener(v -> {
             User.getInstance().setName(name.getText().toString());
             signup();
-            Toast.makeText(getApplicationContext(), "변경사항이 저장되었습니다.", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(), "변경사항이 저장되었습니다.", Toast.LENGTH_SHORT).show();
         });
         phoneButton = findViewById(R.id.update_phone);
         phoneButton.setOnClickListener(v -> {
             User.getInstance().setPhone(phone.getText().toString());
             signup();
-            Toast.makeText(getApplicationContext(), "변경사항이 저장되었습니다.", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(), "변경사항이 저장되었습니다.", Toast.LENGTH_SHORT).show();
         });
         emailButton = findViewById(R.id.update_email);
         emailButton.setOnClickListener(v -> {
 //            User.getInstance().setName(name.getText().toString());
             signup();
-            Toast.makeText(getApplicationContext(), "변경사항이 저장되었습니다.", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(), "변경사항이 저장되었습니다.", Toast.LENGTH_SHORT).show();
         });
 
 
