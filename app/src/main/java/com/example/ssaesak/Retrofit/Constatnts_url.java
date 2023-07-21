@@ -103,6 +103,8 @@ public class Constatnts_url {
     // 내가 등록한 공고 (농장주)
     public static final String MY_WORK_NOTICE = "work/farm/";
 
+    // 농장에 접수된 지원서 확인 (농장주)
+    public static final String MY_FARM_APPLICATION = "work/resume/farm/";
 
 
 

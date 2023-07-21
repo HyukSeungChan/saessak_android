@@ -154,4 +154,6 @@ public class WorkingNoticeFarmerActivity extends AppCompatActivity {
             return 2;
         }
     }
+
+
 }

@@ -186,6 +186,9 @@ public interface RetrofitAPI {
     @GET(Constatnts_url.WORK_DETAIL)
     Call<ApiResponse> workDetail(@Query("workId") int workId);
 
+    @GET(Constatnts_url.MY_FARM_APPLICATION)
+    Call<ApiResponse> myFarmApplication(@Query("userId") Long userId);
+
     // resume
 
     // 이력서 작성

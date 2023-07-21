@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.ssaesak.Board.BoardDetailActivity;
 import com.example.ssaesak.Dto.BoardDetailDTO;
+import com.example.ssaesak.Dto.WorkResumeResponseDto;
+import com.example.ssaesak.Model.User;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
@@ -56,7 +58,7 @@ public class WorkingRegisterApplicationActivity extends Fragment {
     }
 
 
-    private void setList(List<BoardDetailDTO> list) {
+    private void setList(List<WorkResumeResponseDto> list) {
         LinearLayout linearLayout = view.findViewById(R.id.layout_notice);
         linearLayout.removeAllViews();
 
@@ -65,18 +67,18 @@ public class WorkingRegisterApplicationActivity extends Fragment {
 
 
 //        CardBoardHelpImage card;
-        for (BoardDetailDTO notice : list) {
+        for (WorkResumeResponseDto notice : list) {
             LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
-            LinearLayout card = (LinearLayout)layoutInflater.inflate(R.layout.card_board_story_image, linearLayout, false);
+            LinearLayout card = (LinearLayout)layoutInflater.inflate(R.layout.card_work_notice, linearLayout, false);
             card.setVisibility(View.VISIBLE);
             ((TextView)card.findViewById(R.id.title)).setText(notice.getTitle());
-            ((TextView)card.findViewById(R.id.content)).setText(notice.getContent());
-            ((TextView)card.findViewById(R.id.comment_count)).setText(notice.getReplies()+"");
-            ((TextView)card.findViewById(R.id.time)).setText(notice.getUploadTime());
+            ((TextView)card.findViewById(R.id.content)).setText(notice.getName());
+            ((TextView)card.findViewById(R.id.comment_count)).setText(notice.getGender());
+            ((TextView)card.findViewById(R.id.time)).setText(notice.getWorkPeriod());
 
             card.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), BoardDetailActivity.class);
-                intent.putExtra("boardId", notice.getBoardId());
+                Intent intent = new Intent(getActivity(), NoticeDetailActivity.class);
+//                intent.putExtra("boardId", notice.getBoardId());
                 startActivity(intent);
             });
 
@@ -105,7 +107,7 @@ public class WorkingRegisterApplicationActivity extends Fragment {
     private void getAllNotice() {
         // 초기화 필요
 
-        Call<ApiResponse> call = MyRetrofit.getApiService().noticeStoryList();
+        Call<ApiResponse> call = MyRetrofit.getApiService().myFarmApplication(User.getInstance().getUserId());
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -114,8 +116,11 @@ public class WorkingRegisterApplicationActivity extends Fragment {
                 String json = body.substring(1, body.length()-1).replace("\\", "");
                 Log.e("board", "json -> " + json);
                 try {
+                    if (response.body().getData().toString() == null) {
+                        return;
+                    }
 //                    List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
-                    setList(Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class)));
+                    setList(Arrays.asList(mapper.readValue(json, WorkResumeResponseDto[].class)));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

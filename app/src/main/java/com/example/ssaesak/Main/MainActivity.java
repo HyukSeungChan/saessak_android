@@ -125,7 +125,7 @@ import retrofit2.Response;
 
         LinearLayout support_tab = findViewById(R.id.support_tab);
         support_tab.setOnClickListener(v -> {
-            startActivity(new Intent(getBaseContext(), ));
+//            startActivity(new Intent(getBaseContext(), ));
         });
 
         this.initBottomNavigation();
