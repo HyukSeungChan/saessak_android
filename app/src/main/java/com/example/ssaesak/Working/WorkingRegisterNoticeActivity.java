@@ -49,7 +49,7 @@ public class WorkingRegisterNoticeActivity extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        this.view = inflater.inflate(R.layout.activity_work_notice_farmer, container, false);
+        this.view = inflater.inflate(R.layout.activity_working_farm, container, false);
 
         Log.e("Board", "story tab start!!");
         getAllNotice();
@@ -59,7 +59,7 @@ public class WorkingRegisterNoticeActivity extends Fragment {
 
 
     private void setList(List<WorkDTO> list) {
-        LinearLayout linearLayout = view.findViewById(R.id.pager_content);
+        LinearLayout linearLayout = view.findViewById(R.id.layout_notice);
         linearLayout.removeAllViews();
 
         Log.e("board", "list size : " + list.size());

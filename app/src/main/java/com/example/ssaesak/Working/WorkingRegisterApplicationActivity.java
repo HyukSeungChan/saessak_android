@@ -47,7 +47,7 @@ public class WorkingRegisterApplicationActivity extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        this.view = inflater.inflate(R.layout.activity_board_story, container, false);
+        this.view = inflater.inflate(R.layout.activity_working_farm, container, false);
 
         Log.e("Board", "story tab start!!");
         getAllNotice();

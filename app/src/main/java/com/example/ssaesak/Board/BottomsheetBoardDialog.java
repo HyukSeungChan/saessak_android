@@ -22,7 +22,7 @@ public class BottomsheetBoardDialog extends BottomSheetDialogFragment {
 
     private BottomSheetCareerListener bottomSheetCareerListener;
 
-    private String filter;
+    private String select;
 
     @NonNull
     @Override
