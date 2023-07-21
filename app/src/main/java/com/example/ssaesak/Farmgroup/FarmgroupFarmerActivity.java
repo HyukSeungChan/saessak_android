@@ -31,7 +31,6 @@ import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Study.StudyActivity;
-import com.example.ssaesak.Working.WorkingFarmerActivity;
 import com.example.ssaesak.Working.WorkingNoticeFarmerActivity;
 import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -64,7 +64,7 @@ public class WorkingNoticeFarmerActivity extends AppCompatActivity {
         Menu menu = navigation.getMenu();
         for (int i = 0; i < navigation.getMenu().size(); i++) {
             MenuItem menuItem = menu.getItem(i);
-            if (menuItem.getItemId() == R.id.fragment_notice) {menuItem.setChecked(true);}
+            if (menuItem.getItemId() == R.id.fragment_working) {menuItem.setChecked(true);}
         }
 
         navigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -107,8 +107,8 @@ public class WorkingNoticeFarmerActivity extends AppCompatActivity {
         movePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),BoardPostActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(),CreateWorkNoticeActivity.class);
+                startActivity(intent);
             }
         });
 

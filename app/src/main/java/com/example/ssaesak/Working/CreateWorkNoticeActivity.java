@@ -204,7 +204,7 @@ public class CreateWorkNoticeActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Log.e("response", "response good" + response.body());
                         Toast.makeText(getApplicationContext(), "지원이 완료되었습니다.", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(new Intent(getBaseContext(), WorkingFarmerActivity.class)));
+                        startActivity(new Intent(new Intent(getBaseContext(), WorkingNoticeFarmerActivity.class)));
                         finish();
                         // 글 생성 성공
 //                    Toast.makeText(getApplicationContext(), "글이 성공적으로 생성되었습니다.", Toast.LENGTH_SHORT).show();
@@ -226,7 +226,7 @@ public class CreateWorkNoticeActivity extends AppCompatActivity {
             });
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "다시 한번 시도해주세요", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(new Intent(getBaseContext(), WorkingFarmerActivity.class)));
+            startActivity(new Intent(new Intent(getBaseContext(), WorkingNoticeFarmerActivity.class)));
             finish();
         }
 
