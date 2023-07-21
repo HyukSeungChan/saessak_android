@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.ssaesak.Board.BoardActivity;
 import com.example.ssaesak.Board.BoardHelpActivity;
 import com.example.ssaesak.Board.BoardStoryActivity;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
@@ -75,12 +76,12 @@ public class WorkingNoticeFarmerActivity extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_working) {
-                    startActivity(new Intent(getApplicationContext(), WorkingWorkerActivity.class));
-                    overridePendingTransition(0, 0);
-                    return true;
+//                    startActivity(new Intent(getApplicationContext(), WorkingWorkerActivity.class));
+//                    overridePendingTransition(0, 0);
+//                    return true;
                 } else if (item.getItemId() == R.id.fragment_farm) {
 
-                    if(UserFarmList.getInstance().size() < 1) {
+                    if (UserFarmList.getInstance().size() < 1) {
                         startActivity(new Intent(getApplicationContext(), FarmgroupNullActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
@@ -90,8 +91,8 @@ public class WorkingNoticeFarmerActivity extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_notice) {
-//                    startActivity(new Intent(getApplicationContext(), BoardActivity.class));
-//                    overridePendingTransition(0, 0);
+                    startActivity(new Intent(getApplicationContext(), BoardActivity.class));
+                    overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_study) {
                     startActivity(new Intent(getApplicationContext(), StudyActivity.class));
@@ -100,6 +101,7 @@ public class WorkingNoticeFarmerActivity extends AppCompatActivity {
                 } else {
                     return false;
                 }
+                return false;
             }
         });
 
