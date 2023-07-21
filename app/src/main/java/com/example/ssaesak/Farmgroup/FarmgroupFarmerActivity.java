@@ -32,6 +32,7 @@ import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Study.StudyActivity;
 import com.example.ssaesak.Working.WorkingFarmerActivity;
+import com.example.ssaesak.Working.WorkingNoticeFarmerActivity;
 import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -114,9 +115,9 @@ public class FarmgroupFarmerActivity extends Activity {
                     ((TextView)video.findViewById(R.id.task_name)).setText(todo.getTask());
                     video.setVisibility(View.VISIBLE);
                     linearLayout.addView(video);
-                    Toast.makeText(getApplicationContext(), "일감추가 완료", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "일감추가 완료", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "일감을 입력해주세요", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "일감을 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -213,20 +214,19 @@ public class FarmgroupFarmerActivity extends Activity {
                 } else if (item.getItemId() == R.id.fragment_working) {
 
                     if(User.getInstance().getType().equals("도시농부")) {
-                        Intent intent = new Intent(getApplicationContext(), WorkingWorkerActivity.class);
+                    Log.e("type", User.getInstance().getType() + "!!!!!!!!!!!!!!!");
+                    Intent intent = new Intent(getApplicationContext(), WorkingWorkerActivity.class);
 //                    intent.putExtra("bottom", );
-                        startActivity(intent);
-                        overridePendingTransition(0, 0);
-                        return true;
-                    } else {
-                        Intent intent = new Intent(getApplicationContext(), WorkingFarmerActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    return true;
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), WorkingNoticeFarmerActivity.class);
 //                    intent.putExtra("bottom", );
-                        startActivity(intent);
-                        overridePendingTransition(0, 0);
-                        return true;
-                    }
-
-
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
                 } else if (item.getItemId() == R.id.fragment_farm) {
 //                    startActivity(new Intent(getApplicationContext(), FarmgroupActivity.class));
 //                    overridePendingTransition(0, 0);

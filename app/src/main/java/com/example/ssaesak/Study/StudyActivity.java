@@ -31,6 +31,7 @@ import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.Constatnts_url;
 import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Working.WorkingFarmerActivity;
+import com.example.ssaesak.Working.WorkingNoticeFarmerActivity;
 import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -139,13 +140,14 @@ public class StudyActivity extends Activity {
                 } else if (item.getItemId() == R.id.fragment_working) {
 
                     if(User.getInstance().getType().equals("도시농부")) {
+                        Log.e("type", User.getInstance().getType() + "!!!!!!!!!!!!!!!");
                         Intent intent = new Intent(getApplicationContext(), WorkingWorkerActivity.class);
 //                    intent.putExtra("bottom", );
                         startActivity(intent);
                         overridePendingTransition(0, 0);
                         return true;
                     } else {
-                        Intent intent = new Intent(getApplicationContext(), WorkingFarmerActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), WorkingNoticeFarmerActivity.class);
 //                    intent.putExtra("bottom", );
                         startActivity(intent);
                         overridePendingTransition(0, 0);

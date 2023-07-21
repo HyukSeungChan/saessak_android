@@ -6,10 +6,23 @@
     android:gravity="center"
     >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "새싹농부"
+        android:fontFamily="@font/notosans_bold"
+        android:textColor="@color/sea_green_dark1"
+        android:textSize="36sp"
+        android:layout_marginBottom="56dp"
+        android:layout_marginTop="153dp"
+        android:textAlignment="center"
+        android:includeFontPadding="false"
+        />
+
     <ImageView
-        android:src="@drawable/temp_img"
-        android:layout_width="103dp"
-        android:layout_height="103dp"
+        android:src="@drawable/ic_image_home"
+        android:layout_width="185dp"
+        android:layout_height="185dp"
         android:layout_marginBottom="59dp"
         android:scaleType="centerCrop"
         />
@@ -22,6 +35,7 @@
         android:textColor="@color/gray6"
         android:textSize="20sp"
         android:textAlignment="center"
+        android:includeFontPadding="false"
         />
 
     <ImageButton

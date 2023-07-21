@@ -46,6 +46,7 @@ import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Study.StudyActivity;
 import com.example.ssaesak.Working.WorkingFarmerActivity;
+import com.example.ssaesak.Working.WorkingNoticeFarmerActivity;
 import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -571,7 +572,7 @@ import retrofit2.Response;
                         overridePendingTransition(0, 0);
                         return true;
                     } else {
-                        Intent intent = new Intent(getApplicationContext(), WorkingFarmerActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), WorkingNoticeFarmerActivity.class);
 //                    intent.putExtra("bottom", );
                         startActivity(intent);
                         overridePendingTransition(0, 0);

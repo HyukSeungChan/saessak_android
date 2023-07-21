@@ -1,6 +1,7 @@
 package com.example.ssaesak.Working;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -135,6 +137,7 @@ public class CreateWorkNoticeActivity extends AppCompatActivity {
         button_next = findViewById(R.id.button_next);
         button_next.setOnClickListener(v -> {
             workNoticeFarmer();
+
         });
 
     }
@@ -167,57 +170,65 @@ public class CreateWorkNoticeActivity extends AppCompatActivity {
 
     private void workNoticeFarmer() {
 
-        WorkRequestDto workRequestDto = new WorkRequestDto();
-        workRequestDto.setFarmId(Farm.getInstance().getFarmId());
-        workRequestDto.setTitle(edittext_title.getText().toString());
+        try {
+
+            WorkRequestDto workRequestDto = new WorkRequestDto();
+            workRequestDto.setFarmId(Farm.getInstance().getFarmId());
+            if (Farm.getInstance().getFarmId() == 0) workRequestDto.setFarmId(1);
+            workRequestDto.setTitle(edittext_title.getText().toString());
 //        workRequestDto.setContent();
-        workRequestDto.setRecruitmentStart(edittext_notice_due_start.getText().toString());
-        workRequestDto.setRecruitmentEnd(edittext_notice_due_end.getText().toString());
-        workRequestDto.setCareer(1.2f);
-        workRequestDto.setRecruitmentPerson(Integer.parseInt(edittext_people.getText().toString()));
-        workRequestDto.setQualification(edittext_quality.getText().toString());
-        workRequestDto.setPreferentialTreatment(edittext_good.getText().toString());
-        workRequestDto.setWorkStartTime(edittext_want_due_start.getText().toString());
-        workRequestDto.setWorkEndTime(edittext_want_due_end.getText().toString());
-        workRequestDto.setDayWage(Integer.parseInt(edittext_pay.getText().toString()));
+            workRequestDto.setRecruitmentStart(edittext_notice_due_start.getText().toString());
+            workRequestDto.setRecruitmentEnd(edittext_notice_due_end.getText().toString());
+            workRequestDto.setCareer(1.2f);
+            workRequestDto.setRecruitmentPerson(Integer.parseInt(edittext_people.getText().toString()));
+            workRequestDto.setQualification(edittext_quality.getText().toString());
+            workRequestDto.setPreferentialTreatment(edittext_good.getText().toString());
+            workRequestDto.setWorkStartTime(edittext_want_due_start.getText().toString());
+            workRequestDto.setWorkEndTime(edittext_want_due_end.getText().toString());
+            workRequestDto.setDayWage(Integer.parseInt(edittext_pay.getText().toString()));
 
-        Log.e("farmId", workRequestDto.getFarmId()+"!!!!!!!!");
-        Log.e("title", workRequestDto.getRecruitmentStart()+"!!!!!!!!");
-        Log.e("RecruimentStart", workRequestDto.getRecruitmentEnd()+"!!!!!!!!");
-        Log.e("RecruimentEnd", workRequestDto.getFarmId()+"!!!!!!!!");
-        Log.e("Qual", workRequestDto.getQualification()+"!!!!!!!!");
-        Log.e("startTime", workRequestDto.getWorkStartTime()+"!!!!!!!!");
-        Log.e("endTime", workRequestDto.getWorkEndTime()+"!!!!!!!!");
-        Log.e("dayWage", workRequestDto.getDayWage()+"!!!!!!!!");
+            Log.e("farmId", workRequestDto.getFarmId() + "!!!!!!!!");
+            Log.e("title", workRequestDto.getRecruitmentStart() + "!!!!!!!!");
+            Log.e("RecruimentStart", workRequestDto.getRecruitmentEnd() + "!!!!!!!!");
+            Log.e("RecruimentEnd", workRequestDto.getFarmId() + "!!!!!!!!");
+            Log.e("Qual", workRequestDto.getQualification() + "!!!!!!!!");
+            Log.e("startTime", workRequestDto.getWorkStartTime() + "!!!!!!!!");
+            Log.e("endTime", workRequestDto.getWorkEndTime() + "!!!!!!!!");
+            Log.e("dayWage", workRequestDto.getDayWage() + "!!!!!!!!");
 
 
-
-        Call<WorkRequestDto> call = MyRetrofit.getApiService().workNoticeFarmer(workRequestDto);
-        call.enqueue(new Callback<WorkRequestDto>() {
-            @Override
-            public void onResponse(Call<WorkRequestDto> call, Response<WorkRequestDto> response) {
-                if (response.isSuccessful()) {
-                    Log.e("response", "response good" + response.body());
-
-                    // 글 생성 성공
+            Call<WorkRequestDto> call = MyRetrofit.getApiService().workNoticeFarmer(workRequestDto);
+            call.enqueue(new Callback<WorkRequestDto>() {
+                @Override
+                public void onResponse(Call<WorkRequestDto> call, Response<WorkRequestDto> response) {
+                    if (response.isSuccessful()) {
+                        Log.e("response", "response good" + response.body());
+                        Toast.makeText(getApplicationContext(), "지원이 완료되었습니다.", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(new Intent(getBaseContext(), WorkingFarmerActivity.class)));
+                        finish();
+                        // 글 생성 성공
 //                    Toast.makeText(getApplicationContext(), "글이 성공적으로 생성되었습니다.", Toast.LENGTH_SHORT).show();
-                    // 글 목록을 갱신하는 등의 작업 수행
-                    // ...
-                } else {
-                    Log.e("response", "response bad" + response.body());
-                    // 글 생성 실패
+                        // 글 목록을 갱신하는 등의 작업 수행
+                        // ...
+                    } else {
+                        Log.e("response", "response bad" + response.body());
+                        // 글 생성 실패
 //                    Toast.makeText(getApplicationContext(), "글 생성에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<WorkRequestDto> call, Throwable t) {
-                Log.e("fail", t.getMessage());
-                // 통신 실패
+                @Override
+                public void onFailure(Call<WorkRequestDto> call, Throwable t) {
+                    Log.e("fail", t.getMessage());
+                    // 통신 실패
 //                Toast.makeText(getApplicationContext(), "글 생성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
-            }
-        });
-
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "다시 한번 시도해주세요", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(new Intent(getBaseContext(), WorkingFarmerActivity.class)));
+            finish();
+        }
 
     }
 

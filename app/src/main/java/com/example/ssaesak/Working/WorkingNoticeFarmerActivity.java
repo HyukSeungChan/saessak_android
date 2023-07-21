@@ -36,7 +36,7 @@ public class WorkingNoticeFarmerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board);
+        setContentView(R.layout.activity_work_notice_farmer);
 
         tabLayout = findViewById(R.id.layout_tab);
         viewPager = findViewById(R.id.pager_content);
@@ -138,9 +138,9 @@ public class WorkingNoticeFarmerActivity extends AppCompatActivity {
             // 각 탭에 대응하는 프래그먼트를 반환
             switch (position) {
                 case 0:
-                    return new BoardStoryActivity();
+                    return new WorkingRegisterNoticeActivity();
                 case 1:
-                    return new BoardHelpActivity();
+                    return new WorkingRegisterApplicationActivity();
                 default:
                     return null;
             }
