@@ -184,7 +184,7 @@ public class NoticeDetailActivity extends AppCompatActivity {
 
                         long diffHours = diffMillis / (60 * 60 * 1000);
 
-                        payDetail.setText("시급: " + (workDTO.getPay() * 10000 / (int) diffHours) + "원" + ", " + "일급: " + workDTO.getPay() + "만원");
+                        payDetail.setText("시급: " + (workDTO.getPay() * 10000 / (int) diffHours) + "원" + ", " + "일급: " + workDTO.getPay() + "원");
                         timeDetail.setText("1일" + " " + diffHours+"시간"+"("+workDTO.getWorkStartTime()+"~"+workDTO.getWorkEndTime()+")");
                     } catch (ParseException e) {
                         Log.e("cat!!!!!!!!!!!!!", "cat!!!!!!!!!!!!");

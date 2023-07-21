@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.ssaesak.Board.BoardDetailActivity;
 import com.example.ssaesak.Dto.BoardDetailDTO;
+import com.example.ssaesak.Dto.WorkDTO;
+import com.example.ssaesak.Model.User;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
@@ -47,7 +49,7 @@ public class WorkingRegisterNoticeActivity extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        this.view = inflater.inflate(R.layout.activity_board_story, container, false);
+        this.view = inflater.inflate(R.layout.activity_work_notice_farmer, container, false);
 
         Log.e("Board", "story tab start!!");
         getAllNotice();
@@ -56,8 +58,8 @@ public class WorkingRegisterNoticeActivity extends Fragment {
     }
 
 
-    private void setList(List<BoardDetailDTO> list) {
-        LinearLayout linearLayout = view.findViewById(R.id.layout_notice);
+    private void setList(List<WorkDTO> list) {
+        LinearLayout linearLayout = view.findViewById(R.id.pager_content);
         linearLayout.removeAllViews();
 
         Log.e("board", "list size : " + list.size());
@@ -65,18 +67,19 @@ public class WorkingRegisterNoticeActivity extends Fragment {
 
 
 //        CardBoardHelpImage card;
-        for (BoardDetailDTO notice : list) {
+        for (WorkDTO notice : list) {
             LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
-            LinearLayout card = (LinearLayout)layoutInflater.inflate(R.layout.card_board_story_image, linearLayout, false);
+            LinearLayout card = (LinearLayout)layoutInflater.inflate(R.layout.card_work_notice, linearLayout, false);
             card.setVisibility(View.VISIBLE);
+            ((TextView)card.findViewById(R.id.address)).setText(notice.getAddress());
             ((TextView)card.findViewById(R.id.title)).setText(notice.getTitle());
-            ((TextView)card.findViewById(R.id.content)).setText(notice.getContent());
-            ((TextView)card.findViewById(R.id.comment_count)).setText(notice.getReplies()+"");
-            ((TextView)card.findViewById(R.id.time)).setText(notice.getUploadTime());
+            ((TextView)card.findViewById(R.id.due)).setText(notice.getRecruitmentStart()+"~"+notice.getRecruitmentEnd());
+            ((TextView)card.findViewById(R.id.crops)).setText(notice.getCrops());
+            ((TextView)card.findViewById(R.id.crops_detail)).setText(notice.getCropsDetail());
 
             card.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), BoardDetailActivity.class);
-                intent.putExtra("boardId", notice.getBoardId());
+                Intent intent = new Intent(getActivity(), NoticeDetailActivity.class); //
+                intent.putExtra("workId", notice.getWorkId());
                 startActivity(intent);
             });
 
@@ -105,7 +108,7 @@ public class WorkingRegisterNoticeActivity extends Fragment {
     private void getAllNotice() {
         // 초기화 필요
 
-        Call<ApiResponse> call = MyRetrofit.getApiService().noticeStoryList();
+        Call<ApiResponse> call = MyRetrofit.getApiService().myWorkNotice(User.getInstance().getUserId());
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -115,7 +118,7 @@ public class WorkingRegisterNoticeActivity extends Fragment {
                 Log.e("board", "json -> " + json);
                 try {
 //                    List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
-                    setList(Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class)));
+                    setList(Arrays.asList(mapper.readValue(json, WorkDTO[].class)));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -196,12 +196,15 @@ public interface RetrofitAPI {
     @POST(Constatnts_url.WORK_RESUME_CREATE)
     Call<WorkResumeRequestDTO> workResumeCreate(@Body WorkResumeRequestDTO workResumeRequestDTO);
 
-    @GET(Constatnts_url.My_RESUME)
+    @GET(Constatnts_url.MY_RESUME)
     Call<ApiResponse> myResume(@Query("userId") Long userId);
 
     // 일자리 공고 작성(농장주)
     @POST(Constatnts_url.WORK_NOTICE_FARMER)
     Call<WorkRequestDto> workNoticeFarmer(@Body WorkRequestDto workRequestDto);
+
+    @GET(Constatnts_url.MY_WORK_NOTICE)
+    Call<ApiResponse> myWorkNotice(@Query("userId") Long userId);
 
 
 
