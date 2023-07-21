@@ -76,11 +76,18 @@ public class StudyActivity extends Activity {
 
         if (User.getInstance().getType().equals("농장주")) {
             findViewById(R.id.essential_study).setVisibility(View.GONE);
+            findViewById(R.id.worker_support).setVisibility(View.GONE);
+            findViewById(R.id.farmer_support).setVisibility(View.VISIBLE);
+            this.policySmartButton = findViewById(R.id.farmer_support);
+        } else {
+            findViewById(R.id.farmer_support).setVisibility(View.GONE);
+            this.policySmartButton = findViewById(R.id.policy_smart);
         }
 
         this.cropLayout = findViewById(R.id.interesting_crop_layout);
         Log.e("study", "user interesting crop :: " + Worker.getInstance().getInterestCrops());
         if(!Worker.getInstance().getInterestCrops().equals("")) {
+            // 일러스트 나오면 추가
             // 일러스트 나오면 추가
         }
 
@@ -102,10 +109,11 @@ public class StudyActivity extends Activity {
             startActivity(new Intent(getBaseContext(), AgricultureStudyActivity.class));
         });
 
-        this.policySmartButton = findViewById(R.id.policy_smart);
+//        this.policySmartButton = findViewById(R.id.policy_smart);
         this.policySmartButton.setOnClickListener(v ->{
             startActivity(new Intent(getBaseContext(), SmartPolicyActivity.class));
         });
+
 
         this.policyAgricultureButton = findViewById(R.id.policy_agriculture);
         this.policyAgricultureButton.setOnClickListener(v -> {
@@ -230,7 +238,7 @@ public class StudyActivity extends Activity {
 //            video.setId(count);
             count++;
             video.setVisibility(View.VISIBLE);
-            video.setOnClickListener(v -> {
+            video.findViewById(R.id.thumbnail).setOnClickListener(v -> {
                 Intent intent = new Intent(getBaseContext(), EssentialVideoActivity.class);
                 intent.putExtra("videoData", dto);
                 startActivity(intent);

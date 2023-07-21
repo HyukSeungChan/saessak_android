@@ -20,7 +20,7 @@ public class BottomsheetBoardDialog extends BottomSheetDialogFragment {
 
     private View view;
 
-    private BottomSheetCareerListener bottomSheetCareerListener;
+    private BottomSheetListener bottomSheetCareerListener;
 
     private String select;
 
@@ -29,22 +29,25 @@ public class BottomsheetBoardDialog extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container, @NonNull Bundle savedInsranceState) {
         view = inflater.inflate(R.layout.bottomsheet_post, container, false);
 //        List<ArrayList> filter_list = init(view);
-        bottomSheetCareerListener = (BottomSheetCareerListener) getContext();
+        bottomSheetCareerListener = (BottomSheetListener) getContext();
 
         // 레이아웃, 텍스트, 체크버튼 -> 3개가 같이 들어간 게 있고 그걸 여러개 가진 리스트
+        ((TextView) view.findViewById(R.id.help)).setOnClickListener(v -> {
 
+            bottomSheetCareerListener.onButton("도와줘요");
+            dismiss();
+        });
+        ((TextView) view.findViewById(R.id.story)).setOnClickListener( v -> {
+            bottomSheetCareerListener.onButton("농촌 이야기");
+            dismiss();
+        });
 //
-//
-//        linearLayout.setOnClickListener(v -> {
-//            bottomSheetCareerListener.onButtonCareer(textView.getText().toString());
-//            dismiss();
-//        });
 
         return view;
     }
 
-    public interface BottomSheetCareerListener {
-        void onButtonCareer(String filterCareer);
+    public interface BottomSheetListener {
+        void onButton(String filter);
     }
 
 

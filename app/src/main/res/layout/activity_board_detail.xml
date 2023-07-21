@@ -80,7 +80,7 @@
                     android:id="@+id/profile_image"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/temp_img"
+                    android:src="@drawable/temp_img_ellipse"
                     android:scaleType="centerCrop"
                     android:layout_gravity="center"
                     />
@@ -170,7 +170,7 @@
                 <ImageView
                     android:visibility="gone"
                     android:id="@+id/image"
-                    android:src="@drawable/temp_img"
+                    android:src="@drawable/temp_img_ellipse"
                     android:layout_width="320dp"
                     android:layout_height="240dp"
                     android:layout_gravity="center_horizontal"

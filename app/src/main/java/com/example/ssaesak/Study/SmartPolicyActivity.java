@@ -11,12 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ssaesak.Dto.PolicySmartResponseDTO;
-import com.example.ssaesak.Dto.WorkDTO;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
-import com.example.ssaesak.Working.CardWorkNotice;
-import com.example.ssaesak.Working.NoticeDetailActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Arrays;
@@ -49,7 +46,7 @@ public class SmartPolicyActivity extends AppCompatActivity {
     }
 
 
-    private void addMovieCard(int policySmartId, String title, String applyContent, String type) {
+    private void addMovieCard(PolicySmartResponseDTO dto, int policySmartId, String title, String applyContent, String type) {
 
         Log.e("addMovieCard","addMovieCard 입장!!!!!!!!!!!!!!!!!!");
 
@@ -68,7 +65,11 @@ public class SmartPolicyActivity extends AppCompatActivity {
         titleTextView.setText(title);
         contentTextView.setText(applyContent);
 
-
+        card.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), PolicySmartDetailActivity.class);
+            intent.putExtra("policy", dto);
+            startActivity(intent);
+        });
 
 //        // CardView를 noticeList에 추가
 //
@@ -110,7 +111,7 @@ public class SmartPolicyActivity extends AppCompatActivity {
 
                     // Loop through the WorkListDTOs and add them to the card views
                     for (PolicySmartResponseDTO dto : dtos) {
-                        addMovieCard(dto.getPolicySmartId(), dto.getTitle() ,dto.getApplyContent(), dto.getType());
+                        addMovieCard(dto, dto.getPolicySmartId(), dto.getTitle() ,dto.getApplyContent(), dto.getType());
                     }
                 } catch (Exception e1) {
                     Log.e("workHome", "Error parsing JSON", e1);

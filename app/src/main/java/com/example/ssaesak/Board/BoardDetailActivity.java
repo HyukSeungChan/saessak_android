@@ -22,7 +22,6 @@
     import com.example.ssaesak.Dto.ReplyResponseDTO;
     import com.example.ssaesak.Dto.UserFarmResponseDTO;
     import com.example.ssaesak.Dto.WorkDTO;
-    import com.example.ssaesak.Login.SignupTypeActivity;
     import com.example.ssaesak.Model.User;
     import com.example.ssaesak.R;
     import com.example.ssaesak.Retrofit.ApiResponse;
@@ -138,8 +137,8 @@
 
                     if(response.code() == 404) {
                         Log.e("boardDetail", "workDetail~ : " + response.code());
-                        startActivity(new Intent(getBaseContext(), SignupTypeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                        overridePendingTransition(0, 0);
+//                        startActivity(new Intent(getBaseContext(), SignupTypeActivity.class));
+//                        overridePendingTransition(0, 0);
                         return;
                     }
 

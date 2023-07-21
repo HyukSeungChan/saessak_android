@@ -1,7 +1,5 @@
 package com.example.ssaesak.Dto;
 
-import android.os.Parcelable;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
@@ -23,7 +21,7 @@ public class VideoResponseDto implements Serializable {
 
     private String thumbnail;
 
-    private String crops_name;
+    private String cropsName;
 
     private boolean watching;
 
@@ -39,7 +37,7 @@ public class VideoResponseDto implements Serializable {
         this.link = video.getLink();
         this.type = video.getType();
         this.crops = video.getCrops();
-        this.crops_name = video.getCrops_name();
+        this.cropsName = video.getCropsName();
         this.watching = video.isWatching();
         this.thumbnail = video.getThumbnail();
     }
@@ -100,12 +98,12 @@ public class VideoResponseDto implements Serializable {
         this.crops = crops;
     }
 
-    public String getCrops_name() {
-        return crops_name;
+    public String getCropsName() {
+        return cropsName;
     }
 
-    public void setCrops_name(String crops_name) {
-        this.crops_name = crops_name;
+    public void setCropsName(String cropsName) {
+        this.cropsName = cropsName;
     }
 
     public boolean isWatching() {
@@ -115,5 +113,7 @@ public class VideoResponseDto implements Serializable {
     public void setWatching(boolean watching) {
         this.watching = watching;
     }
+
+
 
 }
