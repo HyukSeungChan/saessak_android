@@ -58,6 +58,10 @@
         <activity android:name="com.example.ssaesak.Working.WorkingWorkerActivity"/>
         <activity android:name="com.example.ssaesak.Working.NoticeDetailActivity"/>
         <activity android:name="com.example.ssaesak.Working.ResumeActivity"/>
+        <activity android:name="com.example.ssaesak.Working.WorkingFarmerActivity"/>
+        <activity android:name="com.example.ssaesak.Working.WorkingRegisterNoticeActivity"/>
+        <activity android:name="com.example.ssaesak.Working.WorkingRegisterApplicationActivity"/>
+
 
         <activity android:name="com.example.ssaesak.Board.BoardActivity"/>
 

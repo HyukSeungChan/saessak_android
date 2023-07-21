@@ -44,6 +44,7 @@ import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Study.StudyActivity;
+import com.example.ssaesak.Working.WorkingFarmerActivity;
 import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -542,11 +543,20 @@ import retrofit2.Response;
                     return true;
                 } else if (item.getItemId() == R.id.fragment_working) {
 
-                    Intent intent = new Intent(getApplicationContext(), WorkingWorkerActivity.class);
+                    if (User.getInstance().getType().equals("도시농부")) {
+                        Intent intent = new Intent(getApplicationContext(), WorkingWorkerActivity.class);
 //                    intent.putExtra("bottom", );
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                    return true;
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+                        return true;
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), WorkingFarmerActivity.class);
+//                    intent.putExtra("bottom", );
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+                        return true;
+                    }
+
                 } else if (item.getItemId() == R.id.fragment_farm) {
                     Log.e("main", "navi ! my farm count : " + UserFarmList.getInstance().size()+"");
                     if(UserFarmList.getInstance().size() < 1) {
