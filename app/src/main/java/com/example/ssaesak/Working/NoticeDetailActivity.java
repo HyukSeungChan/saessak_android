@@ -3,6 +3,7 @@ package com.example.ssaesak.Working;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,9 @@ import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,6 +53,13 @@ public class NoticeDetailActivity extends AppCompatActivity {
         init();
 
         workDetail(workId);
+
+
+        MapView mapView = new MapView(this);
+        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.kakaomap);
+        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.895378, 127.051985), true);
+
+        mapViewContainer.addView(mapView);
 
 
 

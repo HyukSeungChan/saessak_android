@@ -31,6 +31,7 @@ import com.example.ssaesak.Dto.UserTodoFarmDTO;
 import com.example.ssaesak.Dto.UserTodoFarmResponseDto;
 import com.example.ssaesak.Dto.WorkNoticeRecommendDTO;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
+import com.example.ssaesak.Farmgroup.FarmgroupFarmerActivity;
 import com.example.ssaesak.Farmgroup.FarmgroupNullActivity;
 import com.example.ssaesak.Login.LoginActivity;
 import com.example.ssaesak.Login.SignupTypeActivity;
@@ -44,6 +45,7 @@ import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Study.StudyActivity;
+import com.example.ssaesak.Working.WorkingFarmerActivity;
 import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -105,8 +107,14 @@ import retrofit2.Response;
         this.mypageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), MypageActivity.class));
-                overridePendingTransition(0, 0);
+                if (User.getInstance().getType().equals("도시농부")) {
+                    startActivity(new Intent(getApplicationContext(), MypageActivity.class));
+                    overridePendingTransition(0, 0);
+                } else {
+
+                    startActivity(new Intent(getApplicationContext(), MypageFarmerActivity.class));
+                    overridePendingTransition(0, 0);
+                }
             }
         });
 
@@ -204,11 +212,13 @@ import retrofit2.Response;
 
 
                 if (User.getInstance().getType().equals("도시농부")) {
+                    Log.e("main", "도시농부 로그인 !! " + User.getInstance().getUserId());
                     // 도시농부 테이블 받기
                     getWorker();
                     // 농장 정보 받고 없으면 추천 데이터 받기
                     getFarm();
                 } else {
+                    Log.e("main", "농장주 로그인 !! " + User.getInstance().getUserId());
                     // 지원현황, 일감 가져오기
                     getFarmer();
                 }
@@ -381,7 +391,15 @@ import retrofit2.Response;
         findViewById(R.id.weather).setVisibility(View.VISIBLE);
         linearLayout.removeAllViews();
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        Call<ApiResponse> call = MyRetrofit.getApiService().getTodoList(User.getInstance().getUserId(), farmId);
+
+        Call<ApiResponse> call;
+        if (User.getInstance().getType().equals("도시농부")) {
+            call = MyRetrofit.getApiService().getTodoList(User.getInstance().getUserId(), farmId);
+
+        } else {
+            call = MyRetrofit.getApiService().getTodoList(farmId);
+
+        }
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -448,20 +466,23 @@ import retrofit2.Response;
 
     // 농장주 정보 받아오기
     private void getFarmer() {
-        Call<ApiResponse> call = MyRetrofit.getApiService().loginGetFarmList(User.getInstance().getUserId());
+        Call<ApiResponse> call = MyRetrofit.getApiService().loginGetFarm(User.getInstance().getUserId());
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
+                    Log.e("main", "get farmer body :: " + body);
                 String json = body.substring(1, body.length()-1).replace("\\", "");
                 try {
-
+                    Log.e("main", "get farmer read value start !!");
+                    Farm.setInstance(mapper.readValue(json, Farm.class));
+                    Log.e("main", "get farmer read value end !! " + Farm.getInstance().getFarmId());
 //                List<BoardDTO> dtos = mapper.readValue(json, BoardDTO[].class);
 //                    List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
                     getTodoList(Farm.getInstance().getFarmId());
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -542,15 +563,29 @@ import retrofit2.Response;
                     return true;
                 } else if (item.getItemId() == R.id.fragment_working) {
 
-                    Intent intent = new Intent(getApplicationContext(), WorkingWorkerActivity.class);
+                    if(User.getInstance().getType().equals("도시농부")) {
+                        Intent intent = new Intent(getApplicationContext(), WorkingWorkerActivity.class);
 //                    intent.putExtra("bottom", );
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                    return true;
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+                        return true;
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), WorkingFarmerActivity.class);
+//                    intent.putExtra("bottom", );
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+                        return true;
+                    }
+
+
                 } else if (item.getItemId() == R.id.fragment_farm) {
                     Log.e("main", "navi ! my farm count : " + UserFarmList.getInstance().size()+"");
-                    if(UserFarmList.getInstance().size() < 1) {
+                    if(UserFarmList.getInstance().size() < 1 && User.getInstance().getType().equals("도시농부")) {
                         startActivity(new Intent(getApplicationContext(), FarmgroupNullActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    } else if (User.getInstance().getType().equals("농장주")){
+                        startActivity(new Intent(getApplicationContext(), FarmgroupFarmerActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     }

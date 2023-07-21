@@ -54,16 +54,19 @@
         <activity android:name="com.example.ssaesak.Main.UpdateWorkerPayActivity"/>
         <activity android:name="com.example.ssaesak.Main.UpdateWorkerAgricultureActivity"/>
         <activity android:name="com.example.ssaesak.Main.UpdateWorkerCropActivity"/>
+        <activity android:name="com.example.ssaesak.Main.MypageFarmerActivity"/>
 
         <activity android:name="com.example.ssaesak.Working.WorkingWorkerActivity"/>
         <activity android:name="com.example.ssaesak.Working.NoticeDetailActivity"/>
         <activity android:name="com.example.ssaesak.Working.ResumeActivity"/>
+        <activity android:name="com.example.ssaesak.Working.WorkingFarmerActivity"/>
 
         <activity android:name="com.example.ssaesak.Board.BoardActivity"/>
 
         <activity android:name="com.example.ssaesak.Farmgroup.FarmgroupActivity"/>
         <activity android:name="com.example.ssaesak.Farmgroup.FarmgroupNullActivity"/>
         <activity android:name="com.example.ssaesak.Farmgroup.FarmgroupReview"/>
+        <activity android:name="com.example.ssaesak.Farmgroup.FarmgroupFarmerActivity"/>
         <activity android:name="com.example.ssaesak.Farmgroup.PopupExit" android:theme="@android:style/Theme.Dialog"/>
 
         <activity android:name="com.example.ssaesak.Study.StudyActivity"/>

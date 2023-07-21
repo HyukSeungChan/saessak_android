@@ -7,7 +7,7 @@ public class Constatnts_url {
 //    public static final String BASE_URL_EMULATOR = "http://192.168.0.13:8080/";
     public static final String BASE_URL_EC2 = "http://13.209.186.237:8080/saessak-0.0.1-SNAPSHOT/";
 
-    public static final String BASE_URL_EMULATOR = "http://192.168.0.7:8080/";
+    public static final String BASE_URL_EMULATOR = "http://192.168.0.10:8080/";
 //    public static final String BASE_URL_EC2 = "http://13.209.186.237:8080/saessak-0.0.1-SNAPSHOT/";
 
 
@@ -21,7 +21,7 @@ public class Constatnts_url {
     public static final String SIGNUP_URL = "user/";
     public static final String SIGNUP_KAKAO_URL = "user/kakao/";
     public static final String SIGNUP_WORKER_URL = "worker/";
-    public static final String SIGNUP_FARMER_URL = "farm/";
+    public static final String SIGNUP_FARMER_URL = "user/farm/id/";
 
 
 
@@ -36,6 +36,10 @@ public class Constatnts_url {
 
     // 농장 정보 조회
     public static final String FARM_INFO = "farm/";
+
+    // 농장 정보 조회
+    public static final String ADD_TODO = "user/todo/farm/";
+    public static final String TODO = "todo/";
 
     // 농장 메이트 조회
     public static final String FARM_MEMBER_LIST = "user/farm/";

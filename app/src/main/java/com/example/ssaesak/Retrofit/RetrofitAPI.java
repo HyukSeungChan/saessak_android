@@ -8,11 +8,14 @@ import com.example.ssaesak.Dto.FarmDTO;
 import com.example.ssaesak.Dto.ReplyRequestDTO;
 import com.example.ssaesak.Dto.ResumeDTO;
 import com.example.ssaesak.Dto.ResumeRequestDTO;
+import com.example.ssaesak.Dto.TodoRequestDTO;
 import com.example.ssaesak.Dto.UserVideoWatchRequestDto;
 import com.example.ssaesak.Dto.WorkResumeRequestDTO;
 import com.example.ssaesak.Dto.WorkerDTO;
 import com.example.ssaesak.Model.Farm;
 import com.example.ssaesak.Model.User;
+
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -54,6 +57,9 @@ public interface RetrofitAPI {
     @GET(Constatnts_url.LOGIN_GET_FARM_URL)
     Call<ApiResponse> loginGetFarmList(@Query("userId") Long userId);
 
+    @GET(Constatnts_url.SIGNUP_FARMER_URL)
+    Call<ApiResponse> loginGetFarm(@Query("userId") Long userId);
+
 
 
 
@@ -78,6 +84,10 @@ public interface RetrofitAPI {
     Call<ApiResponse> getTodoList(@Query("userId") Long userId, @Query("farmId") int farmId);
     @GET(Constatnts_url.TODO_LIST_ALL)
     Call<ApiResponse> getTodoList(@Query("farmId") int farmId);
+    @GET(Constatnts_url.ADD_TODO)
+    Call<ApiResponse> addTodo(@Query("userId") List<Long> userId, @Query("farmId") int todoId, @Query("farmId") int farmId);
+    @POST(Constatnts_url.TODO)
+    Call<TodoRequestDTO> addTodo(@Body TodoRequestDTO todoRequestDto);
 
     // 농장 정보 조회
     @GET(Constatnts_url.FARM_INFO)

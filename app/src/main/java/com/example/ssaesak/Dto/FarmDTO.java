@@ -86,7 +86,7 @@ public class FarmDTO {
         farm.setIntroduction(farm1.getIntroduction());
         farm.setAgriculture(farm1.getAgriculture());
         farm.setCrops(farm1.getCrops());
-        farm.setCrops_detail(farm1.getCrops_detail());
+        farm.setCrops_detail(farm1.getCropsDetail());
         farm.setUserId(User.getInstance().getUserId());
 
         return farm;

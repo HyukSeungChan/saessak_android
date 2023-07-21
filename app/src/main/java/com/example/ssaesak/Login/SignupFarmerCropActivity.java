@@ -170,7 +170,7 @@ public class SignupFarmerCropActivity extends Activity {
 
                 if (filter.length() > 1) filter = filter.substring(0, filter.length()-1);
                 Log.e("signup", filter);
-                Farm.getInstance().setCrops_detail(filter);
+                Farm.getInstance().setCropsDetail(filter);
 
 
 

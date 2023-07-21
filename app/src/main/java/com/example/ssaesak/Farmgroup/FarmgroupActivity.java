@@ -29,6 +29,7 @@ import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.Constatnts_url;
 import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Study.StudyActivity;
+import com.example.ssaesak.Working.WorkingFarmerActivity;
 import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -86,7 +87,7 @@ public class FarmgroupActivity extends Activity {
 
         this.calendarView = findViewById(R.id.calendarView);
         farmId = UserFarmList.getInstance().get(0).getFarmId();
-        getFarmInfo(farmId);
+//        getFarmInfo(farmId);
 
         this.calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
@@ -183,10 +184,22 @@ public class FarmgroupActivity extends Activity {
                     finish();
                     return true;
                 } else if (item.getItemId() == R.id.fragment_working) {
-                    startActivity(new Intent(getApplicationContext(), WorkingWorkerActivity.class));
-                    overridePendingTransition(0, 0);
-                    finish();
-                    return true;
+
+                    if(User.getInstance().getType().equals("도시농부")) {
+                        Intent intent = new Intent(getApplicationContext(), WorkingWorkerActivity.class);
+//                    intent.putExtra("bottom", );
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+                        return true;
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), WorkingFarmerActivity.class);
+//                    intent.putExtra("bottom", );
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+                        return true;
+                    }
+
+
                 } else if (item.getItemId() == R.id.fragment_farm) {
 //                    startActivity(new Intent(getApplicationContext(), FarmgroupActivity.class));
 //                    overridePendingTransition(0, 0);
@@ -220,7 +233,7 @@ public class FarmgroupActivity extends Activity {
 
     // 해당 농장정보 조회
     public void getFarmInfo(int farmId) {
-        Call<ApiResponse> call = MyRetrofit.getApiService().getFarmInfo(farmId);
+        Call<ApiResponse> call = MyRetrofit.getApiService().loginGetFarm(User.getInstance().getUserId());
         Log.e("farmInfo", "입장 !!");
         call.enqueue(new Callback<ApiResponse>() {
             @Override
@@ -232,13 +245,14 @@ public class FarmgroupActivity extends Activity {
                     Log.e("farmInfo", " body -> " + body);
                     Log.e("farmInfo", " string -> " + json);
 
-                    FarmResponseDTO farmResponseDTO = mapper.readValue(json, FarmResponseDTO.class);
+                    Farm.setInstance(mapper.readValue(json, Farm.class));
+                    getTodoList(Farm.getInstance().getFarmId());
 
                     Log.e("farmInfo", " farmDto -> " + json);
                     TextView farmName = findViewById(R.id.title);
-                    farmName.setText(farmResponseDTO.getName());
+                    farmName.setText(Farm.getInstance().getName());
                     TextView textPosition = findViewById(R.id.area);
-                    textPosition.setText(farmResponseDTO.getAddress());
+                    textPosition.setText(Farm.getInstance().getAddress());
                 } catch (Exception e) {
                     Log.e("addresssss", "aaaaaaaaaaaaaa!!!!!!!!!!!!!!!!!!!!!");
                     e.printStackTrace();
@@ -261,7 +275,16 @@ public class FarmgroupActivity extends Activity {
         LinearLayout linearLayout = findViewById(R.id.todo_layout);
         linearLayout.removeAllViews();
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        Call<ApiResponse> call = MyRetrofit.getApiService().getTodoList(User.getInstance().getUserId(), farmId);
+
+        Call<ApiResponse> call;
+        if(User.getInstance().getType().equals("농장주")) {
+
+            call = MyRetrofit.getApiService().getTodoList(farmId);
+        } else {
+
+            call = MyRetrofit.getApiService().getTodoList(User.getInstance().getUserId(), farmId);
+        }
+
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {

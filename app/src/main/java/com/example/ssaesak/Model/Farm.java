@@ -1,5 +1,8 @@
 package com.example.ssaesak.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Farm {
 
     private static final Farm farm = new Farm();
@@ -35,12 +38,13 @@ public class Farm {
     private String crops;
 
     // 작목 상세정보
-    private String crops_detail;
+    private String cropsDetail;
 
     public Farm() {
     }
 
-    public Farm(int farmId, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String crops_detail) {
+    public Farm(int farmId, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String cropsDetail) {
+
         this.farmId = farmId;
         this.name = name;
         this.address = address;
@@ -50,23 +54,10 @@ public class Farm {
         this.introduction = introduction;
         this.agriculture = agriculture;
         this.crops = crops;
-        this.crops_detail = crops_detail;
+        this.cropsDetail = cropsDetail;
     }
 
-    public static Farm setInstance(int farmId, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String crops_detail) {
-        farm.setFarmId(farmId);
-        farm.setName(name);
-        farm.setAddress(address);
-        farm.setFarmImage(farmImage);
-        farm.setPay(pay);
-        farm.setPhone(phone);
-        farm.setIntroduction(introduction);
-        farm.setAgriculture(agriculture);
-        farm.setCrops(crops);
-        farm.setCrops_detail(crops_detail);
 
-        return farm;
-    }
     public static Farm setInstance(Farm farm1) {
         farm.setFarmId(farm1.getFarmId());
         farm.setName(farm1.getName());
@@ -77,10 +68,13 @@ public class Farm {
         farm.setIntroduction(farm1.getIntroduction());
         farm.setAgriculture(farm1.getAgriculture());
         farm.setCrops(farm1.getCrops());
-        farm.setCrops_detail(farm1.getCrops_detail());
+        farm.setCropsDetail(farm1.getCropsDetail());
+
 
         return farm;
     }
+
+
 
     public int getFarmId() {
         return farmId;
@@ -154,11 +148,11 @@ public class Farm {
         this.crops = crops;
     }
 
-    public String getCrops_detail() {
-        return crops_detail;
+    public String getCropsDetail() {
+        return cropsDetail;
     }
 
-    public void setCrops_detail(String crops_detail) {
-        this.crops_detail = crops_detail;
+    public void setCropsDetail(String cropsDetail) {
+        this.cropsDetail = cropsDetail;
     }
 }

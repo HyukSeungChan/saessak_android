@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import com.example.ssaesak.Board.BoardActivity;
 import com.example.ssaesak.Dto.VideoResponseDto;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
+import com.example.ssaesak.Farmgroup.FarmgroupFarmerActivity;
 import com.example.ssaesak.Farmgroup.FarmgroupNullActivity;
 import com.example.ssaesak.Main.MainActivity;
 import com.example.ssaesak.Model.User;
@@ -29,6 +30,7 @@ import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.Constatnts_url;
 import com.example.ssaesak.Retrofit.MyRetrofit;
+import com.example.ssaesak.Working.WorkingFarmerActivity;
 import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -135,21 +137,36 @@ public class StudyActivity extends Activity {
                     finish();
                     return true;
                 } else if (item.getItemId() == R.id.fragment_working) {
-                    startActivity(new Intent(getApplicationContext(), WorkingWorkerActivity.class));
-                    overridePendingTransition(0, 0);
-                    finish();
-                    return true;
-                } else if (item.getItemId() == R.id.fragment_farm) {
 
-                    if(UserFarmList.getInstance().size() < 1) {
+                    if(User.getInstance().getType().equals("도시농부")) {
+                        Intent intent = new Intent(getApplicationContext(), WorkingWorkerActivity.class);
+//                    intent.putExtra("bottom", );
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+                        return true;
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), WorkingFarmerActivity.class);
+//                    intent.putExtra("bottom", );
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+                        return true;
+                    }
+
+
+                } else if (item.getItemId() == R.id.fragment_farm) {
+                    Log.e("main", "navi ! my farm count : " + UserFarmList.getInstance().size()+"");
+                    if(UserFarmList.getInstance().size() < 1 && User.getInstance().getType().equals("도시농부")) {
                         startActivity(new Intent(getApplicationContext(), FarmgroupNullActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    } else if (User.getInstance().getType().equals("농장주")){
+                        startActivity(new Intent(getApplicationContext(), FarmgroupFarmerActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     }
 
                     startActivity(new Intent(getApplicationContext(), FarmgroupActivity.class));
                     overridePendingTransition(0, 0);
-                    finish();
                     return true;
                 } else if (item.getItemId() == R.id.fragment_notice) {
                     startActivity(new Intent(getApplicationContext(), BoardActivity.class));

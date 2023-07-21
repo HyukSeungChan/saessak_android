@@ -23,6 +23,7 @@ import com.example.ssaesak.Adapter.CropAdapter;
 import com.example.ssaesak.Board.BoardActivity;
 import com.example.ssaesak.Dto.WorkDTO;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
+import com.example.ssaesak.Farmgroup.FarmgroupFarmerActivity;
 import com.example.ssaesak.Farmgroup.FarmgroupNullActivity;
 import com.example.ssaesak.Login.SignupTypeActivity;
 import com.example.ssaesak.Main.MainActivity;
@@ -286,9 +287,13 @@ public class WorkingWorkerActivity extends AppCompatActivity implements Bottomsh
 //                    overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_farm) {
-
-                    if(UserFarmList.getInstance().size() < 1) {
+                    Log.e("main", "navi ! my farm count : " + UserFarmList.getInstance().size()+"");
+                    if(UserFarmList.getInstance().size() < 1 && User.getInstance().getType().equals("도시농부")) {
                         startActivity(new Intent(getApplicationContext(), FarmgroupNullActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    } else if (User.getInstance().getType().equals("농장주")){
+                        startActivity(new Intent(getApplicationContext(), FarmgroupFarmerActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     }
