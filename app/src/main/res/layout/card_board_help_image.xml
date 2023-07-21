@@ -97,22 +97,6 @@ android:padding="16dp"
             android:layout_weight="1"
             />
 
-        <ImageView
-            android:id="@+id/like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/svg_like"
-            />
-
-        <TextView
-            android:id="@+id/like_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="20"
-            android:textSize="12sp"
-            android:textColor="#737373"
-            android:layout_marginLeft="6dp"
-            />
 
         <ImageView
             android:layout_width="wrap_content"

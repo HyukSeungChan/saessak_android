@@ -501,9 +501,6 @@ import retrofit2.Response;
                     ((TextView)findViewById(R.id.hot_notice1_time)).setText(dtos.get(0).getUploadTime());
                     ((TextView)findViewById(R.id.hot_notice2_time)).setText(dtos.get(1).getUploadTime());
 
-                    ((TextView)findViewById(R.id.hot_notice1_like_count)).setText(dtos.get(0).getLikes()+"");
-                    ((TextView)findViewById(R.id.hot_notice2_like_count)).setText(dtos.get(1).getLikes()+"");
-
                     ((TextView)findViewById(R.id.hot_notice1_comment_count)).setText(dtos.get(0).getReplies()+"");
                     ((TextView)findViewById(R.id.hot_notice2_comment_count)).setText(dtos.get(1).getReplies()+"");
 

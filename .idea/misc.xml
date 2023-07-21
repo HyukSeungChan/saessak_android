@@ -86,7 +86,7 @@
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_activity_history.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_activity_history_empty.xml" value="0.10944848225737494" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_apply_status.xml" value="0.20820863616930313" />
-        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_privacy.xml" value="0.264" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_privacy.xml" value="0.1566265060240964" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_update_farmer.xml" value="0.10944848225737494" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_update_worker.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_use.xml" value="0.1" />
@@ -120,6 +120,7 @@
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_work_notice.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_work_notice_create.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_work_notice_detail.xml" value="0.136" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_work_notice_farmer.xml" value="0.155622060709705" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/appbar_onlyback.xml" value="0.195382642154767" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/appbar_onlytitle.xml" value="0.1188542112013681" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/appbar_signup.xml" value="0.19410004275331338" />

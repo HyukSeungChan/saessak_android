@@ -85,25 +85,8 @@ public class FarmgroupActivity extends Activity {
         MaterialDatePicker.Builder.datePicker();
 
         this.calendarView = findViewById(R.id.calendarView);
-        Log.e("main", "farm activity!! : " + UserFarmList.getInstance().size());
-
         farmId = UserFarmList.getInstance().get(0).getFarmId();
-//        farmId = userFarmList.get(0).getFarmId();
         getFarmInfo(farmId);
-
-
-        ArrayList<CalendarDay> farmdayList = new ArrayList<>();
-//        farmdayList.add(CalendarDay.from(2023, 6, 15));
-
-
-
-
-        String[] s = "2023-07-30".split("-");
-
-
-//        if (workdaySelect != null) calendarView.removeDecorator(workdaySelect);
-//        workdaySelect = new EventDecoratorWorkdaySelect(calendarDayList, FarmgroupActivity.this, new TextView(getApplicationContext()));
-//        calendarView.addDecorator(workdaySelect);
 
         this.calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override

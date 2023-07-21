@@ -428,18 +428,8 @@
                     android:id="@+id/hot_notice1_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/svg_like"
                     />
 
-                <TextView
-                    android:id="@+id/hot_notice1_like_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="20"
-                    android:textSize="12sp"
-                    android:textColor="#737373"
-                    android:layout_marginLeft="6dp"
-                    />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -543,18 +533,8 @@
                     android:id="@+id/hot_notice2_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/svg_like"
                     />
 
-                <TextView
-                    android:id="@+id/hot_notice2_like_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="20"
-                    android:textSize="12sp"
-                    android:textColor="#737373"
-                    android:layout_marginLeft="6dp"
-                    />
 
                 <ImageView
                     android:layout_width="wrap_content"
