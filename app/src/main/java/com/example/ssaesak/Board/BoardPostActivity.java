@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.ImageDecoder;
 import android.graphics.Matrix;
 import android.net.Uri;
@@ -16,9 +17,11 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,8 +37,10 @@ import com.example.ssaesak.Dto.BoardRequestDTO;
 import com.example.ssaesak.Dto.ReplyRequestDTO;
 import com.example.ssaesak.Farmgroup.FarmgroupReview;
 import com.example.ssaesak.Model.User;
+import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.MyRetrofit;
+import com.example.ssaesak.Working.BottomsheetAreaDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +50,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -56,14 +63,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BoardPostActivity extends AppCompatActivity {
+public class BoardPostActivity extends AppCompatActivity implements BottomsheetBoardDialog.BottomSheetListener{
 
     private static final int REQUEST_PERMISSION = 1;
     private static final int REQUEST_GALLERY = 2;
 
+    List<Button> buttonCropList;
+    List<Button> buttonInterestList;
+    List<Button> cropList;
+    List<Button> interestList;
+
+
     private EditText title, content;
 
-    private TextView update, titleLength, contentLength, postComplete;
+    private TextView update, titleLength, contentLength;
+    private Button postComplete;
 
     private ImageView image;
 
@@ -82,15 +96,80 @@ public class BoardPostActivity extends AppCompatActivity {
 
         init();
 
+        this.buttonCropList = new ArrayList<>();
+        this.buttonInterestList = new ArrayList<>();
+        this.cropList = new ArrayList<>();
+        this.interestList = new ArrayList<>();
+
+
+        buttonCropList.add(findViewById(R.id.chip_qkxshdtk));
+        buttonCropList.add(findViewById(R.id.chip_rhktn));
+        buttonCropList.add(findViewById(R.id.chip_gkdntm));
+        buttonCropList.add(findViewById(R.id.chip_shs));
+        buttonCropList.add(findViewById(R.id.chip_xmrdydwkranf));
+        buttonCropList.add(findViewById(R.id.chip_rlxk_shddjq));
+        for (Button button : buttonCropList) {
+            button.setOnClickListener(v -> {
+                if (cropList.contains(button)) {
+                    Log.e("area", "press button!!");
+                    button.setPressed(false);
+                    button.setBackground(getResources().getDrawable(R.drawable.chip_not_select, null));
+                    button.setTextColor(Color.rgb(120, 120, 120));
+                    cropList.remove(button);
+                } else if (cropList.size() < 3){
+                    Log.e("area", "not press button!!");
+                    button.setPressed(true);
+                    button.setBackground(getResources().getDrawable(R.drawable.chip_select, null));
+                    button.setTextColor(Color.rgb(255, 255, 255));
+                    cropList.add(button);
+                }
+
+
+            });
+        }
+
+        buttonInterestList.add(findViewById(R.id.chip_shdwkranfcoth));
+        buttonInterestList.add(findViewById(R.id.chip_rhktlf));
+        buttonInterestList.add(findViewById(R.id.chip_ghkgnpwkranf));
+        buttonInterestList.add(findViewById(R.id.chip_rlxk_wkrahr));
+        for (Button button : buttonInterestList) {
+            button.setOnClickListener(v -> {
+                if (interestList.contains(button)) {
+                    Log.e("area", "press button!!");
+                    button.setPressed(false);
+                    button.setBackground(getResources().getDrawable(R.drawable.chip_not_select, null));
+                    button.setTextColor(Color.rgb(120, 120, 120));
+                    interestList.remove(button);
+                } else if (interestList.size() < 3){
+                    Log.e("area", "not press button!!");
+                    button.setPressed(true);
+                    button.setBackground(getResources().getDrawable(R.drawable.chip_select, null));
+                    button.setTextColor(Color.rgb(255, 255, 255));
+                    interestList.add(button);
+                }
+
+
+            });
+        }
+
+
+        BottomsheetBoardDialog bottomsheetboardDialog = new BottomsheetBoardDialog();
+        Bundle args = new Bundle();
+        bottomsheetboardDialog.setArguments(args);
+        bottomsheetboardDialog.show(getSupportFragmentManager(), "dd");
+
+
+
         postComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (title.getText().toString() == null || title.getText().toString().equals("") || title.getText().toString().equals(null)
-                || content.getText().toString() == null || content.getText().toString().equals("") || content.getText().toString().equals(null))
+                if (!(title.getText().toString() == null || title.getText().toString().equals("") || title.getText().toString().equals(null)
+                || content.getText().toString() == null || content.getText().toString().equals("") || content.getText().toString().equals(null)))
                 boardCreate(title.getText().toString(), content.getText().toString(), User.getInstance().getUserId());
             }
         });
 
+        image.setVisibility(View.GONE);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,12 +203,33 @@ public class BoardPostActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         String currentTime = dateFormat.format(new Date());
 
+        String crops = "";
+        for (Button button : cropList) {
+            crops += button.getText().toString() + ",";
+        }
+        if (cropList.size() > 1) {
+            crops = crops.substring(0, crops.length() - 1);
+        }
+
+        String agricultures = "";
+        for (Button button : interestList) {
+            agricultures += button.getText().toString() + ",";
+        }
+        Log.e("signup", agricultures.length()+"");
+        if(interestList.size() > 1) {
+            agricultures = agricultures.substring(0, agricultures.length() - 1);
+        }
+
+
         BoardRequestDTO boardRequestDTO = new BoardRequestDTO();
 //        boardRequestDTO.setBoardId(boardId);
         boardRequestDTO.setTitle(title);
         boardRequestDTO.setContent(content);
         boardRequestDTO.setUploadTime(currentTime);
         boardRequestDTO.setUserId(userId);
+        boardRequestDTO.setAgriculture(agricultures);
+        boardRequestDTO.setCrops(crops);
+
 
 
 
@@ -192,6 +292,17 @@ public class BoardPostActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onButton(String filter) {
+        LinearLayout linearLayout = findViewById(R.id.category);
+        if(filter.equals("도와줘요")) {
+            linearLayout.setVisibility(View.VISIBLE);
+            ((TextView)findViewById(R.id.type)).setText("도와줘요");
+        } else {
+            linearLayout.setVisibility(View.GONE);
+        }
+
+    }
 }
 
 

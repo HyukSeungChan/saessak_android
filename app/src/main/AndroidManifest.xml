@@ -77,6 +77,8 @@
         <activity android:name="com.example.ssaesak.Study.CropStudyActivity"/>
         <activity android:name="com.example.ssaesak.Study.AgricultureStudyActivity"/>
         <activity android:name="com.example.ssaesak.Study.EssentialVideoActivity"/>
+        <activity android:name="com.example.ssaesak.Study.PolicySmartDetailActivity"/>
+        <activity android:name="com.example.ssaesak.Study.PolicyAgricultureDetailActivity"/>
 
         <activity android:name="com.example.ssaesak.Login.LoginActivity"/>
         <activity android:name="com.example.ssaesak.Login.SignupTypeActivity"/>

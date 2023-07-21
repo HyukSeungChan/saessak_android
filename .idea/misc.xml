@@ -69,7 +69,7 @@
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_board.xml" value="0.16799999999999998" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_board_detail.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_board_help.xml" value="0.12" />
-        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_board_post.xml" value="0.176" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_board_post.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_board_story.xml" value="0.1" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_crop_movie_list.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_essential_movie_list.xml" value="0.4" />
@@ -79,7 +79,7 @@
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_farm_group.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_farm_group_menu.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_form_group.xml" value="0.20820863616930313" />
-        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_home.xml" value="0.176" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_login.xml" value="0.12" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage.xml" value="0.264" />
@@ -87,10 +87,12 @@
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_activity_history_empty.xml" value="0.10944848225737494" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_apply_status.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_farmer.xml" value="0.1" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_policy_agriculture.xml" value="0.2" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_policy_smart.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_privacy.xml" value="0.1566265060240964" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_update_farmer.xml" value="0.10944848225737494" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_update_worker.xml" value="0.2" />
-        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_use.xml" value="0.1" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_mypage_use.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_notice_detail.xml" value="0.20735356990166737" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_policy_agriculture.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_resume.xml" value="0.152" />
@@ -102,18 +104,19 @@
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_type.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_worker.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_worker_agriculture.xml" value="0.2" />
-        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_worker_crop.xml" value="0.45429362880886426" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_worker_crop.xml" value="0.10400000000000001" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_worker_name.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_worker_pay.xml" value="0.1" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_worker_phone.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_worker_position.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_signup_worker_profile.xml" value="0.20820863616930313" />
-        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_study.xml" value="0.176" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_study.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_study_agriculture.xml" value="0.1675929884566054" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_study_crop.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_study_essential.xml" value="0.176" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_study_list_return.xml" value="0.264" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_study_list_smart.xml" value="0.20820863616930313" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_study_list_smart_detail.xml" value="0.10431808465156049" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_study_list_support.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_study_list_support_detail.xml" value="0.10944848225737494" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/activity_study_return_list.xml" value="0.20735356990166737" />
@@ -134,6 +137,7 @@
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/bottomsheet_filter_crop.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/bottomsheet_post.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/bottomsheet_select_image.xml" value="0.20820863616930313" />
+        <entry key="..\:/Code/saessak/android/app/src/main/res/layout/bottomsheet_study_crop.xml" value="0.2" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/button_after.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/button_next.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/saessak/android/app/src/main/res/layout/card_agriculture_movie.xml" value="0.20820863616930313" />

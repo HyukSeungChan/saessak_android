@@ -13,8 +13,6 @@
         android:fontFamily="@font/notosans_bold"
         android:textColor="@color/sea_green_dark1"
         android:textSize="36sp"
-        android:layout_marginBottom="56dp"
-        android:layout_marginTop="153dp"
         android:textAlignment="center"
         android:includeFontPadding="false"
         />
@@ -44,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         />
 
     <TextView

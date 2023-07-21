@@ -112,11 +112,11 @@ public class WorkingRegisterNoticeActivity extends Fragment {
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                ObjectMapper mapper = new ObjectMapper();
-                String body = response.body().getData().toString();
-                String json = body.substring(1, body.length()-1).replace("\\", "");
-                Log.e("board", "json -> " + json);
                 try {
+                    ObjectMapper mapper = new ObjectMapper();
+                    String body = response.body().getData().toString();
+                    String json = body.substring(1, body.length()-1).replace("\\", "");
+                    Log.e("board", "json -> " + json);
 //                    List<BoardDetailDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDetailDTO[].class));
                     setList(Arrays.asList(mapper.readValue(json, WorkDTO[].class)));
                 } catch (IOException e) {

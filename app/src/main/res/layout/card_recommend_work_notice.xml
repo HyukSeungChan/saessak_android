@@ -12,7 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/temp_img"
+        android:src="@drawable/temp_img_ellipse"
         />
 
     <LinearLayout

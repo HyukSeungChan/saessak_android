@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">새싹 농부</string>
+    <string name="app_name">새싹농부</string>
 
 <!--    fragment-->
     <string name="fragment_home">홈</string>
     <string name="fragment_working">일자리터</string>
     <string name="fragment_notice">이야기터</string>
     <string name="fragment_farm">농장터</string>
-    <string name="fragment_study">배움터</string>
+    <string name="fragment_study">도움터</string>
 
 <!--    division agriculture-->
     <string name="agri_default">농업 구분</string>

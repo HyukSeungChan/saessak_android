@@ -435,6 +435,7 @@ public class WorkingWorkerActivity extends AppCompatActivity implements Bottomsh
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                try {
                 Log.e("workHome", "workHomeList : ");
                 Log.e("workHome", "workHomeList : " + response.body());
                 ObjectMapper mapper = new ObjectMapper();
@@ -442,7 +443,6 @@ public class WorkingWorkerActivity extends AppCompatActivity implements Bottomsh
                 String json = body.substring(1, body.length()-1).replace("\\", "");
                 Log.e("workHome", " body -> " + body);
                 Log.e("workHome", " json -> " + json);
-                try {
                     List<WorkDTO> dtos = Arrays.asList(mapper.readValue(json, WorkDTO[].class));
 
                     noticeList.removeAllViews();

@@ -44,6 +44,7 @@ import com.example.ssaesak.Model.Worker;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Retrofit.ApiResponse;
 import com.example.ssaesak.Retrofit.MyRetrofit;
+import com.example.ssaesak.Study.SmartPolicyActivity;
 import com.example.ssaesak.Study.StudyActivity;
 import com.example.ssaesak.Working.WorkingNoticeFarmerActivity;
 import com.example.ssaesak.Working.WorkingWorkerActivity;
@@ -102,6 +103,11 @@ import retrofit2.Response;
         isKakaologin(this);
 
         setContentView(R.layout.activity_home);
+
+
+        ((LinearLayout)findViewById(R.id.support_tab)).setOnClickListener(v -> {
+            startActivity(new Intent(getBaseContext(), SmartPolicyActivity.class));
+        });
 
         this.mypageButton = findViewById(R.id.mypage_button);
         this.mypageButton.setOnClickListener(new View.OnClickListener() {
@@ -246,13 +252,13 @@ import retrofit2.Response;
                  findViewById(R.id.recommand_layout).setVisibility(View.VISIBLE);
                  findViewById(R.id.today_work).setVisibility(View.GONE);
                  findViewById(R.id.weather).setVisibility(View.GONE);
+                 try {
 
                  Log.e("main", "getWorkRecommend !! : " + response.body().getData().toString());
                  ObjectMapper mapper = new ObjectMapper();
                  String body = response.body().getData().toString();
                  String json = body.substring(1, body.length() - 1).replace("\\", "");
                  Log.e("main", "getWorkRecommend !! : " + json);
-                 try {
                      List<WorkNoticeRecommendDTO> list = Arrays.asList(mapper.readValue(json, WorkNoticeRecommendDTO[].class));
 //                     List<BoardDTO> dtos = Arrays.asList(mapper.readValue(json, BoardDTO[].class));
 
@@ -474,11 +480,11 @@ import retrofit2.Response;
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                try {
                 ObjectMapper mapper = new ObjectMapper();
                 String body = response.body().getData().toString();
                     Log.e("main", "get farmer body :: " + body);
                 String json = body.substring(1, body.length()-1).replace("\\", "");
-                try {
                     Log.e("main", "get farmer read value start !!");
                     Farm.setInstance(mapper.readValue(json, Farm.class));
                     Log.e("main", "get farmer read value end !! " + Farm.getInstance().getFarmId());
@@ -532,7 +538,13 @@ import retrofit2.Response;
 
                     findViewById(R.id.hot_notice1_layout).setOnClickListener(v -> {
                         Intent intent = new Intent(getBaseContext(), BoardDetailActivity.class);
-                        intent.putExtra("workId", dtos.get(0).getBoardId());
+                        intent.putExtra("boardId", dtos.get(0).getBoardId());
+                        startActivity(intent);
+                    });
+
+                    findViewById(R.id.hot_notice2_layout).setOnClickListener(v -> {
+                        Intent intent = new Intent(getBaseContext(), BoardDetailActivity.class);
+                        intent.putExtra("boardId", dtos.get(0).getBoardId());
                         startActivity(intent);
                     });
 

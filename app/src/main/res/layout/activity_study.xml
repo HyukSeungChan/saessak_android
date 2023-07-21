@@ -134,6 +134,7 @@
                     android:textColor="#737373"/>
 
                 <LinearLayout
+                    android:id="@+id/worker_support"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -157,6 +158,15 @@
                         android:layout_height="116dp"/>
 
                 </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/farmer_support"
+                    android:src="@drawable/png_smart_long"
+                    android:layout_marginHorizontal="13dp"
+                    android:scaleType="centerCrop"
+                    android:background="#FFFFFF"
+                    android:layout_width="320dp"
+                    android:layout_height="98dp"/>
 
             </LinearLayout>
 

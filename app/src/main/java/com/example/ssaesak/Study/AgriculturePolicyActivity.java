@@ -1,6 +1,8 @@
 package com.example.ssaesak.Study;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -45,7 +47,7 @@ public class AgriculturePolicyActivity extends AppCompatActivity {
     }
 
 
-    private void addMovieCard(int policyAgricultureId, String title, String applyContent) {
+    private void addMovieCard(PolicyAgricultureResponseDTO dto, int policyAgricultureId, String title, String applyContent) {
 
         Log.e("addMovieCard","addMovieCard 입장!!!!!!!!!!!!!!!!!!");
 
@@ -61,8 +63,15 @@ public class AgriculturePolicyActivity extends AppCompatActivity {
         TextView titleTextView = card.findViewById(R.id.title);
         TextView contentTextView = card.findViewById(R.id.content);
 
+
         titleTextView.setText(title);
         contentTextView.setText(applyContent);
+
+        card.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), PolicyAgricultureDetailActivity.class);
+            intent.putExtra("policy", dto);
+            startActivity(intent);
+        });
 
 
 
@@ -106,7 +115,7 @@ public class AgriculturePolicyActivity extends AppCompatActivity {
 
                     // Loop through the WorkListDTOs and add them to the card views
                     for (PolicyAgricultureResponseDTO dto : dtos) {
-                        addMovieCard(dto.getPolicyAgricultureId(), dto.getTitle() ,dto.getContent());
+                        addMovieCard(dto, dto.getPolicyAgricultureId(), dto.getTitle() ,dto.getContent());
                     }
                 } catch (Exception e1) {
                     Log.e("workHome", "Error parsing JSON", e1);
