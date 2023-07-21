@@ -2,7 +2,10 @@ package com.example.ssaesak.Study;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +28,9 @@ import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.example.ssaesak.Working.CardWorkNotice;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,6 +49,10 @@ public class EssentialStudyActivity extends Activity {
 //    private video;
 
     private List<VideoResponseDto> dtos;
+
+    private ImageView thumbnail;
+
+    private String url;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -99,6 +109,12 @@ public class EssentialStudyActivity extends Activity {
 
     private LinearLayout setVideo(LinearLayout video, VideoResponseDto dto) {
 
+        Log.e("thumbnail", dto.getThumbnail() + "!!!!!!!!!!!!!!");
+        thumbnail = video.findViewById(R.id.thumbnail);
+        Glide.with(getBaseContext())
+                .load(dto.getThumbnail())
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // 캐시 옵션 설정
+                .into(thumbnail);
         ((TextView)video.findViewById(R.id.title)).setText(dto.getTitle());
 
         video.setOnClickListener(v -> {

@@ -110,13 +110,15 @@ public class SignupPhoneActivity extends Activity {
 
                 User.getInstance().setPhone(editText.getText().toString());
                 signup();
-
+                Log.e("type", User.getInstance().getType() + "!!!!!!");
                 if (User.getInstance().getType().equals("도시농부")) {
                     startActivity(new Intent(getBaseContext(), SignupWorkerPositionActivity.class));
                     overridePendingTransition(0, 0);
                     finish();
                 } else {
-
+                    startActivity(new Intent(getBaseContext(), SignupFarmerActivity.class));
+                    overridePendingTransition(0, 0);
+                    finish();
                 }
             }
         });

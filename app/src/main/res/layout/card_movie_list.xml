@@ -7,12 +7,11 @@
 
     <ImageView
         android:id="@+id/thumbnail"
-        android:src="@drawable/temp_img"
         android:layout_width="128dp"
-        android:layout_height="76.694dp"
-        android:scaleType="centerCrop"
+        android:layout_height="65dp"
         android:layout_gravity="left|center"
-        />
+        android:scaleType="centerCrop"
+        android:src="@drawable/temp_img" />
 
     <View
         android:layout_width="30dp"

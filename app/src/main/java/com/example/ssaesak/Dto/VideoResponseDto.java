@@ -21,6 +21,8 @@ public class VideoResponseDto implements Serializable {
 
     private String crops;
 
+    private String thumbnail;
+
     private String crops_name;
 
     private boolean watching;
@@ -39,10 +41,19 @@ public class VideoResponseDto implements Serializable {
         this.crops = video.getCrops();
         this.crops_name = video.getCrops_name();
         this.watching = video.isWatching();
+        this.thumbnail = video.getThumbnail();
     }
 
     public int getVideoId() {
         return videoId;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public void setVideoId(int videoId) {

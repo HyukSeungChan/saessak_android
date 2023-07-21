@@ -112,15 +112,15 @@
 
             Log.e("addCommentList", "addCommentListDTO 입장!!" + dto.getName() + " " + dto.getContent() + " " + dto.getArea() + " " + dto.getUploadTime() + " " + dto.getProfileImage());
 
-            commentName.setText(dto.getName()+"");
+            commentName.setText(dto.getName());
 
             Glide.with(getActivity().getBaseContext())
                     .load(dto.getProfileImage())
                     .diskCacheStrategy(DiskCacheStrategy.ALL) // 캐시 옵션 설정
                     .into(commentProfileImage);
-            commentArea.setText(dto.getArea()+"");
-            commentTime.setText(dto.getUploadTime()+"");
-            commentContent.setText(dto.getContent()+"");
+            commentArea.setText(dto.getArea());
+            commentTime.setText(dto.getUploadTime());
+            commentContent.setText(dto.getContent());
 
             parentLayout.addView(commentLists);
         }
@@ -146,7 +146,7 @@
                         List<ReplyResponseDTO> dtos = Arrays.asList(mapper.readValue(json, ReplyResponseDTO[].class));
 
     //                    memberList.removeAllViews();
-                        LinearLayout parentLayout = view.findViewById(R.id.comment_list);
+                        LinearLayout parentLayout = view.findViewById(R.id.layout_notice);
                         parentLayout.removeAllViews();
                         // Loop through the WorkListDTOs and add them to the card views
                         Log.e("Dto size", dtos.size() + "!!");
