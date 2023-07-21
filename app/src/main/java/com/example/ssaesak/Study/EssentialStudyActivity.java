@@ -117,6 +117,13 @@ public class EssentialStudyActivity extends Activity {
                 .into(thumbnail);
         ((TextView)video.findViewById(R.id.title)).setText(dto.getTitle());
 
+
+        Glide.with(getBaseContext())
+                .load("https://saessak-s3.s3.ap-northeast-2.amazonaws.com/1.jpg")
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // 캐시 옵션 설정
+                .into((ImageView) video.findViewById(R.id.thumbnail));
+
+
         video.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), EssentialVideoActivity.class);
             intent.putExtra("videoData", dto);

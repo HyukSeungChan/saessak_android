@@ -79,6 +79,7 @@ public class SignupProfileActivity extends Activity {
             @Override
             public Unit invoke(com.kakao.sdk.user.model.User user_kakao, Throwable throwable) {
                 String profileUrl = user_kakao.getKakaoAccount().getProfile().getThumbnailImageUrl();
+                com.example.ssaesak.Model.User.getInstance().setProfileImage(profileUrl);
                 ImageView imageView = (ImageView) findViewById(R.id.profile_image);
                 Glide.with(getBaseContext()).load(profileUrl).into(imageView);
 

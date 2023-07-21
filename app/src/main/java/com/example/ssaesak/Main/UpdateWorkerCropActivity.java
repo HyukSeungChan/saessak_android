@@ -204,7 +204,7 @@ public class UpdateWorkerCropActivity extends Activity {
         for (List<View> list : parentList) {
 
             for (String s : Worker.getInstance().getInterestCrops().split(",")) {
-                if (((TextView) list.get(1)).getText().toString().contains(s)) {
+                if (!((TextView) list.get(1)).getText().toString().contains(s)) {
                     Log.e("signup", s + " size : " + filterNameList.size());
                     ((LinearLayout) list.get(0)).setSelected(true);
                     ((LinearLayout) list.get(0)).setBackground(getResources().getDrawable(R.drawable.background_primary_ellipse, null));
@@ -212,7 +212,7 @@ public class UpdateWorkerCropActivity extends Activity {
                 }
                 //Worker.getInstance().getArea().split(",")
             }
-            
+
         }
 
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -235,7 +235,7 @@ public class UpdateWorkerCropActivity extends Activity {
 
 
 
-                startActivity(new Intent(getBaseContext(), SignupWorkerPayActivity.class));
+                startActivity(new Intent(getBaseContext(), MypageUpdateWorker.class));
                 overridePendingTransition(0, 0);
                 finish();
 //                }

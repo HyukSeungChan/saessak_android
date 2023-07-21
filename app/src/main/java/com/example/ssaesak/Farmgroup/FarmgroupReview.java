@@ -22,6 +22,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.ssaesak.Main.MainActivity;
+import com.example.ssaesak.Model.Farm;
 import com.example.ssaesak.R;
 
 import java.util.regex.Pattern;
@@ -41,9 +42,19 @@ public class FarmgroupReview  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_farmgroup);
 
+
+        TextView title = findViewById(R.id.name);
+        title.setText(Farm.getInstance().getName());
+
         btnPickImage = findViewById(R.id.gallery);
         imageView = findViewById(R.id.testImage);
         nextButton = findViewById(R.id.button_next);
+        nextButton.setOnClickListener(v -> {
+            Farm.setInstance(new Farm());
+            startActivity(new Intent(getBaseContext(), MainActivity.class));
+        });
+
+
         tooltip = findViewById(R.id.tooltip);
 
         EditText editText = findViewById(R.id.edittext);
@@ -118,4 +129,8 @@ public class FarmgroupReview  extends AppCompatActivity {
             imageView.setImageURI(selectedImageUri);
         }
     }
+
+
+
+
 }

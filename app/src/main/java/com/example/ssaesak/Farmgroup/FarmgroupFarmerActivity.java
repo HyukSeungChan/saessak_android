@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 
 import com.example.ssaesak.Board.BoardActivity;
 import com.example.ssaesak.Dto.FarmResponseDTO;
+import com.example.ssaesak.Dto.UserTodoFarmDTO;
 import com.example.ssaesak.Dto.UserTodoFarmResponseDto;
 import com.example.ssaesak.Main.MainActivity;
 import com.example.ssaesak.Model.User;
@@ -48,14 +49,22 @@ import retrofit2.Response;
 
 public class FarmgroupFarmerActivity extends Activity {
 
-//    CalendarView calendarView;
+    //    CalendarView calendarView;
     MaterialCalendarView calendarView;
     DatePicker datePicker;
+
+    EventDecoratorWorkday eventDecoratorWorkday;
 
     ImageButton button_sidebar;
     int farmId;
 
-    Button newTodo;
+    List<UserTodoFarmDTO> dtos;
+
+    private EventDecoratorWorkdaySelect workdaySelect;
+    private List<UserTodoFarmDTO> todoList;
+    private ArrayList<CalendarDay> calendarDayList;
+
+    private LinearLayout linearLayout;
 
 
     @Override
@@ -65,45 +74,55 @@ public class FarmgroupFarmerActivity extends Activity {
 
         MaterialDatePicker.Builder.datePicker();
 
-
-        newTodo.setOnClickListener(v -> {
-//           LinearLayout
-        });
-
         this.calendarView = findViewById(R.id.calendarView);
-        Log.e("main", "farm activity!! : " + UserFarmList.getInstance().size());
         farmId = UserFarmList.getInstance().get(0).getFarmId();
-//        farmId = userFarmList.get(0).getFarmId();
         getFarmInfo(farmId);
-        getTodoList(farmId);
-
-        ArrayList<CalendarDay> farmdayList = new ArrayList<>();
-        farmdayList.add(CalendarDay.from(2023, 6, 15));
-        farmdayList.add(CalendarDay.from(2023, 6, 12));
-        farmdayList.add(CalendarDay.from(2023, 6, 17));
-        farmdayList.add(CalendarDay.from(2023, 6, 1));
-        farmdayList.add(CalendarDay.from(2023, 6, 5));
-
-        ArrayList<CalendarDay> workdayList = new ArrayList<>();
-        workdayList.add(CalendarDay.from(2023, 6, 13));
-        workdayList.add(CalendarDay.from(2023, 6, 12));
-
-
-        EventDecoratorWorkday eventDecoratorWorkday = new EventDecoratorWorkday(farmdayList, this, new TextView(getApplicationContext()));
-        EventDecoratorSelect eventDecoratorSelect = new EventDecoratorSelect(workdayList, this, new TextView(getApplicationContext()));
-        this.calendarView.addDecorators(eventDecoratorSelect, eventDecoratorWorkday);
-
 
         this.calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 Log.e("selectedDate", calendarView.getSelectedDate() + "");
-//                calendarView.removeDecorator();
-                HashSet<CalendarDay> dates = new HashSet<>();
-                dates.add(date);
-                calendarView.addDecorator(new EventDecoratorWorkdaySelect(dates, FarmgroupFarmerActivity.this, new TextView(getApplicationContext())));
+                linearLayout.removeAllViews();
+
+
+//                HashSet<CalendarDay> dates = new HashSet<>();
+//                dates.add(date);
+                ArrayList<CalendarDay> calendarDay = new ArrayList<>();
+                calendarDay.add(date);
+//
+                if (workdaySelect != null) calendarView.removeDecorator(workdaySelect);
+                calendarView.addDecorator(eventDecoratorWorkday);
+
+                int count = 0;
+                if(calendarDayList.contains(date)) {
+                    workdaySelect = new EventDecoratorWorkdaySelect(calendarDay, FarmgroupFarmerActivity.this, new TextView(getApplicationContext()));
+                    calendarView.addDecorator(workdaySelect);
+
+                    for (UserTodoFarmDTO dto : dtos) {
+                        if (dto.getCalendarDay().equals(date)) {
+                            count++;
+                            LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+                            LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo, linearLayout, false);
+                            ((TextView)video.findViewById(R.id.task_name)).setText(dto.getTask());
+                            video.setVisibility(View.VISIBLE);
+                            linearLayout.addView(video);
+                        }
+                    }
+                }
+                Log.e("calender", "count : " + count);
+                if (count == 0) {
+                    LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+                    LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo_null, linearLayout, false);
+                    linearLayout.addView(video);
+                }
+
+//                if (workdaySelect != null) calendarView.removeDecorator(workdaySelect);
+//                workdaySelect = new EventDecoratorWorkdaySelect(calendarDayList, FarmgroupActivity.this, new TextView(getApplicationContext()));
+//                calendarView.addDecorator(workdaySelect);
             }
         });
+
+        getTodoList(farmId);
 
 
         this.button_sidebar = findViewById(R.id.sidebar);
@@ -221,37 +240,36 @@ public class FarmgroupFarmerActivity extends Activity {
         LinearLayout linearLayout = findViewById(R.id.todo_layout);
         linearLayout.removeAllViews();
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        Call<ApiResponse> call = MyRetrofit.getApiService().getTodoList(User.getInstance().getUserId(), farmId, date.format(new Date()));
+        Call<ApiResponse> call = MyRetrofit.getApiService().getTodoList(farmId);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                Log.e("main", "todoList : " + response.body().getData().toString());
-                if (response.body().getData() == null || response.body().getData().toString().length() < 10) {
-                    LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
-                    LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo_null, linearLayout, false);
-                    linearLayout.addView(video);
-                    return;
-                }
-
-                ObjectMapper mapper = new ObjectMapper();
-                String body = response.body().getData().toString();
-                String json = body.replace("\\", "");
+                Log.e("main", "get todo onersponse");
 
                 try {
-                    List<UserTodoFarmResponseDto> dtos = Arrays.asList(mapper.readValue(json, UserTodoFarmResponseDto[].class));
+//                    todoList = new ArrayList<>();
+                    ObjectMapper mapper = new ObjectMapper();
+                    String body = response.body().getData().toString();
+                    String json = body.substring(1, body.length()-1).replace("\\", "");
 
-                    for (UserTodoFarmResponseDto dto : dtos) {
-                        LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
-                        LinearLayout video = (LinearLayout) layoutInflater.inflate(R.layout.card_todo, linearLayout, false);
-                        ((TextView)video.findViewById(R.id.task_name)).setText(dto.getTask());
-                        video.setVisibility(View.VISIBLE);
-                        linearLayout.addView(video);
+                    dtos = Arrays.asList(mapper.readValue(json, UserTodoFarmDTO[].class));
+                    calendarDayList = new ArrayList<>();
+                    for (UserTodoFarmDTO todo : dtos) {
+                        calendarDayList.add(todo.getCalendarDay());
+                        Log.e("main", "calendarList" + todo.getCalendarDay().toString());
                     }
+
+                    Log.e("main", "calendarList size" + calendarDayList.size());
+                    eventDecoratorWorkday = new EventDecoratorWorkday(calendarDayList, FarmgroupFarmerActivity.this, new TextView(getApplicationContext()));
+                    calendarView.addDecorator(eventDecoratorWorkday);
+
+                } catch (NullPointerException e) {
+                    Log.e("main", "get todo nullpointer");
+                    todoList = new ArrayList<>();
                 } catch (Exception e) {
+                    Log.e("main", "get todo exception : " + e.getMessage());
                     e.printStackTrace();
                 }
-
-
             }
 
             @Override

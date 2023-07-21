@@ -27,8 +27,9 @@ public class Constatnts_url {
 
     // 홈
     public static final String WORK_RECOMMEND = "work/recommend/";
-    public static final String TODO_LIST = "user/todo/";
-    public static final String TODO_ALL_LIST = "user/todo/all/";
+    public static final String TODO_LIST_DATE = "user/todo/date";
+    public static final String TODO_LIST_USER = "user/todo/";
+    public static final String TODO_LIST_ALL = "user/todo/all/";
     public static final String RESUME_LIST = "work/resume/worker/";
 
     // 농장
