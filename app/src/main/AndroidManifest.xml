@@ -60,6 +60,9 @@
         <activity android:name="com.example.ssaesak.Working.NoticeDetailActivity"/>
         <activity android:name="com.example.ssaesak.Working.ResumeActivity"/>
         <activity android:name="com.example.ssaesak.Working.WorkingFarmerActivity"/>
+        <activity android:name="com.example.ssaesak.Working.CreateWorkNoticeActivity"/>
+
+
 
         <activity android:name="com.example.ssaesak.Board.BoardActivity"/>
 

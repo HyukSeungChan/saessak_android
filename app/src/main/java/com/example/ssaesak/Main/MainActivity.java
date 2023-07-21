@@ -564,6 +564,7 @@ import retrofit2.Response;
                 } else if (item.getItemId() == R.id.fragment_working) {
 
                     if(User.getInstance().getType().equals("도시농부")) {
+                    Log.e("type", User.getInstance().getType() + "!!!!!!!!!!!!!!!");
                         Intent intent = new Intent(getApplicationContext(), WorkingWorkerActivity.class);
 //                    intent.putExtra("bottom", );
                         startActivity(intent);
@@ -576,7 +577,6 @@ import retrofit2.Response;
                         overridePendingTransition(0, 0);
                         return true;
                     }
-
 
                 } else if (item.getItemId() == R.id.fragment_farm) {
                     Log.e("main", "navi ! my farm count : " + UserFarmList.getInstance().size()+"");
