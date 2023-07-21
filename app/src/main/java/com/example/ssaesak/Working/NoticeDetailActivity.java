@@ -146,7 +146,7 @@ public class NoticeDetailActivity extends AppCompatActivity {
                     }
 
                     time.setText(workDTO.getWorkStartTime()+"~"+workDTO.getWorkEndTime());
-                    content.setText(workDTO.getContent());
+//                    content.setText(workDTO.getContent());
                     endDay.setText(workDTO.getRecruitmentEnd());
                     count.setText(workDTO.getRecruitmentPerson()+"명");
                     qualification.setText(workDTO.getQualification());

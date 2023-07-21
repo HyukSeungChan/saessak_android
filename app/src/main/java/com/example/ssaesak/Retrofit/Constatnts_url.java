@@ -93,6 +93,9 @@ public class Constatnts_url {
     // 해당 일자리 조회
     public static final String WORK_DETAIL = "work/worker/workId/";
 
+    // 일자리 공고 작성 (농장주)
+    public static final String WORK_NOTICE_FARMER = "work/farm/";
+
 
 
 

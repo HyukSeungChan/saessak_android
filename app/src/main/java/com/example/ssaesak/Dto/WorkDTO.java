@@ -11,7 +11,6 @@ public class WorkDTO {
 
     private String title;
 
-    private String content;
 
     private String recruitmentStart;
 
@@ -56,11 +55,10 @@ public class WorkDTO {
 
     }
 
-    public WorkDTO(int workId, int farmId, String title, String content, String recruitmentStart, String recruitmentEnd, int recruitmentPerson, String qualification, String preferentialTreatment, int hourWage, int dayWage, String workStartDay, String workEndDay, String workStartTime, String workEndTime, float career, String state, String etc, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String cropsDetail) {
+    public WorkDTO(int workId, int farmId, String title, String recruitmentStart, String recruitmentEnd, int recruitmentPerson, String qualification, String preferentialTreatment, int hourWage, int dayWage, String workStartDay, String workEndDay, String workStartTime, String workEndTime, float career, String state, String etc, String name, String address, String farmImage, int pay, String phone, String introduction, String agriculture, String crops, String cropsDetail) {
         this.workId = workId;
         this.farmId = farmId;
         this.title = title;
-        this.content = content;
         this.recruitmentStart = recruitmentStart;
         this.recruitmentEnd = recruitmentEnd;
         this.recruitmentPerson = recruitmentPerson;
@@ -108,14 +106,6 @@ public class WorkDTO {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public String getRecruitmentStart() {

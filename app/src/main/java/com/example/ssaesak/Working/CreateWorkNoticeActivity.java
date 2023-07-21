@@ -1,23 +1,37 @@
 package com.example.ssaesak.Working;
 
+import android.app.DatePickerDialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.ssaesak.Dto.BoardRequestDTO;
 import com.example.ssaesak.Dto.WorkRequestDto;
 import com.example.ssaesak.Model.Farm;
 import com.example.ssaesak.R;
+import com.example.ssaesak.Retrofit.MyRetrofit;
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CreateWorkNoticeActivity extends AppCompatActivity {
 
@@ -38,7 +52,7 @@ public class CreateWorkNoticeActivity extends AppCompatActivity {
     private EditText edittext_quality;
     private EditText edittext_good;
 
-    private int select_chip_string;
+    private float select_chip_string;
     private Button chip_all;
     private Button chip_012;
     private Button chip_13;
@@ -54,6 +68,10 @@ public class CreateWorkNoticeActivity extends AppCompatActivity {
 
     private List<Button> filterList;
 
+    private DatePickerDialog datePickerDialog;
+
+    private LinearLayout edittext_layout_notice_due_start, edittext_layout_notice_due_end, edittext_layout_working_due_start, edittext_layout_working_due_end;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +79,13 @@ public class CreateWorkNoticeActivity extends AppCompatActivity {
 
         title_length = findViewById(R.id.title_length);
         edittext_title = findViewById(R.id.edittext_title);
+
+        edittext_layout_notice_due_start = findViewById(R.id.edittext_layout_notice_due_start);
+        edittext_layout_notice_due_end = findViewById(R.id.edittext_layout_due_end_notice);
+        edittext_layout_working_due_start = findViewById(R.id.edittext_layout_working_due_start);
+        edittext_layout_working_due_end = findViewById(R.id.edittext_layout_working_due_end);
+        edittext_want_due_start = findViewById(R.id.edittext_want_due_start);
+        edittext_want_due_end = findViewById(R.id.edittext_want_due_end);
 
         edittext_notice_due_start = findViewById(R.id.edittext_notice_due_start);
         edittext_notice_due_start.setClickable(false);
@@ -98,25 +123,18 @@ public class CreateWorkNoticeActivity extends AppCompatActivity {
             });
         }
 
-        edittext_want_due_start = findViewById(R.id.edittext_want_due_start);
-        edittext_want_due_end = findViewById(R.id.edittext_want_due_end);
+
+
+        edittext_layout_notice_due_start.setOnClickListener(v -> showDatePickerDialog(edittext_notice_due_start));
+        edittext_layout_notice_due_end.setOnClickListener(v -> showDatePickerDialog(edittext_notice_due_end));
+        edittext_layout_working_due_start.setOnClickListener(v -> showDatePickerDialog(edittext_working_due_start));
+        edittext_layout_working_due_end.setOnClickListener(v -> showDatePickerDialog(edittext_working_due_end));
 
         edittext_pay = findViewById(R.id.edittext_pay);
 
         button_next = findViewById(R.id.button_next);
         button_next.setOnClickListener(v -> {
-            WorkRequestDto workRequestDto = new WorkRequestDto();
-            workRequestDto.setFarmId(Farm.getInstance().getFarmId());
-            workRequestDto.setTitle(edittext_title.getText().toString());
-//            workRequestDto.setContent();
-            workRequestDto.setRecruitmentStart(edittext_notice_due_start.getText().toString());
-            workRequestDto.setRecruitmentEnd(edittext_notice_due_end.getText().toString());
-            workRequestDto.setRecruitmentPerson(Integer.parseInt(edittext_people.getText().toString()));
-            workRequestDto.setQualification(edittext_quality.getText().toString());
-            workRequestDto.setPreferentialTreatment(edittext_good.getText().toString());
-            workRequestDto.setWorkStartTime(edittext_want_due_start.getText().toString());
-            workRequestDto.setWorkEndTime(edittext_want_due_end.getText().toString());
-            workRequestDto.setEtc(edittext_pay.getText().toString());
+            workNoticeFarmer();
         });
 
     }
@@ -146,4 +164,88 @@ public class CreateWorkNoticeActivity extends AppCompatActivity {
             }
         }
     }
+
+    private void workNoticeFarmer() {
+
+        WorkRequestDto workRequestDto = new WorkRequestDto();
+        workRequestDto.setFarmId(Farm.getInstance().getFarmId());
+        workRequestDto.setTitle(edittext_title.getText().toString());
+//        workRequestDto.setContent();
+        workRequestDto.setRecruitmentStart(edittext_notice_due_start.getText().toString());
+        workRequestDto.setRecruitmentEnd(edittext_notice_due_end.getText().toString());
+        workRequestDto.setCareer(1.2f);
+        workRequestDto.setRecruitmentPerson(Integer.parseInt(edittext_people.getText().toString()));
+        workRequestDto.setQualification(edittext_quality.getText().toString());
+        workRequestDto.setPreferentialTreatment(edittext_good.getText().toString());
+        workRequestDto.setWorkStartTime(edittext_want_due_start.getText().toString());
+        workRequestDto.setWorkEndTime(edittext_want_due_end.getText().toString());
+        workRequestDto.setDayWage(Integer.parseInt(edittext_pay.getText().toString()));
+
+        Log.e("farmId", workRequestDto.getFarmId()+"!!!!!!!!");
+        Log.e("title", workRequestDto.getRecruitmentStart()+"!!!!!!!!");
+        Log.e("RecruimentStart", workRequestDto.getRecruitmentEnd()+"!!!!!!!!");
+        Log.e("RecruimentEnd", workRequestDto.getFarmId()+"!!!!!!!!");
+        Log.e("Qual", workRequestDto.getQualification()+"!!!!!!!!");
+        Log.e("startTime", workRequestDto.getWorkStartTime()+"!!!!!!!!");
+        Log.e("endTime", workRequestDto.getWorkEndTime()+"!!!!!!!!");
+        Log.e("dayWage", workRequestDto.getDayWage()+"!!!!!!!!");
+
+
+
+        Call<WorkRequestDto> call = MyRetrofit.getApiService().workNoticeFarmer(workRequestDto);
+        call.enqueue(new Callback<WorkRequestDto>() {
+            @Override
+            public void onResponse(Call<WorkRequestDto> call, Response<WorkRequestDto> response) {
+                if (response.isSuccessful()) {
+                    Log.e("response", "response good" + response.body());
+
+                    // 글 생성 성공
+//                    Toast.makeText(getApplicationContext(), "글이 성공적으로 생성되었습니다.", Toast.LENGTH_SHORT).show();
+                    // 글 목록을 갱신하는 등의 작업 수행
+                    // ...
+                } else {
+                    Log.e("response", "response bad" + response.body());
+                    // 글 생성 실패
+//                    Toast.makeText(getApplicationContext(), "글 생성에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WorkRequestDto> call, Throwable t) {
+                Log.e("fail", t.getMessage());
+                // 통신 실패
+//                Toast.makeText(getApplicationContext(), "글 생성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+    private void showDatePickerDialog(EditText editText) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+        datePickerDialog = new DatePickerDialog(
+                this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        // Update the appropriate EditText with the selected date
+                        // Make sure to format the date as desired
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+                        String selectedDate = year + "-" + (month + 1) + "-" + dayOfMonth;
+                        editText.setText(selectedDate);
+                    }
+                },
+                year,
+                month,
+                dayOfMonth
+        );
+
+        // Show the date picker dialog
+        datePickerDialog.show();
+    }
+
 }

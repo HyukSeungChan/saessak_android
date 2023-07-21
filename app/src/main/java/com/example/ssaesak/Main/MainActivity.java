@@ -542,7 +542,7 @@ import retrofit2.Response;
 //                    overridePendingTransition(0, 0);
                     return true;
                 } else if (item.getItemId() == R.id.fragment_working) {
-
+                    Log.e("type", User.getInstance().getType() + "!!!!!!!!!!!!!!!");
                     if (User.getInstance().getType().equals("도시농부")) {
                         Intent intent = new Intent(getApplicationContext(), WorkingWorkerActivity.class);
 //                    intent.putExtra("bottom", );

@@ -5,7 +5,7 @@ public class WorkRequestDto {
     private int workId;
     private int farmId;
     private String title;
-    private String content;
+//    private String content;
     private String recruitmentStart;
     private String recruitmentEnd;
     private int recruitmentPerson;
@@ -31,11 +31,10 @@ public class WorkRequestDto {
     public WorkRequestDto() {
     }
 
-    public WorkRequestDto(int workId, int farmId, String title, String content, String recruitmentStart, String recruitmentEnd, int recruitmentPerson, String qualification, String preferentialTreatment, int hourWage, int dayWage, String workStartDay, String workEndDay, String workStartTime, String workEndTime, String state, float career, String etc) {
+    public WorkRequestDto(int workId, int farmId, String title, String recruitmentStart, String recruitmentEnd, int recruitmentPerson, String qualification, String preferentialTreatment, int hourWage, int dayWage, String workStartDay, String workEndDay, String workStartTime, String workEndTime, String state, float career, String etc) {
         this.workId = workId;
         this.farmId = farmId;
         this.title = title;
-        this.content = content;
         this.recruitmentStart = recruitmentStart;
         this.recruitmentEnd = recruitmentEnd;
         this.recruitmentPerson = recruitmentPerson;
@@ -74,14 +73,6 @@ public class WorkRequestDto {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public String getRecruitmentStart() {

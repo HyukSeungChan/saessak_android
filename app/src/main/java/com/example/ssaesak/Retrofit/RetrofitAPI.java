@@ -9,6 +9,8 @@ import com.example.ssaesak.Dto.ReplyRequestDTO;
 import com.example.ssaesak.Dto.ResumeDTO;
 import com.example.ssaesak.Dto.ResumeRequestDTO;
 import com.example.ssaesak.Dto.UserVideoWatchRequestDto;
+import com.example.ssaesak.Dto.WorkDTO;
+import com.example.ssaesak.Dto.WorkRequestDto;
 import com.example.ssaesak.Dto.WorkResumeRequestDTO;
 import com.example.ssaesak.Dto.WorkerDTO;
 import com.example.ssaesak.Model.Farm;
@@ -186,6 +188,10 @@ public interface RetrofitAPI {
 
     @GET(Constatnts_url.My_RESUME)
     Call<ApiResponse> myResume(@Query("userId") Long userId);
+
+    // 일자리 공고 작성(농장주)
+    @POST(Constatnts_url.WORK_NOTICE_FARMER)
+    Call<WorkRequestDto> workNoticeFarmer(@Body WorkRequestDto workRequestDto);
 
 
 

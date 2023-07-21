@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -18,6 +19,7 @@ import com.example.ssaesak.Adapter.AgricultureAdapter;
 import com.example.ssaesak.Adapter.CareerAdapter;
 import com.example.ssaesak.Adapter.CropAdapter;
 import com.example.ssaesak.Board.BoardActivity;
+import com.example.ssaesak.Board.BoardDetailActivity;
 import com.example.ssaesak.Dto.WorkDTO;
 import com.example.ssaesak.Farmgroup.FarmgroupActivity;
 import com.example.ssaesak.Farmgroup.FarmgroupNullActivity;
@@ -40,7 +42,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class WorkingFarmerActivity extends AppCompatActivity implements BottomsheetAreaDialog.BottomSheetAreaListener,BottomsheetCropDialog.BottomSheetCropListener,  BottomsheetCareerDialog.BottomSheetCareerListener, BottomsheetAgricultureDialog.BottomSheetAgricultureListener {
+public class WorkingFarmerActivity extends AppCompatActivity {
+//        implements BottomsheetAreaDialog.BottomSheetAreaListener,BottomsheetCropDialog.BottomSheetCropListener,  BottomsheetCareerDialog.BottomSheetCareerListener, BottomsheetAgricultureDialog.BottomSheetAgricultureListener {
 //public class WorkingActivity  extends Activity {
 
     private final String TAG = this.getClass().getSimpleName();
@@ -58,121 +61,17 @@ public class WorkingFarmerActivity extends AppCompatActivity implements Bottomsh
     private LinearLayout noticeList;
     private LayoutInflater layoutInflater;
     private LinearLayout card;
-    private String filter;
-
     private LinearLayout layout;
 
-    private List<LinearLayout> layoutList;
+    private LinearLayout buttonPost;
 
-    private List<TextView> textList;
-
-    private List<ImageView> imageList;
-
-    private String filterArea;
-    private String filterAgriculture;
-    private String filterCrop;
-    private String filterCareer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_work_notice);
-        filter = "";
+        setContentView(R.layout.activity_work_notice_farmer);
 
-        this.layoutList = new ArrayList<>();
-        this.layoutList.add(findViewById(R.id.area_layout));
-        this.layoutList.add(findViewById(R.id.agriculture_layout));
-        this.layoutList.add(findViewById(R.id.crop_layout));
-        this.layoutList.add(findViewById(R.id.career_layout));
-
-        this.textList = new ArrayList<>();
-        this.textList.add(findViewById(R.id.area_text));
-        this.textList.add(findViewById(R.id.agriculture_text));
-        this.textList.add(findViewById(R.id.crop_text));
-        this.textList.add(findViewById(R.id.career_text));
-
-        this.imageList = new ArrayList<>();
-        this.imageList.add(findViewById(R.id.area_image));
-        this.imageList.add(findViewById(R.id.agriculture_image));
-        this.imageList.add(findViewById(R.id.crop_image));
-        this.imageList.add(findViewById(R.id.career_image));
-
-        for (LinearLayout layout : layoutList) {
-            layout.setOnClickListener(v -> {
-                layout.setBackground(getResources().getDrawable(R.drawable.filter_select, null));
-                textList.get(layoutList.indexOf(layout)).setTextColor(getResources().getColor(R.color.gray1, null));
-                imageList.get(layoutList.indexOf(layout)).setBackground(getResources().getDrawable(R.drawable.svg_dropdown_select, null));
-                setSelectedFalse(layout);
-            });
-        }
-
-
-
-        layout = findViewById(R.id.layout_notice);
-        this.filterArea = "";
-        this.filterAgriculture = "";
-        this.filterCrop = "";
-        this.filterCareer = "";
-
-        LinearLayout layoutArea = findViewById(R.id.area_layout);
-        layoutArea.setOnClickListener(view -> {
-            BottomsheetAreaDialog bottomsheetAreaDialog = new BottomsheetAreaDialog();
-            Bundle args = new Bundle();
-            args.putString("area", filterArea);
-            bottomsheetAreaDialog.setArguments(args);
-            bottomsheetAreaDialog.show(getSupportFragmentManager(), "dd");
-        });
-
-        LinearLayout layoutAgriculture = findViewById(R.id.agriculture_layout);
-        layoutAgriculture.setOnClickListener(view -> {
-            BottomsheetAgricultureDialog bottomsheetAgricultureDialog = new BottomsheetAgricultureDialog();
-            Bundle args = new Bundle();
-            args.putString("agriculture", filterAgriculture);
-            bottomsheetAgricultureDialog.setArguments(args);
-            bottomsheetAgricultureDialog.show(getSupportFragmentManager(), "dd");
-        });
-
-        LinearLayout layoutCrop = findViewById(R.id.crop_layout);
-        layoutCrop.setOnClickListener(view -> {
-            BottomsheetCropDialog bottomsheetCropDialog = new BottomsheetCropDialog();
-            Bundle args = new Bundle();
-            args.putString("crop", filterCrop);
-            bottomsheetCropDialog.setArguments(args);
-            bottomsheetCropDialog.show(getSupportFragmentManager(), "dd");
-        });
-
-        LinearLayout layoutCareer = findViewById(R.id.career_layout);
-        layoutCareer.setOnClickListener(view -> {
-            BottomsheetCareerDialog bottomsheetCareerDialog = new BottomsheetCareerDialog();
-            Bundle args = new Bundle();
-            args.putString("career", filterCareer);
-            bottomsheetCareerDialog.setArguments(args);
-            bottomsheetCareerDialog.show(getSupportFragmentManager(), "dd");
-        });
-
-
-
-
-
-//        for (Button button : chipList) {
-//            button.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    filter = button.getText().toString();
-//                    Log.e(this.toString(), filter);
-//                    button.setBackground(getResources().getDrawable(R.drawable.chip_select, null));
-////                    button.setPressed(true);
-////                    button.setSelected(true);
-//                }
-//            });
-//        }
-
-//        spinnerAgriculture = findViewById(R.id.spinner_agriculture);
-//        spinnerCrop = findViewById(R.id.spinner_crop);
-//        spinnerCareer = findViewById(R.id.spinner_career);
-//
-//        this.noticeList = findViewById(R.id.layout_notice);
-//
+        init();
 
         this.layoutInflater = LayoutInflater.from(getBaseContext());
         CardWorkNotice cardView = new CardWorkNotice(getBaseContext());
@@ -183,10 +82,8 @@ public class WorkingFarmerActivity extends AppCompatActivity implements Bottomsh
 
 
 
-        this.layoutInflater = LayoutInflater.from(getBaseContext());
-        this.noticeList = findViewById(R.id.layout_notice);
-
-        workList(User.getInstance().getUserId());
+//        this.layoutInflater = LayoutInflater.from(getBaseContext());
+//        workList(User.getInstance().getUserId());
 //        CardWorkNotice cardView = new CardWorkNotice(getBaseContext());
 //
 //        List<CardWorkNotice> cardViewList = new ArrayList<>();
@@ -259,6 +156,11 @@ public class WorkingFarmerActivity extends AppCompatActivity implements Bottomsh
 //            public void onNothingSelected(AdapterView<?> parent) {}
 //        });
 
+        buttonPost.setOnClickListener(v -> {
+            Intent intent = new Intent(getBaseContext(), CreateWorkNoticeActivity.class);
+            startActivity(intent);
+        });
+
 
 
         // 내비 표시
@@ -306,6 +208,9 @@ public class WorkingFarmerActivity extends AppCompatActivity implements Bottomsh
         });
     }
 
+    private void init() {
+        buttonPost = findViewById(R.id.button_post);
+    }
 
 
     @Override
@@ -314,65 +219,6 @@ public class WorkingFarmerActivity extends AppCompatActivity implements Bottomsh
 
         finish();
         overridePendingTransition(0, 0); //애니메이션 없애기
-    }
-
-    private void setSelectedFalse(LinearLayout layout) {
-        for (LinearLayout nonLayout : layoutList) {
-            if(!nonLayout.equals(layout)) {
-                nonLayout.setBackground(getResources().getDrawable(R.drawable.filter_not_select, null));
-                textList.get(layoutList.indexOf(nonLayout)).setTextColor(getResources().getColor(R.color.gray5, null));
-                imageList.get(layoutList.indexOf(nonLayout)).setBackground(getResources().getDrawable(R.drawable.svg_dropdown, null));
-            }
-        }
-    }
-
-    @Override
-    public void onButtonArea(String filterArea) {
-        this.filterArea = filterArea;
-
-        Log.e("filter", filterArea);
-
-        this.workListAddress(filterArea, User.getInstance().getUserId());
-    }
-
-    @Override
-    public void onButtonAgiculture(String filterAgriculture) {
-        this.filterAgriculture = filterAgriculture;
-
-        Log.e("filter", filterAgriculture);
-
-        this.workListAgriculture(filterAgriculture, User.getInstance().getUserId());
-    }
-
-    @Override
-    public void onButtonCrop(String filterCrop) {
-        this.filterCrop = filterCrop;
-
-        Log.e("filter", filterCrop);
-
-        this.workListCrops(filterCrop, User.getInstance().getUserId());
-    }
-
-    @Override
-    public void onButtonCareer(String filterCareer) {
-        this.filterCareer = filterCareer;
-        float career = 0;
-
-        if (filterCareer.equals("경력 무관")) {
-            career = 99;
-        } else if (filterCareer.equals("0~12개월")) {
-            career = 1;
-        } else if (filterCareer.equals("1~3년")) {
-            career = 3;
-        } else if (filterCareer.equals("3~5년")) {
-            career = 5;
-        } else if (filterCareer.equals("5년 이상")) {
-            career = 7;
-        }
-
-        Log.e("filter", filterCareer);
-
-        this.workListCareer(career, User.getInstance().getUserId());
     }
 
     private void addNoticeCard(int workId, String address, String title, String due, String agriculture, String crops, String cropsDetail) {
@@ -419,40 +265,40 @@ public class WorkingFarmerActivity extends AppCompatActivity implements Bottomsh
 
 
     // 일자리 공고 전부 받아오기
-    private void workList(Long userId) {
-        Log.e("workHome", "get workHome start!!");
-        Call<ApiResponse> call = MyRetrofit.getApiService().workList(userId);
-        call.enqueue(new Callback<ApiResponse>() {
-            @Override
-            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                Log.e("workHome", "workHomeList : ");
-                Log.e("workHome", "workHomeList : " + response.body());
-                ObjectMapper mapper = new ObjectMapper();
-                String body = response.body().getData().toString();
-                String json = body.substring(1, body.length()-1).replace("\\", "");
-                Log.e("workHome", " body -> " + body);
-                Log.e("workHome", " json -> " + json);
-                try {
-                    List<WorkDTO> dtos = Arrays.asList(mapper.readValue(json, WorkDTO[].class));
-
-                    noticeList.removeAllViews();
-
-                    // Loop through the WorkListDTOs and add them to the card views
-                    for (WorkDTO dto : dtos) {
-                        addNoticeCard(dto.getWorkId(), dto.getAddress(), dto.getTitle(), dto.getRecruitmentStart() + "~" + dto.getRecruitmentEnd(), dto.getAgriculture(), dto.getCrops(), dto.getCropsDetail());
-                    }
-                } catch (Exception e1) {
-                    Log.e("workHome", "Error parsing JSON", e1);
-                    e1.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t) {
-                Log.e("workHome failed", t.getMessage() + "");
-            }
-        });
-    }
+//    private void workList(Long userId) {
+//        Log.e("workHome", "get workHome start!!");
+//        Call<ApiResponse> call = MyRetrofit.getApiService().workList(userId);
+//        call.enqueue(new Callback<ApiResponse>() {
+//            @Override
+//            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+//                Log.e("workHome", "workHomeList : ");
+//                Log.e("workHome", "workHomeList : " + response.body());
+//                ObjectMapper mapper = new ObjectMapper();
+//                String body = response.body().getData().toString();
+//                String json = body.substring(1, body.length()-1).replace("\\", "");
+//                Log.e("workHome", " body -> " + body);
+//                Log.e("workHome", " json -> " + json);
+//                try {
+//                    List<WorkDTO> dtos = Arrays.asList(mapper.readValue(json, WorkDTO[].class));
+//
+//                    noticeList.removeAllViews();
+//
+//                    // Loop through the WorkListDTOs and add them to the card views
+//                    for (WorkDTO dto : dtos) {
+//                        addNoticeCard(dto.getWorkId(), dto.getAddress(), dto.getTitle(), dto.getRecruitmentStart() + "~" + dto.getRecruitmentEnd(), dto.getAgriculture(), dto.getCrops(), dto.getCropsDetail());
+//                    }
+//                } catch (Exception e1) {
+//                    Log.e("workHome", "Error parsing JSON", e1);
+//                    e1.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ApiResponse> call, Throwable t) {
+//                Log.e("workHome failed", t.getMessage() + "");
+//            }
+//        });
+//    }
 
     // 일자리 필터링 (지역)
     private void workListAddress(String address, Long userId) {
