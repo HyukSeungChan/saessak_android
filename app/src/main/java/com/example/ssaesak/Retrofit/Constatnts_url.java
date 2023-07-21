@@ -100,6 +100,9 @@ public class Constatnts_url {
     // 일자리 공고 작성 (농장주)
     public static final String WORK_NOTICE_FARMER = "work/farm/";
 
+    // 내가 등록한 공고 (농장주)
+    public static final String MY_WORK_NOTICE = "work/farm/";
+
 
 
 
@@ -112,7 +115,7 @@ public class Constatnts_url {
     public static final String WORK_RESUME_CREATE = "work/resume/";
 
     // 자신의 이력서 확인
-    public static final String My_RESUME = "resume/";
+    public static final String MY_RESUME = "resume/";
 
 
 

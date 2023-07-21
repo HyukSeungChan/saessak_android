@@ -92,7 +92,7 @@ public class WorkingFarmerActivity extends AppCompatActivity {
 //        spinnerCrop = findViewById(R.id.spinner_crop);
 //        spinnerCareer = findViewById(R.id.spinner_career);
 //
-        this.noticeList = findViewById(R.id.layout_notice);
+
 //
         init();
 

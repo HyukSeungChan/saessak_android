@@ -23,6 +23,7 @@ import com.example.ssaesak.Model.User;
 import com.example.ssaesak.Model.UserFarmList;
 import com.example.ssaesak.R;
 import com.example.ssaesak.Study.StudyActivity;
+//import com.example.ssaesak.Working.WorkingFarmerActivity;
 import com.example.ssaesak.Working.WorkingFarmerActivity;
 import com.example.ssaesak.Working.WorkingWorkerActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -128,8 +129,8 @@ public class BoardActivity extends AppCompatActivity {
         movePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),BoardPostActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(),BoardPostActivity.class);
+                startActivity(intent);
             }
         });
 
