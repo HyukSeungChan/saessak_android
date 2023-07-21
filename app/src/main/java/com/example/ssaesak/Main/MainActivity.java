@@ -123,6 +123,10 @@ import retrofit2.Response;
             startActivity(new Intent(getBaseContext(), AgricultureTechActivity.class));
         });
 
+        LinearLayout support_tab = findViewById(R.id.support_tab);
+        support_tab.setOnClickListener(v -> {
+            startActivity(new Intent(getBaseContext(), ));
+        });
 
         this.initBottomNavigation();
         this.hotNotice();

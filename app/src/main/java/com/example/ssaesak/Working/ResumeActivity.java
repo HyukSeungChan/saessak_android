@@ -41,7 +41,7 @@ import retrofit2.Response;
 
 public class ResumeActivity extends AppCompatActivity {
 
-    private TextView gender, birth, phone, address, account, email;
+    private TextView gender, birth, phone, address, account, email, name;
 
     private EditText editTitle, editTextCareerYear, editTextCareerMonth, editTextPay, editTextCareerTimeStart, editTextCareerTimeEnd, editTextCareerDueStart, editTextCareerDueEnd;
 
@@ -73,6 +73,8 @@ public class ResumeActivity extends AppCompatActivity {
         workId = getIntent().getIntExtra("workId", 1);
 
         init();
+
+        name.setText(User.getInstance().getName());
 
         agricultureList = new ArrayList<>();
         agricultureList.add(findViewById(R.id.chip_qkxshdtk));
@@ -185,6 +187,7 @@ public class ResumeActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         birth = findViewById(R.id.birth);
         phone = findViewById(R.id.phone);
+        name = findViewById(R.id.name);
         address = findViewById(R.id.address);
         account = findViewById(R.id.account);
         newestButton = findViewById(R.id.newest_button);
